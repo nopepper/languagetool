@@ -107,9 +107,9 @@ abstract class TextChecker {
     this.reqCounter = reqCounter;
     this.fastTextIdentifier = new LanguageIdentifier();
     this.fastTextIdentifier.enableFasttext(config.getFasttextBinary(), config.getFasttextModel());
-    if (config.getNgramLangIdentDir() != null) {
+    if (config.getNgramLangIdentData() != null) {
       this.ngramIdentifier = new LanguageIdentifier();
-      this.ngramIdentifier.enableNgrams(config.getNgramLangIdentDir());
+      this.ngramIdentifier.enableNgrams(config.getNgramLangIdentData());
     }
     this.executorService = Executors.newCachedThreadPool(new ThreadFactoryBuilder().setNameFormat("lt-textchecker-thread-%d").build());
     this.cache = config.getCacheSize() > 0 ? new ResultCache(
@@ -228,12 +228,16 @@ abstract class TextChecker {
     try {
       if (parameters.containsKey("textSessionId")) {
         String textSessionIdStr = parameters.get("textSessionId");
-        if (textSessionIdStr.contains(":")) { // transitioning to new format used in chrome addon
+        if (textSessionIdStr.startsWith("user:")) {
+          int sepPos = textSessionIdStr.indexOf(':');
+          String sessionId = textSessionIdStr.substring(sepPos + 1);
+          textSessionId = Long.valueOf(sessionId);
+        } else if (textSessionIdStr.contains(":")) { // transitioning to new format used in chrome addon
           // format: "{random number in 0..99999}:{unix time}"
           long random, timestamp;
           int sepPos = textSessionIdStr.indexOf(':');
-          random = Long.valueOf(textSessionIdStr.substring(0, sepPos));
-          timestamp = Long.valueOf(textSessionIdStr.substring(sepPos + 1));
+          random = Long.parseLong(textSessionIdStr.substring(0, sepPos));
+          timestamp = Long.parseLong(textSessionIdStr.substring(sepPos + 1));
           // use random number to choose a slice in possible range of values
           // then choose position in slice by timestamp
           long maxRandom = 100000;
@@ -634,7 +638,12 @@ abstract class TextChecker {
     try {
       settings = new PipelinePool.PipelineSettings(lang, motherTongue, params, config.globalConfig, userConfig);
       lt = pipelinePool.getPipeline(settings);
-      matches.addAll(lt.check(aText, true, JLanguageTool.ParagraphHandling.NORMAL, listener, params.mode, params.level, executorService));
+      Long textSessionId = userConfig.getTextSessionId();
+      if (params.regressionTestMode) {
+        textSessionId = -2L; // magic value for remote rule roll-out - includes all results, even from disabled models
+      }
+      matches.addAll(lt.check(aText, true, JLanguageTool.ParagraphHandling.NORMAL, listener,
+        params.mode, params.level, executorService, textSessionId));
     } finally {
       if (lt != null) {
         pipelinePool.returnPipeline(settings, lt);
@@ -741,6 +750,8 @@ abstract class TextChecker {
     /** allowed to log input with stack traces to reproduce errors? */
     final boolean inputLogging;
 
+    final boolean regressionTestMode; // no fallbacks for remote rules, retries, enable all rules
+
     QueryParams(List<Language> altLanguages, List<String> enabledRules, List<String> disabledRules, List<CategoryId> enabledCategories, List<CategoryId> disabledCategories,
                 boolean useEnabledOnly, boolean useQuerySettings, boolean allowIncompleteResults, boolean enableHiddenRules, boolean enableTempOffRules, JLanguageTool.Mode mode, JLanguageTool.Level level, @Nullable String callback) {
       this(altLanguages, enabledRules, disabledRules, enabledCategories, disabledCategories, useEnabledOnly, useQuerySettings, allowIncompleteResults, enableHiddenRules, enableTempOffRules, mode, level, callback, true);
@@ -758,6 +769,7 @@ abstract class TextChecker {
       this.allowIncompleteResults = allowIncompleteResults;
       this.enableHiddenRules = enableHiddenRules;
       this.enableTempOffRules = enableTempOffRules;
+      this.regressionTestMode = enableTempOffRules;
       this.mode = Objects.requireNonNull(mode);
       this.level = Objects.requireNonNull(level);
       if (callback != null && !callback.matches("[a-zA-Z]+")) {
@@ -780,6 +792,7 @@ abstract class TextChecker {
         .append(allowIncompleteResults)
         .append(enableHiddenRules)
         .append(enableTempOffRules)
+        .append(regressionTestMode)
         .append(mode)
         .append(level)
         .append(callback)
@@ -805,6 +818,7 @@ abstract class TextChecker {
         .append(allowIncompleteResults, other.allowIncompleteResults)
         .append(enableHiddenRules, other.enableHiddenRules)
         .append(enableTempOffRules, other.enableTempOffRules)
+        .append(regressionTestMode, other.regressionTestMode)
         .append(mode, other.mode)
         .append(level, other.level)
         .append(callback, other.callback)
@@ -825,6 +839,7 @@ abstract class TextChecker {
         .append("allowIncompleteResults", allowIncompleteResults)
         .append("enableHiddenRules", enableHiddenRules)
         .append("enableTempOffRules", enableTempOffRules)
+        .append("regressionTestMode", regressionTestMode)
         .append("mode", mode)
         .append("level", level)
         .append("callback", callback)

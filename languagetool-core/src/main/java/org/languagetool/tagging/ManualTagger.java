@@ -19,16 +19,15 @@
 package org.languagetool.tagging;
 
 import gnu.trove.THashMap;
+import org.apache.commons.lang3.StringUtils;
+import org.languagetool.synthesis.ManualSynthesizer;
+import org.languagetool.tools.StringTools;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.*;
-
-import org.languagetool.synthesis.ManualSynthesizer;
-import org.languagetool.tools.StringTools;
-
-import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 /**
@@ -42,21 +41,20 @@ import java.util.*;
  * @see ManualSynthesizer
  */
 public class ManualTagger implements WordTagger {
-
-  private final Map<String, List<TaggedWord>> mapping;
+  private final Map<String, TaggedWord[]> mapping;
 
   public ManualTagger(InputStream inputStream) throws IOException {
     this(inputStream, false);
   }
 
   public ManualTagger(InputStream inputStream, boolean internTags) throws IOException {
-    mapping = loadMapping(inputStream, "utf8", internTags);
+    mapping = loadMapping(inputStream, internTags);
   }
 
-  private Map<String, List<TaggedWord>> loadMapping(InputStream inputStream, String encoding, boolean internTags) throws IOException {
+  private static Map<String, TaggedWord[]> loadMapping(InputStream inputStream, boolean internTags) throws IOException {
     Map<String, List<TaggedWord>> map = new HashMap<>();
     try (
-      InputStreamReader reader = new InputStreamReader(inputStream, encoding);
+      InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
       BufferedReader br = new BufferedReader(reader)
     ) {
       String line;
@@ -64,20 +62,25 @@ public class ManualTagger implements WordTagger {
         if (StringTools.isEmpty(line) || line.charAt(0) == '#') {
           continue;
         }
-        line = line.replaceFirst("#.*", "").trim();
+        line = StringUtils.substringBefore(line, "#").trim();
         String[] parts = line.split("\t");
         if (parts.length != 3) {
           throw new IOException("Unknown line format when loading manual tagger dictionary, expected three tab-separated fields: '" + line + "'");
         }
-        List<TaggedWord> terms = map.get(parts[0]);
-        if (terms == null) {
-          terms = new ArrayList<>();
-        }
-        terms.add(new TaggedWord(parts[1], internTags ? parts[2].trim().intern() : parts[2].trim()));
-        map.put(parts[0], terms);
+        String form = parts[0];
+
+        String lemma = parts[1];
+        if (lemma.equals(form)) lemma = form;
+
+        String tag = parts[2].trim();
+        map.computeIfAbsent(form, __ -> new ArrayList<>()).add(new TaggedWord(lemma, internTags ? tag.intern() : tag));
       }
     }
-    return map;
+    Map<String, TaggedWord[]> compressed = new THashMap<>(map.size());
+    for (Map.Entry<String, List<TaggedWord>> entry : map.entrySet()) {
+      compressed.put(entry.getKey(), entry.getValue().toArray(new TaggedWord[0]));
+    }
+    return compressed;
   }
 
   /**
@@ -85,9 +88,9 @@ public class ManualTagger implements WordTagger {
    */
   @Override
   public List<TaggedWord> tag(String word) {
-    List<TaggedWord> lookedUpTerms = mapping.get(word);
+    TaggedWord[] lookedUpTerms = mapping.get(word);
     if (lookedUpTerms != null) {
-      return Collections.unmodifiableList(lookedUpTerms);
+      return Collections.unmodifiableList(Arrays.asList(lookedUpTerms));
     } else {
       return Collections.emptyList();
     }

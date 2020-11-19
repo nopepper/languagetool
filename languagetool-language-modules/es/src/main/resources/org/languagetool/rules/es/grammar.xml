@@ -53,7 +53,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 <!ENTITY common_english_nouns_masculine "Club|TM|UD|UE|SD|Team|Day|Center|Centre|Hilton|Group|Museum">
 <!ENTITY context_ano "anal|culo|cáncer|rectal|estómago|intestino|defecación|defecar|digestivo|sistema|tracto|hez|mierda|excremento|orificio|excretar|cagar">
 <!ENTITY denominacion "elemento|palabra|término|expresión|vocablo|nombre|tipo|denominación">
-<!ENTITY wrong_as_pron_verb "a|amplia|continua|dió|esta|estan|este|esten|frió|hacia|hecha|rió|tenia|tenias|venia|venias|vera">
+<!ENTITY wrong_as_pron_verb "estas|a|amplia|continua|dió|esta|estan|este|esten|frió|hacia|hecha|rió|tenia|tenias|venia|venias|vera">
 <!ENTITY wrong_as_pron_verb2 "de|e">
 <!-- also: de, e-->
 <!ENTITY colors_invariable "burdeos|naranja|rosa|violeta|añil|carmesí">
@@ -63,7 +63,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 <rules lang="es" xsi:noNamespaceSchemaLocation="../../../../../../../../../languagetool-core/src/main/resources/org/languagetool/rules/rules.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <unification feature="numero">
         <equivalence type="S">
-            <token postag="(PX..|N.{2}|[ADP].{3}|V.{4})[SN0].*|.*_GN_.S.*|SP\+DA" postag_regexp="yes"/>
+            <token postag="(PX..|N.{2}|[ADP].{3}|V.{4})[SN0].*|.*_GN_.S.*|SP:DA" postag_regexp="yes"/>
         </equivalence>
         <equivalence type="P">
             <token postag="(PX..|N.{2}|[ADP].{3}|V.{4})[PN0].*|.*_GN_.P.*" postag_regexp="yes"/>
@@ -71,7 +71,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
     </unification>
     <unification feature="genero">
         <equivalence type="M">
-            <token postag="(PX.|N.|[ADP].{2}|V.{5})[MC].*|.*_GN_M..|SP\+DA*" postag_regexp="yes"/>
+            <token postag="(PX.|N.|[ADP].{2}|V.{5})[MC].*|.*_GN_M..|SP:DA*" postag_regexp="yes"/>
         </equivalence>
         <equivalence type="F">
             <token postag="(PX.|N.|[ADP].{2}|V.{5})[FC].*|.*_GN_F..*" postag_regexp="yes"/>
@@ -95,6 +95,17 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
         </phrase>
     </phrases>
     <category id="CASING" name="Mayúsculas y minúsculas" type="typographical">
+        <rule id="MAY_ABREVIATURA" name="mayúscula en algunas abreviaturas">
+            <pattern>
+                <marker>
+                    <token regexp="yes" case_sensitive="yes">sr|sra|sres|sras|dr|dra|dres|dras|prof|st|sta|excmo|excma|ilma|ilmo</token>
+                </marker>
+                <token>.</token>
+            </pattern>
+            <message>Esta abreviatura se escribe con mayúscula inicial.</message>
+            <suggestion><match no="1" case_conversion="startupper"/></suggestion>
+            <example correction="Sra">Ha venido la <marker>sra</marker>. García.</example>
+        </rule>
         <rulegroup id="MIN_MESES" name="Meses en minúscula">
             <url>http://www.rae.es/consultas/mayuscula-o-minuscula-en-los-meses-los-dias-de-la-semana-y-las-estaciones-del-ano</url>
             <antipattern case_sensitive="yes">
@@ -1058,7 +1069,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             <rule>
                 <!-- de termino-->
                 <pattern>
-                    <token postag="SPS00|SP\+DA|LOC_PREP" postag_regexp="yes"><exception postag="RG|_possible_NP" postag_regexp="yes"/></token>
+                    <token postag="SPS00|SP:DA|LOC_PREP" postag_regexp="yes"><exception postag="RG|_possible_NP" postag_regexp="yes"/></token>
                     <token postag="D[AI].*" postag_regexp="yes" min="0"/>
                     <marker>
                         <token><exception postag="D.*|V.N.*|[NA].*|V.P.*" postag_regexp="yes"/></token>
@@ -1090,7 +1101,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             <rule>
                 <!-- del tristemente celebre-->
                 <pattern>
-                    <token postag="SPS00|SP\+DA" postag_regexp="yes"><exception postag="RG|_possible_NP" postag_regexp="yes"/></token>
+                    <token postag="SPS00|SP:DA" postag_regexp="yes"><exception postag="RG|_possible_NP" postag_regexp="yes"/></token>
                     <token postag="D[AI].*" postag_regexp="yes" min="0"/>
                     <token postag="RG"/>
                     <marker>
@@ -1446,7 +1457,242 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <suggestion>{suggestion}</suggestion>
                 <example correction="náusea">Hasta la <marker>nausea</marker>.</example>
             </rule>
+            <rule>
+                <!-- dos practicas -->
+                <antipattern>
+                    <token regexp="yes">en|el|del|al|de|año</token>
+                    <token regexp="yes">\d\d\d\d</token>
+                </antipattern>
+                <pattern>
+                    <token postag="DN..P." postag_regexp="yes"/>
+                    <marker>
+                        <token><exception postag="D.*|V.N.*|[NA].*|V.P.*" postag_regexp="yes"/></token>
+                    </marker>
+                </pattern>
+                <filter class="org.languagetool.rules.es.ConfusionCheckFilter" args="form:\2 postag:NC.[PN].*|A...[PN]."/>
+                <message>Si es adjetivo o nombre, se escribe con tilde.</message>
+                <suggestion>{suggestion}</suggestion>
+                <example correction="prácticas">Tengo 2 <marker>practicas</marker> más.</example>
+                <example correction="prácticas">Tengo dos <marker>practicas</marker> más.</example>
+                <example>En el año 2010 practicas más.</example>
+            </rule>
         </rulegroup>
+        <rule id="PRACTICA" name="practica/práctica">
+            <antipattern>
+                <token>que</token>
+                <token min="0" max="3" postag="RG|.*LOC_ADV.*|RN" postag_regexp="yes"/>
+                <token regexp="yes">practico|practica|practicas</token>
+            </antipattern>
+            <antipattern>
+                <token postag="&pronombre_personal_atono_POS;|RG|LOC_ADV" postag_regexp="yes"/>
+                <token regexp="yes">practico|practica|practicas</token>
+            </antipattern>
+            <antipattern>
+                <token regexp="yes">practico|practica|practicas</token>
+                <token postag="[DAN].*" postag_regexp="yes"><exception regexp="yes">número|núm</exception></token>
+            </antipattern>
+            <antipattern>
+                <token regexp="yes">que|cual|quien|donde|quién|cuál|dónde|si</token>
+                <token regexp="yes">practico|practica|practicas</token>
+            </antipattern>
+            <antipattern>
+                <token regexp="yes">practico|practica|practicas</token>
+                <token regexp="yes">por|con|a</token>
+            </antipattern>
+            <antipattern>
+                <token regexp="yes">practica|practicas</token>
+                <token regexp="yes">tú|?</token>
+            </antipattern>
+            <antipattern>
+                <token regexp="yes">practico|practica|practicas</token>
+                <token postag="V.G.*|RG" postag_regexp="yes"/>
+            </antipattern>
+            <antipattern>
+                <token>practica</token>
+                <token postag="CC"/>
+                <token postag="V.[SI].3S." postag_regexp="yes"/>
+            </antipattern>
+            <antipattern>
+                <token postag="V.[SI].3S." postag_regexp="yes"/>
+                <token postag="CC"/>
+                <token>practica</token>
+            </antipattern>
+            <pattern>
+                <token regexp="yes">practico|practica|practicas</token>
+            </pattern>
+            <message>Si es adjetivo o nombre, se escribe con tilde. Correcto si es del v. 'practicar'.</message>
+            <suggestion><match no="1" regexp_match="(?iu)(pr)a(c.*)" regexp_replace="$1á$2" case_conversion="preserve"/></suggestion>
+            <example correction="Práctica"><marker>Practica</marker> núm. 12</example>
+            <example correction="Prácticas"><marker>Practicas</marker></example>
+            <example correction="práctica">Teoría y <marker>practica</marker>.</example>
+            <example>Si lo practicas mucho, lo conseguirrás.</example>
+            <example>Si practicas mucho, lo conseguirrás.</example>
+            <example>Si practicas, le cogerás el tranquillo tarde o temprano.</example>
+            <example>Se practica con intensidad.</example>
+            <example>Entrena y practica escalada en hielo </example>
+            <example>Practica esquí con la familia. </example>
+            <example>Habitualmente practica yoga. </example>
+            <example>Practica igualmente el judo. </example>
+            <example>Practica también la caza. </example>
+            <example>Después practica y registra este comportamiento.</example>
+            <example>Es vegetariano y practica y enseña meditación trascendental.</example>
+            <example>También practica snowboarding.</example>
+            <example>Así practicas.</example>
+            <example>Practica tú misma.</example>
+            <example>Las maquinaciones ue la Iglesia practica a nivel mundial.</example>
+            <example>¿Qué clase de deportes practicas?</example>
+            <example>Soy la primera que no practico para nada este estilo.</example>
+        </rule>
+        <rule id="PUBLICO" name="publico/público">
+            <antipattern>
+                <token postag="RG|LOC_ADV" postag_regexp="yes"/>
+                <token regexp="yes">publico|publicas?</token>
+            </antipattern>
+            <antipattern>
+                <token postag="&pronombre_personal_atono_POS;" postag_regexp="yes"/>
+                <token regexp="yes">publico|publicas?</token>
+            </antipattern>
+            <antipattern>
+                <token regexp="yes">publico|publicas?</token>
+                <token min="0" postag="_QM_OPEN"/>
+                <token postag="[DAN].*|PI.*" postag_regexp="yes"><exception regexp="yes">número|núm</exception></token>
+            </antipattern>
+            <antipattern>
+                <token regexp="yes">publico|publicas?</token>
+                <token skip="-1" regexp="yes">[,-—–]</token>
+                <token><match no="1"/></token>
+                <token min="0" postag="_QM_OPEN"/>
+                <token postag="[DAN].*|PI.*" postag_regexp="yes"><exception regexp="yes">número|núm</exception></token>
+            </antipattern>
+            <antipattern>
+                <token postag="PR.*" postag_regexp="yes"/> <!--que|cual|quien|donde|porque|cuando</token>-->
+                <token regexp="yes">publico|publicas?</token>
+            </antipattern>
+            <antipattern>
+                <token regexp="yes">publico|publicas?</token>
+                <token regexp="yes">por|con|a|en</token>
+            </antipattern>
+            <antipattern>
+                <token regexp="yes">publicas?</token>
+                <token>tú</token>
+            </antipattern>
+            <antipattern>
+                <token regexp="yes">publico|publicas?</token>
+                <token>:</token>
+            </antipattern>
+            <antipattern>
+                <token regexp="yes">\d\d\d\d</token>
+                <token>publica</token>
+            </antipattern>
+            <antipattern>
+                <token>publica</token>
+                <token regexp="yes">\p{Lu}.*</token>
+            </antipattern>
+            <antipattern>
+                <token regexp="yes">\p{Lu}.*</token>
+                <token>publica</token>
+                <token regexp="yes">\p{Lu}.*</token>
+            </antipattern>
+            <antipattern>
+                <token regexp="yes">publico|publicas?</token>
+                <token min="0" postag="RN|_QM_OPEN" postag_regexp="yes"/>
+                <token postag="V.G.*|RG|UNKNOWN" postag_regexp="yes"/>
+            </antipattern>
+            <antipattern>
+                <token>publica</token>
+                <token postag="CC"/>
+                <token postag="V.[SI].3S." postag_regexp="yes"/>
+            </antipattern>
+            <antipattern>
+                <token postag="V.[SI].3S." postag_regexp="yes"/>
+                <token postag="CC"/>
+                <token>publica</token>
+            </antipattern>
+            <pattern>
+                <token regexp="yes">publico|publicas?<exception postag="NP.*|A.*" postag_regexp="yes"/></token>
+            </pattern>
+            <message>Si es adjetivo o nombre, se escribe con tilde. Correcto si es del v. 'publicar'.</message>
+            <suggestion><match no="1" regexp_match="(?iu)u" regexp_replace="ú" case_conversion="preserve"/></suggestion>
+            <example correction="pública">Concurrencia competitiva, que se inicia de oficio mediante convocatoria <marker>publica</marker>.</example>
+            <example correction="Pública">Se crea el Tribunal de Vigilancia y Seguridad <marker>Publica</marker>.</example>
+            <example>Se preocupa de la res publica.</example>
+            <example>En el siguiente año, publica, junto con Javier Heraud, Ensayo a dos voces.</example>
+            <example>En 2006 la banda publica uno de sus álbumes.</example>
+            <example>En 1996 el trío publica Nove Luas</example>
+            <example>La Biblioteca Nacional publica, en formato impreso y digital, una agenda bimestral.</example>
+            <example>Benedicto XVI publica libro entrevista.</example>
+        </rule>
+        <rule id="DIACRITICS_SPECIAL" name="diacríticos, casos especiales">
+            <antipattern>
+                <token/>
+                <token postag="[DNA].*" postag_regexp="yes"/>
+            </antipattern>
+            <antipattern>
+                <token/>
+                <token regexp="yes">a|al|como</token>
+            </antipattern>
+            <antipattern>
+                <token/>
+                <token postag="RG"/>
+                <token regexp="yes">a|al|como</token>
+            </antipattern>
+            <antipattern>
+                <token regexp="yes" skip="3">que|si</token>
+                <token min="0" max="3" postag="R.*|LOC_ADV" postag_regexp="yes"/>
+                <token postag="V.[SI].*" postag_regexp="yes"/>
+            </antipattern>
+            <antipattern>
+                <token postag="&pronombre_personal_atono_POS;" postag_regexp="yes"/>
+                <token/>
+            </antipattern>
+            <antipattern>
+                <token skip="2">calculo</token>
+                <token>que</token>
+            </antipattern>
+            <antipattern>
+                <token regexp="yes">practicas?</token>
+                <token postag="RG"/>
+            </antipattern>
+            <antipattern>
+                <token postag="NCM.*|NCFP000" postag_regexp="yes"/>
+                <token>practica</token>
+            </antipattern>
+            <antipattern>
+                <token postag="NCM.*|NCFS000" postag_regexp="yes"/>
+                <token>practicas</token>
+            </antipattern>
+            <pattern>
+                <!-- NOT: celebre, domino, decimos, domine, escalamos, , echo, llamaron, piden, paramos, cede, solicita, solicito, termino, verifica, vienes, aman, borren, calan, capitula, crias, critica, criticas, critico |critica, cuajaron, cupe, calculo, envió, escalamos, estipula, habito, participe, platica, platicas, predica, predicas, patina, regulo, solicita, solicitas, solicito, suplico, suplica, suplicas, termino, verifica, indica, ulula publica|publicas|publico prospera|prosperas|prospero  especifica|especificas|especifico| |fabrica|fabricas |limite|limites
+                         ???: pio, moran, indico, opera, anima, animas, replica, replicas,-->
+                <!-- TODO: solo me faltan 2 practicas más -->
+                <marker>
+                    <token postag="V.[SI].*" postag_regexp="yes" regexp="yes"
+                        >ada|adan|animo|arboles|aticulo|autentica|autenticas|autentico|azucares|barbara|calculo|canceres|capitulo|capsula|capsulas|catalogo|circulo|cubica|cubicas|debito|deposito|desordenes|diagnostico|dialogo|domestica|domesticas|domestico|ejercito|embolo|entrelinea|entrelineas|epitome|espontanea|estomago|genero|idolatra|idolatras|ignifuga|ignifugas|ignifugo|ilegitima|ilegitimas|ilegitimo|invalida|invalidas|invalido|lagrima|lagrimas|lamina|laminas|lastima|lastimas|legitima|legitimas|legitimo|lideres|linea|lineas|liquida|liquidas|liquido|maquina|maquinas|marques|matricula|medica|medicas|medico|modulo|nausea|nauseas|nomina|nominas|oleo|ordenes|ovulo|oxido|oxigeno|pacifico|petroleo|pixeles|prestamos|prorroga|purpurea|purpureas|recamara|recamaras|reciproca|reciprocas|reciproco|retrograda|retrogradas|retrogrado|revalida|revalidas|rondo|simultanea|simultaneas|simultaneo|solida|solidas|solido|tempano|titulo|trafico|tramite|tramites|transito|tremolo|triangulo|ulcera|ulceras|vehiculo|victima|victimas|vinculo<exception
+                        postag="D.*|V.N.*|[NA].*|V.P.*" postag_regexp="yes"/></token>
+                </marker>
+            </pattern>
+            <filter class="org.languagetool.rules.es.ConfusionCheckFilter" args="form:\1 postag:NC.*|AQ.*"/>
+            <message>Si es adjetivo o nombre, se escribe con tilde.</message>
+            <suggestion>{suggestion}</suggestion>
+            <example correction="Nóminas"><marker>Nominas</marker> de octubre.</example>
+            <example correction="Máquina"><marker>Maquina</marker> para pelar patatas.</example>
+            <example>Ahora maquina otro plan.</example>
+            <example>Londres, el lugar donde habito, era antiguamente conocida por su niebla.</example>
+            <example>Hoy el abuelo naufraga en su memoria.</example>
+            <example>«Los hermanos Kocher», replica Norton.</example>
+            <example>las cosas que coso yo misma y publico en mi blog</example>
+            <example>Mi negocio prospera.</example>
+            <example>Calculo que ya es hora de que nos marchemos.</example>
+            <example>Especifica más.</example>
+            <example>El fondo monetario internacional critica severamente al manejo de la crisis en la Eurozona.</example>
+            <example>Marea Verde critica también que quiera hacernos creer que los millones se perderían</example>
+            <example>Él critica todo.</example>
+            <example>Faber-Castell fabrica más de 2,3 mil millones.</example>
+            <example>que se defina y limite, hacia delante y hacia atrás, la competencia temporal</example>
+            <example>María publica continuamente fotos de ella misma en Instagram.</example>
+            <example>Lee mucho y practica mucho.</example>
+            <example>¿Qué clase de deportes practicas?</example>
+        </rule>
         <rule id="DIACRITICS_CONDICIONAL" name="secundaria/secundaría">
             <pattern>
                 <token postag="&pronombre_personal_atono_POS;" postag_regexp="yes"/>
@@ -1620,6 +1866,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                     <token skip="-1">como<exception scope="next" postag="V.[MSI].*" postag_regexp="yes"/></token>
                     <token postag="SENT_END|CS" postag_regexp="yes"><exception postag="V.[MSI].*" postag_regexp="yes"/></token>
                 </antipattern>
+                <antipattern>
+                    <token>como</token>
+                    <token regexp="yes">cuánto|cuándo|cuál|qué|dónde|adónde</token>
+                </antipattern>
                 <pattern>
                     <token>¿</token>
                     <token min="0" max="2" postag="SPS00|CC" postag_regexp="yes"/>
@@ -1637,6 +1887,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example>¿Como estas?</example>
                 <example>¿Como las que trajo él?</example>
                 <example>Pero ¿como para pagar por él tanto o más que por un SEAT León?</example>
+                <example>¿Como cuánto te gusta?</example>
             </rule>
             <rule>
                 <pattern>
@@ -1827,6 +2078,50 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <suggestion>qué</suggestion>
                 <example correction="qué">Me pregunto <marker>que</marker> quería.</example>
                 <example>Estas no son las preguntas que pensábamos hacer.</example>
+            </rule>
+        </rulegroup>
+        <rule id="QUE_TILDE" name="que -> qué" default="temp_off">
+            <pattern>
+                <token postag="SP.*|LOC_PREP" postag_regexp="yes"/>
+                <marker>
+                    <token>que</token>
+                </marker>
+                <token regexp="yes">[.?!]</token>
+            </pattern>
+            <message>Si equivale a 'qué cosa', se escribe con tilde.</message>
+            <suggestion>qué</suggestion>
+            <example correction="qué">Quiero saber a cambio de <marker>que</marker>.</example>
+        </rule>
+        <rulegroup id="QUE_SIN_TILDE" name="qué -> que">
+            <antipattern>
+                <token regexp="yes">el|del|al</token>
+                <token>qué</token>
+                <token>dirán</token>
+            </antipattern>
+            <rule>
+                <pattern>
+                    <token postag="SPS00|LOC_PREP" postag_regexp="yes"/>
+                    <token postag="DA.*" postag_regexp="yes"/>
+                    <marker>
+                        <token>qué</token>
+                    </marker>
+                </pattern>
+                <message>Probablemente se escribe sin tilde. Correcto si equivale a 'qué cosa'.</message>
+                <suggestion>que</suggestion>
+                <example correction="que">La persona de la <marker>qué</marker> te hablé.</example>
+                <example>No me preocupa nada el qué dirán.</example>
+            </rule>
+            <rule>
+                <pattern>
+                    <token postag="SP:DA"/>
+                    <marker>
+                        <token>qué</token>
+                    </marker>
+                </pattern>
+                <message>Probablemente se escribe sin tilde. Correcto si equivale a 'qué cosa'.</message>
+                <suggestion>que</suggestion>
+                <example correction="que">El personaje del <marker>qué</marker> no se habla</example>
+                <example>No hay que preocuparse del qué dirán.</example>
             </rule>
         </rulegroup>
         <rulegroup id="QUIEN" name="quien/quién...">
@@ -2294,7 +2589,12 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 </antipattern>
                 <antipattern>
                     <token>se</token>
-                    <token regexp="yes">me|te|le|les|lo|los|nos|os</token>
+                    <token regexp="yes">me|te|le|les|nos|os</token>
+                </antipattern>
+                <antipattern>
+                    <token>se</token>
+                    <token regexp="yes">lo|los</token>
+                    <token postag="V.[SI].*" postag_regexp="yes"/>
                 </antipattern>
                 <antipattern>
                     <!-- triggers another rule -->
@@ -2317,6 +2617,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example correction="sé">No <marker>se</marker> la lección.</example>
                 <example correction="sé">No me <marker>se</marker> la lección.</example>
                 <example correction="sé">Lo <marker>se</marker> de buena tinta.</example>
+                <example correction="sé">No <marker>se</marker> lo que quieres decir.</example>
+                <example correction="sé">No <marker>se</marker> los que vinieron.</example>
                 <example type="correct" reason="triggers another rule">Se desarollo.</example>
                 <example type="correct" reason="triggers another rule">Se desarrollo.</example>
                 <example>Se me apareció.</example>
@@ -2559,6 +2861,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <antipattern>
                     <token>sabias</token>
                     <token>como</token>
+                </antipattern>
+                <antipattern>
+                    <token>sabios</token>
+                    <token>como</token>
+                    <token>sabia</token>
                 </antipattern>
                 <pattern>
                     <marker>
@@ -3043,6 +3350,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                     <token postag="&pronombre_personal_atono_POS;" postag_regexp="yes" min="0"/>
                     <token postag="VMSI(3S|3P|2S)0" postag_regexp="yes"/>
                 </antipattern>
+                <antipattern>
+                    <token>una</token>
+                    <token>vez</token>
+                    <token postag="VMSI(3S|3P|2S)0" postag_regexp="yes"/>
+                </antipattern>
                 <pattern>
                     <and>
                         <token inflected="yes" regexp="yes">.*ar</token>
@@ -3081,6 +3393,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <!-- ambiguous? -->
                 <!-- the error is a missing word before the verb: -->
                 <example correction="dejará">Se adhirió a la organización antes de él <marker>dejara</marker> el cargo.</example>
+                <example>Una vez entrar vigencia la ley, se solucionaría el problema.</example>
             </rule>
             <rule>
                 <antipattern>
@@ -3228,7 +3541,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <token>Dios</token>
             </antipattern>
             <antipattern>
-                <token postag="VMM.*\+PP.*" postag_regexp="yes"/>
+                <token postag="VMM.*:PP.*" postag_regexp="yes"/>
             </antipattern>
             <antipattern>
                 <token regexp="yes">el|un|mucho|este|ese|aquel|del|al</token>
@@ -3256,17 +3569,17 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 </and>
             </pattern>
             <message>Si es pasado, se escribe con tilde. Si es imperativo, puede que falte una coma.</message>
-            <suggestion><match no="1" postag="VMSP[13]S0" postag_regexp="yes" postag_replace="VMIS1S0"/></suggestion>
+            <suggestion> <match no="1" postag="VMSP[13]S0" postag_regexp="yes" postag_replace="VMIS1S0"/></suggestion>
             <suggestion>, \1</suggestion>
-            <example correction="analicé|, analice">Yo lo <marker>analice</marker> ayer.</example>
-            <example correction="canté|, cante">Yo <marker>cante</marker> esto.</example>
-            <example correction="limité|, limite">Me <marker>limite</marker> a archivar las fichas.</example>
-            <example correction="presioné|, presione">Disculpa, sin darme cuenta <marker>presione</marker> el botón de envío.</example>
-            <example correction="tomé|, tome">Ayer <marker>tome</marker> el día libre.</example>
-            <example correction="enfadé|, enfade">Me <marker>enfade</marker>.</example>
-            <example correction="usé|, use">En este caso <marker>use</marker> referencias a entidades HTML.</example>
+            <example correction=" analicé|, analice">Yo lo<marker> analice</marker> ayer.</example>
+            <example correction=" canté|, cante">Yo<marker> cante</marker> esto.</example>
+            <example correction=" limité|, limite">Me<marker> limite</marker> a archivar las fichas.</example>
+            <example correction=" presioné|, presione">Disculpa, sin darme cuenta<marker> presione</marker> el botón de envío.</example>
+            <example correction=" tomé|, tome">Ayer<marker> tome</marker> el día libre.</example>
+            <example correction=" enfadé|, enfade">Me<marker> enfade</marker>.</example>
+            <example correction=" usé|, use">En este caso<marker> use</marker> referencias a entidades HTML.</example>
             <!-- better suggestion: célebre -->
-            <example correction="celebré|, celebre">dando origen al tristemente <marker>celebre</marker> episodio</example>
+            <example correction=" celebré|, celebre">dando origen al tristemente<marker> celebre</marker> episodio</example>
             <example>Cante usted esto.</example>
             <example>No cante tan alto.</example>
             <example>No nos lo cante tan alto.</example>
@@ -3405,13 +3718,14 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                     <token>se</token>
                     <token regexp="yes" min="0">&pronombre_personal_atono;</token>
                     <marker>
-                        <token regexp="yes">estan?</token>
+                        <token regexp="yes">esta[ns]?</token>
                     </marker>
                 </pattern>
                 <message>Falta una tilde.</message>
-                <suggestion><match no="3" regexp_match="(?iu)(est)a(n?)" regexp_replace="$1á$2"/></suggestion>
+                <suggestion><match no="3" regexp_match="(?iu)(est)a([ns]?)" regexp_replace="$1á$2"/></suggestion>
                 <example correction="está">Se <marker>esta</marker> bien aquí.</example>
                 <example correction="están">Se le <marker>estan</marker> cayendo.</example>
+                <example correction="estás">Se lo <marker>estas</marker> facilitando.</example>
             </rule>
             <rule>
                 <pattern>
@@ -3440,7 +3754,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             </rule>
             <rule default="on">
                 <pattern>
-                    <token postag="D..MS.|SP\+DA" postag_regexp="yes"/>
+                    <token postag="D..MS.|SP:DA" postag_regexp="yes"/>
                     <marker>
                         <token>ingles</token>
                     </marker>
@@ -3643,6 +3957,54 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example>hace tiempo que practico tocar la cítara</example>
                 <!-- Ambiguous: es más bonito que *practico 
                                 es lo más bonito que practico -->
+            </rule>
+            <rule>
+                <antipattern>
+                    <token regexp="yes">nominas?</token>
+                    <token postag="[DN].*|_GN_.*" postag_regexp="yes"/>
+                </antipattern>
+                <antipattern>
+                    <token regexp="yes">nominas?</token>
+                    <token regexp="yes">a|al|como</token>
+                </antipattern>
+                <antipattern>
+                    <token regexp="yes">que|si</token>
+                    <token min="0" max="3" postag="R.*|LOC_ADV" postag_regexp="yes"/>
+                    <token regexp="yes">nominas?</token>
+                </antipattern>
+                <antipattern>
+                    <token postag="&pronombre_personal_atono_POS;" postag_regexp="yes"/>
+                    <token regexp="yes">nominas?</token>
+                </antipattern>
+                <pattern>
+                    <token regexp="yes">nominas?</token>
+                </pattern>
+                <message>Si es sustantivo, lleva tilde. Correcto si es del v. 'nominar'.</message>
+                <suggestion><match no="1" regexp_match="(?i)o" regexp_replace="ó"/></suggestion>
+                <example correction="Nóminas"><marker>Nominas</marker> del mes de noviembre.</example>
+                <example>La Academia nomina las mejores películas.</example>
+            </rule>
+            <rule>
+                <antipattern>
+                    <token regexp="yes">formulas?</token>
+                    <token postag="[DN].*|_GN_.*" postag_regexp="yes"/>
+                </antipattern>
+                <antipattern>
+                    <token regexp="yes">que|si</token>
+                    <token min="0" max="3" postag="R.*|LOC_ADV" postag_regexp="yes"/>
+                    <token regexp="yes">formulas?</token>
+                </antipattern>
+                <antipattern>
+                    <token postag="&pronombre_personal_atono_POS;" postag_regexp="yes"/>
+                    <token regexp="yes">formulas?</token>
+                </antipattern>
+                <pattern>
+                    <token regexp="yes">formulas?</token>
+                </pattern>
+                <message>Si es sustantivo, lleva tilde. Correcto si es del v. 'formular'.</message>
+                <suggestion><match no="1" regexp_match="(?i)o" regexp_replace="ó"/></suggestion>
+                <example correction="fórmulas"><marker>formulas</marker> magistrales</example>
+                <example>La oposición formula preguntas incómodas.</example>
             </rule>
             <rule>
                 <pattern>
@@ -3848,7 +4210,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             <!-- TODO: lucido/lúcido, cesar/césar, revolver/revólver -->
             <rule default="on">
                 <pattern>
-                    <token postag="D..MS.|SP\+DA" postag_regexp="yes"/>
+                    <token postag="D..MS.|SP:DA" postag_regexp="yes"/>
                     <marker>
                         <token>compas</token>
                     </marker>
@@ -3857,6 +4219,110 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <suggestion>compás</suggestion>
                 <example correction="compás">Dame el <marker>compas</marker>.</example>
                 <example correction="compás">Del <marker>compas</marker> 4 al 34.</example>
+            </rule>
+        </rulegroup>
+        <rulegroup id="RIO" name="rio/río">
+            <rule>
+                <antipattern case_sensitive="yes">
+                    <token>Río</token>
+                    <token>de</token>
+                    <token>Janeiro</token>
+                </antipattern>
+                <pattern>
+                    <token regexp="yes">rio|río|rió</token>
+                    <token>de</token>
+                    <token>janeiro</token>
+                </pattern>
+                <message>Error de ortografía.</message>
+                <suggestion>Río de Janeiro</suggestion>
+                <example correction="Río de Janeiro">Me voy a <marker>río de janeiro</marker>.</example>
+                <example correction="Río de Janeiro">Me voy a <marker>Rio de Janeiro</marker>.</example>
+            </rule>
+            <rule>
+                <antipattern>
+                    <token regexp="yes">se|le|me|te</token>
+                    <token>rio</token>
+                </antipattern>
+                <pattern>
+                    <marker>
+                        <token>rio</token>
+                    </marker>
+                    <token regexp="yes">\p{Lu}.*</token>
+                </pattern>
+                <message>Si es un nombre, es escribe con tilde. Correcto si es del v. 'reír' en pasado (él se rio).</message>
+                <suggestion>río</suggestion>
+                <example correction="Río"><marker>Rio</marker> Turia.</example>
+                <example>Entonces se rio Juan.</example>
+            </rule>
+            <rule>
+                <pattern>
+                    <marker>
+                        <token case_sensitive="yes">Rio</token>
+                    </marker>
+                </pattern>
+                <message>Si es un nombre, es escribe con tilde. Correcto si es del v. 'reír' en pasado (él rio).</message>
+                <suggestion>Río</suggestion>
+                <example correction="Río"><marker>Rio</marker> es bonito.</example>
+            </rule>
+        </rulegroup>
+        <rule id="FRIO" name="frio/frío">
+            <antipattern>
+                <token regexp="yes">me|te|le|se|nos|os|les|lo|la|él|ella</token>
+                <token>frio</token>
+            </antipattern>
+            <antipattern>
+                <token>frio</token>
+                <token postag="D.*|NC.*" postag_regexp="yes"/>
+            </antipattern>
+            <pattern>
+                <token>frio</token>
+            </pattern>
+            <message>Si es un nombre, es escribe con tilde. Correcto si es del v. 'freír' en pasado (él frio).</message>
+            <suggestion>frío</suggestion>
+            <example correction="frío">No tengo ni <marker>frio</marker> ni calor</example>
+            <example>Les frio el cerebro.</example>
+        </rule>
+        <rule id="LIO" name="lio/lío">
+            <antipattern>
+                <token regexp="yes">me|te|le|se|nos|os|les|lo|la|él|ella</token>
+                <token>lio</token>
+            </antipattern>
+            <antipattern>
+                <token>lio</token>
+                <token postag="D.*|NC.*" postag_regexp="yes"/>
+            </antipattern>
+            <pattern>
+                <token>lio</token>
+            </pattern>
+            <message>Si es un nombre o una forma del v. 'liar' en presente (yo lío), es escribe con tilde. Correcto si es del v. 'liar' en pasado (él lio).</message>
+            <suggestion>lío</suggestion>
+            <example correction="lío">¡Menudo <marker>lio</marker>!</example>
+            <example>Se lio una buena.</example>
+        </rule>
+        <rulegroup name="amen/amén" id="AMEN">
+            <rule>
+                <pattern>
+                    <token postag="SENT_START|_PUNCT.*" postag_regexp="yes"/>
+                    <marker>
+                        <token>amen</token>
+                    </marker>
+                    <token postag="_PUNCT.*" postag_regexp="yes"/>
+                </pattern>
+                <message>Si es una interjección, se escribe <suggestion>amén</suggestion> (así sea). Correcto si es del v. 'amar'.</message>
+                <example correction="Amén"><marker>Amen</marker>.</example>
+                <example>Dedicado los que amen a la música.</example>
+            </rule>
+            <rule>
+                <pattern>
+                    <token postag="V.*|D..MS." postag_regexp="yes" inflected="yes" regexp="yes">decir|responder|contestar|cantar|el|uno</token>
+                    <marker>
+                        <token>amen</token>
+                    </marker>
+                </pattern>
+                <message>Si es una interjección, se escribe <suggestion>amén</suggestion> (así sea). Correcto si es del v. 'amar'.</message>
+                <example correction="amén">Decid <marker>amen</marker> a todo.</example>
+                <example correction="amén">En un <marker>amen</marker> lo terminó.</example>
+                <example>Decid los que amen a la música.</example>
             </rule>
         </rulegroup>
         <rulegroup id="SERIA" name="seria/sería">
@@ -4258,18 +4724,81 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example>lo que hago en mi día a día</example>
             </rule>
         </rulegroup>
-        <rulegroup id="TU_SIN_TILDE" name="tú > tu">
+        <rulegroup id="MI_SIN_TILDE" name="mí > mi">
+            <antipattern>
+                <token>igual</token>
+                <token>que</token>
+            </antipattern>
+            <antipattern>
+                <token postag="SP.*" postag_regexp="yes"><exception>con</exception></token>
+                <token>mí</token>
+                <token inflected="yes">otro</token>
+            </antipattern>
+            <rule>
+                <pattern>
+                    <marker>
+                        <token>mí</token>
+                    </marker>
+                    <token postag="NC.S000|A...S." postag_regexp="yes"><exception inflected="yes" regexp="yes">mismo|solo|solito</exception></token>
+                </pattern>
+                <message>Si es un posesivo o un nombre, se escribe sin tilde. Puede que falte una coma. Es correcto como pronombre.</message>
+                <suggestion>mi</suggestion>
+                <suggestion>mí,</suggestion>
+                <example correction="mi|mí,">Se ajustan a <marker>mí</marker> pie como un calcetín.</example>
+                <example correction="mi|mí,">Aprobará <marker>mí</marker> envío de dinero.</example>
+                <example correction="mi|mí,">Ahora viene <marker>mí</marker> padre.</example>
+                <example correction="mi|mí,">Ahora viene <marker>mí</marker> querido padre.</example>
+                <example correction="mi|mí,">Por <marker>mí</marker> bien.</example>
+                <example correction="mi|mí,">Concierto en <marker>mí</marker> bemol.</example>
+                <example correction="mi|mí,">Concierto en <marker>mí</marker> menor.</example>
+                <example>Yo no me fío mucho de mí mismo.</example>
+                <example>¡No me pasa a mí sola!</example>
+                <example>Que se entregue a mí igual que yo me sometí a él.</example>
+                <example>Eso hizo despertar en mí otro tipo de ambiciones.</example>
+                <example>¿Podrías hacerlo por mí otra vez? </example>
+                <example>¿Lo harás tú solito?</example>
+                <!-- ambiguous: que de vuestros llagas descienda sobre mí fuerza y vigor 
+                No esperes de mí sinceridad -->
+            </rule>
             <rule>
                 <antipattern>
-                    <token>tú</token>
-                    <token>ve</token>
+                    <!-- colloquial or error -->
+                    <token regexp="yes">donde|adonde|á|pa</token>
+                    <token>mí</token>
                 </antipattern>
+                <pattern>
+                    <marker>
+                        <token>mí<exception scope="previous" postag="SPS00|LOC_PREP" postag_regexp="yes"/></token>
+                    </marker>
+                </pattern>
+                <message>Si es un posesivo o un nombre, se escribe sin tilde.</message>
+                <suggestion>mi</suggestion>
+                <example correction="mi">Este <marker>mí</marker>.</example>
+                <example>Se sento justo enfrente de mí.</example>
+                <example>Algo que deberías saber acerca de mí.</example>
+            </rule>
+        </rulegroup>
+        <rulegroup id="TU_SIN_TILDE" name="tú > tu">
+            <antipattern>
+                <token>tú</token>
+                <token>ve</token>
+            </antipattern>
+            <antipattern>
+                <token>tú</token>
+                <token postag="AO.*" postag_regexp="yes"><exception postag="_GN.*" postag_regexp="yes"/></token>
+            </antipattern>
+            <antipattern>
+                <token postag="V...2S." postag_regexp="yes"/>
+                <token skip="-1">tú</token>
+                <token regexp="yes">[?!]</token>
+            </antipattern>
+            <!--<rule>
                 <pattern>
                     <marker>
                         <token>tú</token>
                     </marker>
                     <and>
-                        <token postag="V.{3}[13].*" postag_regexp="yes"><exception postag="AQ.*|SP.*" postag_regexp="yes"/><!--TODO: generalizar.--><exception regexp="yes">como|una|obra</exception></token>
+                        <token postag="V.{3}[13].*" postag_regexp="yes"><exception postag="AQ.*|SP.*" postag_regexp="yes"/><exception regexp="yes">como|una|obra</exception></token>
                         <token postag="NC.S000|A...S." postag_regexp="yes"/>
                     </and>
                 </pattern>
@@ -4279,6 +4808,40 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example correction="tu">Aprobará <marker>tú</marker> envío de dinero.</example>
                 <example correction="tu">Cuando revisé <marker>tú</marker> caso, no encontré nada relevante.</example>
                 <example>Tú vienes</example>
+                <example>¿De qué silencio eres tú silencio?</example>
+            </rule>-->
+            <rule>
+                <pattern>
+                    <marker>
+                        <token>tú</token>
+                    </marker>
+                    <token postag="NC.S000|A...S." postag_regexp="yes"><exception regexp="yes">como|una|obra</exception><exception postag="V...2S.|SP.*" postag_regexp="yes"/><exception inflected="yes" regexp="yes">mismo|solo|solito</exception></token>
+                </pattern>
+                <message>Si es un posesivo, se escribe sin tilde.</message>
+                <suggestion>tu</suggestion>
+                <!--<suggestion>tú,</suggestion>-->
+                <example correction="tu">Se ajustan a <marker>tú</marker> pie como un calcetín.</example>
+                <example correction="tu">Aprobará <marker>tú</marker> envío de dinero.</example>
+                <example correction="tu">Ahora viene <marker>tú</marker> padre.</example>
+                <example correction="tu">Ahora viene <marker>tú</marker> primera comprobación.</example>
+                <example correction="tu">Se ajustan a <marker>tú</marker> pie como un calcetín.</example>
+                <example correction="tu">Aprobará <marker>tú</marker> envío de dinero.</example>
+                <example correction="tu">Cuando revisé <marker>tú</marker> caso, no encontré nada relevante.</example>
+                <example correction="tu">Si tienes oportunidad, por favor revisa <marker>tú</marker> correo.</example>
+                <example>Tú vienes</example>
+                <example>¿De qué silencio eres tú silencio?</example>
+                <example>Tú vienes</example>
+                <example>Tú ve.</example>
+                <example>Tú mismo no sabes de qué estás hablando.</example>
+                <example>Tú primera.</example>
+                <example>Tú primero.</example>
+                <example>¿Hablas tú italiano?</example>
+                <example>¿Eras tú consciente de eso?</example>
+                <example>Sírvete tú mismo lo que quieras comer.</example>
+                <example>Sírvete tú lo que quieras comer.</example>
+                <example>¡Menudo fantoche estás tú hecho!</example>
+                <example>Sé tú mismo.</example>
+                <example>Sé tú.</example>
             </rule>
         </rulegroup>
         <rulegroup id="TU_TILDE" name="tu / tú">
@@ -4410,6 +4973,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                     <token inflected="yes">ser</token>
                     <token>esta</token>
                 </antipattern>
+                <antipattern>
+                    <token postag="NC[FC]P000|_GN_FP" postag_regexp="yes"/>
+                    <token>como</token>
+                    <token>esta</token>
+                </antipattern>
                 <pattern>
                     <marker>
                         <token>esta</token>
@@ -4439,6 +5007,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example>es esta una de las mejores</example>
                 <example>por ser esta la casa matriz</example>
                 <example>No ha sido esta la vía elegida.</example>
+                <example>Habrá muchas escenas como esta en los próximos programas.</example>
             </rule>
             <rule>
                 <antipattern>
@@ -4685,7 +5254,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             <antipattern>
                 <token>este</token>
                 <token min="0" max="3" postag="N.[MC][SN].*|A..[MC][NS]." postag_regexp="yes"/>
-                <token postag="V.[MSI].*" postag_regexp="yes"><exception postag="V.[MSI].*|SENT_END" postag_regexp="yes" negate_pos="yes"/></token>
+                <token postag="V.[MSI].*" postag_regexp="yes"><exception postag="V.[MSI].*|_GV_|SENT_END" postag_regexp="yes" negate_pos="yes"/></token>
             </antipattern>
             <rule>
                 <!-- esté + participio-->
@@ -4736,6 +5305,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                     <token>en</token>
                     <token>realidad</token>
                 </antipattern>
+                <antipattern>
+                    <token postag="NC[MC][SPN]000|_GN_M." postag_regexp="yes"/>
+                    <token>como</token>
+                    <token>este</token>
+                </antipattern>
                 <pattern>
                     <token postag="PR.*" postag_regexp="yes" skip="3"><exception scope="next" postag="CC|_PUNT.*" postag_regexp="yes"/></token>
                     <marker>
@@ -4750,6 +5324,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example>Señalando que este mal sería contrario</example>
                 <example>lo que querían, y este lo buscaba</example>
                 <example>enlazan el este con el oeste</example>
+                <example>Un ecosistema como este en la taiga puede ser alto en biomasa.</example>
+                <example>y espacios como este en la Qt DevNet</example>
             </rule>
             <rule>
                 <!-- esté + adjetivo-->
@@ -4901,7 +5477,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                     <marker>
                         <token>te</token>
                     </marker>
-                    <token regexp="yes">verde|perla|negro|borde|chino</token>
+                    <token regexp="yes">verde|perla|negro|borde|chino|herbal</token>
                 </pattern>
                 <message>Si es un sustantivo (bebida), lleva tilde.</message>
                 <suggestion>té</suggestion>
@@ -4992,6 +5568,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                     <token regexp="yes">.+mente</token>
                     <!-- falta añadir adverbios acabaods en -mente en el tagger-->
                     <token>aún</token>
+                </antipattern>
+                <antipattern>
+                    <token>aún</token>
+                    <token>si</token>
+                    <token>cabe</token>
                 </antipattern>
                 <pattern>
                     <marker>
@@ -5470,14 +6051,21 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
         <rulegroup id="ABBREVIATION" name="abreviaturas">
             <url>https://www.rae.es/dpd/ayuda/abreviaturas</url>
             <rule>
+                <antipattern>
+                    <token>US</token>
+                    <token postag="UNKNOWN"/>
+                </antipattern>
+                <antipattern>
+                    <token postag="UNKNOWN"/>
+                    <token>US</token>
+                </antipattern>
                 <pattern>
-                    <token regexp="yes" case_sensitive="yes">EEUU|eeuu|USA|EUA</token>
+                    <token regexp="yes" case_sensitive="yes">EEUU|eeuu|USA|US</token>
                 </pattern>
-                <message>Abreviatura de Estados Unidos.</message>
-                <suggestion>EE.&#160;UU.</suggestion>
-                <suggestion>Estados Unidos</suggestion>
-                <example correction="EE.&#160;UU.|Estados Unidos">En <marker>EEUU</marker>.</example>
+                <message>Abreviatura (<suggestion>EE.&#160;UU.</suggestion>) o sigla (<suggestion>EUA</suggestion>) de Estados Unidos.</message>
+                <example correction="EE.&#160;UU.|EUA">En <marker>EEUU</marker>.</example>
                 <example>Es el que usa él.</example>
+                <example>US Army</example>
             </rule>
             <rule>
                 <pattern>
@@ -5530,6 +6118,47 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example correction="JJ.&#160;OO.">En los <marker>JJ.OO</marker></example>
                 <example>En JJ. OO.</example>
                 <example>En JJ.&#160;OO.</example>
+            </rule>
+            <rule>
+                <pattern>
+                    <token regexp="yes" case_sensitive="yes">JJOO|jjoo</token>
+                </pattern>
+                <message>Abreviatura de "Juegos Olímpicos".</message>
+                <suggestion>JJ.&#160;OO.</suggestion>
+                <example correction="JJ.&#160;OO.">En los <marker>JJOO</marker></example>
+            </rule>
+            <rule>
+                <pattern>
+                    <token>DD</token>
+                    <token>.</token>
+                    <token spacebefore="no">HH</token>
+                    <token>.</token>
+                </pattern>
+                <message>Abreviatura de "derechos humanos".</message>
+                <suggestion>DD.&#160;HH.</suggestion>
+                <example correction="DD.&#160;HH.">En los <marker>DD.HH.</marker> de Pequín.</example>
+                <example>En DD. HH.</example>
+                <example>En DD.&#160;HH.</example>
+            </rule>
+            <rule>
+                <pattern>
+                    <token>DD</token>
+                    <token>.</token>
+                    <token spacebefore="no">HH</token>
+                </pattern>
+                <message>Abreviatura de "derechos humanos".</message>
+                <suggestion>DD.&#160;HH.</suggestion>
+                <example correction="DD.&#160;HH.">En los <marker>DD.HH</marker></example>
+                <example>En DD. HH.</example>
+                <example>En DD.&#160;HH.</example>
+            </rule>
+            <rule>
+                <pattern>
+                    <token regexp="yes" case_sensitive="yes">DDHH|ddhh</token>
+                </pattern>
+                <message>Abreviatura de "derechos humanos".</message>
+                <suggestion>DD.&#160;HH.</suggestion>
+                <example correction="DD.&#160;HH.">En los <marker>DDHH</marker></example>
             </rule>
         </rulegroup>
         <rule id="CURRICULUM" name="currículum / curriculum vitae">
@@ -5611,6 +6240,53 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example correction="marítimo-terrestre">Pertenece a la zona <marker>marítimo terrestre</marker>.</example>
             </rule>
         </rulegroup>
+        <rule id="APARTES" name="apartes/aparte">
+            <antipattern>
+                <token postag="[PR].*|D..MP.|SPS00" postag_regexp="yes"/>
+                <token>apartes</token>
+            </antipattern>
+            <pattern>
+                <token>apartes</token>
+                <token regexp="yes">de|del</token>
+            </pattern>
+            <message>¿Quería decir <suggestion>aparte \2</suggestion>?</message>
+            <url>https://www.fundeu.es/recomendacion/aparte-a-parte/</url>
+            <example correction="Aparte de"><marker>Apartes de</marker> esto, tomemos una decisión.</example>
+            <example>En los apartes de esta obra.</example>
+            <example>Quiero que te apartes de estos peligros.</example>
+        </rule>
+        <rule id="APARTE" name="a parte/aparte">
+            <!-- Many true positives expected -->
+            <antipattern>
+                <token>parte</token>
+                <token>alguna</token>
+            </antipattern>
+            <antipattern>
+                <!--<token>de</token>-->
+                <token>parte</token>
+                <token>a</token>
+                <token>parte</token>
+            </antipattern>
+            <!--<antipattern>
+                <token inflected="yes">dejar</token>
+                <token min="0" postag="RG|LOC_ADV" postag_regexp="yes"/>
+                <token postag="A.*|V.P.*" postag_regexp="yes"/>
+                <token>a</token>
+                <token>parte</token>
+                <token regexp="yes">de|del</token>
+            </antipattern>-->
+            <pattern>
+                <token>a</token>
+                <token>parte</token>
+            </pattern>
+            <message>En la mayoría de los casos se escribe <suggestion>aparte</suggestion>. Solo se escribe separado si equivale a 'a una parte'.</message>
+            <url>https://www.fundeu.es/recomendacion/aparte-a-parte/</url>
+            <example correction="aparte">Debates <marker>a parte</marker>, tomemos una decisión.</example>
+            <example>Esta decisión no nos lleva a parte alguna.</example>
+            <example correction="aparte" type="triggers_error" reason="ambiguous">Deja indefensos <marker>a parte</marker> de los vecinos.</example>
+            <example>La carretera lo atraviesa de parte a parte.</example>
+            <example>Lo haremos parte a parte.</example>
+        </rule>
         <rulegroup id="NO_SEPARADO" name="palabras no separadas">
             <rule>
                 <pattern>
@@ -6240,6 +6916,48 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example>Cuenta con un hablante en la oficina.</example>
             </rule>
         </rulegroup>
+        <rulegroup id="SUPER" name="super/súper/super-">
+            <rule>
+                <pattern>
+                    <token regexp="yes">super|súper</token>
+                    <token min="0">-</token>
+                    <token regexp="yes">..+</token>
+                </pattern>
+                <message suppress_misspelled="yes">El prefijo 'super-' se escribe junto.</message>
+                <suggestion><match no="3" regexp_match="(.+)" regexp_replace="super$1" case_conversion="alllower"/></suggestion>
+                <example correction="superbuenas">Son <marker>súper buenas</marker></example>
+                <example correction="superintendente">Él es el <marker>super-intendente</marker></example>
+            </rule>
+            <rule>
+                <pattern>
+                    <token regexp="yes">super|súper</token>
+                    <token min="0">-</token>
+                    <token postag="A.*|V.P.*" postag_regexp="yes"><exception regexp="yes">cercano|super|súper</exception></token>
+                </pattern>
+                <message>Como prefijo de un adjetivo, 'super-' se escribe junto, aunque la palabra resultante no esté en el diccionario.</message>
+                <suggestion><match no="3" regexp_match="(.+)" regexp_replace="super$1" case_conversion="alllower"/></suggestion>
+                <example correction="superimportantes">Son <marker>super importantes</marker></example>
+            </rule>
+            <rule>
+                <pattern>
+                    <token regexp="yes">super|súper<exception postag="NP.*" postag_regexp="yes"/></token>
+                    <token min="0">-</token>
+                    <token postag="N.*" postag_regexp="yes"/>
+                </pattern>
+                <message>Como prefijo, 'super-' se escribe junto, aunque la palabra resultante no esté en el diccionario.</message>
+                <suggestion><match no="3" regexp_match="(.+)" regexp_replace="super$1" case_conversion="alllower"/></suggestion>
+                <example correction="supercamino">Son un <marker>super camino</marker></example>
+                <example>En la Super Bowl.</example>
+            </rule>
+            <rule>
+                <pattern>
+                    <token>super<exception postag="NP.*" postag_regexp="yes"/></token>
+                </pattern>
+                <message>Como adjetivo, adverbio o sinónimo de 'supermercado', se escribe <suggestion>súper</suggestion>.</message>
+                <example correction="súper">Me voy al <marker>super</marker>.</example>
+                <example>En la Super Bowl.</example>
+            </rule>
+        </rulegroup>
         <rulegroup id="AUTO_NO_SEPARADO" name="prefijo auto- no separado">
             <rule>
                 <pattern>
@@ -6709,7 +7427,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                     <!-- Find only standard prose -->
                     <token regexp="yes">[a-z].*</token>
                     <marker>
-                        <token case_sensitive="yes" regexp="yes">[a-z] <exception regexp="yes">[aeouy]</exception> <exception postag="NNP"/> </token>
+                        <token case_sensitive="yes" regexp="yes">[a-z]<exception regexp="yes">[aeouy]</exception> <exception postag="NNP"/> </token>
                     </marker>
                     <token regexp="yes">[a-z].*</token>
                 </pattern>
@@ -6748,7 +7466,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                     <token>elevado</token>
                 </antipattern>
                 <antipattern>
-                    <token inflected="yes" regexp="yes">sujetar|sujeto|tirar</token>
+                    <token inflected="yes" regexp="yes">sujetar|sujeto|tirar|ir</token>
                     <token>a</token>
                 </antipattern>
                 <antipattern>
@@ -6775,6 +7493,16 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                     <token inflected="yes" regexp="yes">pasar|convertir</token>
                     <token skip="2">de</token>
                     <token>a</token>
+                </antipattern>
+                <antipattern>
+                    <token postag="V.P00SM" postag_regexp="yes"/>
+                    <token>a</token>
+                    <token><match no="0"/></token>
+                </antipattern>
+                <antipattern>
+                    <token regexp="yes">leve|grave</token>
+                    <token>a</token>
+                    <token>moderado</token>
                 </antipattern>
                 <pattern>
                     <marker>
@@ -6805,6 +7533,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example>Ponte a cubierto.</example>
                 <example>Él pasó de acusador a acusado.</example>
                 <example>en el equipo de la Serie A debido a la dificultad</example>
+                <example>Latido a latido.</example>
             </rule>
             <rule id="AN_PARTICIPIO" name="an + participio">
                 <pattern>
@@ -6856,22 +7585,36 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             <suggestion>a \2</suggestion>
             <example correction="a hablar">Voy <marker>ah hablar</marker> con ella.</example>
         </rule>
-        <rulegroup id="HAZ_HAS" name="Hacer/ser, haz">
-            <rule id="HAZ_PARTICIPIO">
+        <rulegroup id="HAZ_HAS" name="haz/has">
+            <rule>
                 <antipattern>
-                    <token postag="D.*" postag_regexp="yes"/>
+                    <token postag="D..MS.|SP.*" postag_regexp="yes"><exception>tanto</exception></token>
                     <token>haz</token>
                 </antipattern>
+                <pattern>
+                    <marker>
+                        <token>haz</token>
+                    </marker>
+                    <token postag="V.P.*" postag_regexp="yes"/>
+                </pattern>
+                <message>¿Quería decir <suggestion>has</suggestion> (del v. 'haber').</message>
+                <example correction="Has"><marker>Haz</marker> agotado mi paciencia.</example>
+                <example correction="Has">¿<marker>Haz</marker> acabado?</example>
+                <example correction="has">La gata que tanto <marker>haz</marker> buscado.</example>
+                <example>El haz dividido se proyecta en varios sitios.</example>
+                <example>faros de haz proyectado con acabado ahumado</example>
+                <example>Una haz de neutrones.</example>
+            </rule>
+            <rule>
                 <pattern case_sensitive="no">
                     <marker>
                         <token>haz</token>
                     </marker>
-                    <token postag="V[ASM]P00.*" postag_regexp="yes"/>
+                    <token>de</token>
+                    <token postag="V.N.*" postag_regexp="yes"/>
                 </pattern>
-                <message>El verbo auxiliar se escribe con «s»: <suggestion>has</suggestion>.</message>
-                <short>El verbo auxiliar se escribe con «s»</short>
-                <example correction="Has"><marker>Haz</marker> agotado mi paciencia.</example>
-                <example>El haz dividido se proyecta en varios sitios.</example>
+                <message>¿Quería decir <suggestion>has</suggestion> (del v. 'haber').</message>
+                <example correction="Has"><marker>Haz</marker> de venir enseguida.</example>
             </rule>
         </rulegroup>
         <rule id="VOY_HA_INF" name="ir ha + infinitivo (a)">
@@ -6971,7 +7714,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example>Lo hecho, hecho está.</example>
                 <example>A lo hecho, pecho.</example>
             </rule>
-            <rule default="temp_off">
+            <rule>
                 <pattern>
                     <marker>
                         <token regexp="yes">hecho|hecha|hechas<exception postag="_GN_.*" postag_regexp="yes"/></token>
@@ -7045,6 +7788,16 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example correction="A ver si"><marker>Haber si</marker> puedes arreglar esto.</example>
                 <example>No va a haber si se ha acabado.</example>
             </rule>
+            <rule>
+                <pattern>
+                    <marker>
+                        <token>vamos</token>
+                        <token>haber</token>
+                    </marker>
+                </pattern>
+                <message>¿Quería decir <suggestion>vamos a ver</suggestion>?</message>
+                <example correction="Vamos a ver"><marker>Vamos haber</marker> lo que pasa.</example>
+            </rule>
         </rulegroup>
         <rule id="ROMAN_NUMERALS_CHECK" name="comprueba números romanos">
             <antipattern case_sensitive="yes">
@@ -7052,7 +7805,12 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <token spacebefore="no">-</token>
                 <token regexp="yes" spacebefore="no">[A-Z]+</token>
             </antipattern>
+            <!--<antipattern>
+                 common excepcions
+                <token regexp="yes">CDC|IC|VC|IMC|IM|ICC|LM|CMDX|CMD|CCM</token>
+            </antipattern>-->
             <pattern case_sensitive="yes">
+                <token regexp="yes" inflected="yes">siglo|apartado|capítulo|sección|parte</token>
                 <marker>
                     <token regexp="yes" spacebefore="yes">[MCDXLVI]+ <exception regexp="yes">(?=.)M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})</exception> <exception postag="[RYANDV].*|.*LOC.*" postag_regexp="yes"/> <exception regexp="yes">XML|DLL</exception></token>
                 </marker>
@@ -7064,10 +7822,123 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
         </rule>
     </category>
     <category id="GRAMMAR" name="Gramática" type="grammar">
+        <rule id="VERBO_MODAL_INFINITIVO" name="verbo modal + infinitivo" default="temp_off">
+            <antipattern>
+                <token>de</token>
+                <token>poder</token>
+            </antipattern>
+            <antipattern>
+                <token skip="5">si</token>
+                <token inflected="yes" regexp="yes">poder|deber</token>
+            </antipattern>
+            <pattern>
+                <token postag="V.[SIN].*" postag_regexp="yes" inflected="yes" regexp="yes">poder|deber<exception postag="_GN_.*" postag_regexp="yes"/></token>
+                <marker>
+                    <token postag="V.IP.*" postag_regexp="yes" regexp="yes">.+[ae]<exception postag="[DP].*|V.S.*|LOC_ADV" postag_regexp="yes"/><exception inflected="yes" regexp="yes">poder|ser</exception></token>
+                </marker>
+            </pattern>
+            <message>Posible confusión. ¿Quería decir <suggestion><match no="2" postag="V.[SI].*" postag_regexp="yes" postag_replace="V.N...."/></suggestion></message>
+            <example correction="entrever|entrevistar">Es una lástima no poder <marker>entrevista</marker> al diputado.</example>
+            <example correction="hacer">Quien pueda <marker>hace</marker> un milagro que lo haga.</example>
+            <example>Un gran poder conlleva una gran responsabilidad.</example>
+            <example>El deber debería venir antes que cualquier otra cosa.</example>
+            <example>Si puedes anda a aver.</example>
+            <example>Si pudiera abriría 8 días a la semana.</example>
+            <example>Si se pudiera estaría abierto.</example>
+            <example>Que quien pueda haga un milagro.</example>
+            <example>No me debes nada.</example>
+            <example>Este incremento tremendo de poder fue acompañado por inestabilidad política.</example>
+            <example>Como instrumento de poder puede conducir a resultados ciertamente perversos.</example>
+            <example>y grupos cuyo poder pasaba fuera de las fronteras nacionales.</example>
+            <example>El dictador llegó al poder hace quince años.</example>
+            <!-- TODO: <example>en cuanto Franco coge poder desaparece el partido</example>-->
+        </rule>
+        <rule id="DOS_VERBOS_MODALES" name="dos verbos modales seguidos" default="temp_off">
+            <antipattern>
+                <token inflected="yes" regexp="yes">seguir|continuar|proseguir|estar|ir</token>
+                <token postag="V.G.*" postag_regexp="yes"/>
+            </antipattern>
+            <antipattern>
+                <token>al</token>
+                <token>parecer</token>
+            </antipattern>
+            <antipattern>
+                <token skip="-1">si</token>
+                <token postag="V.IC.*" postag_regexp="yes"/>
+            </antipattern>
+            <antipattern>
+                <token>que</token>
+                <token min="0" max="4" postag="R.*|LOC_ADV" postag_regexp="yes"/>
+                <token postag="V.[SIN].*" postag_regexp="yes"/>
+            </antipattern>
+            <pattern>
+                <marker>
+                    <token postag="V.[SIN].*" postag_regexp="yes" inflected="yes" regexp="yes">parecer|poder|deber|querer|quedar|estar|ser|permanecer|restar|seguir|continuar|proseguir<exception scope="previous">que</exception><exception postag="RG|_GN_.*|_possible_NP|N.*" postag_regexp="yes"
+                        /></token>
+                    <token inflected="yes" regexp="yes">parecer|poder|deber|querer|quedar|estar|ser|permanecer|restar|seguir|continuar<exception postag="V.N.*" postag_regexp="yes"/></token>
+                </marker>
+                <token postag="V.P.*" postag_regexp="yes"/>
+            </pattern>
+            <message>Posible confusión.</message>
+            <suggestion>\1 <match no="2" postag="(V.*)" postag_regexp="yes" postag_replace="V.N...."/></suggestion>
+            <suggestion>\1, \2</suggestion>
+            <example correction="Pueden quedar|Pueden, quedan"><marker>Pueden quedan</marker> sintetizados.</example>
+            <example correction="Pueden parecer|Pueden, parecen"><marker>Pueden parecen</marker> cansados.</example>
+            <example>Siguen estando cansados.</example>
+            <example>Estoy siendo perseguido.</example>
+            <example>Los zapatos rojos que querías están agotados.</example>
+            <example>Nos estamos quedando dormidos.</example>
+            <example>Fuera está nevado.</example>
+            <example>La teoría de la separación de los poderes es atribuida a Montesquieu.</example>
+            <example>El cuarto de estar está hecho una leonera.</example>
+            <example>Si se pudiera estaría abierto durante 8 días a la semana.</example>
+            <example>Fueron siendo eliminados.</example>
+            <example>¿Cómo sería el mundo si el poder fuera compartido?</example>
+            <example>y los que no pueden son subidos a las ambulancias</example>
+            <example>Este incremento tremendo de poder fue acompañado por inestabilidad política.</example>
+            <example>Ya lo dijiste hace media hora.</example>
+            <!-- allowed missing "que" : que Dios quiere sean llevadas a cabo -->
+        </rule>
+        <rulegroup id="DOS_VERBOS" name="dos verbos juntos" default="temp_off">
+            <rule>
+                <pattern>
+                    <token postag="SENT_START"/>
+                    <token min="0" max="10" postag_regexp="yes" postag="[NADSR].*|V.P.*"><exception postag="C.*|PR.*" postag_regexp="yes"/></token>
+                    <marker>
+                        <token postag="V.[SI].*" postag_regexp="yes"><exception postag="[NARCP].*|_possible_NP|SP.*" postag_regexp="yes"/></token>
+                        <token min="0" max="2" postag="&pronombre_personal_atono_POS;" postag_regexp="yes"/>
+                        <token postag="V.[SI].*" postag_regexp="yes"><exception postag="[NARCP].*|_possible_NP|SP.*|LOC_ADV" postag_regexp="yes"/></token>
+                    </marker>
+                </pattern>
+                <message>Revise esta construcción: dos verbos juntos. ¿Falta algún elemento (coma, conjunción)?</message>
+                <example correction="">La fiscalía <marker>estudia recurre</marker>.</example>
+                <example correction=""><marker>Murió hacía</marker> 1566.</example>
+                <example correction="">El <marker>informa concluía</marker> que no era cierto.</example>
+                <example>Como empezaron sus obras.</example>
+                <example>El Municipio presenta una.</example>
+                <example>Tengo gans de reír.</example>
+                <example>Tiene forma romboidal.</example>
+                <example>Víctor Erice recuerda.</example>
+                <example>Ven para acá.</example>
+                <example>Trabaja para Campe.</example>
+                <example>El Times escribió.</example>
+                <example>La RAE dice.</example>
+                <example>Nada es para siempre.</example>
+                <example>Estoy haciendo de cocinero.</example>
+                <example>Va haciendo más calor día a día.</example>
+                <example>Murió hace tres años.</example>
+                <example>Empezó hace diez minutos.</example>
+                <example>El sacrificio era visto como un medio.</example>
+                <example>El invierno llegó hace apenas cuatro días.</example>
+                <!-- No tenemos pruebas de que eso realmente sucederá.
+                Mañana hay prueba de matemáticas.
+                Solicito nos puedan informar -->
+            </rule>
+        </rulegroup>
         <rulegroup id="TE_HAY" name="*te hay">
             <rule>
                 <pattern>
-                    <token regexp="yes">me|te|le|les|nos|os</token>
+                    <token regexp="yes">me|te|le|les|nos|os|se</token>
                     <marker>
                         <token>hay</token>
                     </marker>
@@ -7076,6 +7947,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <message>Combinación incorrecta de pronombre y verbo.</message>
                 <suggestion>ha</suggestion>
                 <example correction="ha">Te <marker>hay</marker> gustado.</example>
+                <example correction="ha">El sector se <marker>hay</marker> diversificado.</example>
             </rule>
             <rule>
                 <pattern>
@@ -7089,6 +7961,46 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <suggestion>las hay</suggestion>
                 <suggestion>no hay</suggestion>
                 <example correction="lo hay|los hay|la hay|las hay|no hay">De haberlos, <marker>nos hay</marker>.</example>
+            </rule>
+            <rule>
+                <pattern>
+                    <marker>
+                        <token>hay</token>
+                    </marker>
+                    <token postag="V.P..SM" postag_regexp="yes"><exception postag="[NA].*" postag_regexp="yes"/></token>
+                    <token postag="V.N.*" postag_regexp="yes"/>
+                </pattern>
+                <message>Posible confusión.</message>
+                <suggestion>ha</suggestion>
+                <example correction="Ha"><marker>Hay</marker> debido verla.</example>
+                <example correction="ha">Algo que no <marker>hay</marker> podido satisfacer.</example>
+            </rule>
+            <rule>
+                <pattern>
+                    <marker>
+                        <token>hay</token>
+                    </marker>
+                    <token postag="V.P..SM" postag_regexp="yes" inflected="yes" regexp="yes">tener|poder|deber|ser|estar<exception postag="[NA].*" postag_regexp="yes"/></token>
+                </pattern>
+                <message>Posible confusión.</message>
+                <suggestion>ha</suggestion>
+                <example correction="ha">No <marker>hay</marker> tenido nada que ver.</example>
+            </rule>
+            <rule default="temp_off">
+                <!-- still too many false positives -->
+                <antipattern>
+                    <token postag="V.P..SM" postag_regexp="yes"/>
+                    <token postag="DI.*" postag_regexp="yes"/>
+                </antipattern>
+                <pattern>
+                    <marker>
+                        <token>hay</token>
+                    </marker>
+                    <token postag="V.P..SM" postag_regexp="yes"><exception postag="[NA].*|_GN_.*" postag_regexp="yes"/></token>
+                </pattern>
+                <message>Posible confusión.</message>
+                <suggestion>ha</suggestion>
+                <example correction="Ha"><marker>Hay</marker> venido muy tarde.</example>
             </rule>
         </rulegroup>
         <rulegroup id="MUY_MUCHO" name="mucho/muy (adverbio)">
@@ -7562,6 +8474,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <suggestion>\1 \2 {suggestion}</suggestion>
                 <example correction="se los estamos|de los estados|de los estaños|de los estajos"><marker>de los estamos</marker> unidos.</example>
                 <example correction="se los Estamos|de los Estados|de los Estaños|de los Estajos"><marker>de los Estamos</marker> Unidos.</example>
+                <example>El cantar de los cantares.</example>
             </rule>
             <rule>
                 <pattern>
@@ -7611,6 +8524,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <message>Construcción incorrecta.</message>
                 <suggestion>\1 \2 {suggestion}</suggestion>
                 <example correction="En las casas|En las clases|En las bases|En las fases|En las cales|En las cáseas"><marker>En las cases</marker> sociales.</example>
+                <example>Estamos en la era llamada "Kali-iuga".</example>
             </rule>
             <rule>
                 <pattern>
@@ -7637,7 +8551,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             </rule>
             <rule>
                 <pattern>
-                    <token postag="SPS00|LOC_PREP|SP\+DA" postag_regexp="yes"><exception postag="CS|A.*|RG|_possible_NP" postag_regexp="yes"/></token>
+                    <token postag="SPS00|LOC_PREP|SP:DA" postag_regexp="yes"><exception postag="CS|A.*|RG|_possible_NP" postag_regexp="yes"/></token>
                     <token postag="VMSI[13]S0" postag_regexp="yes" regexp="yes">[\p{Ll}]+se<exception negate_pos="yes" postag="V.[MSI].*|_GV_|SENT_END" postag_regexp="yes"/></token>
                 </pattern>
                 <message>Construcción incorrecta.</message>
@@ -7647,7 +8561,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             </rule>
             <rule>
                 <pattern>
-                    <token postag="SPS00|LOC_PREP|SP\+DA" postag_regexp="yes"><exception postag="CS|A.*|RG|_possible_NP" postag_regexp="yes"/></token>
+                    <token postag="SPS00|LOC_PREP|SP:DA" postag_regexp="yes"><exception postag="CS|A.*|RG|_possible_NP" postag_regexp="yes"/></token>
                     <token postag="VMM02V0.PP.{6}" postag_regexp="yes" regexp="yes">[\p{Ll}].+<exception negate_pos="yes" postag="VMM.*|_GV_|SENT_END" postag_regexp="yes"/></token>
                 </pattern>
                 <message>Construcción incorrecta.</message>
@@ -7656,7 +8570,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             </rule>
             <rule>
                 <pattern>
-                    <token postag="SPS00|LOC_PREP|SP\+DA" postag_regexp="yes"><exception postag="CS|A.*|RG|_possible_NP" postag_regexp="yes"/></token>
+                    <token postag="SPS00|LOC_PREP|SP:DA" postag_regexp="yes"><exception postag="CS|A.*|RG|_possible_NP" postag_regexp="yes"/></token>
                     <token postag="VMM02V0.PP.{6}.PP.{6}" postag_regexp="yes" regexp="yes">[\p{Ll}].+<exception negate_pos="yes" postag="VMM.*|_GV_|SENT_END" postag_regexp="yes"/></token>
                 </pattern>
                 <message>Construcción incorrecta.</message>
@@ -7704,7 +8618,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             </rule>
             <rule>
                 <pattern>
-                    <token postag="SPS00|SP\+DA|LOC_PREP" postag_regexp="yes"><exception postag="CS|A.*|RG|_possible_NP" postag_regexp="yes"/><exception regexp="yes">de|desde</exception></token>
+                    <token postag="SPS00|SP:DA|LOC_PREP" postag_regexp="yes"><exception postag="CS|A.*|RG|_possible_NP" postag_regexp="yes"/><exception regexp="yes">de|desde</exception></token>
                     <token postag="V.[MSI].*" postag_regexp="yes" regexp="yes">[\p{Ll}]+<exception negate_pos="yes" postag="V.[MSI].*|_GV_|SENT_END" postag_regexp="yes"/><exception postag="V.N.*" postag_regexp="yes"/></token>
                 </pattern>
                 <filter class="org.languagetool.rules.es.FindSuggestionsFilter" args="WordFrom:2 DesiredPostag:NC.*|A.*|V.[PN].*|P[DI].*"/>
@@ -7724,7 +8638,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             <rule>
                 <!-- catch-all rule without suggestions-->
                 <pattern>
-                    <token postag="SPS00|SP\+DA|LOC_PREP" postag_regexp="yes"><exception postag="CS|A.*|RG|_possible_NP" postag_regexp="yes"/></token>
+                    <token postag="SPS00|SP:DA|LOC_PREP" postag_regexp="yes"><exception postag="CS|A.*|RG|_possible_NP" postag_regexp="yes"/></token>
                     <token min="0" max="3" postag="DA.*|PP3..A.*|PP[123]C[SP]000|P0[123].*" postag_regexp="yes"/>
                     <token postag="V.[MSI].*" postag_regexp="yes" regexp="yes">[\p{Ll}]+<exception negate_pos="yes" postag="V.[MSI].*|_GV_|SENT_END" postag_regexp="yes"/><exception postag="V.N.*" postag_regexp="yes"/></token>
                 </pattern>
@@ -7835,7 +8749,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             <rule name="Infinitivo tipo convencer + pron. pers. + que">
                 <!-- removed: dudar, informar. 'Informar' is transitive in LatAm! -->
                 <pattern>
-                    <token regexp="yes" inflected="yes" postag=".*\+P.*" postag_regexp="yes">alegrar|enterar|convencer|hartar|quejar|protestar</token>
+                    <token regexp="yes" inflected="yes" postag=".*:P.*" postag_regexp="yes">alegrar|enterar|convencer|hartar|quejar|protestar</token>
                     <marker>
                         <token>que</token>
                     </marker>
@@ -7875,7 +8789,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             </rule>
             <rule>
                 <pattern>
-                    <token inflected="yes" postag=".*\+P.*" postag_regexp="yes">dar</token>
+                    <token inflected="yes" postag=".*:P.*" postag_regexp="yes">dar</token>
                     <token>cuenta</token>
                     <marker>
                         <token>que</token>
@@ -8406,6 +9320,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             <example>La que sí quiera, puede venir.</example>
         </rule>
         <rulegroup id="SINO_SI_NO" name="sino/si no">
+            <url>https://www.fundeu.es/recomendacion/sino-si-no/</url>
             <antipattern>
                 <token regexp="yes">o|y</token>
                 <token min="0">,</token>
@@ -8440,16 +9355,29 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example>La gente no dice cotidianamente «voy a evacuar el vientre» sino «voy a cagar» o «voy a ensuciar».</example>
             </rule>
             <rule>
-                <antipattern>
-                    <token skip="3" regexp="yes">hace|hacía</token>
-                    <token postag="D[NI].*|CC" min="1" max="4" postag_regexp="yes"/>
-                    <token regexp="yes" inflected="yes">&unidades_tiempo;</token>
-                </antipattern>
+                <pattern>
+                    <token skip="12">no</token>
+                    <marker>
+                        <token skip="2">sino<exception regexp="yes" scope="next">que|también|porque|como|cómo|donde|dónde|adonde|adónde|qué|quien|quién|si|quienes|quiénes|,|;|cuando|según|cuál|cuáles|cual|cuales</exception></token>
+                    </marker>
+                    <token postag="V.[^NGP].*" postag_regexp="yes"><exception negate_pos="yes" postag="V.[^NGP].*|_GV_|_reflexive" postag_regexp="yes"/></token>
+                </pattern>
+                <message>Posible confusión.</message>
+                <suggestion>sino que</suggestion>
+                <suggestion>si no</suggestion>
+                <example correction="sino que|si no">La ley no fue hecha para agradar a Dios <marker>sino</marker> fue introducida por causa del pecado.</example>
+                <example correction="sino que|si no">Así no se puede recibir a alguien con los brazos abiertos <marker>sino</marker> se quieren integrar.</example>
+                <example>No es así, sino de otra manera.</example>
+                <example>No hace un siglo, sino hace escasamente dos meses.</example>
+                <example>No implica contacto sino falta de cooperación.</example>
+                <example>No es dónde se encuentra en momentos de comodidad y conveniencia, sino dónde se sitúa en tiempos de desafío.</example>
+            </rule>
+            <rule>
                 <pattern>
                     <marker>
                         <token skip="2">sino<exception regexp="yes" scope="next">que|también|porque|como|cómo|donde|qué|quien|quién|si|quienes|quiénes|,|;|cuando|según|cuál|cuáles|cual|cuales</exception></token>
                     </marker>
-                    <token postag="V.[^NGP].*" postag_regexp="yes"><exception negate_pos="yes" postag="V.[^NGP].*" postag_regexp="yes"/></token>
+                    <token postag="V.[^NGP].*" postag_regexp="yes"><exception negate_pos="yes" postag="V.[^NGP].*|_GV_" postag_regexp="yes"/></token>
                 </pattern>
                 <message>Posible confusión.</message>
                 <suggestion>si no</suggestion>
@@ -8703,6 +9631,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <message>Error de concordancia.</message>
                 <suggestion suppress_misspelled="yes"><match no="1" postag="D..[MC][SN]." postag_regexp="yes" case_conversion="preserve"/> <match no="2" postag="N.[MC][SN].*" postag_regexp="yes" case_conversion="preserve"/></suggestion>
                 <suggestion suppress_misspelled="yes"><match no="1" postag="D..[MC][PN]." postag_regexp="yes" case_conversion="preserve"/> <match no="2" postag="N.[MC][PN].*" postag_regexp="yes" case_conversion="preserve"/></suggestion>
+                <suggestion suppress_misspelled="yes"><match no="1" postag="D..[FC][SN]." postag_regexp="yes" case_conversion="preserve"/> <match no="2" postag="N.[FC][SN].*" postag_regexp="yes" case_conversion="preserve"/></suggestion>
+                <suggestion suppress_misspelled="yes"><match no="1" postag="D..[FC][PN]." postag_regexp="yes" case_conversion="preserve"/> <match no="2" postag="N.[FC][PN].*" postag_regexp="yes" case_conversion="preserve"/></suggestion>
                 <example correction="aquel camión|aquellos camiones">Trae <marker>aquel camiones</marker>.</example>
                 <example correction="tanto hombre|tantos hombres">Hay <marker>tanto hombres</marker>?</example>
                 <example correction="poco año|pocos años">Hasta <marker>poco años</marker> después</example>
@@ -8716,6 +9646,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example correction="algún coche|algunos coches">Con <marker>algunos coche</marker>.</example>
                 <example correction="mi resultado|mis resultados">Estoy contenta con <marker>mi resultados</marker>.</example>
                 <example correction="mucho juguete|muchos juguetes">Tenía <marker>mucho juguetes</marker>.</example>
+                <example correction="un espacio|unos espacios">Deja <marker>una espacio</marker>.</example>
+                <example correction="El viceministro|Los viceministros|La viceministra|Las viceministras"><marker>La viceministro</marker></example>
                 <!-- TODO: De alguna forma terminaré esta trabajo.
                 Tengo tiempo libre este tarde. -->
                 <example>También lo contrario.</example>
@@ -8761,6 +9693,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example>¿Puede alguno de estos ser real?</example>
                 <example>¿Qué tal todos en casa?</example>
                 <!-- <example>no esta claro</example> better: other rule-->
+                <!-- que una espacio y tiempo (possible but rare) -->
             </rule>
             <rule>
                 <pattern>
@@ -8776,12 +9709,14 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <message>Error de concordancia.</message>
                 <suggestion suppress_misspelled="yes"><match no="1" postag="D..[FC][SN]." postag_regexp="yes" case_conversion="preserve"/> <match no="2" postag="N.[FC][SN].*" postag_regexp="yes" case_conversion="preserve"/></suggestion>
                 <suggestion suppress_misspelled="yes"><match no="1" postag="D..[FC][PN]." postag_regexp="yes" case_conversion="preserve"/> <match no="2" postag="N.[FC][PN].*" postag_regexp="yes" case_conversion="preserve"/></suggestion>
+                <suggestion suppress_misspelled="yes"><match no="1" postag="D..[MC][SN]." postag_regexp="yes" case_conversion="preserve"/> <match no="2" postag="N.[MC][SN].*" postag_regexp="yes" case_conversion="preserve"/></suggestion>
+                <suggestion suppress_misspelled="yes"><match no="1" postag="D..[MC][PN]." postag_regexp="yes" case_conversion="preserve"/> <match no="2" postag="N.[MC][PN].*" postag_regexp="yes" case_conversion="preserve"/></suggestion>
                 <example correction="La capoeira|Las capoeiras"><marker>El capoeira</marker></example>
-                <example correction="aquella enfermera|aquellas enfermeras"><marker>aquella enfermeras</marker></example>
-                <example correction="Aquella médica|Aquella médico|Aquellas médicas"><marker>Aquellos médicas</marker>.</example>
+                <example correction="aquella enfermera|aquellas enfermeras|aquel enfermero|aquellos enfermeros"><marker>aquella enfermeras</marker></example>
+                <example correction="Aquella médica|Aquella médico|Aquellas médicas|Aquel médico|Aquellos médicos"><marker>Aquellos médicas</marker>.</example>
                 <example correction="una tesis|unas tesis">Con <marker>un tesis</marker> sobre Platón.</example>
                 <example correction="Una noche|Unas noches"><marker>Un noche</marker> tras otra.</example>
-                <example correction="demasiada niña|demasiadas niñas">Son <marker>demasiados niñas</marker>.</example>
+                <example correction="demasiada niña|demasiadas niñas|demasiado niño|demasiados niños">Son <marker>demasiados niñas</marker>.</example>
                 <example correction="esta agua|estas aguas">De <marker>este agua</marker>.</example>
                 <example correction="esta área|estas áreas">En <marker>este área</marker>.</example>
                 <example correction="la sucursal|las sucursales">En <marker>el sucursal</marker> del banco.</example>
@@ -8799,6 +9734,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example correction="mi casa|mis casas"><marker>mi casas</marker></example>
                 <example correction="la persona|las personas">No saben lo que hacen <marker>la personas</marker> que viven aquí.</example>
                 <example correction="Nuestra sucursal|Nuestras sucursales"><marker>Nuestros sucursales</marker> abren mañana.</example>
+                <example correction="esta reforma|estas reformas">Todas <marker>esta reformas</marker> fueron corroboradas.</example>
                 <example>sus hermanos</example>
                 <example>Los polis y las polis.</example>
                 <example>El agua.</example>
@@ -8817,7 +9753,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example>expresando ambas positividad</example>
                 <example>Tanto mayores serán los beneficios.</example>
                 <example>el buen comportamiento de unos recompensa el mal comportamiento de otros</example>
-                <example correction="mucha física|muchas físicas" type="triggers_error" reason="ambiguous">No he estudiado <marker>mucho física</marker>.</example>
+                <example correction="mucha física|muchas físicas|mucho físico|muchos físicos" type="triggers_error" reason="ambiguous">No he estudiado <marker>mucho física</marker>.</example>
                 <example>Por todo América.</example>
                 <example>Mil quinientas cincuenta y una bombillas.</example>
                 <example>Me gusta mucho Mary.</example>
@@ -8860,7 +9796,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                         <unify negate="yes">
                             <feature id="numero"/>
                             <feature id="genero"/>
-                            <token postag="SP\+DA" postag_regexp="yes" regexp="yes">del|al<exception postag="(&lt;)?NP.*" postag_regexp="yes"/></token>
+                            <token postag="SP:DA" regexp="yes">del|al<exception postag="(&lt;)?NP.*" postag_regexp="yes"/></token>
                             <token postag="N.[MF][SP].*" postag_regexp="yes"><exception postag="(A.|N).[CM][NS].*|_GV_" postag_regexp="yes"/><exception postag="V.*" postag_regexp="yes"/></token>
                         </unify>
                     </marker>
@@ -8889,7 +9825,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                         <unify negate="yes">
                             <feature id="numero"/>
                             <feature id="genero"/>
-                            <token postag="SP\+DA" postag_regexp="yes" regexp="yes">del|al<exception postag="(&lt;)?NP.*" postag_regexp="yes"/></token>
+                            <token postag="SP:DA" regexp="yes">del|al<exception postag="(&lt;)?NP.*" postag_regexp="yes"/></token>
                             <token postag="N.CP.*" postag_regexp="yes"><exception postag="(A.|N).[CM][NS].*|_GV_" postag_regexp="yes"/><exception postag="V.*" postag_regexp="yes"/></token>
                         </unify>
                     </marker>
@@ -9191,7 +10127,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                         <unify negate="yes">
                             <feature id="numero"/>
                             <feature id="genero"/>
-                            <token postag="SP\+DA" postag_regexp="yes" regexp="yes">del|al<exception postag="(&lt;)?NP.*" postag_regexp="yes"/></token>
+                            <token postag="SP:DA" regexp="yes">del|al<exception postag="(&lt;)?NP.*" postag_regexp="yes"/></token>
                             <token postag="A.*|V.P.*" postag_regexp="yes"><exception postag="(A.|N).[CM][NS].*|_GV_" postag_regexp="yes"/></token>
                         </unify>
                     </marker>
@@ -9249,7 +10185,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                         <unify negate="yes">
                             <feature id="numero"/>
                             <feature id="genero"/>
-                            <token postag="SP\+DA" postag_regexp="yes" regexp="yes">del|al<exception postag="(&lt;)?NP.*" postag_regexp="yes"/></token>
+                            <token postag="SP:DA" regexp="yes">del|al<exception postag="(&lt;)?NP.*" postag_regexp="yes"/></token>
                             <unify-ignore>
                                 <token postag="RG"/>
                             </unify-ignore>
@@ -9565,28 +10501,82 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example>¿Tienen <marker>previsto</marker> los dioses hacerme una visita?</example>
             </rule>
         </rulegroup>
-        <rule id="AGREEMENT_QUEDAR_VP" name="concordancia: quedar + participio + el">
-            <pattern>
-                <token inflected="yes">quedar</token>
-                <unify negate="yes">
-                    <feature id="genero"/>
-                    <feature id="numero"/>
-                    <marker>
-                        <token postag="V.P.*" postag_regexp="yes"/>
-                        <token postag="DA.[MF][SP]." postag_regexp="yes"/>
-                    </marker>
-                    <token><exception regexp="yes" inflected="yes">&dias_semana;|&meses_ano;|&partes_dia;|&unidades_tiempo;|arapo|trozo|triza|uno|otro|momento|tiempo|ceniza</exception></token>
-                </unify>
-            </pattern>
-            <message>Esta expresión debe concordar en género y número.</message>
-            <example correction="">De esta forma queda <marker>garantizado la</marker> comercialización.</example>
-            <example>los camiones que queden descargados el jueves</example>
-            <example>El hecho es que se quedó dormido esa mañana.</example>
-            <example>Ella se quedó sentada unos momentos más</example>
-            <example>quedó hecha un arapo</example>
-            <example>ambos quedan prendados el uno del otro</example>
-            <example>Queda abolido lo que era ceremonial.</example>
-        </rule>
+        <rulegroup id="AGREEMENT_QUEDAR_VP" name="concordancia: quedar + participio + el">
+            <antipattern>
+                <token postag="D.*" postag_regexp="yes"/>
+                <token regexp="yes" inflected="yes">&dias_semana;|&meses_ano;|&partes_dia;|&unidades_tiempo;|arapo|trozo|triza|uno|otro|momento|tiempo|ceniza</token>
+            </antipattern>
+            <rule>
+                <pattern>
+                    <token inflected="yes">quedar</token>
+                    <unify negate="yes">
+                        <feature id="genero"/>
+                        <feature id="numero"/>
+                        <marker>
+                            <token postag="V.P.*" postag_regexp="yes"/>
+                        </marker>
+                        <token postag="DA.FS." postag_regexp="yes"/>
+                    </unify>
+                </pattern>
+                <message>Esta expresión debe concordar en género y número.</message>
+                <suggestion><match no="2" postag="(V.P.*)" postag_regexp="yes" postag_replace="V.P..SF"/></suggestion>
+                <example correction="garantizada">De esta forma queda <marker>garantizado</marker> la comercialización.</example>
+                <example>los camiones que queden descargados el jueves</example>
+                <example>El hecho es que se quedó dormido esa mañana.</example>
+                <example>Ella se quedó sentada unos momentos más</example>
+                <example>quedó hecha un arapo</example>
+                <example>ambos quedan prendados el uno del otro</example>
+                <example>Queda abolido lo que era ceremonial.</example>
+            </rule>
+            <rule>
+                <pattern>
+                    <token inflected="yes">quedar</token>
+                    <unify negate="yes">
+                        <feature id="genero"/>
+                        <feature id="numero"/>
+                        <marker>
+                            <token postag="V.P.*" postag_regexp="yes"/>
+                        </marker>
+                        <token postag="DA.FP." postag_regexp="yes"/>
+                    </unify>
+                </pattern>
+                <message>Esta expresión debe concordar en género y número.</message>
+                <suggestion><match no="2" postag="(V.P.*)" postag_regexp="yes" postag_replace="V.P..PF"/></suggestion>
+                <example correction="garantizadas">De esta forma quedan <marker>garantizados</marker> las comercializaciones.</example>
+            </rule>
+            <rule>
+                <pattern>
+                    <token inflected="yes">quedar</token>
+                    <unify negate="yes">
+                        <feature id="genero"/>
+                        <feature id="numero"/>
+                        <marker>
+                            <token postag="V.P.*" postag_regexp="yes"/>
+                        </marker>
+                        <token postag="DA.MS." postag_regexp="yes"/>
+                    </unify>
+                </pattern>
+                <message>Esta expresión debe concordar en género y número.</message>
+                <suggestion><match no="2" postag="(V.P.*)" postag_regexp="yes" postag_replace="V.P..SM"/></suggestion>
+                <example correction="garantizado">De esta forma queda <marker>garantizada</marker> el éxito.</example>
+            </rule>
+            <rule>
+                <pattern>
+                    <token inflected="yes">quedar</token>
+                    <unify negate="yes">
+                        <feature id="genero"/>
+                        <feature id="numero"/>
+                        <marker>
+                            <token postag="V.P.*" postag_regexp="yes"/>
+                        </marker>
+                        <token postag="DA.MP." postag_regexp="yes"/>
+                    </unify>
+                </pattern>
+                <message>Esta expresión debe concordar en género y número.</message>
+                <suggestion><match no="2" postag="(V.P.*)" postag_regexp="yes" postag_replace="V.P..PM"/></suggestion>
+                <example correction="garantizados">De esta forma quedan <marker>garantizadas</marker> los éxitos.</example>
+            </rule>
+        </rulegroup>
         <rulegroup id="BUENAS_TARDES" name="concordancia: buenas tardes">
             <!-- this rule is necessary because "tardes" can be noun/verb-->
             <rule>
@@ -9639,7 +10629,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <token spacebefore="no"/>
             </antipattern>
             <antipattern>
-                <token inflected="yes" regexp="yes">debate|binomio|relación|conexión|ratio|asociación|aleación|concordancia|tradución|interpretación|correción|corpus|paralelo|diccionario|traductor|corrector|par|figura|pareja</token>
+                <token inflected="yes" regexp="yes">debate|binomio|relación|conexión|ratio|asociación|aleación|concordancia|tradución|interpretación|correción|corpus|paralelo|diccionario|traductor|corrector|par|figura|pareja|dualidad</token>
                 <token postag="A.*|V.P.*" postag_regexp="yes"/>
                 <token regexp="yes">[/yoeu-]|versus|vs</token>
                 <token/>
@@ -9945,22 +10935,22 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <token postag="A.*|V.P.*" postag_regexp="yes"/>
             </antipattern>
             <antipattern>
-                <token regexp="yes">pasado|entrado|visto|llegado|transcurrido|incluido|hecho</token>
+                <token regexp="yes">pasado|entrado|visto|llegado|transcurrido|incluido|hecho|vencido</token>
                 <token min="0" max="2" regexp="yes">más|menos|de</token>
                 <token postag="D[AID].MS." postag_regexp="yes"/>
             </antipattern>
             <antipattern>
-                <token regexp="yes">pasada|entrada|vista|llegada|transcurrida|incluida|hecha</token>
+                <token regexp="yes">pasada|entrada|vista|llegada|transcurrida|incluida|hecha|vencida</token>
                 <token min="0" max="2" regexp="yes">más|menos|de</token>
                 <token postag="D[AID].FS." postag_regexp="yes"/>
             </antipattern>
             <antipattern>
-                <token regexp="yes">pasados|entrados|vistos|llegados|transcurridos|incluidos|hechos</token>
+                <token regexp="yes">pasados|entrados|vistos|llegados|transcurridos|incluidos|hechos|vencidos</token>
                 <token min="0" max="2" regexp="yes">más|menos|de</token>
                 <token postag="D[AID].MP.|DN.[MC][PN]." postag_regexp="yes"/>
             </antipattern>
             <antipattern>
-                <token regexp="yes">pasadas|entradas|vistas|llegadas|transcurridas|incluidas|hechas</token>
+                <token regexp="yes">pasadas|entradas|vistas|llegadas|transcurridas|incluidas|hechas|vencidas</token>
                 <token min="0" max="2" regexp="yes">más|menos|de</token>
                 <token postag="D[AID].FP.|DN.[FC][PN]." postag_regexp="yes"/>
             </antipattern>
@@ -10176,6 +11166,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             <example>la conexión a la red de sus clientes bajo determinadas condiciones de calidad</example>
             <example>el Imperio Japonés y la Unión Soviética bajo Iósif Stalin</example>
             <example>las principales plazas y territorios bajo poder musulmán</example>
+            <example>Instrucciones incoadas bajo el nro. 4.</example>
+            <example>Ves resultados mejores.</example>
+            <example>Va por el camino en línea recta.</example>
             <!-- 
                 La eternidad dura harto.
                 Ella fue al concierto acompañada de una amiga.
@@ -10319,7 +11312,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <antipattern>
                     <!-- telegraphic writing -->
                     <token>total</token>
-                    <token>productors</token>
+                    <token>productos</token>
                 </antipattern>
                 <pattern>
                     <unify negate="yes">
@@ -10345,6 +11338,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example>Aproximar al lector datos históricos congruentes.</example>
                 <example>Una batidora tipo KA.</example>
                 <example>alguna fábrica de calzado abierta hoy festivo</example>
+                <example>San Marcos.</example>
+                <example>Toque de queda nocturno.</example>
+                <example>Calma dolores.</example>
             </rule>
             <rule default="temp_off">
                 <pattern>
@@ -10585,7 +11581,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             </antipattern>
             <antipattern>
                 <token postag="SPS00|LOC_PREP" postag_regexp="yes"/>
-                <token regexp="yes">él|ella|usted|nosotros|nosotras|vosotros|vosotras|ellos|ellas</token>
+                <token regexp="yes">él|ella|usted|nosotros|nosotras|vosotros|vosotras|ellos|ellas|ti</token>
+            </antipattern>
+            <antipattern>
+                <token regexp="yes">conmigo|contigo</token>
             </antipattern>
             <rule id="PP_V_1" name="Concordancia 1ª persona">
                 <antipattern>
@@ -10607,6 +11606,11 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             </rule>
             <rule id="PP_V_2" name="Concordancia 2ª persona">
                 <antipattern>
+                    <token postag="V...2S." postag_regexp="yes"/>
+                    <token skip="-1">tú</token>
+                    <token>?</token>
+                </antipattern>
+                <antipattern>
                     <token>tú</token>
                     <token postag="VMM02S0"/>
                 </antipattern>
@@ -10622,6 +11626,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example>Ellos con vosotros son solo ratas.</example>
                 <example>Que tu familia y tú estéis tranquilos.</example>
                 <example>Tú ve allá.</example>
+                <example>¿De qué silencio eres tú silencio?</example>
             </rule>
             <rule id="PP_V_3">
                 <pattern>
@@ -10647,17 +11652,20 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example>Yo vengo</example>
                 <example>No la hemos visto últimamente.</example>
                 <example>Todavía la efectúan.</example>
+                <example>Gracias a ti verificaremos la seguridad.</example>
+                <example>Contigo llegaremos lejos.</example>
             </rule>
             <rule id="PP_V_PLURAL" name="Concordancia plural Nombre + verbo">
                 <!-- Eliminados los sustantivos y otros pronombres por exceso de falsos positivos.-->
                 <pattern>
                     <token postag="PP.{2}P.*" postag_regexp="yes"><exception postag="SP.*|CS.*|PT.*" postag_regexp="yes" scope="previous"/> <exception postag="AQ.*|V.*|PP[12]C.000|PP3.{2}[AD]00" postag_regexp="yes"/></token>
-                    <token postag="V.{4}S.*" postag_regexp="yes"><exception negate_pos="yes" postag="V.*" postag_regexp="yes"/><exception regexp="yes">es|para|una|juntas</exception></token>
+                    <token postag="V.{4}S.*" postag_regexp="yes"><exception negate_pos="yes" postag="V.*" postag_regexp="yes"/><exception postag="V....P." postag_regexp="yes"/><exception regexp="yes">es|para|una|juntas</exception></token>
                 </pattern>
                 <message>Posible falta de concordancia de número entre «\1» y «\2».</message>
                 <example correction="">sólo <marker>ellos vuela</marker> por el cielo</example>
                 <example>aviones vuelan</example>
                 <example>A todos ellos quisiera decirles:</example>
+                <example>Ellos ven más allá.</example>
             </rule>
         </rulegroup>
         <rulegroup id="AGREEMENT_SUBJECT_VERB_SG_PL" name="concordancia sujeto-verbo (ser, estar, tener...)">
@@ -10742,7 +11750,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             </antipattern>
             <antipattern>
                 <token postag="V.[IS].3S." postag_regexp="yes" skip="-1"/>
-                <token postag="PI..S...|.+\+PP..P..." postag_regexp="yes"/>
+                <token postag="PI..S...|.+:PP..P..." postag_regexp="yes"/>
             </antipattern>
             <rule>
                 <pattern>
@@ -11076,6 +12084,28 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <suggestion>dedicación no exclusiva</suggestion>
                 <suggestion>a tiempo parcial</suggestion>
                 <example correction="dedicación parcial|dedicación no exclusiva|a tiempo parcial"><marker>part-time</marker></example>
+            </rule>
+            <rule>
+                <pattern>
+                    <token inflected="yes">postear</token>
+                </pattern>
+                <message>Anglicismo innecesario. Es preferible usar otro verbo.</message>
+                <suggestion><match no="1" postag="(V.*)" postag_regexp="yes" postag_replace="$1">publicar</match></suggestion>
+                <suggestion><match no="1" postag="(V.*)" postag_regexp="yes" postag_replace="$1">publicar</match> un artículo</suggestion>
+                <suggestion><match no="1" postag="(V.*)" postag_regexp="yes" postag_replace="$1">publicar</match> una entrada</suggestion>
+                <url>https://www.fundeu.es/recomendacion/internet-terminos-relacionados-1315/</url>
+                <example correction="publicó|publicó un artículo|publicó una entrada">Entonces <marker>posteó</marker> su mensaje.</example>
+            </rule>
+            <rule>
+                <pattern>
+                    <token inflected="yes">posteo</token>
+                </pattern>
+                <message>Anglicismo innecesario. Es preferible usar otra palabra.</message>
+                <suggestion><match no="1" postag="NCM(.*)" postag_regexp="yes" postag_replace="NCF$1">publicación</match></suggestion>
+                <suggestion><match no="1" postag="NCM(.*)" postag_regexp="yes" postag_replace="NCF$1">entrada</match></suggestion>
+                <suggestion><match no="1" postag="NCM(.*)" postag_regexp="yes" postag_replace="NCM$1">artículo</match></suggestion>
+                <url>https://www.fundeu.es/recomendacion/internet-terminos-relacionados-1315/</url>
+                <example correction="publicaciones|entradas|artículos">Los <marker>posteos</marker>.</example>
             </rule>
         </rulegroup>
         <rulegroup id="PER_CAPITA" name="per cápita">
@@ -11534,7 +12564,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
         </rulegroup>
         <rule id="HAZMERREIR" name="hazmerreír">
             <pattern>
-                <token postag="D.*|SP\+DA" postag_regexp="yes"/>
+                <token postag="D.*|SP:DA" postag_regexp="yes"/>
                 <marker>
                     <token>hazme</token>
                     <token regexp="yes">reir|reír</token>
@@ -11586,6 +12616,133 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
         </rule>
     </category>
     <category id="CONFUSIONS" name="Confusiones">
+        <rule id="ORA_HORA" name="ora/hora">
+            <antipattern>
+                <token skip="-1">ora</token>
+                <token>ora</token>
+            </antipattern>
+            <antipattern>
+                <token>ora</token>
+                <token>et</token>
+                <token>labora</token>
+            </antipattern>
+            <antipattern>
+                <token regexp="yes">se|le</token>
+                <token>ora</token>
+            </antipattern>
+            <antipattern>
+                <token>ora</token>
+                <token regexp="yes">por|a|durante</token>
+            </antipattern>
+            <antipattern>
+                <token postag="N.*|_GN_.*" postag_regexp="yes"/>
+                <token>ora</token>
+            </antipattern>
+            <pattern>
+                <token case_sensitive="yes">ora</token>
+            </pattern>
+            <message>¿Quería decir <suggestion>hora</suggestion>? Correcto si es del v. 'orar'.</message>
+            <example correction="hora">Dame la <marker>ora</marker>.</example>
+            <example>El monje ora durante una hora.</example>
+        </rule>
+        <rulegroup id="VEN" name="confusiones ven/ver/en">
+            <rule>
+                <pattern>
+                    <token inflected="yes" regexp="yes">poder|deber|querer</token>
+                    <marker>
+                        <token>ven</token>
+                    </marker>
+                </pattern>
+                <message>¿Quería decir <suggestion>ver</suggestion>?</message>
+                <example correction="ver">Pueden <marker>ven</marker> el resultado al final.</example>
+            </rule>
+            <rule>
+                <antipattern>
+                    <token postag="SENT_START|_PUNCT.*|P.*|CC|R.*" postag_regexp="yes"/>
+                    <token>ven</token>
+                </antipattern>
+                <antipattern>
+                    <token>ven</token>
+                    <token postag="SPS00|V.N.*" postag_regexp="yes"/>
+                </antipattern>
+                <antipattern>
+                    <token>ven</token>
+                    <token>ven</token>
+                </antipattern>
+                <antipattern>
+                    <token>al</token>
+                    <token postag="V.N.*" postag_regexp="yes"/>
+                </antipattern>
+                <antipattern>
+                    <token postag="PR.*|CS" postag_regexp="yes" skip="-1"/>
+                    <token>ven</token>
+                </antipattern>
+                <pattern>
+                    <token postag="V.[ISN].*" postag_regexp="yes"><exception postag="NC.*" postag_regexp="yes"/></token>
+                    <marker>
+                        <token case_sensitive="yes">ven</token>
+                    </marker>
+                    <token min="0" postag="D.*" postag_regexp="yes"/>
+                    <token postag="[AN].*" postag_regexp="yes"/>
+                </pattern>
+                <message>¿Quería decir <suggestion>en</suggestion>?</message>
+                <example correction="en">Está <marker>ven</marker> deuda.</example>
+                <example>Si tú me dices ven lo dejo todo.</example>
+                <example>Los años que siguen ven la creación de asociaciones culturales croatas.</example>
+                <example>Incluso algunos productores a gran escala ven descensos en la producción. </example>
+                <example>Mientras que las compañías de software espía ven una compra de exploits como un pago</example>
+            </rule>
+        </rulegroup>
+        <rulegroup id="SUBJUNTIVO_INFINITIVO" name="*formalizase/formalizarse">
+            <rule>
+                <pattern>
+                    <token inflected="yes" regexp="yes">poder|querer|deber</token>
+                    <marker>
+                        <token postag="VMSI3S0" regexp="yes">[\p{Ll}]+ase<exception negate_pos="yes" postag="V.[MSI].*|SENT_END" postag_regexp="yes"/></token>
+                    </marker>
+                </pattern>
+                <message>Posible confusión.</message>
+                <suggestion><match no="2" postag="VMSI3S0" postag_regexp="yes" postag_replace="VMN0000.PP3CN000"/></suggestion>
+                <example correction="formalizarse">No deberán <marker>formalizase</marker>.</example>
+            </rule>
+            <rule>
+                <pattern>
+                    <token inflected="yes">tener</token>
+                    <token>que</token>
+                    <marker>
+                        <token postag="VMSI3S0" regexp="yes">[\p{Ll}]+ase<exception negate_pos="yes" postag="V.[MSI].*|SENT_END" postag_regexp="yes"/></token>
+                    </marker>
+                </pattern>
+                <message>Posible confusión.</message>
+                <suggestion><match no="3" postag="VMSI3S0" postag_regexp="yes" postag_replace="VMN0000.PP3CN000"/></suggestion>
+                <example correction="formalizarse">No tiene que <marker>formalizase</marker>.</example>
+            </rule>
+            <rule>
+                <pattern>
+                    <token inflected="yes" regexp="yes">poder|querer|deber</token>
+                    <marker>
+                        <token postag="VMSI3S0" regexp="yes">[\p{Ll}]+ara<exception negate_pos="yes" postag="V.[MSI].*|SENT_END" postag_regexp="yes"/></token>
+                    </marker>
+                </pattern>
+                <message>Posible confusión.</message>
+                <suggestion><match no="2" postag="VMSI3S0" postag_regexp="yes" postag_replace="VMN0000"/></suggestion>
+                <suggestion><match no="2" postag="VMSI3S0" postag_regexp="yes" postag_replace="VMN0000.PP3FSA00"/></suggestion>
+                <example correction="encontrar|encontrarla">Podías <marker>encontrara</marker> por todas partes.</example>
+            </rule>
+            <rule>
+                <pattern>
+                    <token inflected="yes">tener</token>
+                    <token>que</token>
+                    <marker>
+                        <token postag="VMSI3S0" regexp="yes">[\p{Ll}]+ara<exception negate_pos="yes" postag="V.[MSI].*|SENT_END" postag_regexp="yes"/></token>
+                    </marker>
+                </pattern>
+                <message>Posible confusión.</message>
+                <suggestion><match no="3" postag="VMSI3S0" postag_regexp="yes" postag_replace="VMN0000"/></suggestion>
+                <suggestion><match no="3" postag="VMSI3S0" postag_regexp="yes" postag_replace="VMN0000.PP3FSA00"/></suggestion>
+                <example correction="llevar|llevarla">Tienes que <marker>llevara</marker> por todas partes.</example>
+            </rule>
+        </rulegroup>
         <rule id="DE_LA" name="del a/de la">
             <pattern>
                 <token regexp="yes">del|al</token>
@@ -11677,7 +12834,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example>¿Qué tiene que cree que es el mejor?</example>
             </rule>
         </rulegroup>
-        <rule id="HABER_DE_INFINITIVO" name="haber de + infinitivo">
+        <rulegroup id="HABER_DE_INFINITIVO" name="haber de + infinitivo">
             <antipattern>
                 <token regexp="yes">[\d ,.]+</token>
                 <token>ha</token>
@@ -11701,28 +12858,58 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             <antipattern>
                 <token inflected="yes">haber</token>
                 <token>de</token>
-                <token postag="_LOC_ADV"/>
+                <token postag="LOC_ADV"/>
                 <token postag="V.P..SM" postag_regexp="yes"/>
             </antipattern>
-            <pattern>
-                <token inflected="yes">haber<exception>hay</exception></token>
+            <antipattern>
+                <token inflected="yes">haber</token>
                 <token>de</token>
-                <marker>
-                    <token postag="V.*" postag_regexp="yes"><exception postag="V.N.*|_possible_NP" postag_regexp="yes"/></token>
-                </marker>
-            </pattern>
-            <message>¿Quería decir <suggestion><match no="3" postag="(V.*)" postag_regexp="yes" postag_replace="V.N...."/></suggestion>?</message>
-            <example correction="considerar">Se ha de <marker>considera</marker> el mejor.</example>
-            <example correction="crear|creer">Había de <marker>cree</marker> que es posible.</example>
-            <example correction="incorporar">Sus precios han de <marker>incorporan</marker> toda la información disponible</example>
-            <example>400 ha de cebada.</example>
-            <example>Hubo de hecho una riña.</example>
-            <example>la cantidad que haya de dichos elementos</example>
-            <example>ha de hecho difundido</example>
-            <example>He de Han, emperador chino.</example>
-            <example>puede haber de hecho hasta tres cesuras</example>
-            <example>He de veras pensado en ello.</example>
-        </rule>
+                <token min="0" max="3" postag="LOC_ADV|RG" postag_regexp="yes"/>
+                <token postag="V.N.*" postag_regexp="yes"/>
+            </antipattern>
+            <rule>
+                <pattern>
+                    <token inflected="yes">haber<exception>hay</exception></token>
+                    <token>de</token>
+                    <marker>
+                        <token postag="V.*" postag_regexp="yes"><exception postag="V.N.*|_possible_NP" postag_regexp="yes"/></token>
+                    </marker>
+                </pattern>
+                <message>¿Quería decir <suggestion><match no="3" postag="(V.*)" postag_regexp="yes" postag_replace="V.N...."/></suggestion>?</message>
+                <example correction="considerar">Se ha de <marker>considera</marker> el mejor.</example>
+                <example correction="crear|creer">Había de <marker>cree</marker> que es posible.</example>
+                <example correction="incorporar">Sus precios han de <marker>incorporan</marker> toda la información disponible</example>
+                <example>400 ha de cebada.</example>
+                <example>Hubo de hecho una riña.</example>
+                <example>la cantidad que haya de dichos elementos</example>
+                <example>ha de hecho difundido</example>
+                <example>He de Han, emperador chino.</example>
+                <example>puede haber de hecho hasta tres cesuras</example>
+                <example>He de veras pensado en ello.</example>
+            </rule>
+            <rule>
+                <pattern>
+                    <token inflected="yes">haber<exception postag="V...3S.|V.[PG].*|_possible_NP|N.*" postag_regexp="yes"/></token>
+                    <token>de</token>
+                    <marker>
+                        <token><exception regexp="yes">\+|:|infinitivo</exception><exception postag="V.N.*|_possible_NP" postag_regexp="yes"/></token>
+                    </marker>
+                </pattern>
+                <filter class="org.languagetool.rules.es.FindSuggestionsFilter" args="WordFrom:3 DesiredPostag:V.N.*"/>
+                <message>Probablemente falta un infinitivo después de la expresión 'haber de'.</message>
+                <example correction="ahorrar|adorar|ahogar|ahorcar|añorar|aforar|ahuecar|atorar|ahormar|acorar">Habías de <marker>ahorar</marker> lo que pudieras.</example>
+                <example>Había de manifestarlo.</example>
+                <example>400 ha de cebada.</example>
+                <example>Hubo de hecho una riña.</example>
+                <example>la cantidad que haya de dichos elementos</example>
+                <example>ha de hecho difundido</example>
+                <example>He de Han, emperador chino.</example>
+                <example>puede haber de hecho hasta tres cesuras</example>
+                <example>He de veras pensado en ello.</example>
+                <example>Porque entremedio hubo de todo.</example>
+                <!-- Needs another suggestion: has de tu vida -->
+            </rule>
+        </rulegroup>
         <rulegroup id="SIDO" name="sido">
             <antipattern>
                 <!-- other rules -->
@@ -12086,11 +13273,19 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example>Libres e iguales.</example>
             </rule>
             <rule>
+                <antipattern>
+                    <token>-</token>
+                    <token spacebefore="no">e</token>
+                </antipattern>
+                <antipattern>
+                    <token>e</token>
+                    <token regexp="yes">y|o|ó</token>
+                </antipattern>
                 <pattern>
                     <marker>
                         <token>e</token>
                     </marker>
-                    <token postag="N.*|A.*|V.*|R.*" postag_regexp="yes"/>
+                    <token postag="N.*|A.*|V.*|R.*|C.*|P.*" postag_regexp="yes"/>
                 </pattern>
                 <message>Asegúrese de que el carácter 'e' es correcto y no es un error de escritura.</message>
                 <suggestion>en</suggestion>
@@ -12099,10 +13294,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <suggestion>y</suggestion>
                 <example correction="en|de|es|y">No me ha llegado <marker>e</marker> vuelta.</example>
                 <example correction="en|de|es|y">Cerrar el archivo <marker>e</marker> ejecutar el programa.</example>
+                <example correction="en|de|es|y">Cuando <marker>e</marker> como tú quieras.</example>
                 <example>Alemania e Italia.</example>
                 <example>Agua e iones.</example>
                 <example>La letra e.</example>
                 <example>El apartado e del artículo 4 de la Ley.</example>
+                <example>Tom le remitió el correo-e que recibió de Mary a John.</example>
+                <example>Los ejes principales X e Y.</example>
             </rule>
         </rulegroup>
         <rule id="ESTO_ESTE" name="esto/este">
@@ -12679,7 +13877,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                     <token postag="NC.*" postag_regexp="yes"><exception postag="V.[MIS].*|_GN_.*|A.*|V.P.*|RG" postag_regexp="yes"/><exception regexp="yes" case_sensitive="yes">[A-Z]+</exception></token>
                 </pattern>
                 <filter class="org.languagetool.rules.es.FindSuggestionsFilter" args="WordFrom:2 DesiredPostag:V.[SI].*"/>
-                <message>Posible error ortográfico.</message>
+                <message>Posible confusión. Pronombre átono sin verbo.</message>
                 <suggestion>\1 {suggestion}</suggestion>
                 <example correction="Lo augura|Lo auguró|Lo auguro|Lo augure|Lo auguré"><marker>Lo augur</marker>.</example>
                 <example correction="lo habitó|lo habito|lo habita|lo habite|lo habituó|lo abito|lo abitó|lo habité|lo habitúo"><marker>lo hábito</marker>.</example>
@@ -13110,6 +14308,32 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             </rule>
             <rule>
                 <pattern>
+                    <token>eramos</token>
+                </pattern>
+                <message>¿Quería decir <suggestion>éramos</suggestion> (v. 'ser') o <suggestion>erramos</suggestion> (v. 'errar')? "Eramos" del v. 'erar' es poco usual.</message>
+                <example correction="éramos|erramos">Entonces <marker>eramos</marker> felices.</example>
+            </rule>
+            <rule>
+                <pattern>
+                    <token>eren</token>
+                </pattern>
+                <message>¿Quería decir <suggestion>eran</suggestion> (v. 'ser') o <suggestion>yerren</suggestion> (v. 'errar')? "Eren" del v. 'erar' es poco usual.</message>
+                <example correction="eran|yerren">Entonces <marker>eren</marker> buenos.</example>
+            </rule>
+            <rule>
+                <pattern case_sensitive="yes">
+                    <token>ere</token>
+                </pattern>
+                <message>¿Quería decir <suggestion>ERE</suggestion> (expediente de regulación de empleo) o <suggestion>eres</suggestion> v. 'ser'?</message>
+                <!--  "Ere" del v. 'erar' es poco usual.-->
+                <example correction="ERE|eres">Tú <marker>ere</marker> el mejor.</example>
+            </rule>
+            <rule>
+                <antipattern>
+                    <token>-</token>
+                    <token spacebefore="no">ero</token>
+                </antipattern>
+                <pattern>
                     <token inflected="yes">erar<exception inflected="yes" negate="yes">erar</exception></token>
                 </pattern>
                 <message>¿Quería decir <suggestion><match no="1" postag="(V.*)" postag_regexp="yes" postag_replace="$1">errar</match></suggestion>? 'Erar' es un verbo poco usual.</message>
@@ -13117,6 +14341,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example correction="errara|errase">Cuando <marker>erase</marker>.</example>
                 <example>Era muy bonito.</example>
                 <example>Érase una vez.</example>
+                <example>Con la terminación -ero.</example>
             </rule>
         </rulegroup>
         <rulegroup id="EL_LA_EN_LA" name="*el/en la" default="on">
@@ -13141,14 +14366,33 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                         <token>el</token>
                     </marker>
                     <token regexp="yes">la|las</token>
+                    <token postag="V.[SI].3S." postag_regexp="yes"/>
+                </pattern>
+                <message>Se escribe con tilde si es un pronombre.</message>
+                <suggestion>él</suggestion>
+                <example correction="él">A ver si <marker>el</marker> la tiene.</example>
+                <example>El la del diapasón.</example>
+                <example>El la sobreagudo.</example>
+                <example>En el La a 440Hz.</example>
+                <example>En el La a 440 Hz.</example>
+                <example>En el La 440 Hz.</example>
+            </rule>
+            <rule>
+                <pattern>
+                    <marker>
+                        <token>el</token>
+                    </marker>
+                    <token regexp="yes">la|las</token>
                 </pattern>
                 <message>Posible confusión.</message>
                 <suggestion>en</suggestion>
-                <example correction="en">Fue <marker>el</marker> la plaza.</example>
-                <example correction="en">Viven <marker>el</marker> las calles.</example>
-                <example correction="en">Ocurrió <marker>el</marker> la fecha histórica del 23 de abril.</example>
-                <example correction="en">estudiar doctorado <marker>el</marker> la rea de sociología.</example>
-                <example correction="en">usados <marker>el</marker> la práctica de karate</example>
+                <suggestion>él</suggestion>
+                <suggestion>es</suggestion>
+                <example correction="en|él|es">Fue <marker>el</marker> la plaza.</example>
+                <example correction="en|él|es">Viven <marker>el</marker> las calles.</example>
+                <example correction="en|él|es">Ocurrió <marker>el</marker> la fecha histórica del 23 de abril.</example>
+                <example correction="en|él|es">estudiar doctorado <marker>el</marker> la rea de sociología.</example>
+                <example correction="en|él|es">usados <marker>el</marker> la práctica de karate</example>
                 <example>El la del diapasón.</example>
                 <example>El la sobreagudo.</example>
                 <example>En el La a 440Hz.</example>
@@ -13293,7 +14537,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             <message>¿Quería decir <suggestion><match no="1" regexp_match="(?iu)ana" regexp_replace="aña"/></suggestion>? "Pestano" significa 'natural de Pesto, antigua ciudad italiana'.</message>
             <example correction="pestaña">Me ha caído una <marker>pestana</marker>.</example>
         </rule>
-        <rule id="COMPRAR_GRASTAR" name="*comprar/gastar en">
+        <rule id="COMPRAR_GASTAR" name="*comprar/gastar en">
             <pattern>
                 <marker>
                     <token inflected="yes" skip="5">comprar<exception scope="next">por</exception></token>
@@ -13835,9 +15079,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             <!-- a lot of true positives expected -->
             <pattern>
                 <token><exception postag="SENT_START"/></token>
-                <token><exception postag="SENT_START"/><exception regexp="yes">[,;:(]</exception><exception regexp="yes" spacebefore="yes">[—–-]</exception></token>
+                <token><exception postag="SENT_START"/><exception regexp="yes">[,;:(]</exception><exception regexp="yes" spacebefore="yes">[—–-]</exception><exception postag="_QM_OPEN"></exception></token>
                 <marker>
-                    <token><exception postag="SENT_START"/><exception regexp="yes">[,;:(]</exception><exception regexp="yes" spacebefore="yes">[—–-]</exception></token>
+                    <token><exception postag="SENT_START"/><exception regexp="yes">[,;:(]</exception><exception regexp="yes" spacebefore="yes">[—–-]</exception><exception postag="_QM_OPEN"></exception></token>
                     <token>ya</token>
                     <token>que</token>
                 </marker>
@@ -13851,7 +15095,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
         <rule id="PUESTO_QUE" name="puesto que (con coma)">
             <!-- a lot of true positives expected -->
             <antipattern>
-                <token postag="D..[MC][SN].|SP\+DA" postag_regexp="yes"/>
+                <token postag="D..[MC][SN].|SP:DA" postag_regexp="yes"/>
                 <token min="0" postag="A..[MC][SN]." postag_regexp="yes"/>
                 <token>puesto</token>
             </antipattern>
@@ -13877,6 +15121,88 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             <example>Se enfrentó al cuarto puesto que era el Madrid.</example>
             <example>Se enfrentó al cuarto, puesto que era el Madrid.</example>
             <example>En cualquier caso y puesto que no quiero extenderme, señor presidente.</example>
+        </rule>
+        <rulegroup id="COMMA_SINO" name="coma antes de 'sino'">
+            <!-- less priority than SINO_SI_NO -->
+            <antipattern>
+                <token postag="_PUNCT.*|SENT_START" postag_regexp="yes"/>
+                <token>sino</token>
+            </antipattern>
+            <antipattern>
+                <token regexp="yes">el|un|mi|tu|su|nuestro|vuestro</token>
+                <token>sino</token>
+            </antipattern>
+            <antipattern>
+                <token postag="V.[SI].*" postag_regexp="yes"/>
+                <token min="0" postag="V.[NP].*" postag_regexp="yes"/>
+                <token>sino</token>
+            </antipattern>
+            <rule>
+                <pattern>
+                    <marker>
+                        <token skip="-1" case_sensitive="yes">sino<exception postag="CC|LOC_CS|CS|PR.*" postag_regexp="yes" scope="next"/></token>
+                    </marker>
+                    <token postag="V.[SIN].*" postag_regexp="yes"/>
+                </pattern>
+                <message>En la mayoría de los casos la conjunción 'sino' va precedida de una coma.</message>
+                <suggestion>, \1</suggestion>
+                <example correction=", sino">La mujer del César no solo debe ser honesta<marker> sino</marker> parecerlo.</example>
+                <example>Su sino es fracasar.</example>
+                <example>Nadie lo sabe sino Juan.</example>
+                <example>No te pido sino que te vaysa enseguida</example>
+                <example>No sólo en lo institucional sino también en lo político.</example>
+                <example>No sólo en lo institucional sino también en lo político, ya que la universidad ha ido consolidándose.</example>
+                <example>Sabes que no quiero a nadie sino a él.</example>
+                <example>No deseaba sino retornar a la sede.</example>
+            </rule>
+            <rule>
+                <pattern>
+                    <marker>
+                        <token case_sensitive="yes">sino</token>
+                    </marker>
+                    <token skip="-1">que<exception postag="CC|LOC_CS|CS|PR.*" postag_regexp="yes" scope="next"/></token>
+                    <token postag="V.[SIN].*" postag_regexp="yes"/>
+                </pattern>
+                <message>En la mayoría de los casos la conjunción 'sino' va precedida de una coma.</message>
+                <suggestion>, \1</suggestion>
+                <example correction=", sino">No lo hice yo<marker> sino</marker> que lo hizo él.</example>
+            </rule>
+        </rulegroup>
+        <rule id="COMMA_PERO" name="coma antes de 'pero'">
+            <antipattern>
+                <token postag="_PUNCT.*|SENT_START" postag_regexp="yes"/>
+                <token>pero</token>
+            </antipattern>
+            <antipattern>
+                <token skip="2">pero</token>
+                <token postag="SENT_END"/>
+            </antipattern>
+            <antipattern>
+                <token>pero</token>
+                <token skip="-1"><exception scope="next" postag="V.[SI].*" postag_regexp="yes"/><exception postag="V.[SI].*" postag_regexp="yes"/></token>
+                <token postag="_PUNCT.*" postag_regexp="yes"/>
+                <token regexp="yes">y|o|e|u|ni|que|sino|aunque|porque</token>
+            </antipattern>
+            <antipattern>
+                <token>pero</token>
+                <token skip="-1"><exception scope="next" postag="V.[SI].*" postag_regexp="yes"/><exception postag="V.[SI].*" postag_regexp="yes"/></token>
+                <token postag="_PUNCT.*" postag_regexp="yes"/>
+                <token regexp="yes">ya|puesto</token>
+                <token>que</token>
+            </antipattern>
+            <pattern>
+                <marker>
+                    <token skip="-1" case_sensitive="yes">pero</token>
+                </marker>
+                <token postag="V.[SI].*" postag_regexp="yes"/>
+            </pattern>
+            <message>En la mayoría de los casos la conjunción 'pero' va precedida de una coma.</message>
+            <suggestion>, pero</suggestion>
+            <url>https://www.fundeu.es/recomendacion/pero-con-coma-usos-apropiados/</url>
+            <example correction=", pero">La alianza suma bastantes escaños<marker> pero</marker> no son suficientes.</example>
+            <example correction=", pero">Son mayoritarios<marker> pero</marker> no tienen derecho a voto en las elecciones comunales, ni tampoco pueden ser presidentes.</example>
+            <example>¿Pero qué pasa aquí?</example>
+            <example>Es bonito pero barato, y lo demás no importa.</example>
         </rule>
         <!--TODO: idem with ", pues"-->
         <rule id="COMMA_REPETITION" name="coma en repeticiones">
@@ -14328,7 +15654,27 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <suggestion><match no="1" case_conversion="startupper"/>.</suggestion>
                 <example correction="Sr.">Vive con el <marker>Sr</marker> García.</example>
             </rule>
+            <rule>
+                <pattern case_sensitive="yes">
+                    <token regexp="yes">etc|Etc</token>
+                </pattern>
+                <message>Probablemente falta un punto después de la abreviatura.</message>
+                <suggestion>\1.</suggestion>
+                <example correction="etc.">Rojo, azul, verde, <marker>etc</marker></example>
+            </rule>
         </rulegroup>
+        <rule id="ABREVIATURA_SIGLO" name="punto en abreviatura de siglo (s.)">
+            <pattern>
+                <marker>
+                    <token>s</token>
+                </marker>
+                <token regexp="yes">[xiv]+</token>
+            </pattern>
+            <message>Falta un punto después de la abreviatura de "siglo".</message>
+            <suggestion><match no="1"/>.</suggestion>
+            <suggestion>siglo</suggestion>
+            <example correction="s.|siglo">Vive en el <marker>s</marker> XVIII.</example>
+        </rule>
         <rule id="WRONG_DASH" name="Carácter de guion incorrecto (u+2500...)">
             <pattern case_sensitive="no">
                 <marker>
@@ -14343,19 +15689,26 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
         <rulegroup id="ABREV_HORA" name="abreviatura de horas, gramos" default="on">
             <rule>
                 <pattern>
-                    <token>hrs</token>
-                    <token>.<exception postag="SENT_END"/></token>
+                    <token regexp="yes">[\d.,]+</token>
+                    <marker>
+                        <token>hrs</token>
+                        <token>.<exception postag="SENT_END"/></token>
+                    </marker>
                 </pattern>
-                <message>Para indicar 'horas' se usa el símbolo h, en minúscula y sin punto.</message>
-                <suggestion>h</suggestion>
+                <message>Para indicar horas se usa el símbolo h, en minúscula y sin punto.</message>
+                <suggestion><match no="1" case_conversion="alllower" regexp_match=".+" regexp_replace="h"/></suggestion>
                 <example correction="h">A las 5 <marker>hrs.</marker> del domingo.</example>
+                <example correction="h">A las 5 <marker>HRS.</marker> del domingo.</example>
             </rule>
             <rule>
                 <pattern>
-                    <token>hrs</token>
+                    <token regexp="yes">[\d.,]+</token>
+                    <marker>
+                        <token>hrs</token>
+                    </marker>
                 </pattern>
-                <message>Para indicar 'horas' se usa el símbolo h, en minúscula y sin punto.</message>
-                <suggestion>h</suggestion>
+                <message>Para indicar horas se usa el símbolo h, en minúscula y sin punto.</message>
+                <suggestion><match no="2" case_conversion="alllower" regexp_match=".+" regexp_replace="h"/></suggestion>
                 <example correction="h">A las 5 <marker>hrs</marker>.</example>
             </rule>
             <rule>
@@ -14363,18 +15716,40 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                     <token regexp="yes">\d+(hrs|hr|hs)</token>
                     <token>.<exception postag="SENT_END"/></token>
                 </pattern>
-                <message>Para indicar 'horas' se usa el símbolo h, en minúscula y sin punto.</message>
-                <suggestion><match no="1" regexp_match="(\d+)h.*" regexp_replace="$1 h"/></suggestion>
+                <message>Para indicar horas se usa el símbolo h, en minúscula y sin punto.</message>
+                <suggestion><match no="1" regexp_match="(\d+)h.*" regexp_replace="$1 h" case_conversion="alllower"/></suggestion>
                 <example correction="5 h">A las <marker>5hrs.</marker> del domingo.</example>
             </rule>
             <rule>
                 <pattern>
                     <token regexp="yes">\d+(hrs|hr|hs)</token>
                 </pattern>
-                <message>Para indicar 'horas' se usa el símbolo h, en minúscula y sin punto.</message>
-                <suggestion><match no="1" regexp_match="(\d+)h.*" regexp_replace="$1 h"/></suggestion>
+                <message>Para indicar horas se usa el símbolo h, en minúscula y sin punto.</message>
+                <suggestion><match no="1" regexp_match="(\d+)h.*" regexp_replace="$1 h" case_conversion="alllower"/></suggestion>
                 <example correction="5 h">A las <marker>5hs</marker>.</example>
                 <example correction="48 h">A las <marker>48hrs</marker>.</example>
+            </rule>
+            <rule>
+                <antipattern>
+                    <token>h</token>
+                    <!--habitants-->
+                    <token>.</token>
+                    <token regexp="yes">/|por</token>
+                    <token regexp="yes">km|km²|km2|kilómetro|quilómetro</token>
+                </antipattern>
+                <pattern>
+                    <token regexp="yes">([012]?\d\.)?[012345]?\d</token>
+                    <token>h</token>
+                    <token>.<exception postag="SENT_END"/></token>
+                </pattern>
+                <message>Para indicar horas se usa el símbolo h sin punto.</message>
+                <suggestion>\1 <match no="2" case_conversion="alllower"/></suggestion>
+                <example correction="15 h">A las <marker>15 h.</marker> será la reunión.</example>
+                <example correction="15.30 h">A las <marker>15.30 h.</marker> será la reunión.</example>
+                <example correction="5.30 h">A las <marker>5.30 h.</marker> será la reunión.</example>
+                <example>Llegará a las 15.30 h.</example>
+                <example>Vivían 500 h. de diferentes nacionalidaes.</example>
+                <example>Tenía 15 h./km2</example>
             </rule>
             <rule>
                 <pattern>
@@ -15039,6 +16414,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <suggestion><match no="1" include_skipped="following"/> <match no="2"/></suggestion>
                 <example correction="También se llama|Se llama también"><marker>También se llama también</marker> así.</example>
                 <example correction="aún no es|no es aún">Esto <marker>aún no es aún</marker> definitivo.</example>
+                <example correction="ya los tenía|los tenía ya">Y <marker>ya los tenía ya</marker> en su despacho.</example>
                 <example>También es blanco y también es negreo.</example>
                 <example>Ya por verguenza ya por timidez</example>
             </rule>

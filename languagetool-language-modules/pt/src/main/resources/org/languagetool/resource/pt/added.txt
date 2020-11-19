@@ -52,6 +52,10 @@ baconburgers	baconburger	NCMP000
 banner	banner	NCMS000
 banners	banner	NCMP000
 baril	baril	AQ0CS0
+basquete	basquete	NCMS000
+basquetes	basquete	NCMP000
+básquete	básquete	NCMS000
+básquetes	básquete	NCMP000
 beatlemania	beatlemania	NCFS000
 bem-querida	bem-querer	VMP00SF
 bem-queridas	bem-querer	VMP00PF
@@ -68,11 +72,21 @@ bentos	benzer	VMP00PM
 bofe	bofe	NCMS000
 bofes	bofe	NCMP000
 bogie	bogie	NCMS000
+brainstorm	brainstorm	NCMS000
+brainstorms	brainstorm	NCMP000
 caçapo	caçapo	NCMS000
 caçapos	caçapo	NCMP000
 cachaporrada	cachaporrada	NCFS000
 cachaporradas	cachaporrada	NCFP000
+cagão	cagão	AQ0MS0
+cagão	cagão	NCMS000
+cagões	cagão	AQ0MP0
+cagões	cagão	NCMP000
 cameraman	cameraman	NCMS000
+carica	carica	NCFS000
+caricas	carica	NCFP000
+cegante	cegante	AQ0CS0
+cegantes	cegante	AQ0CP0
 cheia	encher	VMP00SF
 cheias	encher	VMP00PF
 cheio	encher	VMP00SM
@@ -124,6 +138,8 @@ enxuta	enxugar	VMP00SF
 enxutas	enxugar	VMP00PF
 enxuto	enxugar	VMP00SM
 enxutos	enxugar	VMP00PM
+equipe	equipe	NCFS000
+equipes	equipe	NCFP000
 ereta	erigir	VMP00SF
 eretas	erigir	VMP00PF
 ereto	erigir	VMP00SM
@@ -131,6 +147,10 @@ eretos	erigir	VMP00PM
 esbardalhar	esbardalhar	VMN0000
 esbardalhar	esbardalhar	VMSF1S0
 esbardalhar	esbardalhar	VMSF3S0
+escarninho	escarninho	AQ0MS0
+escarninho	escarninho	NCMS000
+escarninhos	escarninho	AQ0MP0
+escarninhos	escarninho	NCMP000
 escorripichar	escorripichar	VMN0000
 escorripichar	escorripichar	VMN01S0
 escorripichar	escorripichar	VMN03S0
@@ -161,6 +181,8 @@ exsudados	exsudado	NCMP000
 fair-play	fair-play	NCMN000
 fair-play	fair-play	AQ0CN0
 feiarrão	feio	AQ0MS0
+festarola	festarola	NCFS000
+festarolas	festarola	NCFP000
 finda	findar	VMP00SF
 findas	findar	VMP00PF
 findo	findar	VMP00SM
@@ -242,6 +264,8 @@ malquista	malquerer	VMP00SF
 malquistas	malquerer	VMP00PF
 malquisto	malquerer	VMP00SM
 malquistos	malquerer	VMP00PM
+maralha	maralha	NCFS000
+maralhas	maralha	NCFP000
 merdice	merdice	NCFS000
 merdices	merdice	NCFP000
 oculta	ocultar	VMP00SF
@@ -264,6 +288,7 @@ pasma	pasmar	VMP00SF
 pasmas	pasmar	VMP00PF
 pasmo	pasmar	VMP00SM
 pasmos	pasmar	VMP00PM
+poliamor	poliamor	NCMS000
 rota	romper	VMP00SF
 rotas	romper	VMP00PF
 roto	romper	VMP00SM
@@ -554,6 +579,12 @@ ati	ati	NCFS000
 atingimento	atingimento	NCMS000
 atingimentos	atingimento	NCMP000
 atracão	atracão	NCMS000
+atrapalhadíssima	atrapalhado	AQ0FS0
+atrapalhadíssimas	atrapalhado	AQ0FP0
+atrator	atrator	AQ0MS0
+atrator	atrator	NCMS000
+atratores	atrator	AQ0MP0
+atratores	atrator	NCMP000
 autoaprendizagem	autoaprendizagem	NCFS000
 autoavaliação	autoavaliação	NCFS000
 autoavaliações	autoavaliação	NCFP000
@@ -691,8 +722,13 @@ cagalhões	cagalhão	NCMP000
 cagueiro	cagueiro	NCMS000
 cagueiros	cagueiro	NCMP000
 cablagem	cablagem	NCFS000
+caçula	caçula	NCCS000
+caçulas	caçula	NCCP000
 cagança	cagança	NCFS000
 caganças	cagança	NCFP000
+cagãozinho	cagãozinho	NCMS000
+caguinchas	caguinchas	AQ0CN0
+caguinchas	caguinchas	NCCS000
 caleça	caleça	NCFS000
 caleças	caleça	NCFP000
 caldeireiro	caldeireiro	NCMS000
@@ -750,6 +786,10 @@ chicotear	chicotear	VMN01S0
 chicotear	chicotear	VMN03S0
 chicotear	chicotear	VMSF1S0
 chicotear	chicotear	VMSF3S0
+chinoca	chinoca	AQ0CS0
+chinoca	chinoca	NCCS000
+chinocas	chinoca	AQ0CP0
+chinocas	chinoca	NCCP000
 chofer	chofer	NCCS000
 choferes	chofer	NCCP000
 churrascada	churrascada	NCFS000
@@ -860,6 +900,8 @@ conceptualizar	conceptualizar	VMN01S0
 conceptualizar	conceptualizar	VMN03S0
 conceptualizar	conceptualizar	VMSF1S0
 conceptualizar	conceptualizar	VMSF3S0
+concupiscente	concupiscente	AQ0CS0
+concupiscentes	concupiscente	AQ0CP0
 conectividade	conectividade	NCFS000
 conectividades	conectividade	NCFP000
 confiabilidade	confiabilidade	NCFS000
@@ -931,6 +973,7 @@ corpuscular	corpuscular	AQ0CS0
 corregedora	corregedor	NCFS000
 corregedoras	corregedor	NCFP000
 corréu	corréu	NCMS000
+cossenos	cosseno	NCMP000
 cosupervisão	cosupervisão	NCFS000
 cosupervisor	cosupervisor	AQ0MS0
 cosupervisor	cosupervisor	NCMS000
@@ -956,6 +999,10 @@ credenciou	credenciar	VMIS3S0
 creem	crer	VMIP3P0
 criminalização	criminalização	NCFS000
 criminalizações	criminalização	NCFP000
+cristãozito	cristão	AQ0MS0
+cristãozito	cristão	NCMS000
+cristãozitos	cristão	AQ0MP0
+cristãozitos	cristão	NCMP000
 cromatógrafo	cromatógrafo	NCMS000
 cromatógrafos	cromatógrafo	NCMP000
 cromeleque	cromeleque	NCMS000
@@ -1172,6 +1219,13 @@ empilhador	empilhador	NCMS000
 empilhadores	empilhador	AQ0MP0
 empilhadores	empilhador	NCMP000
 empreendedorismo	empreendedorismo	NCMS000
+enaipado	enaipar	VMP00SM
+enaipados	enaipar	VMP00PM
+enaipar	enaipar	VMN0000
+enaipar	enaipar	VMN01S0
+enaipar	enaipar	VMN03S0
+enaipar	enaipar	VMSF1S0
+enaipar	enaipar	VMSF3S0
 encapsula	encapsular	VMIP3S0
 encapsula	encapsular	VMM02S0
 encapsulada	encapsular	VMP00SF
@@ -1227,6 +1281,10 @@ escadeado	escadeado	AQ0MS0
 escadeados	escadeado	AQ0MP0
 escalabilidade	escalabilidade	NCFS000
 escalável	escalável	AQ0CS0
+escanifrado	escanifrado	AQ0MS0
+escanifrado	escanifrado	NCMS000
+escanifrados	escanifrado	AQ0MP0
+escanifrados	escanifrado	NCMP000
 escriba	escriba	NCCS000
 escribas	escriba	NCCP000
 especialíssima	especial	AQ0FS0
@@ -1236,10 +1294,16 @@ especialíssimos	especial	AQ0MP0
 espécimenes	espécimen	NCMP000
 espermatozoide	espermatozoide	NCMS000
 espermatozoides	espermatozoide	NCMP000
+espertina	espertina	NCFS000
+espertinas	espertina	NCFP000
 espionagem	espionagem	NCFS000
 espionagens	espionagem	NCFP000
 esporângio	esporângio	NCMS000
 esporângios	esporângio	NCMP000
+esporra	esporra	NCFS000
+esporras	esporra	NCFP000
+esporradela	esporradela	NCFS000
+esporradelas	esporradela	NCFP000
 essencialíssima	essencial	AQ0FS0
 essencialíssimas	essencial	AQ0FP0
 esq	esq	AQ0MS0
@@ -1316,6 +1380,8 @@ extrudido	extrudido	AQ0MS0
 factualidade	factual	AQ0CS0
 fadinha	fada	NCFS000
 fadinhas	fada	NCFP000
+fagueiro	fagueiro	AQ0MS0
+fagueiros	fagueiro	AQ0MP0
 falda	falda	NCFS000
 faldas	falda	NCFP000
 fartazana	fartazana	NCFS000
@@ -1499,6 +1565,8 @@ hexacampeonato	hexacampeonato	NCMS000
 hexacampeonatos	hexacampeonato	NCMP000
 hidraulicamente	hidráulico	RG
 hidroxicloroquina	hidroxicloroquina	NCFS000
+hierarca	hierarca	NCMS000
+hierarcas	hierarca	NCMP000
 hífenes	hífen	NCMP000
 hiperventilação	hiperventilação	NCFS000
 hipofisário	hipofisário	AQ0MS0
@@ -1632,6 +1700,8 @@ instanciar	instanciar	VMSF3S0
 insula	insular	VMIP3S0
 insula	insular	VMM02S0
 insuportavelmente	insuportável	RG
+inté	inté	RG
+inté	inté	SPS00
 integralidade	integralidade	NCFS000
 intercambiáveis	intercambiar	VMII2P0
 intercambiável	intercambiável	AQ0CS0
@@ -1684,6 +1754,8 @@ jihadista	jihadista	AQ0CS0
 jihadista	jihadista	NCCS000
 jihadistas	jihadista	AQ0CP0
 jihadistas	jihadista	NCCP000
+joaquinzinho	joaquinzinho	NCMS000
+joaquinzinhos	joaquinzinho	NCMP000
 jogabilidade	jogabilidade	NCFS000
 joia	joia	NCFS000
 joias	joia	NCFP000
@@ -1696,6 +1768,8 @@ jusnaturalismo	jusnaturalismo	NCMS000
 jusnaturalismos	jusnaturalismo	NCMP000
 juvenil	juvenil	NCCS000
 karaoke	karaoke	NCMS000
+kebab	kebab	NCMS000
+kebabs	kebab	NCMP000
 khmer	khmer	AQ0CS0
 khmer	khmer	NCCS000
 kispo	kispo	NCMS000
@@ -1703,6 +1777,8 @@ kispos	kispo	NCMP000
 lactato	lactato	NCMS000
 lady	lady	NCFS000
 ladies	lady	NCFP000
+laplaciano	laplaciano	AQ0MS0
+laplaciano	laplaciano	NCMS000
 laranja	laranja	AQ0CS0
 laranjas	laranja	AQ0CP0
 lasers	laser	NCMP000
@@ -1712,6 +1788,8 @@ leem	ler	VMIP3P0
 LEGO	LEGO	NPMS000
 legos	LEGO	NCMP000
 LEGOs	LEGO	NPMP000
+lenimento	lenimento	NCMS000
+lenimentos	lenimento	NCMP000
 letã	letão	AQ0FS0
 letã	letão	NCFS000
 letão	letão	AQ0MS0
@@ -1762,6 +1840,10 @@ lockout	lockout	NCMS000
 lockouts	lockout	NCMP000
 logótipo	logótipo	NCMS000
 logótipos	logótipo	NCMP000
+louca	louco	AQ0FS0
+loucas	louco	AQ0FP0
+louco	louco	AQ0MS0
+loucos	louco	AQ0MP0
 LSD	LSD	NCMS000
 Lua	lua	NPFS000
 homozigoto	homozigoto	AQ0MS0
@@ -1773,6 +1855,14 @@ instanciados	instanciar	VMP00PM
 intersubjetiva	intersubjetivo	AQ0FS0
 jean	jean	NCFS000
 jean	jean	NCMS000
+luciferiana	luciferiano	AQ0FS0
+luciferiana	luciferiano	NCFS000
+luciferianas	luciferiano	AQ0FP0
+luciferianas	luciferiano	NCFP000
+luciferiano	luciferiano	AQ0MS0
+luciferiano	luciferiano	NCMS000
+luciferianos	luciferiano	AQ0MP0
+luciferianos	luciferiano	NCMP000
 mação	mação	NCMS000
 mações	mação	NCMP000
 machadinha	machada	NCFS000
@@ -1780,6 +1870,8 @@ magnetos	magneto	NCMP000
 mais	mais	NCMS000
 maleficência	maleficência	NCFS000
 maleficências	maleficência	NCFP000
+malgrado	malgrado	NCMS000
+malgrado	malgrado	SPS00
 maliana	maliano	NCFS000
 malianas	maliano	NCFP000
 maliano	maliano	NCMS000
@@ -1787,6 +1879,10 @@ malianos	maliano	NCMP000
 malnutrição	malnutrição	NCFS000
 mamãe	mamãe	NCFS000
 mamães	mamãe	NCFP000
+mandriice	mandriice	NCFS000
+mandriices	mandriice	NCFP000
+manobrabilidade	manobrabilidade	NCFS000
+manobrabilidades	manobrabilidade	NCFP000
 mapeada	mapear	VMP00SF
 mapeadas	mapear	VMP00PF
 mapeado	mapear	VMP00SM
@@ -1825,10 +1921,22 @@ matematizáveis	matematizável	AQ0CP0
 matrilinear	matrilinear	AQ0CS0
 # média de 'mass media'
 média	média	NCMN000
+melhorzinho	melhor	AQ0CS0
+melhorzinho	melhor	NCCS000
+melhorzinho	melhor	RG
 menos	menos	NCMS000
 mentalização	mentalização	NCFS000
 mentideiro	mentideiro	NCMS000
 mentideiros	mentideiro	NCMP000
+merdilheiro	merdilheiro	NCMS000
+merdosa	merdoso	AQ0FS0
+merdosa	merdoso	NCFS000
+merdosas	merdoso	AQ0FP0
+merdosas	merdoso	NCFP000
+merdoso	merdoso	AQ0MS0
+merdoso	merdoso	NCMS000
+merdosos	merdoso	AQ0MP0
+merdosos	merdoso	NCMP000
 meritocracia	meritocracia	NCFS000
 meritocracias	meritocracia	NCFP000
 metabolito	metabolito	NCMS000
@@ -1917,7 +2025,7 @@ multifunções	multifunções	AQ0CN0
 multimédia	multimédia	AQ0CN0
 multimodais	multimodal	AQ0CP0
 multimodal	multimodal	AQ0CS0
-multiplataforma	multiplataforma	NCFS000
+multiplataforma	multiplataforma	AQ0CN0
 music-hall	music-hall	NCMS000
 music-halls	music-hall	NCMP000
 mutado	mutado	VMP00SM
@@ -2005,6 +2113,8 @@ orçamentária	orçamentário	AQ0FS0
 orçamentárias	orçamentário	AQ0FP0
 orçamentário	orçamentário	AQ0MS0
 orçamentários	orçamentário	AQ0MP0
+orgástico	orgástico	AQ0MS0
+orgásticos	orgástico	AQ0MP0
 orientandos	orientando	NCMS000
 ornitóloga	ornitólogo	NCFS000
 ornitólogas	ornitólogo	NCFP000
@@ -2045,6 +2155,7 @@ pandémico	pandémico	AQ0MS0
 pandémicos	pandémico	AQ0MP0
 paper	paper	NCMS000
 papers	paper	NCMP000
+papilomavírus	papilomavírus	NCMN000
 paralaxe	paralaxe	NCFS000
 paralaxes	paralaxe	NCFP000
 parametrização	parametrização	NCFS000
@@ -2072,6 +2183,7 @@ paranoicos	paranoico	NCMP000
 parapente	parapente	NCMS000
 parapentes	parapente	NCMP000
 paraquedismo	paraquedismo	NCMS000
+pareidolia	pareidolia	NCFS000
 parentalidade	parentalidade	NCFS000
 parentalidades	parentalidade	NCFP000
 parênteses	parêntese	NCMP000
@@ -2085,8 +2197,12 @@ particionar	particionar	VMSF1S0
 particionar	particionar	VMSF3S0
 partner	partner	NCMS000
 partners	partner	NCMP000
+pasquim	pasquim	NCMS000
+pasquins	pasquim	NCMP000
 patê	patê	NCMS000
 patês	patê	NCMP000
+patifão	patifão	NCMS000
+patifões	patifão	NCMP000
 patognomónico	patognomónico	AQ0MS0
 patognomónicos	patognomónico	AQ0MP0
 pega	pegar	VMP00SF
@@ -2112,7 +2228,11 @@ peras	pera	SPP00
 peras	pera	NCFP000
 percecionaram	percecionar	VMIM3P0
 percecionaram	percecionar	VMIS3P0
+percentil	percentil	NCMS000
+percentis	percentil	NCMP000
 percutânea	percutâneo	AQ0FS0
+peristilo	peristilo	NCMS000
+peristilos	peristilo	NCMP000
 persegui	perseguir	VMX0000
 persuadi	persuadir	VMX0000
 peteiro	peteiro	AQ0MS0
@@ -2122,7 +2242,11 @@ peteiros	peteiro	NCMP000
 piça	piça	NCFS000
 piças	piça	NCFP000
 picanha	picanha	NCFS000
+picha	picha	NCFS000
+pichas	picha	NCFP000
 picolé	picolé	NCMS000
+pidesco	pidesco	AQ0MS0
+pidescos	pidesco	AQ0MP0
 piercing	piercing	NCMS000
 piercings	piercing	NCMP000
 piezoelétrico	piezoelétrico	AQ0MS0
@@ -2146,6 +2270,8 @@ PME	PME	NCFP000
 PNB	PNB	NCMS000
 pneumopatia	pneumopatia	NCFS000
 pneumopatias	pneumopatia	NCFP000
+poejo	poejo	NCMS000
+poejos	poejo	NCMP000
 polibã	polibã	NCMS000
 polibãs	polibã	NCMP000
 poliestireno	poliestireno	NCMS000
@@ -2224,6 +2350,7 @@ processadora	processador	AQ0FS0
 processadora	processador	NCFS000
 processadoras	processador	AQ0FP0
 processadoras	processador	NCFP000
+proctoscopia	proctoscopia	NCFS000
 profira	proferir	VMM03S0
 profira	proferir	VMSP1S0
 profira	proferir	VMSP3S0
@@ -2232,6 +2359,7 @@ profissionalizante	profissionalizante	AQ0CS0
 profissionalizantes	profissionalizante	AQ0CP0
 prostíbulo	prostíbulo	NCMS000
 prostíbulos	prostíbulo	NCMP000
+protanopia	protanopia	NCFS000
 prototipagem	prototipagem	NCFS000
 proveem	prover	VMIP3P0
 psicoterapêutico	psicoterapêutico	AQ0MS0
@@ -2239,6 +2367,8 @@ pulôver	pulôver	NCMS000
 pulôveres	pulôver	NCMP000
 puta	puta	NCFS000
 putas	putas	NCFP000
+putanheiro	putanheiro	NCMS000
+putanheiros	putanheiro	NCMP000
 quantificadores	quantificador	NCMP000
 quantificador	quantificador	NCMS000
 quendo	quendo	NCMS000
@@ -2259,6 +2389,7 @@ rc	rc	NCMS000
 reactividade	reactividade	NCFS000
 reagendamento	reagendamento	NCMS000
 reagendamentos	reagendamento	NCMP000
+realistamente	realista	RG
 reatividade	reatividade	NCFS000
 reclamada	reclamar	VMP00SF
 reclamadas	reclamar	VMP00PF
@@ -2357,6 +2488,10 @@ reiki	reiki	NCMS000
 reikis	reiki	NCMP000
 reimosa	reimoso	AQ0MS0
 reimosas	reimoso	AQ0MP0
+reinadio	reinadio	AQ0MS0
+reinadio	reinadio	NCMS000
+reinadios	reinadio	AQ0MP0
+reinadios	reinadio	NCMP000
 reinfeções	reinfeção	NCFP000
 reinicialização	reinicialização	NCFS000
 reinicializados	reinicializar	VMP00PM
@@ -2368,6 +2503,11 @@ rejeitador	rejeitador	AQ0MS0
 rejeitador	rejeitador	NCMS000
 rejeitadora	rejeitador	AQ0FS0
 rejeitadora	rejeitador	NCFS000
+relaxe	relaxar	VMM03S0
+relaxe	relaxar	VMSP1S0
+relaxe	relaxar	VMSP3S0
+relaxes	relaxar	VMM02S0
+relaxes	relaxar	VMSP2S0
 reli	reler	VMIS1S0
 relocalização	relocalização	NCFS000
 remediação	remediação	NCFS000
@@ -2435,6 +2575,8 @@ salvífico	salvífico	AQ0MS0
 salvíficos	salvífico	AQ0MP0
 salvo	salvar	VMP00SM
 salvos	salvar	VMP00PM
+sandocha	sandocha	NCFS000
+sandochas	sandocha	NCFP000
 sanitarista	sanitarista	AQ0CS0
 sanitarista	sanitarista	NCCS000
 sanitaristas	sanitarista	AQ0CP0
@@ -2477,6 +2619,10 @@ serológico	serológico	AQ0MS0
 serológicos	serológico	AQ0MP0
 sésseis	sésseis	AQ0CP0
 setentrião	setentrião	NCMS000
+seviciado	seviciado	AQ0MS0
+seviciado	seviciado	NCMS000
+seviciados	seviciado	AQ0MP0
+seviciados	seviciado	NCMP000
 sex-appeal	sex-appeal	NCMS000
 sex-shop	sex-shop	NCMS000
 sex-shops	sex-shop	NCMP000
@@ -2511,6 +2657,10 @@ sociodemográfico	sociodemográfico	AQ0MS0
 sociodemográficos	sociodemográfico	AQ0MP0
 socioeconómico	socioeconómico	AQ0MS0
 socioeconómicos	socioeconómico	AQ0MP0
+sociopata	sociopata	AQ0CS0
+sociopata	sociopata	NCCS000
+sociopatas	sociopata	AQ0CP0
+sociopatas	sociopata	NCCP000
 socket	socket	NCMS000
 sockets	socket	NCMP000
 softebol	softebol	NCMS000
@@ -2634,6 +2784,8 @@ terminador	terminador	AQ0MS0
 terminador	terminador	NCMS000
 terminadores	terminador	AQ0MP0
 terminadores	terminador	NCMP000
+terraplanista	terraplanista	AQ0CS0
+terraplanista	terraplanista	NCCS000
 terriê	terriê	NCMS000
 terriês	terriê	NCMP000
 terrificante	terrificante	AQ0CS0
@@ -2722,6 +2874,8 @@ vampe	vampe	NCFS000
 vampes	vampe	NCFP000
 vanguardismo	vanguardismo	NCMS000
 vanguardismos	vanguardismo	NCMP000
+varrimento	varrimento	NCMS000
+varrimentos	varrimento	NCMP000
 vedante	vedante	AQ0CS0
 vedante	vedante	NCMS000
 vedantes	vedante	AQ0CP0
@@ -3296,6 +3450,7 @@ AI	AI	NCFS000
 AmigaOS	AmigaOS	NPMS000
 app	app	NCFS000
 apps	app	NCFP000
+ASCII	ASCII	NCMN000
 ATI	ATI	NPFS000
 AutoCAD	AutoCAD	NPMS000
 backbone	backbone	NCFS000
@@ -3315,6 +3470,8 @@ blogue	blogar	VMSP3S0
 blogue	blogue	NCMS000
 blogues	blogue	NCMP000
 bluetooth	bluetooth	NCMS000
+blu-ray	blu-ray	NCMS000
+blu-rays	blu-ray	NCMP000
 bookmark	bookmark	NCMS000
 bookmarks	bookmark	NCMP000
 bot	bot	NCMS000
@@ -3360,6 +3517,7 @@ e-newsletter	e-newsletter	NCFS000
 e-newsletters	e-newsletter	NCFP000
 e-reader	e-reader	NCMS000
 e-readers	e-reader	NCMP000
+ENIAC	ENIAC	NPMS000
 exabit	exabit	NCMS000
 exabits	exabit	NCMP000
 exabyte	exabyte	NCMS000
@@ -3394,7 +3552,7 @@ homepages	homepage	NCFP000
 host	host	NCMS000
 hosts	host	NCMP000
 Hunspell	Hunspell	NPMS000
-HTML	HTML	AQ0CN0
+HTML	HTML	NCMN000
 inputs	input	NCMP000
 IRCop	IRCop	AQ0CS0
 IRCop	IRCop	NCCS000
@@ -3444,10 +3602,10 @@ petabits	petabit	NCMP000
 petabyte	petabyte	NCMS000
 petabytes	petabyte	NCMP000
 PGP	PGP	NPMS000
-píxeis	píxel	NCMP000
 pixel	pixel	NCMS000
-píxel	píxel	NCMS000
 pixels	pixel	NCMP000
+píxel	píxel	NCMS000
+píxeis	píxel	NCMP000
 pixelização	pixelização	NCFS000
 Photoshop	Photoshop	NPMS000
 Pootle	Pootle	NPMS000
@@ -3493,13 +3651,15 @@ tracking	tracking	NCMS000
 Twitch	Twitch	NPMS000
 Twitter	Twitter	NPMS000
 Ubuntu	Ubuntu	NPMS000
-Unicode	Unicode	NCMS000
+Unicode	Unicode	NCMN000
 University	University	NPFS000
 upload	upload	NCMS000
 uploads	upload	NCMP000
 VPN	VPN	NCFS000
 web	web	NCFN000
 web	web	NCFS000
+webinar	webinar	NCMS000
+webinares	webinar	NCMP000
 webmaster	webmaster	NCMS000
 webmasters	webmaster	NCMP000
 webpage	webpage	NCFS000
@@ -3731,8 +3891,10 @@ Ashley	Ashley	NPMS000
 Ashtar	Ashtar	NPMS000
 Assad	Assad	NPMS000
 Auchan	Auchan	NPFS000
+Auguste	Auguste	NPMS000
 Augustin	Augustin	NPMS000
 Axtell	Axtell	NPMS000
+Aylmer	Aylmer	NPMS000
 Ayrton	Ayrton	NPMS000
 Aznavour	Aznavour	NPMS000
 Bahia	Bahia	NPFS000
@@ -3751,6 +3913,7 @@ Bombril	Bombril	NPFS000
 Boris	Boris	NPMS000
 Botsuana	Botsuana	NPMSG00
 Bouazizi	Bouazizi	NPMS000
+Brandoa	Brandoa	NPFSG00
 Bresenham	Bresenham	NPMS000
 Britannica	Britannica	NPFS000
 Brizida	Brizida	NPMSS00
@@ -3764,6 +3927,7 @@ Canelhas	Canelhas	NPMS000
 Cáritas	Cáritas	NPFS000
 Cauchy	Cauchy	NPMS000
 Champalimaud	Champalimaud	NPCS000
+Chelas	Chelas	NPFSG00
 Cher	Cher	NPFS000
 Chiu	Chiu	NPMS000
 Chris	Chris	NPMS000
@@ -3786,6 +3950,7 @@ Dácia	Dácia	NPFS000
 Daesh	Daesh	NPMS000
 Daguerre	Daguerre	NPMS000
 Danielle	Danielle	NPFS000
+DARPA	DARPA	NPFS000
 Delpierre	Delpierre	NPMS000
 Dempster	Dempster	NPMS000
 DGS	DGS	NPFS000
@@ -3814,6 +3979,7 @@ Equador	Equador	NPMSG00
 Estremadura	Estremadura	NPFS000
 Fabiana	Fabiana	NPFS000
 Fénix	Fénix	NPMS000
+Firetrust	Firetrust	NPFS000
 Fisher	Fisher	NPMS000
 Fonseca	Fonseca	NPCSS00
 Fortaleza	Fortaleza	NPFSG00
@@ -3833,6 +3999,7 @@ Gleiser	Gleiser	NPMS000
 Glenn	Glenn	NPMS000
 Goes	Goes	NPMS000
 Gotardo	Gotardo	NPMS000
+Graciete	Graciete	NPFS000
 Grazziani	Grazziani	NPMS000
 Hafez	Hafez	NPMS000
 Hamas	Hamas	NPMS000
@@ -3842,11 +4009,13 @@ Henry	Henry	NPMS000
 Hermengarda	Hermengarda	NPFS000
 Hidra	Hidra	NPFSG00
 Hispânia	Hispânia	NPFSG00
+Hubei	Hubei	NPFSG00
 IADE	IADE	NPMS000
 Iémen	Iémen	NPMSG00
 Ifigénia	Ifigénia	NPFS000
 Igreja	Igreja	NPFS000
 Ilachinski	Ilachinski	NPMS000
+Infopédia	Infopédia	NPFS000
 Ingrid	Ingrid	NPFS000
 IPAM	IPAM	NPMS000
 Ipiranga	Ipiranga	NPMS000
@@ -3904,6 +4073,7 @@ Nélio	Nélio	NPMS000
 Neumann	Neumann	NPMS000
 Neves	Neves	NPCNS00
 Newton	Newton	NPMS000
+Niklaus	Niklaus	NPMS000
 Nimrud	Nimrud	NPFSG00
 NOS	NOS	NPFS000
 Nubank	Nubank	NPMS000
@@ -3916,6 +4086,8 @@ OTAN	OTAN	NPFS000
 Oto	Oto	NPMS000
 Palestina	Palestina	NPFS000
 Palmares	Palmares	NPMSG00
+Pandur	Pandur	NPMS000
+Pandures	Pandur	NPMP000
 Patrícia	Patrícia	NPFS000
 Penedo	Penedo	NPMSG00
 Peru	Peru	NPMSG00
@@ -3924,6 +4096,7 @@ Phillips	Phillips	NPMS000
 Pinto	Pinto	NPMS000
 Piotr	Piotr	NPMS000
 Pita	Pita	NPFS000
+Priberam	Priberam	NPMS000
 Prosegur	Prosegur	NPFS000
 PSOE	PSOE	NPMS000
 Pushkin	Pushkin	NPMS000
@@ -3947,6 +4120,7 @@ Ruanda	Ruanda	NPMSG00
 Rueff	Rueff	NPMS000
 Ruhollah	Ruhollah	NPMS000
 Samara	Samara	NPFS000
+Santos	Santos	NPMS000
 Saquarema	Saquarema	NPMSG00
 Schaffer	Schaffer	NPMS000
 Schiffer	Schiffer	NPMS000
@@ -3976,13 +4150,14 @@ Thomaz	Thomaz	NPMS000
 Tor	Tor	NPMS000
 Totta	Totta	NPMS000
 Trudeau	Trudeau	NPMS000
+Trump	Trump	NPMS000
 Uganda	Uganda	NPMSG00
 Unabomber	Unabomber	NPMS000
 Vales	Vales	NPMPG00
 Vargas	Vargas	NPCNS00
 Veiga	Veiga	NPCNS00
+Vestefália	Vestefália	NPFS000
 Vítor	Vítor	NPMS000
-Hubei	Hubei	NPFSG00
 Weaver	Weaver	NPMS000
 Wuhan	Wuhan	NPFSG00
 Wolfram	Wolfram	NPMS000
@@ -3991,6 +4166,7 @@ Worten	Worten	NPFS000
 Wright	Wright	NPMS000
 WWF	WWF	NPCS000
 Zeeman	Zeeman	NPMS000
+Zezualdo	Zezualdo	NPMS000
 #
 # Proper Names, including places, universities and organizations
 # Extracted from the Portuguese dictionary of Minho University using Proofing Tool GUI - LAST UPDATED: 2020-06-09

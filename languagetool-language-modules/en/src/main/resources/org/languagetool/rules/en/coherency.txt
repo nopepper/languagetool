@@ -234,6 +234,8 @@ brutalise;brutalize
 bureaucratisation;bureaucratization
 bureaucratise;bureaucratize
 burnettise;burnettize
+by-law;bylaw
+by-laws;bylaws
 caecilian;coecilian
 caleche;calèche
 calendarise;calendarize
@@ -344,6 +346,9 @@ coalise;coalize
 coauthor;co-author
 cocainisation;cocainization
 cocainise;cocainize
+co-create;cocreate
+co-creator;cocreator
+co-dependent;codependent
 co-found;cofound
 co-founder;cofounder
 cognisable;cognizable
@@ -1332,6 +1337,8 @@ minimalise;minimalize
 minimisation;minimization
 minimise;minimize
 minimiser;minimizer
+miniscule;minuscule
+miniscules;minuscules
 mischaracterise;mischaracterize
 misemphasise;misemphasize
 Mishnah;Mishna
@@ -1471,6 +1478,7 @@ officialise;officialize
 ogam;ogham
 ogamic;oghamic
 oligomerise;oligomerize
+on-line;online
 on-screen;onscreen
 ontologise;ontologize
 oophorectomise;oophorectomize
@@ -2261,6 +2269,7 @@ therapise;therapize
 thermalisation;thermalization
 thermalise;thermalize
 thymectomise;thymectomize
+timeshift;time-shift
 tokamak;tokomak
 tokenisation;tokenization
 tokenise;tokenize
@@ -2371,6 +2380,7 @@ vectorise;vectorize
 venesection;venisection
 Ventose;Ventôse
 ventriloquise;ventriloquize
+veranda;verandah
 verbalisable;verbalizable
 verbalisation;verbalization
 verbalise;verbalize

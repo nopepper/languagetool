@@ -2025,6 +2025,8 @@ hypnotize;hypnotise
 hypnotized;hypnotised
 hypnotizes;hypnotises
 hypnotizing;hypnotising
+hypnopedic;hypnopaedic
+hypnopedia;hypnopaedia
 hypocalcaemia;hypocalcaemia
 hyposensitization;hyposensitisation
 hyposensitize;hyposensitise
@@ -2275,6 +2277,10 @@ keratinize;keratinise
 keratinized;keratinised
 keratinizes;keratinises
 keratinizing;keratinising
+kibosh;kybosh
+kiboshes;kyboshes
+kiboshed;kyboshed
+kiboshing;kyboshing
 kilogram;kilogramme
 kilograms;kilogrammes
 kiloliter;kilolitre
@@ -2670,6 +2676,7 @@ moisturizers;moisturisers
 moisturizes;moisturises
 moisturizing;moisturising
 mold;mould
+moldable;mouldable
 molds;moulds
 molded;moulded
 molding;moulding
@@ -4223,6 +4230,9 @@ synergize;synergise
 synergized;synergised
 synergizes;synergises
 synergizing;synergising
+synesthesia;synaesthesia
+synesthete;synaesthete
+synesthetes;synaesthetes
 synonymize;synonymise
 synonymized;synonymised
 synonymizes;synonymises
@@ -4465,6 +4475,7 @@ unrecognizably;unrecognisably
 unrecognized;unrecognised
 unsavory;unsavoury
 unsocialized;unsocialised
+unshakable;unshakeable
 unspecialized;unspecialised
 unstandardized;unstandardised
 unsynchronized;unsynchronised
@@ -4691,3 +4702,4 @@ untick;deselect
 unticked;deselected
 unticks;deselects
 unticking;deselecting
+hemostasis;haemostasis

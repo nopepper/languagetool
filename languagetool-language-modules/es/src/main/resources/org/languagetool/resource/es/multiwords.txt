@@ -1,3 +1,44 @@
+Tatxo Benet	NPMSSP0
+Prosper Mérimée	NPMSSP00
+veni, vidi, vici	LOC_ADV
+Humpty Dumpty	NPMSSP00
+Nancy Pelosi	NPFSSP00
+Paul Celan	NPMSSP00
+Super Mario Bros	NPMNO00
+Super Mario Bros.	NPMNO00
+Super Mario Brothers	NPMNO00
+literatura beat	NCFS000
+generación beat	NCFS000
+herriko taberna	NCFS000
+herriko tabernas	NCFP000
+ora et labora	NCMS000
+software espía	NCMS000
+Luiz Inácio Lula	NPMSSP0
+Lula da Silva	NPCNSP0
+US-ASCII	NPCNO00
+Red Hat	NPCNO00
+Phoebe Waller-Bridge	NPFSSP0
+Roberto Saviano	NPMSSP0
+Thomas Piketty	NPMSSP0
+Julien Sorel	NPMSSP0
+Roald Dahl	NPMSSP0
+Shimon Peres	NPMSSP0
+nomina nuda	NCCP000
+nomen nudum	NCCS000
+nomina dubia	NCCP000
+nomen dubium	NCCS000
+DD. HH.	NCMP000
+Satoshi Nakamoto	NPMSSP0
+Charlie Hebdo	NPCSO00
+cuarto de estar	NCMS000
+cuartos de estar	NCMP000
+hora punta	NCFS000
+horas punta	NCFP000
+hora valle	NCFS000
+horas valle	NCFP000
+start up	NCFS000
+start ups	NCFP000
+modelo T	NCMS000
 boca abajo	LOC_ADV
 boca arriba	LOC_ADV
 perro policía	NCMS000
@@ -37,8 +78,8 @@ Internet Explorer	NPMSO00
 hit parade	NCMS000
 prime time	NCMS000
 dream team	NCMS000
-ciudad estado	NCMS000
-ciudades estado	NCMP000
+ciudad estado	NCFS000
+ciudades estado	NCFP000
 Lluís Llach	NPMSO00
 Der Spiegel	NPMSO00
 Nagorno Karabaj	NPCSG00
@@ -127,6 +168,8 @@ The Telegraph	NPMSO00
 The Times	NPMSO00
 The Wall Street Journal	NPMSO00
 The Washington Post	NPMSO00
+Huffington Post	NPMSO00
+The Huffington Post	NPMSO00
 Wall Street Journal	NPMSO00
 Washington Post	NPMSO00
 New York Times	NPMSO00
@@ -310,7 +353,8 @@ L’Équipe	NPMSO00
 esfera armilar	NCFS000
 dance pop	AQ0CN0
 dance electrónico	NCMS000
-Super Bowl	NPCSO00
+Super Bowl	NPCNO00
+Super Nintendo	NPFNO00
 World Trade Center	NPMSG00
 Santa Coloma	NPFSG00
 Theresa May	NPFSSP0
@@ -1750,7 +1794,7 @@ en lontananza	LOC_ADV
 en los buenos tiempos	LOC_ADV
 en lugar de	LOC_PREP
 en lugar de que	LOC_CS
-en línea	LOC_ADV
+#en línea	LOC_ADV
 en líneas generales	LOC_ADV
 en mala hora	LOC_ADV
 en mangas de camisa	LOC_ADV
@@ -2042,7 +2086,7 @@ N. del T.	Y
 N. S.	Y
 N. S. J. C.	Y
 N.ª S.ª	Y
-n.º	Y
+n.º	NCCN000
 nada más y nada menos	LOC_ADV
 Nebrija Nebrija	NPCNSP0
 nemine discrepante	LOC_ADV
@@ -2074,14 +2118,14 @@ non plus ultra	LOC_ADV
 nora en tal	LOC_ADV
 nora tal	LOC_ADV
 nota bene	NCMN000
-nro.	Y
+nro.	NCCN000
 Ntr.ª Sr.ª	Y
 Ntra. Sra.	Y
 nueces moscadas	NCFP000
 Nueva Zelanda	NPFSG00
 nuez moscada	NCFS000
 numerus clausus	NCMN000
-núm.	Y
+núm.	NCCN00
 o sea	LOC_CC
 O. F. M.	Y
 O. M.	Y
@@ -2234,6 +2278,7 @@ por ventura	LOC_ADV
 por virtud de	LOC_PREP
 post meridiem	LOC_ADV
 post mortem	LOC_ADV
+Post Mortem	LOC_ADV
 post scriptum	LOC_ADV
 ppal.	Y
 prae manibus	LOC_ADV
@@ -2361,9 +2406,10 @@ semejante a	LOC_PREP
 sensu lato	LOC_ADV
 sensu stricto	LOC_ADV
 sex appeal	NCMS000
-sex shop	NCMS000
-sex symbol	NCMS000
-sex symbols	NCMP000
+sex shop	NCCS000
+sex shops	NCCP000
+sex symbol	NCCS000
+sex symbols	NCCP000
 Sgto.	Y
 show business	NCMS000
 si acaso	LOC_ADV

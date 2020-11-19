@@ -20,6 +20,7 @@ package org.languagetool.dev.diff;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
+import org.languagetool.tools.StringTools;
 
 import java.io.*;
 import java.net.URLEncoder;
@@ -135,7 +136,16 @@ public class RuleMatchDiffFinder {
   }
 
   private void printDiffs(List<RuleMatchDiff> diffs, FileWriter fw, String langCode, String date) throws IOException {
-    fw.write("Diffs found: " + diffs.size() + "<br>\n");
+    fw.write("Diffs found: " + diffs.size());
+    if (diffs.size() > 0) {
+      RuleMatchDiff diff1 = diffs.get(0);
+      if (diff1.getOldMatch() != null) {
+        fw.write(". Category: " + diff1.getOldMatch().getCategoryName());
+      } else if (diff1.getNewMatch() != null) {
+        fw.write(". Category: " + diff1.getNewMatch().getCategoryName());
+      }
+    }
+    fw.write("<br>\n");
     printTableBegin(fw);
     int iframeCount = 0;
     for (RuleMatchDiff diff : diffs) {
@@ -159,6 +169,7 @@ public class RuleMatchDiffFinder {
       if (oldMatch != null && newMatch != null) {
         printRuleIdCol(fw, oldMatch, newMatch);
         iframeCount += printMessage(fw, oldMatch, newMatch, diff.getReplaces(), diff.getReplacedBy(), langCode, date, diff.getStatus(), iframeCount);
+        printMarkerCol(fw, oldMatch, newMatch);
         if (oldMatch.getSuggestions().equals(newMatch.getSuggestions())) {
           fw.write("  <td>" + oldMatch.getSuggestions() + "</td>\n");
         } else {
@@ -172,6 +183,7 @@ public class RuleMatchDiffFinder {
         LightRuleMatch match = diff.getOldMatch() != null ? diff.getOldMatch() : diff.getNewMatch();
         printRuleIdCol(fw, null, match);
         iframeCount += printMessage(fw, match, null, diff.getReplaces(), diff.getReplacedBy(), langCode, date, diff.getStatus(), iframeCount);
+        printMarkerCol(fw, null, match);
         fw.write("  <td>" + match.getSuggestions() + "</td>\n");
         fw.write("</tr>\n");
       }
@@ -187,7 +199,7 @@ public class RuleMatchDiffFinder {
   }
 
   private void printRuleIdCol(FileWriter fw, LightRuleMatch oldMatch, LightRuleMatch newMatch) throws IOException {
-    fw.write("  <td>");
+    fw.write("  <td class='small'>");
     if (oldMatch != null && !Objects.equals(oldMatch.getSubId(), newMatch.getSubId())) {
       fw.write(oldMatch.getRuleId());
       fw.write("[" + oldMatch.getSubId() + " => " + newMatch.getSubId() + "]");
@@ -206,6 +218,13 @@ public class RuleMatchDiffFinder {
     if (oldMatch != null && !newMatch.getTags().equals(oldMatch.getTags())) {
       fw.write("  <br><span class='status'>" + oldMatch.getTags() + " => " + newMatch.getTags() + "</span>");
     }
+    fw.write(" </td>\n");
+  }
+
+  private void printMarkerCol(FileWriter fw, LightRuleMatch oldMatch, LightRuleMatch newMatch) throws IOException {
+    fw.write("  <td>");
+    String markedText = newMatch == null ? oldMatch.getCoveredText() : newMatch.getCoveredText();
+    fw.write(markedText);
     fw.write(" </td>\n");
   }
 
@@ -228,7 +247,7 @@ public class RuleMatchDiffFinder {
         "<tt>new:</tt> " + showTrimSpace(newMatch.getMessage()));
       message = newMatch.getMessage();
     }
-    fw.write("  <br><span class='sentence'>" + oldMatch.getContext() + "</span>");
+    fw.write("  <br><span class='sentence'>" + escapeSentence(oldMatch.getContext()) + "</span>");
     boolean withIframe = false;
     if (status == RuleMatchDiff.Status.ADDED || status == RuleMatchDiff.Status.MODIFIED) {
       int markerFrom = oldMatch.getContext().indexOf(MARKER_START);
@@ -246,7 +265,7 @@ public class RuleMatchDiffFinder {
         // rendering 2000 iframes into a page isn't fun...
         fw.write("    <a target='regression_feedback' href=\"https://languagetoolplus.com/regression/button?" + params + "\">FA?</a>\n\n");
       } else {
-        fw.write("    <iframe scrolling=\"no\" style=\"border: none; width: 160px; height: 30px\"\n" +
+        fw.write("    <iframe scrolling=\"no\" style=\"border: none; width: 165px; height: 30px\"\n" +
                 "src=\"https://languagetoolplus.com/regression/button?" +
                 //"src=\"http://127.0.0.1:8000/regression/button" +
                 params + "\"></iframe>\n\n");
@@ -256,19 +275,25 @@ public class RuleMatchDiffFinder {
     if (replaces != null) {
       fw.write("<br><br><i>Maybe replaces old match:</i><br>");
       fw.write(replaces.getMessage());
-      fw.write("  <br><span class='sentence'>" + replaces.getContext() + "</span>");
+      fw.write("  <br><span class='sentence'>" + escapeSentence(replaces.getContext()) + "</span>");
       fw.write("  <br><span class='suggestions'>Suggestions: " + replaces.getSuggestions() + "</span>");
       fw.write("  <br><span class='id'>" + replaces.getFullRuleId() + "</span>");
     }
     if (replacedBy != null) {
       fw.write("<br><br><i>Maybe replaced by new match:</i><br>");
       fw.write(replacedBy.getMessage());
-      fw.write("  <br><span class='sentence'>" + replacedBy.getContext() + "</span>");
+      fw.write("  <br><span class='sentence'>" + escapeSentence(replacedBy.getContext()) + "</span>");
       fw.write("  <br><span class='suggestions'>Suggestions: " + replacedBy.getSuggestions() + "</span>");
       fw.write("  <br><span class='id'>" + replacedBy.getFullRuleId() + "</span>\n");
     }
     fw.write("  </td>\n");
     return withIframe ? 1 : 0;
+  }
+
+  private String escapeSentence(String s)  {
+    return StringTools.escapeHTML(s).
+            replace("&lt;span class='marker'&gt;", "<span class='marker'>").
+            replace("&lt;/span&gt;", "</span>");
   }
 
   private String enc(String s)  {
@@ -295,8 +320,9 @@ public class RuleMatchDiffFinder {
     fw.write("<tr>\n");
     fw.write("  <th>Change</th>\n");
     fw.write("  <th>File</th>\n");
-    fw.write("  <th>Rule ID</th>\n");
+    fw.write("  <th class='small'>Rule ID</th>\n");
     fw.write("  <th>Message and Text</th>\n");
+    fw.write("  <th>Marked</th>\n");
     fw.write("  <th>Suggestions</th>\n");
     fw.write("</tr>\n");
     fw.write("</thead>\n");
@@ -317,7 +343,12 @@ public class RuleMatchDiffFinder {
     diffs.sort((k, j) -> {
         int idDiff = getFullId(k).compareTo(getFullId(j));
         if (idDiff == 0) {
-          return k.getStatus().compareTo(j.getStatus());
+          int diff2 = k.getStatus().compareTo(j.getStatus());
+          if (diff2 == 0) {
+            return k.getMarkedText().compareTo(j.getMarkedText());
+          } else {
+            return diff2;
+          }
         }
         return idDiff;
       }
@@ -414,6 +445,7 @@ public class RuleMatchDiffFinder {
     fw.write("  <script src='https://unpkg.com/tablefilter@0.7.0/dist/tablefilter/tablefilter.js'></script>\n");  // https://github.com/koalyptus/TableFilter/
     fw.write("  <style>\n");
     fw.write("    td { vertical-align: top; }\n");
+    fw.write("    .small { font-size: small }\n");
     fw.write("    .sentence { color: #666; }\n");
     fw.write("    .marker { text-decoration: underline; }\n");
     fw.write("    .source { color: #999; }\n");

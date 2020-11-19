@@ -76,7 +76,6 @@ public class HunspellRule extends SpellingCheckRule {
   protected Hunspell hunspell = null;
 
   private static final ConcurrentLinkedQueue<String> activeChecks = new ConcurrentLinkedQueue<>();
-  private static final Logger logger = LoggerFactory.getLogger(HunspellRule.class);
   private static final String NON_ALPHABETIC = "[^\\p{L}]";
 
   private final boolean monitorRules;
@@ -371,14 +370,15 @@ public class HunspellRule extends SpellingCheckRule {
       hunspell = Hunspell.getInstance(Paths.get(shortDicPath + ".dic"), affPath);
     }
     if (affPath != null) {
-      Scanner sc = new Scanner(affPath);
-      while (sc.hasNextLine()) {
-        String line = sc.nextLine();
-        if (line.startsWith("WORDCHARS ")) {
-          String wordCharsFromAff = line.substring("WORDCHARS ".length());
-          //System.out.println("#" + wordCharsFromAff+ "#");
-          wordChars = "(?![" + wordCharsFromAff.replace("-", "\\-") + "])";
-          break;
+      try(Scanner sc = new Scanner(affPath)){
+        while (sc.hasNextLine()) {
+          String line = sc.nextLine();
+          if (line.startsWith("WORDCHARS ")) {
+            String wordCharsFromAff = line.substring("WORDCHARS ".length());
+            //System.out.println("#" + wordCharsFromAff+ "#");
+            wordChars = "(?![" + wordCharsFromAff.replace("-", "\\-") + "])";
+            break;
+          }
         }
       }
       

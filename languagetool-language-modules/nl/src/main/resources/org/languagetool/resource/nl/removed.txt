@@ -2,6 +2,7 @@
 #-------------------------------------------------------------------------------
 # Do not add words here, but report them to languagetool@taaltik.nl
 #-------------------------------------------------------------------------------
+aardoven	aardoven	ZNW:EKV
 academieplein	academieplein	ZNW:EKV
 actieplein	actieplein	ZNW:EKV
 activiteitenplein	activiteitenplein	ZNW:EKV
@@ -14,6 +15,7 @@ beleidsplein	beleidsplein	ZNW:EKV
 betonplein	betonplein	ZNW:EKV
 bevrijdingsplein	bevrijdingsplein	ZNW:EKV
 bewegingsplein	bewegingsplein	ZNW:EKV
+bijstak	bijstak	ZNW:EKV
 bomenplein	bomenplein	ZNW:EKV
 botenplein	botenplein	ZNW:EKV
 bovenbouwplein	bovenbouwplein	ZNW:EKV
@@ -32,6 +34,7 @@ doorgangsplein	doorgangsplein	ZNW:EKV
 driehoeksplein	driehoeksplein	ZNW:EKV
 droomplein	droomplein	ZNW:EKV
 duivenplein	duivenplein	ZNW:EKV
+eierhandeltje	eierhandel	ZNW:EKV:VRK:HET
 erectieplein	erectieplein	ZNW:EKV
 examenplein	examenplein	ZNW:EKV
 fabrieksplein	fabrieksplein	ZNW:EKV
@@ -41,11 +44,13 @@ fietsenplein	fietsenplein	ZNW:EKV
 finishplein	finishplein	ZNW:EKV
 fitnessplein	fitnessplein	ZNW:EKV
 forumplein	forumplein	ZNW:EKV
+fudge	fudge	ZNW:EKV
 gemeenschapsplein	gemeenschapsplein	ZNW:EKV
 gouvernementsplein	gouvernementsplein	ZNW:EKV
 handelsplein	handelsplein	ZNW:EKV
 handknop	handknop	ZNW:EKV
 heldenplein	heldenplein	ZNW:EKV
+herdenkingsreden	herdenkingsrede	ZNW:MRV:DE_
 heuvelplein	heuvelplein	ZNW:EKV
 hoeveplein	hoeveplein	ZNW:EKV
 homoplein	homoplein	ZNW:EKV
@@ -62,6 +67,7 @@ kasteelplein	kasteelplein	ZNW:EKV
 kleuterspeelplein	kleuterspeelplein	ZNW:EKV
 kloosterplein	kloosterplein	ZNW:EKV
 koopmansplein	koopmansplein	ZNW:EKV
+kucher	kucher	ZNW:EKV
 leermiddelenplein	leermiddelenplein	ZNW:EKV
 leidsplein	leidsplein	ZNW:EKV
 lichtplein	lichtplein	ZNW:EKV
@@ -69,8 +75,10 @@ maanblad	maanblad	ZNW:EKV:HET
 mediaplein	mediaplein	ZNW:EKV
 milieuplein	milieuplein	ZNW:EKV
 mobiliteitsplein	mobiliteitsplein	ZNW:EKV
+mondzone	mondzone	ZNW:EKV
 moskeeplein	moskeeplein	ZNW:EKV
 muziekplein	muziekplein	ZNW:EKV
+naast	na	BNW:OVR:ONV
 natuurplein	natuurplein	ZNW:EKV
 neuksnol	neuksnol	ZNW:EKV
 oktoberplein	oktoberplein	ZNW:EKV
@@ -78,6 +86,7 @@ onderbouwplein	onderbouwplein	ZNW:EKV
 ondernemersplein	ondernemersplein	ZNW:EKV
 openluchtplein	openluchtplein	ZNW:EKV
 opleidingenplein	opleidingenplein	ZNW:EKV
+overdag	overdag	ZNW:EKV:DE_
 overwinningsplein	overwinningsplein	ZNW:EKV
 paleisplein	paleisplein	ZNW:EKV
 paleizenplein	paleizenplein	ZNW:EKV
@@ -85,10 +94,12 @@ parlementsplein	parlementsplein	ZNW:EKV
 parochieplein	parochieplein	ZNW:EKV
 personeelsplein	personeelsplein	ZNW:EKV
 picknickplein	picknickplein	ZNW:EKV
+pijl-en-boog	pijl-en-boog	ZNW:EKV
 polikliniekplein	polikliniekplein	ZNW:EKV
 pottenbakkersplein	pottenbakkersplein	ZNW:EKV
 projectenplein	projectenplein	ZNW:EKV
 regeringsplein	regeringsplein	ZNW:EKV
+rekenopgaafjes	rekenopgave	ZNW:MRV:VRK:DE_
 relaxplein	relaxplein	ZNW:EKV
 restauratieplein	restauratieplein	ZNW:EKV
 ruiterplein	ruiterplein	ZNW:EKV
@@ -107,8 +118,10 @@ streekplein	streekplein	ZNW:EKV
 streekproductenplein	streekproductenplein	ZNW:EKV
 subsidieplein	subsidieplein	ZNW:EKV
 supportersplein	supportersplein	ZNW:EKV
+taner	taner	ZNW:EKV
 taxiplein	taxiplein	ZNW:EKV
 technoplein	technoplein	ZNW:EKV
+tracen	tracen	WKW:INF:ZNW:HET
 vacatureplein	vacatureplein	ZNW:EKV
 veiligheidsplein	veiligheidsplein	ZNW:EKV
 verdeelplein	verdeelplein	ZNW:EKV
@@ -116,7 +129,9 @@ verkeersschoolplein	verkeersschoolplein	ZNW:EKV
 verkoopplein	verkoopplein	ZNW:EKV
 verwenplein	verwenplein	ZNW:EKV
 verzetsplein	verzetsplein	ZNW:EKV
+vetsin	vetsin	ZNW:EKV
 voetgangersplein	voetgangersplein	ZNW:EKV
+volgeplant	volgeplant	ZNW:EKV:DE_
 volksplein	volksplein	ZNW:EKV
 volleybalplein	volleybalplein	ZNW:EKV
 voorrangsplein	voorrangsplein	ZNW:EKV
@@ -124,29 +139,41 @@ vredesplein	vredesplein	ZNW:EKV
 vrijwilligersplein	vrijwilligersplein	ZNW:EKV
 vrouwenplein	vrouwenplein	ZNW:EKV
 vuurtorenplein	vuurtorenplein	ZNW:EKV
+wetshandhavertjes	wetshandhaver	ZNW:MRV:VRK:DE_
+wijkcafé	wijkcafé	ZNW:EKV
+wijtingetje	wijting	ZNW:EKV:VRK:HET
+wijtingetjes	wijting	ZNW:MRV:VRK:DE_
 zelfmoordplein	zelfmoordplein	ZNW:EKV
 ziekenhuisplein	ziekenhuisplein	ZNW:EKV
 zuiderlichten	zuiderlicht	ZNW:MRV:DE_
 zwaartekrachtplein	zwaartekrachtplein	ZNW:EKV
+zwangerschap	zwangerschap	ZNW:EKV
 Almeers	Almeers	UNSPECIFIED
+Neuteboom	Neuteboom	UNSPECIFIED
 Opstelten	Opstelten	UNSPECIFIED
 Terlouw	Terlouw	UNSPECIFIED
 Volvo	Volvo	UNSPECIFIED
+Welmoed	Welmoed	UNSPECIFIED
 Rooiplein	Rooiplein	UNSPECIFIED
 Pijpplein	Pijpplein	UNSPECIFIED
+Tuinkeur	Tuinkeur	UNSPECIFIED
 Smitplein	Smitplein	UNSPECIFIED
 Autoplein	Autoplein	UNSPECIFIED
 Poortplein	Poortplein	UNSPECIFIED
 Molenbochtplein	Molenbochtplein	UNSPECIFIED
 Singelplein	Singelplein	UNSPECIFIED
+AOV	AOV	UNSPECIFIED
 voipen	voipen	WKW:INF:ZNW:HET
+meeste	meest	VNW:OBP:ONV
 Polen	Pool	ENM:LOC:LND
 Oscar	Oscar	ZNW:EKV
+Zweden	Zweed	ZNW:EKV:DE_
 Jehova	Jehova	UNSPECIFIED
 50-plusser	50-plusser	ZNW:EKV
 Amerika	Amerika	ENM:LOC:PTS
 Eurocommissaris	Eurocommissaris	ZNW:EKV
 Ferrari	Ferrari	UNSPECIFIED
+Franka	Franka	UNSPECIFIED
 Koreaan	Koreaan	ZNW:EKV
 Marjan	Marjan	UNSPECIFIED
 niet-Nederlandse	niet-Nederlandse	BNW:STL:VRB
@@ -2457,6 +2484,7 @@ trans-Atlantische	trans-Atlantische	UNSPECIFIED
 trans-Atlantisch	trans-Atlantisch	UNSPECIFIED
 sponsorbijdragen	sponsorbijdragen	ZNW:MRV:DE_
 dolkstootlegende	dolkstootlegende	UNSPECIFIED
+weinig	weinig	VNW:OBP
 Amerika	Amerika	ENM:PER:LST:NIX
 Noordstraat	Noordstraat	ENM:PER:LST:NIX
 Langstraat	Langstraat	ENM:PER:LST:NIX
@@ -2510,3 +2538,4 @@ Welzijns	Welzijn	ENM:BEZ
 Willens	Willen	ENM:BEZ
 Zakens	Zaken	ENM:BEZ
 maanbladen	maanblad	ZNW:MRV:DE_
+overdagen	overdag	ZNW:MRV:DE_

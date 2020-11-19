@@ -209,8 +209,7 @@ Vanilla Ice	NNP
 Mount Airy	NNP
 con forza	RB
 SAP Litmos	NNP
-salicylic acid	NN:UN
-salicylic acids	NNS
+salicylic acid	NN:U
 Getty Images	NNP
 Frankfurter Allgemeine	NNP
 Frankfurter Allgemeine Zeitung	NNP
@@ -252,8 +251,7 @@ Muriel Bowser	NNP
 LG Chem	NNP
 LG Chemical	NNP
 Opel Ampera	NNP
-glycolic acid	NN
-glycolic acids	NNS
+glycolic acid	NN:U
 Rio Rancho	NNP
 Casas Adobes	NNP
 Lake Havasu	NNP
@@ -1242,11 +1240,188 @@ bromthymol blue	NN:UN
 bromthymol blues	NNS
 bromothymol blue	NN:UN
 bromothymol blues	NNS
-pyruvic acid	NN
-pyruvic acids	NNS
+pyruvic acid	NN:U
 Sankt Augustin	NNP
 Deutscher Bundestag	NNP
 Max Brauer	NNP
 de profundis	NN:U
 et voilà	UH
 El Nido	NNP
+Jules Verne	NNP
+Jamie Foxx	NNP
+Swabian Jura	NNP
+De La Salle College	NNP
+Río Guadalupe	NNP
+Kerr County	NNP
+Schreiner University	NNP
+Valar Ventures	NNP
+Ma Huateng	NNP
+Altamaha River	NNP
+Canterville Ghost	NNP
+Petri dish	NNP
+Oconee County	NNP
+Oconee River	NNP
+Oconee Nuclear Station	NNP
+Lake Keowee	NNP
+The Tragically Hip	NNP
+Filles du Roi	NNP
+Calaveras County	NNP
+Penitencia Creek	NNP
+Michael Gove	NNP
+Taco Bell	NNP
+Cordite MD	NN:U
+Starwood Hotels	NNP
+Piltdown man	NNP
+benzoic acid	NN:U
+salva veritate	RB
+Manny Pacquiao	NNP
+Manny Ramirez	NNP
+Manny Machado	NNP
+Manny Jacinto	NNP
+Manny Harris	NNP
+Manny Diaz	NNP
+Manny Malhotra	NNP
+Manny Shinwell	NNP
+Manny Montana	NNP
+Chiang Kai-shek	NNP
+South China Morning Post	NNP
+Candid Camera	NNP
+Jony Ive	NNP
+General Motors	NNP
+Defiance County	NNP
+Patanjali Ayurved	NNP
+Paulding County	NNP
+Putnam County	NNP
+Williams County	NNP
+Broken Arrow	NNP
+Ponca City	NNP
+Azad Jammu	NNP
+Black Eyed Peas	NNP
+Doc Brown	NNP
+Don Quixote	NNP
+Ningaloo Coast	NNP
+Abu Bakr	NNP
+Halo Infinite	NNP
+Brownsea Island	NNP
+Herzberg am Harz	NNP
+Allahu Akbar	UH
+Allah Akbar	UH
+insulin glargine	NN:U
+argan oil	NN:U
+Allegan County	NNP
+Lake Macatawa	NNP
+Macatawa River	NNP
+Juice Wrld	NNP
+Sierra Maestra	NNP
+Faneuil Hall	NNP
+Shawmut Peninsula	NNP
+Ivy Lab	NNP
+Sandy Springs	NNP
+Cox Communications	NNP
+Songhai Empire	NNP
+Sou Fujimoto	NNP
+germline insertion	NN:UN
+de Soto	NNP
+Nike Air	NNP
+Nike Air Max	NNP
+Lackawanna County	NNP
+Schitt's Creek	NNP
+Schitt’s Creek	NNP
+Kristi Noem	NNP
+Matt Bevin	NNP
+John Bel Edwards	NNP
+Bel Edwards	NNP
+Michelle Lujan Grisham	NNP
+Lujan Grisham	NNP
+La Cosa Nostra	NNP
+Cosa Nostra	NNP
+hasta la vista	UH
+Beau Biden	NNP
+corpus callosum	NN
+corpus callosums	NNS
+Mark Esper	NNP
+Lade Placid	NNP
+Brokeback Mountain	NNP
+Coen brothers	NNPS
+Joel Coen	NNP
+Ethan Coen	NNP
+substantia nigra	NN:UN
+substantiae nigrae	NNS
+Zac Efron	NNP
+Saint Barthélemy	NNP
+St. Barthélemy	NNP
+St Barthélemy	NNP
+Saint Barts	NNP
+St. Barts	NNP
+St Barts	NNP
+Sint Maarten	NNP
+Entrepot Mediatic	NNP
+Laboratoire Mediatic	NNP
+Mediatic Labs	NNP
+Produits L'Action	NNP
+Stand L'Action	NNP
+Stand Mediatic	NNP
+Usine Mediatic	NNP
+Arlington National Cemetery	NNP
+Potomac River	NNP
+Custis Lee	NNP
+Parke Custis	NNP
+Custis-Lee Mansion	NNP
+Montgomery C. Meigs	NNP
+Montgomery Cunningham Meigs	NNP
+Montgomery Meigs	NNP
+Wallis and Futuna	NNP
+Wallis & Futuna	NNP
+Ron Klain	NNP
+Ronald Klain	NNP
+Milhous Nixon	NNP
+Beyond Meat	NNP
+Jabba the Hutt	NNP
+Princess Leia	NNP
+Kylo Ren	NNP
+Meryl Streep	NNP
+Pancho Villa	NNP
+Queen Fria	NNP
+Padmé Amidala	NNP
+División del Norte	NNP
+Venustiano Carranza	NNP
+Camino del Norte	NNP
+Balliol College	NNP
+Keweenaw Peninsula	NNP
+Stannard Rock Reef	NNP
+Stannard Rock Light	NNP
+USS Cod	NNP
+Sutter County	NNP
+stearic acid	NN
+stearic acids	NNS
+Fernandina Island	NNP
+carbonic anhydrase	NN
+carbonic anhydrases	NNS
+ad hominem	RB
+ad hominem	JJ
+corpus luteum	NN
+corpus lutea	NNS
+Metcalfe Poe	NNP
+Banco National Park	NNP
+Yaque Del Norte	NNP
+Likert scale	NN
+Likert scales	NNS
+Nikki Haley	NNP
+Please Touch Museum	NNP
+E.ON AG	NNP
+Oberoesterreichische Ferngas AG	NNP
+vastus lateralis	NN
+vastus laterales	NNS
+rectus lateralis	NN
+rectus laterales	NNS
+T. rex	NNP
+T. rexes	NNPS
+Tyrannosaurus rex	NNP
+Tyrannosaurus rexes	NNPS
+deus ex machina	NN
+deus ex machinas	NNS
+Crabbe Mountain	NNP
+Baystate Health	NNP
+Floyd County	NNP
+Joachim Löw	NNP
+East Anglia	NNP

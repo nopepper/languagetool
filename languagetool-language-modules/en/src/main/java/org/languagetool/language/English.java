@@ -40,6 +40,7 @@ import org.languagetool.tokenizers.*;
 import org.languagetool.tokenizers.en.EnglishWordTokenizer;
 
 import java.io.*;
+import java.lang.ref.WeakReference;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
@@ -65,6 +66,7 @@ public class English extends Language implements AutoCloseable {
           return rules;
         }
       });
+  private static volatile WeakReference<EnglishTagger> cachedTagger;
   private static final Language AMERICAN_ENGLISH = new AmericanEnglish();
 
   private LanguageModel languageModel;
@@ -105,7 +107,13 @@ public class English extends Language implements AutoCloseable {
   @NotNull
   @Override
   public Tagger createDefaultTagger() {
-    return new EnglishTagger();
+    WeakReference<EnglishTagger> ref = cachedTagger;
+    EnglishTagger tagger = ref == null ? null : ref.get();
+    if (tagger == null) {
+      tagger = new EnglishTagger();
+      cachedTagger = new WeakReference<>(tagger);
+    }
+    return tagger;
   }
 
   @Nullable
@@ -378,10 +386,12 @@ public class English extends Language implements AutoCloseable {
       case "PROFANITY":                 return 1;   // prefer over spell checker (less prio than EN_COMPOUNDS)
       case "THE_THEM":                  return 1;   // prefer over TO_TWO
       case "THERE_THEIR":               return 1;   // prefer over GO_TO_HOME
+      case "IT_IS_DEPENDING_ON":        return 1;   // prefer over PROGRESSIVE_VERBS
       case "FOR_NOUN_SAKE":             return 6;   // prefer over PROFANITY (e.g. "for fuck sake")
       case "RUDE_SARCASTIC":            return 6;   // prefer over spell checker
       case "CHILDISH_LANGUAGE":         return 8;   // prefer over spell checker
       case "EN_DIACRITICS_REPLACE":     return 9;   // prefer over spell checker (like PHRASE_REPETITION)
+      case "MISSING_GENITIVE":          return -1;  // prefer over spell checker (like EN_SPECIFIC_CASE)
       case "EN_UNPAIRED_BRACKETS":      return -1;  // less priority than rules that suggest the correct brackets
       case "NEEDS_FIXED":               return -1;  // less priority than MISSING_TO_BEFORE_A_VERB
       case "BLACK_SEA":                 return -1;  // less priority than SEA_COMPOUNDS
@@ -430,6 +440,7 @@ public class English extends Language implements AutoCloseable {
       case "PRONOUN_NOUN":              return -3;  // prefer other rules (e.g. PRP_VB, PRP_JJ)
       case "INDIAN_ENGLISH":            return -3;  // prefer grammar rules, but higher prio than spell checker
       case "PRP_THE":                   return -4;  // prefer other rules (e.g. I_A, PRP_JJ, IF_YOU_ANY, I_AN)
+      case "GONNA":                     return -4;  // prefer over spelling rules
       case "MORFOLOGIK_RULE_EN_US":     return -10;  // more specific rules (e.g. L2 rules) have priority
       case "MORFOLOGIK_RULE_EN_GB":     return -10;  // more specific rules (e.g. L2 rules) have priority
       case "MORFOLOGIK_RULE_EN_CA":     return -10;  // more specific rules (e.g. L2 rules) have priority
@@ -466,8 +477,8 @@ public class English extends Language implements AutoCloseable {
 
     return original -> {
       if (original.isDictionaryBasedSpellingRule() && original.getId().startsWith("MORFOLOGIK_RULE_EN")) {
-        if (UserConfig.hasABTestsEnabled() && bert != null) {
-          return new BERTSuggestionRanking(original, bert, userConfig, inputLogging);
+        if (bert != null) {
+          return new BERTSuggestionRanking(original, bert, inputLogging);
         }
       }
       return fallback.apply(original);

@@ -48,6 +48,9 @@ public class AgreementRuleTest {
   public void testCompoundMatch() throws IOException {
     assertBad("Das ist die Original Mail", "die Originalmail", "die Original-Mail");
     assertBad("Das ist die neue Original Mail", "die neue Originalmail", "die neue Original-Mail");
+    assertBad("Das ist die ganz neue Original Mail", "die ganz neue Originalmail", "die ganz neue Original-Mail");
+    assertBad("Doch dieser kleine Magnesium Anteil ist entscheidend.", "dieser kleine Magnesiumanteil", "dieser kleine Magnesium-Anteil");
+    assertBad("Doch dieser sehr kleine Magnesium Anteil ist entscheidend.", "dieser sehr kleine Magnesiumanteil", "dieser sehr kleine Magnesium-Anteil");
     assertBad("Die Standard Priorität ist 5.", "Die Standardpriorität", "Die Standard-Priorität");
     assertBad("Die derzeitige Standard Priorität ist 5.", "Die derzeitige Standardpriorität", "Die derzeitige Standard-Priorität");
     assertBad("Ein neuer LanguageTool Account", "Ein neuer LanguageTool-Account");
@@ -55,6 +58,7 @@ public class AgreementRuleTest {
     assertBad("Mit seinem Konkurrent Alistair Müller", "sein Konkurrent", "seinem Konkurrenten");
     assertBad("Wir gehen ins Fitness Studio", "ins Fitnessstudio", "ins Fitness-Studio");
     assertBad("Wir gehen durchs Fitness Studio", "durchs Fitnessstudio", "durchs Fitness-Studio");
+    assertGood("Es gibt ein Sprichwort, dem zufolge der tägliche Genuss einer Mandel dem Gedächtnis förderlich sei.");
     //assertBad("Die Bad Taste Party von Susi", "Die Bad-Taste-Party");   // not supported yet
     //assertBad("Die Update Liste.", "Die Updateliste");  // not accepted by speller
     List<RuleMatch> matches = lt.check("Er folgt damit dem Tipp des Autoren Michael Müller.");
@@ -145,6 +149,8 @@ public class AgreementRuleTest {
     assertGood("Jainas ist sogar der Genuss jeglicher tierischer Nahrungsmittel strengstens untersagt.");
     assertGood("Es sind jegliche tierische Nahrungsmittel untersagt.");
     assertGood("Das reicht bis weit ins heutige Hessen.");
+    assertGood("Die Customer Journey.");
+    assertGood("Für dich gehört Radfahren zum perfekten Urlaub dazu?");
     //assertGood("... der zu dieser Zeit aber ohnehin schon allen Einfluss verloren hatte.");
 
     assertGood("Wir machen das Januar.");
@@ -359,6 +365,7 @@ public class AgreementRuleTest {
     assertBad("Ich gebe dir das kleinen Kaninchen.");
     assertBad("Ich gebe dir das kleinem Kaninchen.");
     assertBad("Ich gebe dir das kleiner Kaninchen.");
+    assertBadWithNoSuggestion("Geprägt ist der Platz durch einen 142 Meter hoher Obelisken");
     //assertBad("Ich gebe dir das kleines Kaninchen.");  // already detected by ART_ADJ_SOL
     //assertBad("Ich gebe dir das klein Kaninchen.");  // already detected by MEIN_KLEIN_HAUS
     assertGood("Ich gebe dir das kleine Kaninchen.");
@@ -486,6 +493,16 @@ public class AgreementRuleTest {
       RuleMatch match = matches[0];
       List<String> suggestions = match.getSuggestedReplacements();
       assertThat(suggestions, is(Arrays.asList(expectedSuggestions)));
+    }
+  }
+
+  private void assertBadWithNoSuggestion(String s) throws IOException {
+    RuleMatch[] matches = rule.match(lt.getAnalyzedSentence(s));
+    assertEquals("Did not find one match in sentence '" + s + "'", 1, matches.length);
+    RuleMatch match = matches[0];
+    List<String> suggestions = match.getSuggestedReplacements();
+    if (suggestions.size() != 0) {
+      fail("Expected 0 suggestions for: " + s + ", got: " + suggestions);
     }
   }
 

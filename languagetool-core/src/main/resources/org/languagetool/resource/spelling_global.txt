@@ -141,6 +141,7 @@ Rio de Janeiro
 Barclays
 GoPro
 WebEx
+Webex
 Waldridge
 Squarespace
 Nextcloud
@@ -704,6 +705,7 @@ Nintendo Wii
 Disney+
 Kate Middleton
 Joe Biden
+Biden
 Bernie Sanders
 Bruce Wayne
 Peter Parker
@@ -1495,7 +1497,7 @@ Jürgen Klopp
 Lionel Messi
 Costa Del Mar
 Essilor
-Luxotticae
+Luxottica
 Eintracht Frankfurt
 Calendly
 UNESCO
@@ -1541,3 +1543,105 @@ Dungeons & Dragons
 Dungeons and Dragons
 Dexter
 Transformers
+CollegeHumor
+Elon Musk
+Jules Verne
+Battle Creek
+Rotten Tomatoes
+Meghan Markle
+Hulk Hogan
+Peter Thiel
+Larry Ellison
+Michael Dell
+Ma Huateng
+Julian Assange
+Fraunhofer
+Wimbledon
+OpenTable
+Auto Europe
+Cisco Systems
+BioNTech
+CureVac
+Ernest Hemingway
+MagSafe
+Borat
+Trustpilot
+NBCUniversal
+General Motors
+General Electric
+Bacardi
+Lewis Hamilton
+ActiveMQ
+reCAPTCHA
+Black Eyed Peas
+DeLorean
+WebAssembly
+Halo Infinite
+Oxford Dictionary
+Genshin Impact
+Charlie Chaplin
+GoToMeeting
+Fidel Castro
+Nikola Tesla
+Thomas Edison
+Alexander Graham Bell
+Tim Berners-Lee
+Benjamin Franklin
+Henry Ford
+Times New Roman
+ATP
+Nike Air
+NIKE Air
+GMC
+Softbank
+SoftBank
+Mount Rushmore
+Schitt's Creek
+Schitt’s Creek
+NumPy
+Stieg Larsson
+Brokeback Mountain
+Zac Efron
+Ted Cruz
+Lindsey Graham
+Mike Pompeo
+Mike Pence
+Nancy Pelosi
+Mitch McConnell
+Chuck Schumer
+Tomcat
+Ron Klain
+Ronald Klain
+Al Gore
+Bill Clinton
+George Bush
+Ronald Reagan
+George Washington
+Jimmy Carter
+Gerald Ford
+Richard Nixon
+Adam Sandler
+Denzel Washington
+Charlie Sheen
+Meryl Streep
+Kim Basinger
+Claude Monet
+Han Solo
+Luke Skywalker
+Kylo Ren
+OpenVAS
+Godfall
+Nikki Haley
+Frédéric Chopin
+eToro
+Google Workspace
+Chainsmokers
+LT
+Clark Kent
+Lois Lane
+MSCI World
+MSCI World Index
+ASOS
+John Lennon
+Tom Hardy
+Tom Brady

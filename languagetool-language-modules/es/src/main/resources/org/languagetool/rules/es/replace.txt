@@ -1,5 +1,6 @@
-secador=assecador|eixugador
-secador=assecadors|eixugadors
+mecenaje=mecenazgo
+micromecenaje=micromecenazgo
+atraves=a través
 fosfina=fosfano
 ESTAN=ESTÁN
 pej=p. ej.|pez
@@ -84,14 +85,8 @@ boicós|boycotts=boicots|boicoteos
 # Errors in the dictionary 
 # (can be removed after updating the dictionary)
 #################################################
-miembra=miembro
-miembras=miembros
-manifesto=manifiesto|manifestó
-manifestos=manifiestos
-manifesta=manifiesta
-manifestas=manifiestas
-transplante=trasplante
-transplantes=trasplantes
-badminton=bádminton
-badmintones=bádminton
-badmintons=bádminton
+antidiluviano=antediluviano
+antidiluviana=antediluviana
+antidiluvianos=antediluvianos
+antidiluvianas=antediluvianas
+indoles=índoles

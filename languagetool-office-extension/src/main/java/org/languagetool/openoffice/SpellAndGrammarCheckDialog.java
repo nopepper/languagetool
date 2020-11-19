@@ -1490,6 +1490,7 @@ public class SpellAndGrammarCheckDialog extends Thread {
       docCache = updateDocumentCache(xComponent, docCursor, currentDocument);
       if (docCache.size() <= 0) {
         MessageHandler.printToLogFile("getNextError: docCache size == 0: Return null");
+        return null;
       }
       y = viewCursor.getViewCursorParagraph();
       if (y >= docCache.textSize()) {
@@ -1651,7 +1652,7 @@ public class SpellAndGrammarCheckDialog extends Thread {
         }
         removeSpellingMark(y);
       } else {
-        currentDocument.setIgnoredMatch(x, y);
+        currentDocument.setIgnoredMatch(x, y, error.aRuleIdentifier);
       }
       addUndo(x, y, "ignoreOnce", error.aRuleIdentifier);
       gotoNextError(true);
@@ -1907,7 +1908,7 @@ public class SpellAndGrammarCheckDialog extends Thread {
               }
             }
           } else {
-            currentDocument.removeIgnoredMatch(xUndo, yUndo);
+            currentDocument.removeIgnoredMatch(xUndo, yUndo, lastUndo.ruleId);
           }
         } else if (action.equals("ignoreAll")) {
           if (lastUndo.ruleId.equals(spellRuleId)) {

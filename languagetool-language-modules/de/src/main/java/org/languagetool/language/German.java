@@ -299,11 +299,15 @@ public class German extends Language implements AutoCloseable {
       // Rule ids:
       case "OLD_SPELLING_INTERNAL": return 10;
       case "ROCK_N_ROLL": return 1;  // better error than DE_CASE
+      case "RESOURCE_RESSOURCE": return 1;  // better error than DE_CASE
       case "DE_PROHIBITED_COMPOUNDS": return 1;  // a more detailed error message than from spell checker
       case "ANS_OHNE_APOSTROPH": return 1;
       case "DIESEN_JAHRES": return 1;
       case "EBEN_FALLS": return 1;
       case "UST_ID": return 1;
+      case "COVID_19": return 1; // prefer over PRAEP_GEN and DE_AGREEMENT
+      case "IM_ALTER": return 1; // prefer over ART_ADJ_SOL
+      case "DAS_ALTER": return 1; // prefer over ART_ADJ_SOL
       case "VER_INF_PKT_VER_INF": return 1; // prefer over DE_CASE
       case "DASS_MIT_VERB": return 1; // prefer over SUBJUNKTION_KOMMA ("Dass wird Konsequenzen haben.")
       case "AB_TEST": return 1; // prefer over spell checker and agreement
@@ -318,7 +322,6 @@ public class German extends Language implements AutoCloseable {
       case "MODALVERB_FLEKT_VERB": return -1;
       case "AKZENT_STATT_APOSTROPH": return -1;  // lower prio than PLURAL_APOSTROPH
       case "GERMAN_WORD_REPEAT_RULE": return -1; // prefer other more specific rules
-      case "ART_ADJ_SOL": return -2; // lower prio than DE_AGREEMENT and IM_ALTER, DAS_ALTER
       case "GERMAN_SPELLER_RULE": return -3;  // assume most other rules are more specific and helpful than the spelling rule
       case "AUSTRIAN_GERMAN_SPELLER_RULE": return -3;  // assume most other rules are more specific and helpful than the spelling rule
       case "SWISS_GERMAN_SPELLER_RULE": return -3;  // assume most other rules are more specific and helpful than the spelling rule

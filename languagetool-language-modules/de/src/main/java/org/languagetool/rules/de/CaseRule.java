@@ -68,6 +68,11 @@ public class CaseRule extends Rule {
   // also see case_rule_exceptions.txt:
   private static final List<List<PatternToken>> ANTI_PATTERNS = Arrays.asList(
     Arrays.asList(
+      token("Planten"),
+      token("un"),
+      regex("Blomens?")
+    ),
+    Arrays.asList(
       // "Tom ist ein engagierter, gutaussehender Vierzigjähriger, der..."
       posRegex("(ADJ:|PA2).*"),
       token(","),
@@ -224,10 +229,10 @@ public class CaseRule extends Rule {
       regex("[kK]nock"),
       regex("[oO]ut")
     ),
-    Arrays.asList( // "was sie über das denken"
-      token("über"),
-      token("das"),
-      token("denken")
+    Arrays.asList(
+      csToken("das"),
+      posRegex("VER:INF:.+"),
+      posRegex("KON:NEB|PKT")
     ),
     // names with english adjectives
     Arrays.asList(
@@ -296,8 +301,8 @@ public class CaseRule extends Rule {
     ),
     Arrays.asList(
       // Names: "Jeremy Schulte", "Alexa Jung", "Fiete Lang", ...
-      posRegex("UNKNOWN|EIG:.+"),
-      regex("Schulte|Junge?|Lange?|Braun|Groß|Gross|K(ü|ue)hne?|Schier|Becker|Sauer|Ernst|Fr(ö|oe)hlich|Kurz|Klein|Schick|Frisch|Weigert|D(ü|ue)rr|Nagele|Hoppe|D(ö|oe)rre|G(ö|oe)ttlich|Stark")
+      new PatternTokenBuilder().posRegex("EIG:.+|UNKNOWN").csTokenRegex("[A-Z].+").build(),
+      regex("Schulte|Junge?|Lange?|Braun|Groß|Gross|K(ü|ue)hne?|Schier|Becker|Sauer|Ernst|Fr(ö|oe)hlich|Kurz|Klein|Schick|Frisch|Weigert|D(ü|ue)rr|Nagele|Hoppe|D(ö|oe)rre|G(ö|oe)ttlich|Stark|Fahle")
     ),
     Arrays.asList(
       token(","),
@@ -677,6 +682,19 @@ public class CaseRule extends Rule {
     Arrays.asList( // Es hatte 10,5 Ah
       csRegex("\\d+"),
       csToken("Ah")
+    ),
+    Arrays.asList( // Via Camparlungo (Straßennamen in der italienischen Schweiz)
+      csToken("Via"),
+      new PatternTokenBuilder().pos("UNKNOWN").csTokenRegex("[A-Z].+").build()
+    ),
+    Arrays.asList( // Geoghegan Hart
+      new PatternTokenBuilder().pos("UNKNOWN").csTokenRegex("[A-Z].+").build(),
+      csToken("Hart")
+    ),
+    Arrays.asList( // Autohaus Dornig GmbH
+      new PatternTokenBuilder().posRegex("EIG:.+|SUB:.+").csTokenRegex("[A-Z].+").build(),
+      csRegex("[A-ZÄÜÖ].+"),
+      csRegex("Gmb[Hh]|AG|KG|UG")
     )
   );
 
@@ -725,6 +743,9 @@ public class CaseRule extends Rule {
     "Schutzheiliger",
     "Schutzheiligen",
     "Lila",
+    "Langzeitarbeitslose",
+    "Langzeitarbeitslosen",
+    "Langzeitarbeitsloser",
     "Linksintellektuelle",
     "Linksintellektueller",
     "Linksintellektuellen",
@@ -951,6 +972,12 @@ public class CaseRule extends Rule {
     "Vermisste",
     "Äußeres",
     "Abseits",
+    "Unschuldige",
+    "Unschuldiger",
+    "Unschuldigen",
+    "Mitarbeitende",
+    "Mitarbeitender",
+    "Mitarbeitenden",
     "Beschäftigter",
     "Beschäftigte",
     "Beschäftigten",

@@ -123,8 +123,8 @@ public class HTTPServerTest {
     // tests for mother tongue (copy from link {@link FalseFriendRuleTest})
     //assertTrue(checkV2(english, german, "My handy is broken.").contains("EN_FOR_DE_SPEAKERS_FALSE_FRIENDS"));  // only works with ngrams
     assertFalse(checkV2(english, german, "We will berate you").contains("BERATE"));  // not active anymore now that we have EN_FOR_DE_SPEAKERS_FALSE_FRIENDS
-    assertTrue(checkV2(german, english, "Man sollte ihn nicht so beraten.").contains("BERATE"));
-    assertTrue(checkV2(polish, english, "To jest frywolne.").contains("FRIVOLOUS"));
+    assertTrue(plainTextCheck("/v2/check", german, english, "Man sollte ihn nicht so beraten.", "&level=picky").contains("BERATE"));
+    assertTrue(plainTextCheck("/v2/check", polish, english, "To jest frywolne.", "&level=picky").contains("FRIVOLOUS"));
       
     //test for no changed if no options set
     String[] nothing = {};

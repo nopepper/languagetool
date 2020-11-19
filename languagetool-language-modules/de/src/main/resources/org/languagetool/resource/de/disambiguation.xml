@@ -493,6 +493,12 @@ Copyright © 2013 Markus Brenneis, Daniel Naber, Jan Schreiber
     <rulegroup id="UNIFY_PRP_DET_SUB" name="NP with preposition unify">
         <rule>
             <antipattern>
+                <!-- "Es gibt ein Sprichwort, dem zufolge der tägliche Genuss einer Mandel dem Gedächtnis förderlich sei." -->
+                <token>dem</token>
+                <token>zufolge</token>
+                <token>der</token>
+            </antipattern>
+            <antipattern>
                 <!-- "Was ist denn das für ein ungewöhnlicher Name?" -->
                 <token regexp="yes">der|die|das</token>
                 <token>für</token>
@@ -1372,6 +1378,16 @@ Copyright © 2013 Markus Brenneis, Daniel Naber, Jan Schreiber
     <rule name="IPv4/6" id="IPVx">
         <pattern>
             <token regexp="yes">IPv[46]-(Adressen?|Adressraum(s|es)?|Verbindung|Standard|Präfix|Netzwerke?|Netzwerke[ns]|Paket(e|en|s|es)?|Einstellung|Implementierung|Header|Host|Routing|Gerät(s|es|e|en)?|Kommunikation|fähig(e|er|es|en|em)?)</token>
+        </pattern>
+        <disambig action="ignore_spelling"/>
+    </rule>
+
+    <rule name="1.x" id="ZAHL_X">
+        <pattern>
+            <!-- Versionsnummern wie "2.x" -->
+            <token regexp="yes">\d+</token>
+            <token spacebefore="no">.</token>
+            <token spacebefore="no">x</token>
         </pattern>
         <disambig action="ignore_spelling"/>
     </rule>
@@ -3282,6 +3298,23 @@ Copyright © 2013 Markus Brenneis, Daniel Naber, Jan Schreiber
         <token>Institute</token>
         <token>of</token>
         <token>Technology</token>
+      </pattern>
+      <disambig action="ignore_spelling"/>
+    </rule>
+    <rule name="School of" id="SCHOOL_OF">
+      <pattern case_sensitive="yes">
+        <token>School</token>
+        <token>of</token>
+        <token regexp="yes">Advanced|Aviation|Law|Medicine</token>
+      </pattern>
+      <disambig action="ignore_spelling"/>
+    </rule>
+    <rule name="Doktortitel" id="PHD">
+      <pattern case_sensitive="yes">
+        <token>Dr</token>
+        <token spacebefore="no">.</token>
+        <token regexp="yes">iur|med|oec|phil|rer|theol</token>
+        <token spacebefore="no">.</token>
       </pattern>
       <disambig action="ignore_spelling"/>
     </rule>

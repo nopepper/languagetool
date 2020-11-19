@@ -92,6 +92,17 @@ public class EnglishConfusionProbabilityRule extends ConfusionProbabilityRule {
       "good cause",
       "big butt",
       "news debate",
+      "news debates",
+      "news leader", // vs new
+      "news leaders",
+      "news teller",
+      "news tellers",
+      "news outlet",
+      "news outlets",
+      "news event",
+      "news events",
+      "news station",
+      "news stations",
       "verify you own",
       "ensure you own",
       "happy us!",
@@ -149,7 +160,6 @@ public class EnglishConfusionProbabilityRule extends ConfusionProbabilityRule {
       "on twitter", // vs in
       "enjoy us being", // vs is
       "If your use of", // vs you
-      "way too", // vs was
       "then,", // vs than
       "then?", // vs than
       "no it doesn", // vs know
@@ -422,17 +432,31 @@ public class EnglishConfusionProbabilityRule extends ConfusionProbabilityRule {
       "and now us,", // vs is
       "to control us", // vs is
       "are way not", // vs was
-      "the invite" // vs to invite
+      "the invite", // vs to invite
+      "is there way to", // vs was
+      "a way doing", // vs was
+      "way different" // vs was
     );
 
   private static final List<List<PatternToken>> ANTI_PATTERNS = Arrays.asList(
+    Arrays.asList(
+      // "Those wee changes made a big difference"
+      tokenRegex("the|these|those"),
+      token("wee"),
+      posRegex("NNS")
+    ),
     Arrays.asList(
       // way vs was: This way a person could learn ....
       token("this"),
       token("way"),
       posRegex("DT|PRP\\$"),
-      posRegex("NN.*"),
-      posRegex("MD")
+      posRegex("NN.*")
+    ),
+    Arrays.asList(
+      // way vs was: This way a person could learn ....
+      token("way"),
+      token("too"),
+      posRegex("JJ")
     ),
     Arrays.asList(
       // "from ... to ..." (to/the)
@@ -512,6 +536,14 @@ public class EnglishConfusionProbabilityRule extends ConfusionProbabilityRule {
       token("us"), // vs "is"
       tokenRegex("based|depending"),
       token("on")
+    ),
+    Arrays.asList(
+      // How Apple and FB do events:
+      token("how"),
+      posRegex("NNP"),
+      tokenRegex("and|&"),
+      posRegex("NNP"),
+      token("do") // vs 'to'
     )
   );
 

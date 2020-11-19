@@ -23,6 +23,7 @@ import org.languagetool.*;
 import org.languagetool.rules.SuggestedReplacement;
 import org.languagetool.rules.spelling.morfologik.MorfologikSpellerRule;
 import org.languagetool.tagging.fr.FrenchTagger;
+import org.languagetool.tools.StringTools;
 
 import java.io.IOException;
 import java.util.*;
@@ -137,6 +138,12 @@ public final class MorfologikFrenchSpellerRule extends MorfologikSpellerRule {
         newSuggestions.add(0, suggestions.get(i));
         continue;
       }
+      
+      String suggWithoutDiacritics = StringTools.removeDiacritics(suggestions.get(i).getReplacement());
+      if (word.equalsIgnoreCase(suggWithoutDiacritics) && suggestions.get(0).getReplacement().contains("'")) {
+        newSuggestions.add(0, suggestions.get(i));
+        continue;
+      }
 
       // move words with apostrophe or hyphen to second position
       String cleanSuggestion = suggestions.get(i).getReplacement().replaceAll("'", "").replaceAll("-", "");
@@ -210,7 +217,7 @@ public final class MorfologikFrenchSpellerRule extends MorfologikSpellerRule {
       if (recursive) {
         List<String> moreSugg = this.speller1.getSuggestions(newSuggestion);
         if (moreSugg.size() > 0) {
-          for (int i=0; i<moreSugg.size(); i++) {
+          for (int i = 0; i < moreSugg.size(); i++) {
             String newWord;
             if (suggestionPosition == 1) {
               newWord = moreSugg.get(i).toLowerCase() + matcher.group(2);
@@ -221,7 +228,7 @@ public final class MorfologikFrenchSpellerRule extends MorfologikSpellerRule {
             if (!newSugg.isEmpty()) {
               newSuggestions.addAll(newSugg);
             }
-            if (i>5) {
+            if (i > 5) {
               break;
             }
           }
@@ -243,7 +250,7 @@ public final class MorfologikFrenchSpellerRule extends MorfologikSpellerRule {
       if (posTag == null) {
         posTag = "UNKNOWN";
       }
-      final Matcher m = pattern.matcher(posTag);
+      Matcher m = pattern.matcher(posTag);
       if (m.matches()) {
         return true;
       }

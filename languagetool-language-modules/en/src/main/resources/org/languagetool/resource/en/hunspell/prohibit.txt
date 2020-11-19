@@ -59,7 +59,6 @@ anythings
 na
 pre-requisite
 pre-requisites
-on-line
 Nescafe
 # Has to be T-Mobile / T-Systems
 t-mobile
@@ -134,3 +133,15 @@ Jonny-Come-Latelies
 noy
 # confusion of 'fucus'
 fucus
+# confusion of 'life-changing'
+live-changing
+live-affirming
+# confusion of 'live-streaming'
+life-streaming
+life-stream
+life-streamed
+life-streams
+# confusion of 'on-the-fly'
+on-they-fly
+# confusion of 'you' or 'yours'
+yous

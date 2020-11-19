@@ -2294,7 +2294,7 @@ Lil Nas X
 Lil Peep
 Lil Bow Wow
 Lil Uzi Vert
-Del Norte
+Del Norte High School
 Del Norte County
 Papua Beach
 Malolos City
@@ -4656,7 +4656,6 @@ Eden Prairie
 SouthWest Transit
 Carver County
 SIG Sauer
-Hurricane Delta
 Sidewise Award
 Sidewise Awards
 Gucci Mane
@@ -4749,3 +4748,136 @@ Max Brauer
 Dungeons & Dragons
 Dungeons and Dragons
 El Nido
+Bates Motel
+Jules Verne
+Jamie Foxx
+Swabian Jura
+Battle Creek
+De La Salle College
+Meghan Markle
+Rosarito Beach
+Río Guadalupe
+Kerr County
+Guadalupe River
+Schreiner University
+Bavarian Alps
+Stanford Law School
+Hulk Hogan
+Valar Ventures
+Ma Huateng
+Fraunhofer Society
+Fraunhofer Institute
+Altamaha River
+Canterville Ghost
+Frank Lampard
+PCI Express
+NVM Express
+Oconee County
+Oconee River
+Oconee Nuclear Station
+Lake Keowee
+The Tragically Hip
+Filles du Roi
+Cisco Webex
+Calaveras County
+Penitencia Creek
+Michael Gove
+Brownlow Medal
+Manny Pacquiao
+Jony Ive
+Schwarzman College
+Defiance County
+Patanjali Ayurved
+Paulding County
+Putnam County
+Williams County
+Ponca City
+Azad Jammu
+Black Eyed Peas
+DMC DeLorean
+Doc Brown
+Don Quixote
+Ningaloo Coast
+Abu Bakr
+Halo Infinite
+Brownsea Island
+Genshin Impact
+Grand Old Party
+Philadelphia City Hall
+Allegan County
+Lake Macatawa
+Macatawa River
+Juice Wrld
+Fidel Castro
+Sierra Maestra
+Faneuil Hall
+Shawmut Peninsula
+Ivy Lab
+Harry Reid
+Sandy Springs
+Cox Communications
+Songhai Empire
+Nike Air Max
+Lackawanna County
+Kristi Noem
+Matt Bevin
+John Bel Edwards
+Michelle Lujan Grisham
+Schitt's Creek
+Schitt’s Creek
+La Cosa Nostra
+Cosa Nostra
+Jill Biden
+Beau Biden
+Ed Miliband
+Sadiq Khan
+Mark Esper
+Joe Rogan
+Lade Placid
+Stieg Larsson
+Brokeback Mountain
+Joel Coen
+Zac Efron
+Saint Barthélemy
+St. Barthélemy
+Sint Maarten
+Nancy Pelosi
+Chuck Schumer
+Arlington National Cemetery
+Custis Lee
+Parke Custis
+Custis-Lee Mansion
+Feast of Saint Martin
+Saint Martin
+Wallis and Futuna
+Wallis & Futuna
+Balboa Peninsula
+Ron Klain
+Adam Sandler
+Denzel Washington
+Charlie Sheen
+Jabba the Hutt
+Princess Leia
+Kylo Ren
+Meryl Streep
+Pancho Villa
+Claude Monet
+Queen Fria
+Padmé Amidala
+Luke Skywalker
+Anakin Skywalker
+División del Norte
+Camino del Norte
+Stannard Rock Light
+Balliol College
+Sutter County
+Betsy DeVos
+Banco National Park
+Yaque del Norte
+Nikki Haley
+Crabbe Mountain
+MSCI World
+Baystate Health
+Floyd County
+East Anglia
+Tom Hardy

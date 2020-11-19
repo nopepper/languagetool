@@ -2057,25 +2057,69 @@ though, and has since been slightly modified)-->
         <example>Il se sera d’abord lavé.</example>
       </rule>
     </rulegroup>
-    <rule id="CE_SE" name="CE au lieu de SE">
+    <rule id="FICHER_FICHIER" name="'ficher' au lieu de 'fichier'">
       <pattern>
-        <marker><token>ce</token></marker>
-        <token postag="V.*" postag_regexp="yes">
-          <exception postag="[NJ] [me] sp?" postag_regexp="yes"/>
-          <exception inflected="yes" regexp="yes">être|devoir|pouvoir</exception>
-          <exception regexp="yes">faisant|faire</exception>
-        </token>
+        <token regexp="yes">ce|le</token>
+        <marker>
+          <token>ficher</token>
+        </marker>
       </pattern>
-      <message>Voulez-vous écrire <suggestion>se</suggestion> ?</message>
-      <url>http://bdl.oqlf.gouv.qc.ca/bdl/gabarit_bdl.asp?id=2440</url>
-      <example correction="Se"><marker>Ce</marker> promener est relaxant.</example>
-      <example correction="se">Ce phénomène <marker>ce</marker> transforme en phénomène de société.</example>
-      <example>Ce sera bien.</example>
-      <example>Ce peuple</example>
-      <example>Ce faisant, il se rapprochait.</example>
-      <example>Pour ce faire, vous disposez d’un délai d’une semaine.</example>
-      <example>Ce tapis est beau.</example>
+      <message>Voulez-vous dire <suggestion>fichier</suggestion> (nom) au lieu de "ficher" (verbe) ?</message>
+      <example correction="fichier">Comment réparer ce <marker>ficher</marker> ?</example>
     </rule>
+    <rulegroup  id="CE_SE" name="CE au lieu de SE">
+      <url>http://bdl.oqlf.gouv.qc.ca/bdl/gabarit_bdl.asp?id=2440</url>
+      <rule>
+        <pattern>
+          <marker><token>ce</token></marker>
+          <token postag="V.*" postag_regexp="yes">
+            <exception postag="[NJ] [me] sp?" postag_regexp="yes"/>
+            <exception inflected="yes" regexp="yes">être|devoir|pouvoir</exception>
+            <exception regexp="yes">faisant|faire</exception>
+          </token>
+        </pattern>
+        <message>Voulez-vous écrire <suggestion>se</suggestion> ?</message>
+        <example correction="Se"><marker>Ce</marker> promener est relaxant.</example>
+        <example correction="se">Ce phénomène <marker>ce</marker> transforme en phénomène de société.</example>
+        <example>Ce sera bien.</example>
+        <example>Ce peuple</example>
+        <example>Ce faisant, il se rapprochait.</example>
+        <example>Pour ce faire, vous disposez d’un délai d’une semaine.</example>
+        <example>Ce tapis est beau.</example>
+      </rule>
+      <rule>
+        <antipattern>
+          <token>ce</token>
+          <token>placer</token>
+          <token>d'</token>
+          <token>or</token>
+        </antipattern>
+        <pattern>
+          <!--<token postag="V.*" postag_regexp="yes"/>
+          <token postag="P" min="0"><exception>pour</exception></token>-->
+          <marker>
+            <token>ce</token>
+          </marker>
+          <token>placer</token>
+        </pattern>
+        <message>Voulez-vous écrire <suggestion>se</suggestion> ?</message>
+        <example correction="se">Il devrait <marker>ce</marker> placer</example>
+        <example correction="se">Je lui dis de <marker>ce</marker> placer</example>
+      </rule>
+      <rule>
+        <pattern>
+          <token postag="V.*" postag_regexp="yes"/>
+          <token postag="P" min="0"><exception>pour</exception></token>
+          <marker>
+            <token>ce</token>
+          </marker>
+          <token>faire</token>
+          <token postag="V inf"/> 
+        </pattern>
+        <message>Voulez-vous écrire <suggestion>se</suggestion> ?</message>
+        <example correction="se">Il devrait <marker>ce</marker> faire livrer.</example>
+      </rule>
+    </rulegroup>
     <rule id="MA" name="MA au lieu de M’A">
       <pattern>
         <marker>
@@ -9026,8 +9070,177 @@ though, and has since been slightly modified)-->
         <example correction="trois fois par semaine">Je joue au Softball <marker>trois fois au semaine</marker>.</example>
       </rule>
       <!-- End of additions -->
-      <rulegroup id="D_N_QUE_R_AVOIR_PPA" name="Relative avec erreur d'accord" default="off">
+      <rule id="VOUS_LE_PPA_1ER_GROUPE" name="s manquant à vous le ppa" default="temp_off">
+          <pattern>
+              <token>vous</token>
+              <token>le</token>
+              <marker>
+                  <token postag="V ppa.*s" regexp="yes" postag_regexp="yes">\w+e</token>
+              </marker>
+          </pattern>
+          <message>Il semblerait manquer la marque du pluriel. Vouliez-vous dire « <suggestion>\3s</suggestion> ».</message>
+          <example correction="faites">Comme vous le <marker>faite</marker>.</example>
+      </rule>
+      <rule id="CONFUSION_PAR_PART" name="Confusion part/par expression de par" default="temp_off">
+          <pattern>
+              <token>de</token>
+              <marker>
+                  <token>part</token>
+              </marker>
+              <token regexp="yes" postag_regexp="yes">
+                  sa|ses|son|leur|leurs
+              </token>
+          </pattern>
+          <message>L'expression « de par \3 » s'écrit sans « t ».</message>
+          <suggestion>par</suggestion>
+          <example correction="par">De <marker>part</marker> ses multiples expériences, Jacques avait déjà créé des sites internets.</example>
+      </rule>
+      <rule id="CONFUSION_PPA_IND_2E_GROUPE" name="confusion entre participe passé et indicatif du deuxième groupe" default="temp_off">
+          <pattern>
+              <token postag="D.*" postag_regexp="yes"/>
+              <token postag="N.*" postag_regexp="yes"/>
+              <marker>
+                  <token postag="V.*" postag_regexp="yes" regexp="yes">.*i
+                      <exception postag_regexp="yes" postag="V.*(ind|con|sub|imp).*"/>
+                  </token>
+              </marker>
+              <token>de</token>
+              <token postag="V.*inf" postag_regexp="yes"/>
+          </pattern>
+          <message>Ici, le participe passé est de rigueur. Vouliez-vous dire <suggestion><match no="3" postag_replace="V$1 ind pres 3 $2" postag="V(.*) ppa m ([sp])" postag_regexp="yes"/></suggestion> ?</message>
+          <example correction="choisit">Le professeur <marker>choisi</marker> de créer un site internet.</example>
+          <example>Le professeur choisit de créer un site internet.</example>
+      </rule>
+     <rulegroup id="ACCORD_DE_ADJ" name="De + adj + nom pluriel" default="temp_off">
+         <rule name="J e s -> N [mfe] p">
+              <pattern>
+                  <token>de</token>
+                  <marker>
+                      <token postag="J e s">
+                          <exception regexp="yes">l[ao]s</exception>
+                      </token>
+                  </marker>
+                  <token postag_regexp="yes" postag="N [mfe] p"/>
+              </pattern>
+              <message>Si le sujet est bien « \3 », l'accord se fait avec ce dernier.</message>
+              <suggestion><match no="2" postag_regexp="yes" postag="J.*" postag_replace="J e p"/></suggestion>
+              <example correction="larges">Il avait donc de <marker>large</marker> compétences.</example>
+         </rule>
+         <rule name="J f s -> N f p">
+             <pattern>
+                 <token>de</token>
+                 <marker>
+                     <token postag="J f s">
+                         <exception regexp="yes">l[ao]s</exception>
+                     </token>
+                 </marker>
+                 <token postag="N f p"/>
+             </pattern>
+             <message>Si le sujet est bien « \3 », l'accord se fait avec ce dernier.</message>
+             <suggestion><match no="2" postag_regexp="yes" postag="J.*" postag_replace="J f p"/></suggestion>
+             <example correction="belles">Il avait donc de <marker>belle</marker> compétences.</example>
+         </rule>
+         <rule name="J m s -> N f p">
+             <pattern>
+                 <token>de</token>
+                 <marker>
+                     <token postag="J m s">
+                         <exception regexp="yes">l[ao]s</exception>
+                     </token>
+                 </marker>
+                 <token postag="N f p"/>
+             </pattern>
+             <message>Si le sujet est bien « \3 », l'accord se fait avec ce dernier.</message>
+             <suggestion><match no="2" postag_regexp="yes" postag="J.*" postag_replace="J f p"/></suggestion>
+             <example correction="belles">Il avait donc de <marker>beau</marker> compétences.</example>
+         </rule>
+         <rule name="J m p -> N f p">
+             <pattern>
+                 <token>de</token>
+                 <marker>
+                     <token postag="J m p">
+                         <exception regexp="yes">l[ao]s</exception>
+                     </token>
+                 </marker>
+                 <token postag="N f p"/>
+             </pattern>
+             <message>Si le sujet est bien « \3 », l'accord se fait avec ce dernier.</message>
+             <suggestion><match no="2" postag_regexp="yes" postag="J.*" postag_replace="J f p"/></suggestion>
+             <example correction="belles">Il avait donc de <marker>beaux</marker> compétences.</example>
+         </rule>
+         <rule name="J f s -> N m p">
+             <pattern>
+                 <token>de</token>
+                 <marker>
+                     <token postag="J f s">
+                         <exception regexp="yes">l[ao]s</exception>
+                     </token>
+                 </marker>
+                 <token postag="N m p"/>
+             </pattern>
+             <message>Si le sujet est bien « \3 », l'accord se fait avec ce dernier.</message>
+             <suggestion><match no="2" postag_regexp="yes" postag="J.*" postag_replace="J m p"/></suggestion>
+             <example correction="perturbants">Il avait donc de <marker>perturbante</marker> atouts.</example>
+         </rule>
+         <rule name="J f p -> N m p">
+             <pattern>
+                 <token>de</token>
+                 <marker>
+                     <token postag="J f p">
+                         <exception regexp="yes">l[ao]s</exception>
+                     </token>
+                 </marker>
+                 <token postag="N m p"/>
+             </pattern>
+             <message>Si le sujet est bien « \3 », l'accord se fait avec ce dernier.</message>
+             <suggestion><match no="2" postag_regexp="yes" postag="J.*" postag_replace="J m p"/></suggestion>
+             <example correction="perturbants">Il avait donc de <marker>perturbantes</marker> atouts.</example>
+         </rule>
+         <rule name="J m s -> N m p">
+             <pattern>
+                 <token>de</token>
+                 <marker>
+                     <token postag="J m s">
+                         <exception regexp="yes">l[ao]s</exception>
+                     </token>
+                 </marker>
+                 <token postag="N m p"/>
+             </pattern>
+             <message>Si le sujet est bien « \3 », l'accord se fait avec ce dernier.</message>
+             <suggestion><match no="2" postag_regexp="yes" postag="J.*" postag_replace="J m p"/></suggestion>
+             <example correction="sacrés">Il avait donc de <marker>sacré</marker> atouts.</example>
+         </rule>
+      </rulegroup>
+      <rule id="SONT_SOMMES" name="sont au lieu de sommes" default="temp_off">
+          <pattern>
+              <token postag_regexp="yes" postag="R.*"/>
+              <token>et</token>
+              <token postag_regexp="yes" postag="R.*1.*">
+                  <exception>m</exception>
+                  <exception case_sensitive="yes">Moi</exception>
+              </token>
+              <token min="0">ne</token>
+              <marker>
+                  <token>sont</token>
+              </marker>
+          </pattern>
+          <message>Dans le cas d'un sujet pluriel vous incluant, « sont » devient <suggestion>sommes</suggestion>.</message>
+          <example correction="sommes">Dans ce cas-là eux et moi ne <marker>sont</marker> pas d'accord.</example>
+          <example correction="sommes">Dans ce cas-là eux et moi <marker>sont</marker> d'accord.</example>
+      </rule>
+      <rulegroup id="D_N_QUE_R_AVOIR_PPA" name="Relative avec erreur d'accord" default="temp_off">
           <rule name="f s">
+              <antipattern>
+                  <token postag="SENT_START"/>
+                  <token postag="D f s"/>
+                  <token min="0" max="1" postag="A"/>
+                  <token postag="N f s"/>
+                  <token regexp="yes">qu[e']</token>
+                  <token postag_regexp="yes" postag="R.*suj.*|Z.*"/>
+                  <token inflected="yes">avoir</token>
+                  <token postag_regexp="yes" postag="V.* ppa.*"/>
+                  <token postag_regexp="yes" postag="V.* ppa.*"/>
+              </antipattern>
               <pattern>
                   <token postag="SENT_START"/>
                   <token postag="D f s"/>
@@ -9042,10 +9255,11 @@ though, and has since been slightly modified)-->
                       </token>
                   </marker>
               </pattern>
-              <message>Erreur d'accord, le participe passé devrait être accordé avec le sujet \4.</message>
+              <message>Erreur d'accord, le participe passé devrait être accordé avec le sujet « \4 ».</message>
               <suggestion><match no="8" postag_regexp="yes" postag="(V.* ppa).*" postag_replace="$1 f s"/></suggestion>
               <example correction="mise">La montre que j'ai <marker>mis</marker> hier.</example>
               <example correction="mise">La montre qu'il a <marker>mis</marker> ce matin.</example>
+              <example>La nouvelle qu'il avait été blessé lui fit un choc.</example>
           </rule>
           <rule name="f p">
               <pattern>
@@ -9062,7 +9276,7 @@ though, and has since been slightly modified)-->
                       </token>
                   </marker>
               </pattern>
-              <message>Erreur d'accord, le participe passé devrait être accordé avec le sujet \4.</message>
+              <message>Erreur d'accord, le participe passé devrait être accordé avec le sujet « \4 ».</message>
               <suggestion><match no="8" postag_regexp="yes" postag="(V.*ppa).*" postag_replace="$1 f p"/></suggestion>
               <example correction="mises">Les montres que j'ai <marker>mis</marker> hier.</example>
           </rule>
@@ -9081,7 +9295,7 @@ though, and has since been slightly modified)-->
                       </token>
                   </marker>
               </pattern>
-              <message>Erreur d'accord, le participe passé devrait être accordé avec le sujet \4.</message>
+              <message>Erreur d'accord, le participe passé devrait être accordé avec le sujet « \4 ».</message>
               <suggestion><match no="8" postag_regexp="yes" postag="V(.* ppa).*" postag_replace="V$1 m (s|sp)"/></suggestion>
               <example correction="mis">Le veston que j'ai <marker>mise</marker> hier.</example>
               <example>Le fait qu'ils aient été locataires du terrain</example>
@@ -9101,7 +9315,7 @@ though, and has since been slightly modified)-->
                       </token>
                   </marker>
               </pattern>
-              <message>Erreur d'accord, le participe passé devrait être accordé avec le sujet \4.</message>
+              <message>Erreur d'accord, le participe passé devrait être accordé avec le sujet « \4 ».</message>
               <suggestion><match no="8" postag_regexp="yes" postag="V(.* ppa).*" postag_replace="V$1 m (p|sp)"/></suggestion>
               <example correction="mis">Les gants que j'ai <marker>mises</marker> hier.</example>
           </rule>
@@ -13029,12 +13243,12 @@ though, and has since been slightly modified)-->
                   </token>
               </marker>
           </pattern>
-          <message>Après l’auxiliaire « \1 », le verbe devrait être au participe passé. Quant à l’accord, celui-ci s’accorde avec le COD s’il est placé avant l’auxiliaire ; sinon il restera au masculin singulier.</message>
+          <message>Après l’auxiliaire « \1 », le verbe devrait être au participe passé. Quant à l’accord, celui-ci s’accorde en genre et en nombre avec le sujet du verbe.</message>
           <suggestion><match no="5" postag="V.*" postag_regexp="yes" postag_replace="V ppa m s"/></suggestion>
           <suggestion><match no="5" postag="V.*" postag_regexp="yes" postag_replace="V ppa f s"/></suggestion>
           <suggestion><match no="5" postag="V.*" postag_regexp="yes" postag_replace="V ppa m p"/></suggestion>
           <suggestion><match no="5" postag="V.*" postag_regexp="yes" postag_replace="V ppa f p"/></suggestion>
-          <url>http://grammaire.reverso.net/4_1_05_accord_du_participe_passe_avec_avoir.shtml</url>
+          <url>https://grammaire.reverso.net/accord-du-participe-passe-conjugue-avec-etre/</url>
           <example correction="parti|partie|partis|parties">Il est <marker>partit</marker> tôt.</example>
           <example>Il est arrivé</example>
           <example>Il est parti tôt.</example>
@@ -13066,11 +13280,12 @@ though, and has since been slightly modified)-->
               </token>
             </marker>
           </pattern>
-          <message>Après l’auxiliaire « \1 », le verbe devrait être au participe passé. Quant à l’accord, celui-ci s’accorde avec le COD s’il est placé avant l’auxiliaire ; sinon il restera au masculin singulier.</message>
+          <message>Après l’auxiliaire « \1 », le verbe devrait être au participe passé. Quant à l’accord, celui-ci s’accorde en genre et en nombre avec le sujet du verbe.</message>
           <suggestion><match no="5" postag="V.*" postag_regexp="yes" postag_replace="V ppa m s"/></suggestion>
           <suggestion><match no="5" postag="V.*" postag_regexp="yes" postag_replace="V ppa f s"/></suggestion>
           <suggestion><match no="5" postag="V.*" postag_regexp="yes" postag_replace="V ppa m p"/></suggestion>
           <suggestion><match no="5" postag="V.*" postag_regexp="yes" postag_replace="V ppa f p"/></suggestion>
+          <url>https://grammaire.reverso.net/accord-du-participe-passe-conjugue-avec-etre/</url>
           <example correction="remplacé|remplacée|remplacés|remplacées">Il sera ainsi <marker>remplacer</marker> par une voiture.</example>
           <example correction="remplacé|remplacée|remplacés|remplacées">Il sera elle aussi <marker>remplacer</marker> par une voiture.</example>
           <example correction="remplacé|remplacée|remplacés|remplacées">Il sera lui-même <marker>remplacer</marker> par une voiture.</example>
@@ -13078,7 +13293,6 @@ though, and has since been slightly modified)-->
           <example>La question est si elle viendra ou pas.</example>
         </rule>
       </rulegroup>
-    <rulegroup id="AUX_AVOIR_VCONJ" name="Auxiliaire suivi d’un verbe conjugué">
       <rule id="RPERSSUJ_ETRE_V" name="Pronom personel + V être + verbe conjugué">
         <pattern>
           <token postag="R pers suj.*" postag_regexp="yes" skip="1"/>
@@ -13092,6 +13306,7 @@ though, and has since been slightly modified)-->
         <message>Vouliez-vous dire <suggestion><match no="3" regexp_match="([a-zàâéèêîôöùç]+)e" regexp_replace="$1é"/></suggestion> ?</message>
         <example correction="fatigué">Je suis <marker>fatigue</marker>.</example>
       </rule>
+    <rulegroup id="AUX_AVOIR_VCONJ" name="Auxiliaire suivi d’un verbe conjugué">
       <rule name="Suj + Aux avoir + V">
         <antipattern>
           <token case_sensitive="yes">A<exception postag="SENT_START" scope="previous"/></token>
@@ -13746,6 +13961,14 @@ though, and has since been slightly modified)-->
           <token regexp="yes">(?:celles|ceux)-(?:ci|là)</token>
           <token postag_regexp="yes" postag="V .* ppr"/>
         </antipattern>
+          <antipattern>
+              <token postag_regexp="yes" postag="R.*"/>
+              <token>et</token>
+              <token postag_regexp="yes" postag="R.*1.*">
+                  <exception>m</exception>
+                  <exception case_sensitive="yes">Moi</exception>
+              </token>
+          </antipattern>
         <pattern>
           <token postag="R pers suj 3 .* p|R dem . p" postag_regexp="yes">
             <exception regexp="yes">celles|ceux|-.*|.*-mêmes</exception>
@@ -13810,6 +14033,14 @@ though, and has since been slightly modified)-->
         <example>Lequel d'entre-eux était-ce ?</example>
       </rule>
       <rule name="ils/elles + 3 tokens + Verbe">
+        <antipattern>
+          <token postag_regexp="yes" postag="R.*"/>
+          <token>et</token>
+          <token postag_regexp="yes" postag="R.*1.*">
+              <exception>m</exception>
+              <exception case_sensitive="yes">Moi</exception>
+          </token>
+        </antipattern>
         <pattern>
           <token postag="R pers suj 3 .* p|R dem . p" postag_regexp="yes">
             <exception regexp="yes">-.*</exception>
@@ -13828,6 +14059,14 @@ though, and has since been slightly modified)-->
         <example>Ils me l’<marker>avaient</marker> donné.</example>
       </rule>
       <rule name="ils/elles + 4 tokens + Verbe">
+          <antipattern>
+              <token postag_regexp="yes" postag="R.*"/>
+              <token>et</token>
+              <token postag_regexp="yes" postag="R.*1.*">
+                  <exception>m</exception>
+                  <exception case_sensitive="yes">Moi</exception>
+              </token>
+          </antipattern>
         <pattern>
           <token postag="R pers suj 3 .* p|R dem . p" postag_regexp="yes">
             <exception regexp="yes">-.*</exception>
@@ -15025,7 +15264,7 @@ though, and has since been slightly modified)-->
               <token postag_regexp="yes" postag="D.*" min="0"/>
               <token postag_regexp="yes" postag="A.*|J.*" min="0" max="2"/>
               <token postag_regexp="yes" postag="N.*" min="1" max="2"/>
-              <token regexp="yes">que|qu'</token>
+              <token regexp="yes">que|qu[’´'‛′‘]</token>
               <token postag_regexp="yes" postag="D.*|N.*|Z.*|R.*"/>
               <token postag_regexp="yes" postag="V avoir.*"/>
               <token postag_regexp="yes" postag="V.*ppa.*p"/>
@@ -15034,7 +15273,7 @@ though, and has since been slightly modified)-->
           <token postag="N f s">
               <exception postag="V.*" postag_regexp="yes"/>
           </token>
-          <token regexp="yes" skip="2">que|qu'</token>
+          <token regexp="yes" skip="2">que|qu[’´'‛′‘]</token>
           <token postag="V avoir ind.*" postag_regexp="yes" skip="2">
               <exception scope="next">été</exception>
           </token>
@@ -15093,6 +15332,7 @@ though, and has since been slightly modified)-->
         <example>C’est dans la soirée que ces poursuites avaient été entamées.</example>
           <example>Mes anciennes expériences et la formation professionnelle que j'ai effectuées.</example>
           <example>Mes très anciennes expériences et la superbement belle formation professionnelle que j'ai effectuées.</example>
+          <example>Mes expériences et la formation que j'ai effectuées.</example>
       </rule>
       <rule name="det + n f s suivi par . p">
         <pattern>

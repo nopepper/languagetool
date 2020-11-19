@@ -67,6 +67,7 @@ public class GermanSpellerRule extends CompoundAwareHunspellRule {
   private static final Map<Pattern, Function<String,List<String>>> ADDITIONAL_SUGGESTIONS = new HashMap<>();
   static {
     put("lieder", w -> Arrays.asList("leider", "Lieder"));
+    put("Frauenhofer", "Fraunhofer");
     put("inbetracht", "in Betracht");
     put("überwhatsapp", "über WhatsApp");
     put("überzoom", "über Zoom");
@@ -942,8 +943,16 @@ public class GermanSpellerRule extends CompoundAwareHunspellRule {
     putRepl("[lL]eidensvoll(e[mnrs]?)?", "ens", "");
     putRepl("[bB]ewusstlich(e[mnrs]?)?", "lich", "");
     putRepl("[vV]erschmerzlich(e[mnrs]?)?", "lich", "bar");
+    putRepl("Krankenbruders?", "bruder", "pfleger");
+    putRepl("Krankenbrüdern?", "brüder", "pfleger");
+    putRepl("Lan-(Kabel[ns]?|Verbindung)", "Lan", "LAN");
+    put("[wW]elan", w -> Arrays.asList("WLAN", "W-LAN"));
     put("Pinn", w -> Arrays.asList("Pin", "PIN"));
     put("Geldmachung", w -> Arrays.asList("Geltendmachung", "Geldmacherei"));
+    put("[uU]nstimm?ichkeiten", "Unstimmigkeiten");
+    put("Teilnehmung", "Teilnahme");
+    put("Teilnehmungen", "Teilnahmen");
+    put("waser", "Wasser");
     put("Bekennung", "Bekenntnis");
     put("[hH]irar?chie", "Hierarchie");
     put("Chr", "Chr.");
@@ -1047,7 +1056,7 @@ public class GermanSpellerRule extends CompoundAwareHunspellRule {
   }
 
   @Override
-  protected void init() throws IOException {
+  protected synchronized void init() throws IOException {
     super.init();
     super.ignoreWordsWithLength = 1;
     String pattern = "(" + nonWordPattern.pattern() + "|(?<=[\\d°])-|-(?=\\d+))";
@@ -1132,6 +1141,7 @@ public class GermanSpellerRule extends CompoundAwareHunspellRule {
    */
   @Override
   public List<String> getSuggestions(String word) throws IOException {
+    /* Do not just comment in because of https://github.com/languagetool-org/languagetool/issues/3757
     if (word.length() < 18 && word.matches("[a-zA-Zöäüß-]+.?")) {
       for (String prefix : VerbPrefixes.get()) {
         if (word.startsWith(prefix)) {
@@ -1143,7 +1153,7 @@ public class GermanSpellerRule extends CompoundAwareHunspellRule {
           }
         }
       }
-    }
+    }*/
     List<String> suggestions = super.getSuggestions(word);
     suggestions = suggestions.stream().filter(k -> !PREVENT_SUGGESTION.matcher(k).matches() && !k.endsWith("roulett")).collect(Collectors.toList());
     if (word.endsWith(".")) {

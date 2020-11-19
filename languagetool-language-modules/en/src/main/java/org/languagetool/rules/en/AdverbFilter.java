@@ -130,7 +130,7 @@ public class AdverbFilter extends RuleFilter {
     put("unreasonably", "unreasonable");
     put("forcibly", "forcible");
     put("personally", "personal");
-    put("basically", "basical");
+    put("basically", "basic");
     put("definitely", "definite");
     put("potentially", "potential");
     put("manually", "manual");
@@ -321,11 +321,57 @@ public class AdverbFilter extends RuleFilter {
     put("strategically", "strategical");
     put("endlessly", "endless");
     put("virtually", "virtual");
-    put("regularly", "regulary");
+    put("regularly", "regular");
     put("deliberately", "deliberate");
     put("reasonably", "reasonable");
     put("similarly", "similar");
     put("flexibly", "flexible");
+    put("softly", "soft");
+    put("responsibly", "responsible");
+    put("irresponsibly", "irresponsible");
+    put("sweetly", "sweet");
+    put("comfortably", "comfortable");
+    put("uncomfortably", "uncomfortable");
+    put("intricately", "intricate");
+    put("unnecessarily", "unnecessary");
+    put("obstinately", "obstinate");
+    put("reportedly", "reported");
+    put("loosely", "loose");
+    put("profusely", "profuse");
+    put("mortally", "mortal");
+    put("dynamically", "dynamical");
+    put("illegally", "illegal");
+    put("legally", "legal");
+    put("undoubtedly", "undoubted");
+    put("humanly", "human");
+    put("likewise", "similar"); // special case
+    put("intrinsically", "intrinsic");
+    put("substantially", "substantial");
+    put("suspiciously", "suspicious");
+    put("generationally", "generational");
+    put("loudly", "loud");
+    put("moderately", "moderate");
+    put("gravely", "grave");
+    put("temporally", "temporal");
+    put("digitally", "digital");
+    put("finely", "fine");
+    put("respectfully", "respectful");
+    put("questioningly", "questioning");
+    put("nasally", "nasal");
+    put("diagonally", "diagonal");
+    put("additionally", "additional");
+    put("sexually", "sexual");
+    put("remarkably", "remarkable");
+    put("acutely", "acute");
+    put("linearly", "linear");
+    put("perfunctorily", "perfunctory");
+    put("unbelievably", "unbelievable");
+    put("merrily", "merry");
+    put("beneath", "below"); // special case
+    put("nasally", "nasal");
+    put("concretely", "concrete");
+    put("intuitively", "intuitive");
+    put("please", "pleasing");
 
     // TODO: add more or maybe use https://github.com/simplenlg/simplenlg?
     //put("", "");

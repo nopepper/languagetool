@@ -1,5 +1,8 @@
 #Només funciona amb verbs de la primera conjugació, acabats en -ar, que són la majoria
-mutejar=silenciar
+desmoronar=ensorrar|enfonsar|decaure|anar de cap per avall|minar|erosionar
+juntar=ajuntar
+mutejar=silenciar|emmudir|apagar|tancar|desactivar
+desmutejar|unmutejar=activar|engegar|obrir|encendre
 securitzar|seguritzar=protegir
 rolejar|rollejar|rol·lejar=refinançar
 traumar=traumatitzar
