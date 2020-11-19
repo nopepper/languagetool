@@ -18,13 +18,13 @@
  */
 package org.languagetool.language;
 
+import org.languagetool.noop.NoopLanguage;
+
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Paths;
 import java.text.Normalizer;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import static java.lang.StrictMath.*;
@@ -38,7 +38,8 @@ public class NGramLangIdentifier {
   private final List<String[]> codes; // Elem format = {Name, 2-code (or "NULL"), 3-code}
 
   private final List<Map<String, Double>> knpBigramProbs;
-  private final int thresholds_start;
+  private final int thresholdsStart;
+  private final int thresholdsEnd;
   private final List<double[]> thresholds;
 
   private final int maxLength;
@@ -75,12 +76,14 @@ public class NGramLangIdentifier {
     thresholds = new ArrayList<>();
     try (BufferedReader br = getReader("thresholds.txt")) {
       String line;
-      thresholds_start = Integer.parseInt(br.readLine());
+      int[] thresholdsRange = Arrays.stream(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+      thresholdsStart = thresholdsRange[0];
+      thresholdsEnd = thresholdsRange[1];
       while ((line = br.readLine()) != null) {
         double[] vals = Arrays.stream(line.split(" ")).mapToDouble(Double::parseDouble).toArray();
         thresholds.add(vals);
       }
-      assert (thresholds.size() == maxLength - thresholds_start) : "Thresholds file is incomplete";
+      assert (thresholds.size() == thresholdsEnd - thresholdsStart) : "Thresholds file is incomplete";
     }
 
     //Load transition matrices - Line format = {i} {j} {val}
@@ -88,6 +91,10 @@ public class NGramLangIdentifier {
   }
 
   public Map<String, Double> detectLanguages(String text, List<String> additionalLanguageCodes) {
+    if (additionalLanguageCodes == null) {
+      additionalLanguageCodes = new ArrayList<>();
+    }
+
     List<Integer> enc = encode(text);
     List<Double> finalProbs = new ArrayList<>();
     List<int[]> keys = keys(enc);
@@ -95,7 +102,10 @@ public class NGramLangIdentifier {
     for (int i = 0; i < codes.size(); i++) {
       double val = 0;
       for (int[] key: keys) {
-        double prob = knpBigramProbs.get(i).getOrDefault(key[0] + "_" + key[1], EPSILON);
+        double prob = EPSILON;
+        if(key[0] != 0 || key[1] != 0) {
+          prob = knpBigramProbs.get(i).getOrDefault(key[0] + "_" + key[1], EPSILON);
+        }
         val += log(prob);
       }
       finalProbs.add(val);
@@ -103,16 +113,16 @@ public class NGramLangIdentifier {
 
     Map<String, Double> result = new HashMap<>();
 
-    if (text.length() >= this.thresholds_start){
+    if (enc.size() >= thresholdsStart && enc.size() < thresholdsEnd) {
       int argMax = 0;
-      for (int i = 1; i < finalProbs.size(); i++){
-        if (finalProbs.get(i) > finalProbs.get(argMax)){
+      for (int i = 1; i < finalProbs.size(); i++) {
+        if (finalProbs.get(i) > finalProbs.get(argMax)) {
           argMax = i;
         }
       }
-      int thresholdIndex = min(text.length(), maxLength) - this.thresholds_start;
-      if (finalProbs.get(argMax) < thresholds.get(thresholdIndex)[argMax]){
-        result.put("zz", 100.0);
+      int thresholdIndex = enc.size() - this.thresholdsStart;
+      if (finalProbs.get(argMax) < thresholds.get(thresholdIndex)[argMax]) {
+        result.put(NoopLanguage.SHORT_CODE, 1.0);
         return result;
       }
     }
@@ -170,7 +180,7 @@ public class NGramLangIdentifier {
     return result;
   }
 
-  private List<Integer> encode(String text) {
+  public List<Integer> encode(String text) {
     List<Integer> result = new ArrayList<>();
     result.add(1); //Start of sentence token
     if (text.length() > maxLength) {
