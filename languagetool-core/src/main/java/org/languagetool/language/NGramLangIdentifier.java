@@ -102,11 +102,14 @@ public class NGramLangIdentifier {
     for (int i = 0; i < codes.size(); i++) {
       double val = 0;
       for (int[] key: keys) {
-        double prob = EPSILON;
-        if(key[0] != 0 || key[1] != 0) {
-          prob = knpBigramProbs.get(i).getOrDefault(key[0] + "_" + key[1], EPSILON);
+        double prob = knpBigramProbs.get(i).getOrDefault(key[0] + "_" + key[1], EPSILON);
+        if(key[0] < 11 && key[1] < 11) {
+          prob = Math.pow(prob, 2) / 225.0;
         }
-        val += log(prob);
+        else if(key[0] < 11 || key[1] < 11) {
+          prob /= 15.0;
+        }
+        val += log(Math.max(prob, EPSILON));
       }
       finalProbs.add(val);
     }
