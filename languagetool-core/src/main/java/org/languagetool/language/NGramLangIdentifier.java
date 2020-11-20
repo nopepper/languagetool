@@ -154,8 +154,7 @@ public class NGramLangIdentifier {
       while ((line = br.readLine()) != null) {
         result.add(line);
       }
-    }
-    catch(java.io.IOException e) {
+    } catch(java.io.IOException e) {
       throw new RuntimeException(e);
     }
     return result;
