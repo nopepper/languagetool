@@ -199,6 +199,7 @@ public class LanguageIdentifier {
     // Chrome sends 'nn' (Nynorsk) or 'nb' (Bokmal), but fasttext detects 'no', so we have to map, and 
     // Bokmal seems to be the standard variant:
     List<String> additionalLangs = noopLangsTmp.stream().map(k -> k.equals("nb") ? "no" : k).collect(Collectors.toList());
+    additionalLangs.add("zz");
     List<String> preferredLangs = preferredLangsTmp.stream().map(k -> k.equals("nb") ? "no" : k).collect(Collectors.toCollection(ArrayList::new));
     if (preferredLangs.stream().anyMatch(k -> k.contains("-"))) {
       throw new IllegalArgumentException("preferredLanguages may only contain language codes without variants (e.g. 'en', but not 'en-US'): " +
@@ -236,7 +237,7 @@ public class LanguageIdentifier {
         } else {
           System.out.println("FastText above threshold: " + result.getValue().floatValue() + " for " + text.length() + " chars");
         }*/
-        if ((usingFastText && result.getValue().floatValue() < THRESHOLD) || result.getKey().equals("zz")) {
+        if ((usingFastText && result.getValue().floatValue() < THRESHOLD)) {
           //System.out.println(text + " ->" + result.getValue().floatValue() + " " + result.getKey());
           CommonWords commonWords = new CommonWords();
           Map<Language, Integer> lang2Count = commonWords.getKnownWordsPerLanguage(shortText);
