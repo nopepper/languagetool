@@ -1,3 +1,9 @@
+Georgie Dann	NPMSSP0
+Creative Commons	NPCNO000
+Lope de Aver	NPCNSP0
+Green Mountains	NPFPG00
+Cola Cao	NPMNO00
+Ringo Starr	NPMSSP0
 Tatxo Benet	NPMSSP0
 Prosper Mérimée	NPMSSP00
 veni, vidi, vici	LOC_ADV

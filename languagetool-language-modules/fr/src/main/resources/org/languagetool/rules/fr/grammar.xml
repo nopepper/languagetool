@@ -9070,7 +9070,38 @@ though, and has since been slightly modified)-->
         <example correction="trois fois par semaine">Je joue au Softball <marker>trois fois au semaine</marker>.</example>
       </rule>
       <!-- End of additions -->
-      <rule id="VOUS_LE_PPA_1ER_GROUPE" name="s manquant à vous le ppa" default="temp_off">
+      <rule id="PRES_SPACIAL" name="prés au lieu de près" default="temp_off">
+          <antipattern>
+              <token inflected="yes" regexp="yes" postag="V.*ppa.*" postag_regexp="yes">(dé)?nommer|intituler|dire|appeller|surnommer|baptiser|désigner</token>
+              <token regexp="yes">prés?</token>
+          </antipattern>
+          <antipattern>
+              <token case_sensitive="yes" regexp="yes">Prés?</token>
+          </antipattern>
+          <pattern>
+              <token postag="V.*" postag_regexp="yes"/>
+              <marker>
+                  <token regexp="yes">prés?</token>
+              </marker>
+              <token regexp="yes">d[eu''ʾ′ˊˈꞌ'ʿ‵ˋ] </token>
+          </pattern>
+          <message>S'il s'agit d'une indication de proximité, utilisez l'adverbe <suggestion>près</suggestion>.</message>
+          <example correction="près">Personnes qui travaillent à Montpellier, mais qui habitent <marker>prés</marker> du Castelnau-le-Lez.</example>
+          <example>L'endroit est désormais le lieu-dit nommé Pré de la mosaïque.</example>
+      </rule>
+      <rule id="FAITS_ACTUELS" name="accord d'actuel" default="temp_off">
+          <pattern>
+              <token>faits</token>
+              <marker>
+                  <token regexp="yes" inflected="yes">divers|actuel
+                      <exception postag=".* m p" postag_regexp="yes"/>
+                  </token>
+              </marker>
+          </pattern>
+          <message>Dans cet idiome, <suggestion><match no="2" postag="(.*) [mfe] (sp|[sp])" postag_regexp="yes" postag_replace="$1 m p"/></suggestion> s'accorde toujours avec «faits»</message>
+          <example correction="actuels">Problématique et faits <marker>actuelles</marker>.</example>
+      </rule>
+      <rule id="VOUS_LE_PPA_1ER_GROUPE" name="s manquant à vous le ppa">
           <pattern>
               <token>vous</token>
               <token>le</token>
@@ -9081,7 +9112,7 @@ though, and has since been slightly modified)-->
           <message>Il semblerait manquer la marque du pluriel. Vouliez-vous dire « <suggestion>\3s</suggestion> ».</message>
           <example correction="faites">Comme vous le <marker>faite</marker>.</example>
       </rule>
-      <rule id="CONFUSION_PAR_PART" name="Confusion part/par expression de par" default="temp_off">
+      <rule id="CONFUSION_PAR_PART" name="Confusion part/par expression de par">
           <pattern>
               <token>de</token>
               <marker>
@@ -9095,7 +9126,7 @@ though, and has since been slightly modified)-->
           <suggestion>par</suggestion>
           <example correction="par">De <marker>part</marker> ses multiples expériences, Jacques avait déjà créé des sites internets.</example>
       </rule>
-      <rule id="CONFUSION_PPA_IND_2E_GROUPE" name="confusion entre participe passé et indicatif du deuxième groupe" default="temp_off">
+      <rule id="CONFUSION_PPA_IND_2E_GROUPE" name="confusion entre participe passé et indicatif du deuxième groupe">
           <pattern>
               <token postag="D.*" postag_regexp="yes"/>
               <token postag="N.*" postag_regexp="yes"/>
@@ -9111,7 +9142,8 @@ though, and has since been slightly modified)-->
           <example correction="choisit">Le professeur <marker>choisi</marker> de créer un site internet.</example>
           <example>Le professeur choisit de créer un site internet.</example>
       </rule>
-     <rulegroup id="ACCORD_DE_ADJ" name="De + adj + nom pluriel" default="temp_off">
+      <!-- Can be deployed after work on word groups is done
+     <rulegroup id="ACCORD_DE_ADJ" name="De + adj + nom pluriel" default="off">
          <rule name="J e s -> N [mfe] p">
               <pattern>
                   <token>de</token>
@@ -9211,6 +9243,7 @@ though, and has since been slightly modified)-->
              <example correction="sacrés">Il avait donc de <marker>sacré</marker> atouts.</example>
          </rule>
       </rulegroup>
+      -->
       <rule id="SONT_SOMMES" name="sont au lieu de sommes" default="temp_off">
           <pattern>
               <token postag_regexp="yes" postag="R.*"/>
@@ -35984,7 +36017,7 @@ though, and has since been slightly modified)-->
             <exception postag="N m s">est</exception>
           </token>
           <token spacebefore="yes">
-            <exception regexp="yes">vous|nous|mieux|faire|en|donnant|couvent|ho|olé|Bora|roses?|vroum|Zsa</exception><match no="0"/>
+            <exception regexp="yes">sapiens|vous|nous|mieux|faire|en|donnant|couvent|ho|olé|Bora|roses?|vroum|Zsa</exception><match no="0"/>
           </token>
         </pattern>
         <message>Faute de frappe possible : un mot est répété : \1 \2. Correction : <suggestion>\1</suggestion>.</message>
@@ -36000,6 +36033,7 @@ though, and has since been slightly modified)-->
         <example>Les poules du couvent couvent.</example>
         <example>Un film un peu olé olé.</example>
         <example>Je suis allé à Bora Bora.</example>
+        <example>Homo sapiens sapiens</example>
       </rule>
       <rule>
         <pattern>
@@ -36459,4 +36493,38 @@ though, and has since been slightly modified)-->
     </rulegroup>
   </category>
   <!-- vim: foldmethod=marker foldmarker=<category,</category:  -->
+  <category name="majuscules" id="CASING">
+    <rulegroup id="HOMO" name="homo/Homo">
+      <rule>
+        <antipattern case_sensitive="yes">
+          <token>Homo</token>
+          <token>sapiens</token>
+          <token regexp="yes">sapiens|idaltu</token>
+        </antipattern>
+        <pattern>
+          <token>homo</token>
+          <token>sapiens</token>
+          <token regexp="yes">sapiens|idaltu</token>
+        </pattern>
+        <message>Nom scientifique : le premier mot avec une majuscule et le reste en minuscules.</message>
+        <suggestion>Homo <match no="2" case_conversion="alllower"/> <match no="3" case_conversion="alllower"/></suggestion>
+        <example correction="Homo sapiens sapiens">C'est un <marker>homo sapiens Sapiens</marker>.</example>
+        <example correction="Homo sapiens idaltu">C'est un <marker>Homo sapiens Idaltu</marker>.</example>
+      </rule>
+      <rule>
+        <antipattern case_sensitive="yes">
+          <token>Homo</token>
+          <token regexp="yes">antecessor|cepranensis|erectus|ergaster|floresiensis|gautengensis|habilis|heidelbergensis|naledi|neanderthalensis|rhodesiensis|rudolfensis|sapiens|sp|spp|tsaichangensis</token>
+        </antipattern>
+        <pattern>
+          <token>homo</token>
+          <token regexp="yes">antecessor|cepranensis|erectus|ergaster|floresiensis|gautengensis|habilis|heidelbergensis|naledi|neanderthalensis|rhodesiensis|rudolfensis|sapiens|sp|spp|tsaichangensis</token>
+        </pattern>
+        <message>Nom scientifique : le premier mot avec une majuscule et le deuxième en minuscules.</message>
+        <suggestion>Homo <match no="2" case_conversion="alllower"/></suggestion>
+        <example correction="Homo sapiens">C'est un <marker>homo sapiens</marker>.</example>
+        <example correction="Homo habilis">C'est un <marker>Homo Habilis</marker>.</example>
+      </rule>
+    </rulegroup>
+  </category>
 </rules>

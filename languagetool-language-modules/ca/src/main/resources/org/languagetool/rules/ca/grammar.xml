@@ -22536,7 +22536,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <antipattern>
                     <!-- english-->
                     <token>public</token>
-                    <token regexp="yes">health|schools?|theater|finance|hero|domain|license|licence|opinion|choice|key|law|enemy|space|policy|service|offices?|library|international|administration|broadcasting|house</token>
+                    <token regexp="yes">health|schools?|theater|finance|hero|domain|license|licence|opinion|choice|key|law|enemy|space|policy|service|offices?|library|international|administration|broadcasting|house|affairs|interest</token>
                 </antipattern>
                 <antipattern>
                     <token postag="RG|LOC_ADV" postag_regexp="yes"/>
@@ -25812,6 +25812,16 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <suggestion><match no="1" case_conversion="alllower"/><match no="3" case_conversion="alllower"/></suggestion>
                 <example correction="wifi">Allà no arriba el <marker>wi-fi</marker>.</example>
                 <example correction="wifis">Les <marker>Wi-Fis</marker>.</example>
+            </rule>
+            <rule>
+                <pattern>
+                    <token>power</token>
+                    <token min="0">-</token>
+                    <token regexp="yes">points?</token>
+                </pattern>
+                <message>S'escriu junt.</message>
+                <suggestion>PowerPoint</suggestion>
+                <example correction="PowerPoint">He d'escriure un <marker>power point</marker>.</example>
             </rule>
         </rulegroup>
         <rulegroup id="CONTRACCIONS" name="contraccions">
@@ -30871,6 +30881,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example correction="us"><marker>vos</marker> sembla bé</example>
                 <example>vós sou l'únic sant</example>
                 <example>Déu vos guard</example>
+                <example>ANIMEU-VOS A PARTICIPAR.</example>
             </rule>
             <rule>
                 <pattern>
@@ -32489,17 +32500,38 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             <suggestion><match no="1" case_conversion="alllower"/></suggestion>
             <example correction="paracetamol">He comprat <marker>Paracetamol</marker>.</example>
         </rule>
-        <rule id="HOMO" name="homo/Homo">
-            <pattern>
-                <marker>
-                    <token case_sensitive="yes">homo</token>
-                </marker>
-                <token regexp="yes">antecessor|cepranensis|erectus|ergaster|floresiensis|gautengensis|habilis|heidelbergensis|naledi|neanderthalensis|rhodesiensis|rudolfensis|sapiens|sp|spp|tsaichangensis</token>
-            </pattern>
-            <message>Aquest nom científic s'escriu en majúscula.</message>
-            <suggestion>Homo</suggestion>
-            <example correction="Homo">És propi de l'<marker>homo</marker> sapiens.</example>
-        </rule>
+        <rulegroup id="HOMO" name="homo/Homo">
+            <rule>
+                <antipattern case_sensitive="yes">
+                    <token>Homo</token>
+                    <token>sapiens</token>
+                    <token regexp="yes">sapiens|idaltu</token>
+                </antipattern>
+                <pattern>
+                    <token>homo</token>
+                    <token>sapiens</token>
+                    <token regexp="yes">sapiens|idaltu</token>
+                </pattern>
+                <message>Nom científic: la primera paraula en majúscula i la resta en minúscula.</message>
+                <suggestion>Homo <match no="2" case_conversion="alllower"/> <match no="3" case_conversion="alllower"/></suggestion>
+                <example correction="Homo sapiens sapiens">És propi de l'<marker>homo sapiens Sapiens</marker>.</example>
+                <example correction="Homo sapiens idaltu">És propi de l'<marker>Homo sapiens Idaltu</marker>.</example>
+            </rule>
+            <rule>
+                <antipattern case_sensitive="yes">
+                    <token>Homo</token>
+                    <token regexp="yes">antecessor|cepranensis|erectus|ergaster|floresiensis|gautengensis|habilis|heidelbergensis|naledi|neanderthalensis|rhodesiensis|rudolfensis|sapiens|sp|spp|tsaichangensis</token>
+                </antipattern>
+                <pattern>
+                    <token>homo</token>
+                    <token regexp="yes">antecessor|cepranensis|erectus|ergaster|floresiensis|gautengensis|habilis|heidelbergensis|naledi|neanderthalensis|rhodesiensis|rudolfensis|sapiens|sp|spp|tsaichangensis</token>
+                </pattern>
+                <message>Nom científic: la primera paraula en majúscula i la segona en minúscula.</message>
+                <suggestion>Homo <match no="2" case_conversion="alllower"/></suggestion>
+                <example correction="Homo sapiens">És propi de l'<marker>homo sapiens</marker>.</example>
+                <example correction="Homo habilis">És propi de l'<marker>Homo Habilis</marker>.</example>
+            </rule>
+        </rulegroup>
         <rule id="VILA_REAL" name="Vila-Real / Vila-real">
             <pattern case_sensitive="yes">
                 <token>Vila</token>
@@ -34369,6 +34401,46 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
         </rulegroup>
     </category>
     <category id="INCORRECT_EXPRESSIONS" name="Expressions incorrectes" type="grammar">
+        <rulegroup id="EN_ARES_DE" name="en ares de" default="temp_off">
+            <rule>
+                <pattern>
+                    <token>en</token>
+                    <token regexp="yes">ares|ara</token>
+                    <token regexp="yes">a</token>
+                </pattern>
+                <message>Expressió incorrecta.</message>
+                <suggestion>en ares de</suggestion>
+                <example correction="en ares de">Ho va sacrificar tot <marker>en ares a</marker> la seva amistat.</example>
+            </rule>
+            <rule>
+                <pattern>
+                    <token>en</token>
+                    <token>ara</token>
+                    <token regexp="yes">de|d'</token>
+                </pattern>
+                <message>Expressió incorrecta.</message>
+                <suggestion>en ares \3</suggestion>
+                <example correction="en ares de">Ho va sacrificar tot <marker>en ara de</marker> la seva amistat.</example>
+            </rule>
+            <rule>
+                <pattern>
+                    <token>en</token>
+                    <token>ares</token>
+                    <token>de</token>
+                </pattern>
+                <message>Aquesta locució és admissible amb el sentit de <suggestion>en nom \3</suggestion>, <suggestion>en honor \3</suggestion>, però en incorrecta en el sentit de <suggestion>per a</suggestion>, <suggestion>amb l'objectiu \3</suggestion></message>
+                <example correction="en nom de|en honor de|per a|amb l'objectiu de">Ho va fer <marker>en ares de</marker>ls beneficis.</example>
+            </rule>
+            <rule>
+                <pattern>
+                    <token>en</token>
+                    <token>ares</token>
+                    <token>d'</token>
+                </pattern>
+                <message>Aquesta locució és admissible amb el sentit de <suggestion>en nom \3</suggestion>, <suggestion>en honor \3</suggestion>, però en incorrecta en el sentit de <suggestion>per a </suggestion>, <suggestion>amb l'objectiu \3</suggestion></message>
+                <example correction="en nom d'|en honor d'|per a |amb l'objectiu d'">Ho va fer <marker>en ares d'</marker>uns bons resultats.</example>
+            </rule>
+        </rulegroup>
         <rule id="A_DATA_DE" name="*a data de">
             <antipattern>
                 <token skip="4" postag="V.*" postag_regexp="yes" inflected="yes" regexp="yes">&exceptions_ALS_TRES_MESOS;<exception regexp="yes">remuntada|remuntades</exception></token>
@@ -34663,6 +34735,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             <example>Em va dir que escombraria ell.</example>
         </rule>
         <rulegroup name="plural de sigles" id="SIGLES">
+            <antipattern>
+                <token postag="V.N.*" postag_regexp="yes" regexp="yes">.*E</token>
+                <token>'s</token>
+            </antipattern>
             <rule>
                 <pattern>
                     <token regexp="yes" case_sensitive="yes">[A-Z]+</token>
@@ -50023,9 +50099,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             <rule>
                 <pattern>
                     <token>l'</token>
-                    <token regexp="yes">al-Àndalus|Alandalús</token>
+                    <token regexp="yes">al-Àndalus|Alandalús|(?-i)Andalus</token>
                 </pattern>
-                <message>S'escriu sense article al davant.</message>
+                <message>Forma preferida actualment.</message>
                 <suggestion>al-Àndalus</suggestion>
                 <example correction="al-Àndalus">Un estudi sobre <marker>l'al-Àndalus</marker>.</example>
             </rule>

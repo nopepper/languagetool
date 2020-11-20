@@ -18,10 +18,14 @@
  */
 package org.languagetool.rules.en;
 
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Sets;
 import org.jetbrains.annotations.Nullable;
 import org.languagetool.*;
 import org.languagetool.languagemodel.LanguageModel;
-import org.languagetool.rules.*;
+import org.languagetool.rules.Example;
+import org.languagetool.rules.RuleMatch;
+import org.languagetool.rules.SuggestedReplacement;
 import org.languagetool.rules.en.translation.BeoLingusTranslator;
 import org.languagetool.rules.spelling.morfologik.MorfologikSpellerRule;
 import org.languagetool.rules.translation.Translator;
@@ -92,8 +96,8 @@ public abstract class AbstractEnglishSpellerRule extends MorfologikSpellerRule {
   }
 
   @Override
-  protected List<SuggestedReplacement> filterSuggestions(List<SuggestedReplacement> suggestions, AnalyzedSentence sentence, int i) {
-    List<SuggestedReplacement> result = super.filterSuggestions(suggestions, sentence, i);
+  protected List<SuggestedReplacement> filterSuggestions(List<SuggestedReplacement> suggestions) {
+    List<SuggestedReplacement> result = super.filterSuggestions(suggestions);
     List<SuggestedReplacement> clean = new ArrayList<>();
     for (SuggestedReplacement suggestion : result) {
       if (!suggestion.getReplacement().matches(".* (b|c|d|e|f|g|h|j|k|l|m|n|o|p|q|r|s|t|v|w|y|z|ll|ve)")) {  // e.g. 'timezones' suggests 'timezone s'
@@ -125,53 +129,57 @@ public abstract class AbstractEnglishSpellerRule extends MorfologikSpellerRule {
       }
     }
     // filter "re ..." (#2562):
-    for (RuleMatch ruleMatch : ruleMatches) {
-      List<SuggestedReplacement> cleaned = ruleMatch.getSuggestedReplacementObjects().stream()
-        .filter(k -> !k.getReplacement().startsWith("re ") &&
-                     !k.getReplacement().startsWith("en ") &&
-                     !k.getReplacement().startsWith("co ") &&
-                     !k.getReplacement().startsWith("de ") &&
-                     !k.getReplacement().startsWith("mid ") &&
-                     !k.getReplacement().toLowerCase().startsWith("non ") &&
-                     !k.getReplacement().toLowerCase().startsWith("bio ") &&
-                     !k.getReplacement().startsWith("con ") &&
-                     !k.getReplacement().startsWith("ins ") && // instable (ins table)
-                     !k.getReplacement().toLowerCase().startsWith("pre ") &&
-                     !k.getReplacement().toLowerCase().startsWith("inter ") &&
-                     !k.getReplacement().toLowerCase().startsWith("anti ") &&
-                     !k.getReplacement().toLowerCase().startsWith("photo ") &&
-                     !k.getReplacement().startsWith("sub ") &&
-                     !k.getReplacement().toLowerCase().startsWith("auto ") &&
-                     !k.getReplacement().startsWith("sh ") &&
-                     !k.getReplacement().startsWith("li ") &&
-                     !k.getReplacement().startsWith("ha ") &&
-                     !k.getReplacement().toLowerCase().startsWith("dis ") &&
-                     !k.getReplacement().toLowerCase().startsWith("mono ") &&
-                     !k.getReplacement().toLowerCase().startsWith("trans ") &&
-                     !k.getReplacement().toLowerCase().startsWith("ultra ") &&
-                     !k.getReplacement().toLowerCase().startsWith("mini ") &&
-                     !k.getReplacement().toLowerCase().startsWith("hyper ") &&
-                     !k.getReplacement().toLowerCase().startsWith("fore ") &&
-                     !k.getReplacement().toLowerCase().startsWith("pseudo ") &&
-                     !k.getReplacement().toLowerCase().startsWith("lo ") &&
-                     !k.getReplacement().startsWith("mu ") &&
-                     !k.getReplacement().startsWith("e ") &&
-                     !k.getReplacement().startsWith("c ") &&
-                     !k.getReplacement().endsWith(" able") &&
-                     !k.getReplacement().endsWith(" less") && // (e.g. permissionless)
-                     !k.getReplacement().endsWith(" sly") && // uneccesary suggestion (e.g. for continuesly)
-                     !k.getReplacement().endsWith(" OO") && // unecessary suggestion (e.g. for "HELLOOO")
-                     !k.getReplacement().endsWith(" HHH") && // unecessary suggestion (e.g. for "OHHHH")
-                     !k.getReplacement().endsWith(" ally") && // adverbs ending in "ally" that LT doesn't know (yet)
-                     !k.getReplacement().endsWith(" ize") && // "advertize"
-                     !k.getReplacement().endsWith(" sh") &&
-                     !k.getReplacement().endsWith(" ward") &&
-                     !k.getReplacement().endsWith(" en") && // "Antwerpen" suggests "Antwerp en"
-                     !k.getReplacement().endsWith(" ed"))
-        .collect(Collectors.toList());
-      ruleMatch.setSuggestedReplacementObjects(cleaned);
-    }
-    return ruleMatches;
+    return ruleMatches.stream().map(m -> {
+      RuleMatch copy = new RuleMatch(m);
+      copy.setLazySuggestedReplacements(() -> cleanSuggestions(m));
+      return copy;
+    }).collect(Collectors.toList());
+  }
+
+  private static List<SuggestedReplacement> cleanSuggestions(RuleMatch ruleMatch) {
+    return ruleMatch.getSuggestedReplacementObjects().stream()
+      .filter(k -> !k.getReplacement().startsWith("re ") &&
+                   !k.getReplacement().startsWith("en ") &&
+                   !k.getReplacement().startsWith("co ") &&
+                   !k.getReplacement().startsWith("de ") &&
+                   !k.getReplacement().startsWith("mid ") &&
+                   !k.getReplacement().toLowerCase().startsWith("non ") &&
+                   !k.getReplacement().toLowerCase().startsWith("bio ") &&
+                   !k.getReplacement().startsWith("con ") &&
+                   !k.getReplacement().startsWith("ins ") && // instable (ins table)
+                   !k.getReplacement().toLowerCase().startsWith("pre ") &&
+                   !k.getReplacement().toLowerCase().startsWith("inter ") &&
+                   !k.getReplacement().toLowerCase().startsWith("anti ") &&
+                   !k.getReplacement().toLowerCase().startsWith("photo ") &&
+                   !k.getReplacement().startsWith("sub ") &&
+                   !k.getReplacement().toLowerCase().startsWith("auto ") &&
+                   !k.getReplacement().startsWith("sh ") &&
+                   !k.getReplacement().startsWith("li ") &&
+                   !k.getReplacement().startsWith("ha ") &&
+                   !k.getReplacement().toLowerCase().startsWith("dis ") &&
+                   !k.getReplacement().toLowerCase().startsWith("mono ") &&
+                   !k.getReplacement().toLowerCase().startsWith("trans ") &&
+                   !k.getReplacement().toLowerCase().startsWith("ultra ") &&
+                   !k.getReplacement().toLowerCase().startsWith("mini ") &&
+                   !k.getReplacement().toLowerCase().startsWith("hyper ") &&
+                   !k.getReplacement().toLowerCase().startsWith("fore ") &&
+                   !k.getReplacement().toLowerCase().startsWith("pseudo ") &&
+                   !k.getReplacement().toLowerCase().startsWith("lo ") &&
+                   !k.getReplacement().startsWith("mu ") &&
+                   !k.getReplacement().startsWith("e ") &&
+                   !k.getReplacement().startsWith("c ") &&
+                   !k.getReplacement().endsWith(" able") &&
+                   !k.getReplacement().endsWith(" less") && // (e.g. permissionless)
+                   !k.getReplacement().endsWith(" sly") && // uneccesary suggestion (e.g. for continuesly)
+                   !k.getReplacement().endsWith(" OO") && // unecessary suggestion (e.g. for "HELLOOO")
+                   !k.getReplacement().endsWith(" HHH") && // unecessary suggestion (e.g. for "OHHHH")
+                   !k.getReplacement().endsWith(" ally") && // adverbs ending in "ally" that LT doesn't know (yet)
+                   !k.getReplacement().endsWith(" ize") && // "advertize"
+                   !k.getReplacement().endsWith(" sh") &&
+                   !k.getReplacement().endsWith(" ward") &&
+                   !k.getReplacement().endsWith(" en") && // "Antwerpen" suggests "Antwerp en"
+                   !k.getReplacement().endsWith(" ed"))
+      .collect(Collectors.toList());
   }
 
   /**
@@ -187,13 +195,10 @@ public abstract class AbstractEnglishSpellerRule extends MorfologikSpellerRule {
     // this has precedence
     RuleMatch oldMatch = ruleMatches.get(0);
     RuleMatch newMatch = new RuleMatch(this, sentence, oldMatch.getFromPos(), oldMatch.getToPos(), message);
-    List<String> allSuggestions = new ArrayList<>(forms);
-    for (String repl : oldMatch.getSuggestedReplacements()) {
-      if (!allSuggestions.contains(repl)) {
-        allSuggestions.add(repl);
-      }
-    }
-    newMatch.setSuggestedReplacements(allSuggestions);
+    newMatch.setLazySuggestedReplacements(() -> new ArrayList<>(Sets.newLinkedHashSet(Iterables.concat(
+      Iterables.transform(forms, SuggestedReplacement::new),
+      oldMatch.getSuggestedReplacementObjects()
+    ))));
     ruleMatches.set(0, newMatch);
   }
 
@@ -259,7 +264,7 @@ public abstract class AbstractEnglishSpellerRule extends MorfologikSpellerRule {
   protected final Map<String, List<String>> topSuggestions;
   protected final Map<String, List<String>> topSuggestionsIgnoreCase;
 
-  protected Map<String, List<String>> getTopSuggestionsIgnoreCase() {
+  protected static Map<String, List<String>> getTopSuggestionsIgnoreCase() {
     Map<String, List<String>> s = new HashMap<>();
     s.put("json", Arrays.asList("Jason"));
     s.put("bmps", Arrays.asList("BMPs"));
@@ -294,7 +299,7 @@ public abstract class AbstractEnglishSpellerRule extends MorfologikSpellerRule {
     return s;
   }
 
-  protected Map<String, List<String>> getTopSuggestions() {
+  protected static Map<String, List<String>> getTopSuggestions() {
     Map<String, List<String>> s = new HashMap<>();
     s.put("tarrif", Arrays.asList("tariff"));
     s.put("Tarrif", Arrays.asList("Tariff"));
@@ -620,8 +625,6 @@ public abstract class AbstractEnglishSpellerRule extends MorfologikSpellerRule {
     s.put("automisation", Arrays.asList("automatisation"));
     s.put("Automization", Arrays.asList("Automatization"));
     s.put("Automisation", Arrays.asList("Automatisation"));
-    s.put("ensuite", Arrays.asList("en suite"));
-    s.put("Ensuite", Arrays.asList("En suite"));
     s.put("aswell", Arrays.asList("as well"));
     s.put("Continuesly", Arrays.asList("Continuously"));
     s.put("continuesly", Arrays.asList("continuously"));
@@ -688,8 +691,6 @@ public abstract class AbstractEnglishSpellerRule extends MorfologikSpellerRule {
     s.put("yeld", Arrays.asList("yelled"));
     s.put("os", Arrays.asList("OS", "is", "so"));
     s.put("abel", Arrays.asList("able"));
-    s.put("ensuite", Arrays.asList("en suite"));
-    s.put("Ensuite", Arrays.asList("En suite"));
 
     return s;
   }
