@@ -255,7 +255,7 @@ public class LanguageIdentifier {
         }
         if (text.length() < CONSIDER_ONLY_PREFERRED_THRESHOLD && preferredLangs.size() > 0) {
           //System.out.println("remove? " + preferredLangs + " <-> " + scores);
-          scores.keySet().removeIf(k -> !preferredLangs.contains(k));
+          scores.keySet().removeIf(k -> !preferredLangs.contains(k) && !k.equals("zz"));
           //System.out.println("-> " + b + " ==> " + scores);
           result = getHighestScoringResult(scores);
         }
