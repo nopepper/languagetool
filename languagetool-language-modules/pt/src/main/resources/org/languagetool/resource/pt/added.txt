@@ -717,6 +717,8 @@ bulldozers	bulldozer	NCMP000
 bullying	bullying	NCMS000
 burnout	burnout	NCMS000
 burnouts	burnout	NCMP000
+burrito	burrito	NCMS000
+burritos	burrito	NCMP000
 cagalhão	cagalhão	NCMS000
 cagalhões	cagalhão	NCMP000
 cagueiro	cagueiro	NCMS000
@@ -732,6 +734,8 @@ caguinchas	caguinchas	NCCS000
 caleça	caleça	NCFS000
 caleças	caleça	NCFP000
 caldeireiro	caldeireiro	NCMS000
+camandro	camandro	NCMS000
+camandros	camandro	NCMP000
 camaronês	camaronês	AQ0MS0
 camaronês	camaronês	NCMS000
 camaronesa	camaronês	AQ0FS0
@@ -1093,6 +1097,8 @@ desencadeador	desencadeador	AQ0MS0
 desencadeador	desencadeador	NCMS000
 desencadeadores	desencadeador	AQ0MP0
 desencadeadores	desencadeador	NCMP000
+desencarnado	desencarnado	AQ0MS0
+desencarnados	desencarnado	AQ0MP0
 desesperançar	desesperançar	VMN0000
 desesperançar	desesperançar	VMN01S0
 desesperançar	desesperançar	VMN03S0
@@ -1505,6 +1511,14 @@ georreferenciada	georreferenciar	VMP00SF
 georreferenciadas	georreferenciar	VMP00PF
 georreferenciado	georreferenciar	VMP00SM
 georreferenciados	georreferenciar	VMP00PM
+gerenciar	gerenciar	VMN0000
+gerenciar	gerenciar	VMN01S0
+gerenciar	gerenciar	VMN03S0
+gerenciar	gerenciar	VMSF1S0
+gerenciar	gerenciar	VMSF3S0
+gerencie	gerenciar	VMM03S0
+gerencie	gerenciar	VMSP1S0
+gerencie	gerenciar	VMSP3S0
 gibraltino	gibraltino	AQ0MS0
 gibraltino	gibraltino	NCMS000
 gibraltinos	gibraltino	AQ0MP0
@@ -2278,6 +2292,8 @@ polibãs	polibã	NCMP000
 poliestireno	poliestireno	NCMS000
 polo	polo	NCMS000
 polos	polo	NCMP000
+poncha	poncha	NCFS000
+ponchas	poncha	NCFP000
 porcento	porcento	NCMS000
 pordes	pôr	VMN02P0
 porem	pôr	VMN03P0
@@ -2292,6 +2308,8 @@ poster	poster	NCMS000
 posters	poster	NCMP000
 póster	póster	NCMS000
 pósteres	póster	NCMP000
+poucochinho	poucochinho	NCMS000
+poucochinhos	poucochinho	NCMP000
 PP	PP	NPMS000
 pralinê	pralinê	NCMS000
 pralinês	pralinê	NCMP000
@@ -2363,6 +2381,8 @@ prostíbulos	prostíbulo	NCMP000
 protanopia	protanopia	NCFS000
 prototipagem	prototipagem	NCFS000
 proveem	prover	VMIP3P0
+psicoemocional	psicoemocional	AQ0CS0
+psicoemocionais	psicoemocional	AQ0CP0
 psicoterapêutico	psicoterapêutico	AQ0MS0
 pulôver	pulôver	NCMS000
 pulôveres	pulôver	NCMP000

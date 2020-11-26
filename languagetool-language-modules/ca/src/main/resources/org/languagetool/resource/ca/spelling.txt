@@ -36,6 +36,7 @@ CNP
 CUAP
 Calvo
 Campbell
+Camus
 Carl
 Carnegie
 Carod-Rovira
@@ -46,6 +47,7 @@ Claude
 Clickedu
 CoNCA
 Collins
+Comín
 Contrahierbas
 Cotxinxina
 Cunningham
@@ -58,8 +60,10 @@ Delacroix
 Dell
 Dizzy
 Donatello
+Dreyfus
 Duke
 Dumas
+Dylan
 Díez
 EAP
 ESA
@@ -105,6 +109,7 @@ Hawking
 Hawks
 Heinrich
 Hergé
+Hermann
 Hermione
 Hertzsprung
 Hilary
@@ -131,6 +136,7 @@ Leonardo
 Lovelace
 Lully
 Mainat
+Mapfre
 Marilyn
 MasterChef
 Mbps
@@ -154,6 +160,9 @@ Nikola
 Nikolai
 Noah
 Nyong'o
+Ochoa
+Opel
+Otegi
 Owens
 PAH
 PCE
@@ -179,6 +188,7 @@ Ringo
 Romagnosi
 Rothschild
 Rubio
+Rufián
 SAP
 SDPI
 SMTP
@@ -204,6 +214,7 @@ Taiping
 Tarquini
 Tedax
 Tel-Aviv
+Tertsch
 Thor
 Tiffany
 Torra
@@ -230,6 +241,10 @@ bengalina
 bengalines
 bengalins
 bengalí
+berlanguiana
+berlanguianes
+berlanguians
+berlanguià
 capacitisme
 capacitismes
 caïnisme
@@ -250,6 +265,10 @@ construccionista
 construccionistes
 contrainforme
 contrainformes
+coronavíric
+coronavírica
+coronavírics
+coronavíriques
 cosmopolitista
 cosmopolitistes
 deportador
@@ -266,6 +285,10 @@ desbordadíssimes
 desbordadíssims
 desbordat
 desbordats
+desdenyador
+desdenyadora
+desdenyadores
+desdenyadors
 desespanyolitzacions
 desespanyolització
 desigualitari
@@ -334,6 +357,11 @@ desjudicialitzéssiu
 desjudicialitzí
 dessexualitzacions
 dessexualització
+devuitena
+devuitenes
+devuitens
+devuitè
+devuité
 diferents
 diverses
 diversos
@@ -351,6 +379,14 @@ ecosolidari
 ecosolidaris
 ecosolidària
 ecosolidàries
+entretinguda
+entretingudes
+entretingudíssim
+entretingudíssima
+entretingudíssimes
+entretingudíssims
+entretingut
+entretinguts
 esfilagarsament
 esfilagarsaments
 estretet
@@ -379,6 +415,9 @@ extracanviari
 extracanviaris
 extracanviària
 extracanviàries
+extrainstitucional
+extrainstitucionals
+eònia
 fabricant
 fabricants
 faccionalisme
@@ -563,6 +602,8 @@ procatalanista
 procatalanistes
 procatalans
 procatalà
+processisme
+processismes
 proespanyol
 proespanyola
 proespanyoles
@@ -852,6 +893,8 @@ súper-8
 tecno
 terra-aire
 terra-terra
+tiamfenicol
+tiamfenicols
 trans
 transfeminista
 transfeministes
@@ -861,6 +904,8 @@ troleig
 troleigs
 trolejos
 túrmix
+ultraespanyolista
+ultraespanyolistes
 vicecancellera
 vicecancelleres
 zoològic

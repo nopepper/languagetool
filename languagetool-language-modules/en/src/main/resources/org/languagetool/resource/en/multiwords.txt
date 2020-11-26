@@ -1392,13 +1392,11 @@ Stannard Rock Reef	NNP
 Stannard Rock Light	NNP
 USS Cod	NNP
 Sutter County	NNP
-stearic acid	NN
+stearic acid	NN:U
 stearic acids	NNS
 Fernandina Island	NNP
 carbonic anhydrase	NN
 carbonic anhydrases	NNS
-ad hominem	RB
-ad hominem	JJ
 corpus luteum	NN
 corpus lutea	NNS
 Metcalfe Poe	NNP
@@ -1430,3 +1428,47 @@ Questrom School of Business	NNP
 rose hortensia	NN
 rose hortensias	NNS
 Whole Foods	NNP
+daddy longlegs	NN
+daddy longlegs	NNS
+Horsehead Nebula	NNP
+pantothenic acid	NN:U
+a/c	NN:UN
+a/cs	NNS
+a/c	JJ
+Tahquamenon Falls	NNPS
+Tahquamenon River	NNP
+Hôtel Ritz	NNP
+Bob Geldof	NNP
+Green New Deal	NNP
+Tennessee Smokies	NNP
+West Tenn Diamond Jaxx	NNP
+Bly Manor	NNP
+Tim Allen	NNP
+Uma Thurman	NNP
+Maye Musk	NNP
+Kimbal Musk	NNP
+Rita Ora	NNP
+Sophie Scholl	NNP
+Wear OS	NNP
+Android Wear	NNP
+about turn	NN
+about turns	NNS
+Violet Evergarden	NNP
+Viz-Jaq'taar	NNP
+Sempra Energy	NNP
+Violet Evergarden	NNP
+oxaloacetic acid	NN:U
+profunda femoris	NN
+profunda femores	NNS
+quadratus femoris	NN
+quadratus femores	NNS
+quadriceps femoris	NN
+quadriceps femores	NNS
+rectus femoris	NN
+rectus femores	NNS
+biceps brachii	NN
+biceps brachiorum	NNS
+biceps femoris	NN
+biceps femores	NNS
+Vicentine Alps	NNPS
+singletary pea	NN

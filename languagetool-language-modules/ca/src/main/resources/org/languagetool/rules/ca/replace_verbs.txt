@@ -1,4 +1,6 @@
 #Només funciona amb verbs de la primera conjugació, acabats en -ar, que són la majoria
+desnortar=desorientar|desconcertar|extraviar
+pleitejar=pledejar
 desmoronar=ensorrar|enfonsar|decaure|anar de cap per avall|minar|erosionar
 juntar=ajuntar
 mutejar=silenciar|emmudir|apagar|tancar|desactivar
@@ -9,6 +11,7 @@ traumar=traumatitzar
 restregar=refregar|fregar
 postposar=posposar
 difundir=difondre
+sobreseguir=sobreseure
 confundir=confondre
 permanèixer=restar|estar|quedar|romandre
 resetejar=reiniciar|reinicialitzar

@@ -61,7 +61,7 @@ abstract class TextChecker {
 
   protected abstract void setHeaders(HttpExchange httpExchange);
   protected abstract String getResponse(AnnotatedText text, Language language, DetectedLanguage lang, Language motherTongue, List<RuleMatch> matches,
-                                        List<RuleMatch> hiddenMatches, String incompleteResultReason, int compactMode);
+                                        List<RuleMatch> hiddenMatches, String incompleteResultReason, int compactMode, boolean showPremiumHint);
   @NotNull
   protected abstract List<String> getPreferredVariants(Map<String, String> parameters);
   protected abstract DetectedLanguage getLanguage(String text, Map<String, String> parameters, List<String> preferredVariants,
@@ -429,7 +429,7 @@ abstract class TextChecker {
     List<RuleMatch> hiddenMatches = new ArrayList<>();
     if (config.getHiddenMatchesServer() != null && params.enableHiddenRules &&
       config.getHiddenMatchesLanguages().contains(lang)) {
-      if(config.getHiddenMatchesServerFailTimeout() > 0 && lastHiddenMatchesServerTimeout != -1 &&
+      if (config.getHiddenMatchesServerFailTimeout() > 0 && lastHiddenMatchesServerTimeout != -1 &&
         System.currentTimeMillis() - lastHiddenMatchesServerTimeout < config.getHiddenMatchesServerFailTimeout()) {
         ServerMetricsCollector.getInstance().logHiddenServerStatus(false);
         ServerMetricsCollector.getInstance().logHiddenServerRequest(false);
@@ -461,7 +461,7 @@ abstract class TextChecker {
       }
     }
     int compactMode = Integer.parseInt(parameters.getOrDefault("c", "0"));
-    String response = getResponse(aText, lang, detLang, motherTongue, matches, hiddenMatches, incompleteResultReason, compactMode);
+    String response = getResponse(aText, lang, detLang, motherTongue, matches, hiddenMatches, incompleteResultReason, compactMode, limits.getPremiumUid() == null);
     if (params.callback != null) {
       // JSONP - still needed today for the special case of hosting your own on-premise LT without SSL
       // and using it from a local MS Word (not Online Word) - issue #89 in the add-in repo:
@@ -537,7 +537,7 @@ abstract class TextChecker {
   private Map<String, Integer> getRuleValues(Map<String, String> parameters) {
     Map<String, Integer> ruleValues = new HashMap<>();
     String parameterString = parameters.get("ruleValues");
-    if(parameterString == null) {
+    if (parameterString == null) {
       return ruleValues;
     }
     String[] pairs = parameterString.split("[,]");

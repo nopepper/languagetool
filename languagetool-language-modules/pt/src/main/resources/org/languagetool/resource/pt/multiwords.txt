@@ -743,6 +743,8 @@ pelo menos	RG
 Pelo menos	RG
 pelos vistos	RG
 Pelos vistos	RG
+pen drive	NCFS000
+pen drives	NCFP000
 per capita	RG
 Per capita	RG
 perto de	SP000
@@ -809,6 +811,7 @@ pouco a pouco	RG
 Pouco a pouco	RG
 próximo de	SP000
 Próximo de	SP000
+prime time	NCMS000
 quando de	SP000
 Quando de	SP000
 quanto a	SP000
@@ -880,7 +883,7 @@ visto que	CS
 Visto que	CS
 
 ####################################################
-###                   Proper names               ###
+###                   Proper nouns               ###
 ####################################################
 # Partially from 14-11-2016 Catalan and Spanish multiword.txt 
 
@@ -1132,6 +1135,7 @@ La Toussuire	NPCNG00_
 La Valletta	NPCNG00_
 La Vanguardia	NPFSO00_
 Land Rover	NPCNO00_
+LanguageTool Premium	NPMSO00_
 Las Alpujarras	NPCNG00_
 Las Casas	NPCNG00_
 Las Palmas	NPCNG00_

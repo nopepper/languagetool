@@ -143,8 +143,8 @@ public class RuleMatch implements Comparable<RuleMatch> {
     if (toPos <= fromPos) {
       throw new IllegalArgumentException("fromPos (" + fromPos + ") must be less than toPos (" + toPos + ")");
     }
-    patternPosition = new PatternPosition(patternFromPos, patternToPos);
-    offsetPosition = new OffsetPosition(fromPos, toPos);
+    this.patternPosition = new PatternPosition(patternFromPos, patternToPos);
+    this.offsetPosition = new OffsetPosition(fromPos, toPos);
     this.message = Objects.requireNonNull(message);
     this.shortMessage = shortMessage;
     // extract suggestion from <suggestion>...</suggestion> in message:
@@ -178,31 +178,31 @@ public class RuleMatch implements Comparable<RuleMatch> {
   @SuppressWarnings("CopyConstructorMissesField")
   public RuleMatch(RuleMatch clone) {
     this(clone.getRule(), clone.getSentence(), clone.getFromPos(), clone.getToPos(), clone.getMessage(), clone.getShortMessage());
-    setPatternPosition(clone.getPatternFromPos(), clone.getPatternToPos());
+    this.setPatternPosition(clone.getPatternFromPos(), clone.getPatternToPos());
     suggestedReplacements = clone.suggestedReplacements;
-    setAutoCorrect(clone.isAutoCorrect());
-    setFeatures(clone.getFeatures());
-    setUrl(clone.getUrl());
-    setType(clone.getType());
-    setLine(clone.getLine());
-    setEndLine(clone.getEndLine());
-    setColumn(clone.getColumn());
-    setEndColumn(clone.getEndColumn());
+    this.setAutoCorrect(clone.isAutoCorrect());
+    this.setFeatures(clone.getFeatures());
+    this.setUrl(clone.getUrl());
+    this.setType(clone.getType());
+    this.setLine(clone.getLine());
+    this.setEndLine(clone.getEndLine());
+    this.setColumn(clone.getColumn());
+    this.setEndColumn(clone.getEndColumn());
   }
   
   //clone with new replacements
   public RuleMatch(RuleMatch clone, List<String> replacements) {
     this(clone.getRule(), clone.getSentence(), clone.getFromPos(), clone.getToPos(), clone.getMessage(), clone.getShortMessage());
-    setPatternPosition(clone.getPatternFromPos(), clone.getPatternToPos());
-    setSuggestedReplacements(replacements);
-    setAutoCorrect(clone.isAutoCorrect());
-    setFeatures(clone.getFeatures());
-    setUrl(clone.getUrl());
-    setType(clone.getType());
-    setLine(clone.getLine());
-    setEndLine(clone.getEndLine());
-    setColumn(clone.getColumn());
-    setEndColumn(clone.getEndColumn());
+    this.setPatternPosition(clone.getPatternFromPos(), clone.getPatternToPos());
+    this.setSuggestedReplacements(replacements);
+    this.setAutoCorrect(clone.isAutoCorrect());
+    this.setFeatures(clone.getFeatures());
+    this.setUrl(clone.getUrl());
+    this.setType(clone.getType());
+    this.setLine(clone.getLine());
+    this.setEndLine(clone.getEndLine());
+    this.setColumn(clone.getColumn());
+    this.setEndColumn(clone.getEndColumn());
   }
 
   @NotNull
@@ -269,7 +269,7 @@ public class RuleMatch implements Comparable<RuleMatch> {
    * @deprecated (deprecated since 3.5)
    */
   public void setColumn(int column) {
-    columnPosition = new ColumnPosition(column, columnPosition.getEnd());
+    this.columnPosition = new ColumnPosition(column, columnPosition.getEnd());
   }
 
   /**
@@ -285,7 +285,7 @@ public class RuleMatch implements Comparable<RuleMatch> {
    * @deprecated (deprecated since 3.5)
    */
   public void setEndColumn(int endColumn) {
-    columnPosition = new ColumnPosition(columnPosition.getStart(), endColumn);
+    this.columnPosition = new ColumnPosition(columnPosition.getStart(), endColumn);
   }
 
   /**
@@ -442,7 +442,7 @@ public class RuleMatch implements Comparable<RuleMatch> {
    * @since 4.3
    */
   public Type getType() {
-    return type;
+    return this.type;
   }
   
   /**
@@ -467,7 +467,7 @@ public class RuleMatch implements Comparable<RuleMatch> {
 
   /** Compare by start position. */
   @Override
-  public int compareTo(@NotNull RuleMatch other) {
+  public int compareTo(RuleMatch other) {
     Objects.requireNonNull(other);
     return Integer.compare(getFromPos(), other.getFromPos());
   }

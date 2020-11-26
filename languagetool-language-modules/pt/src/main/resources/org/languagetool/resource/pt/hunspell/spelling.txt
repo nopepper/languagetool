@@ -13,6 +13,7 @@ adenovírus
 afear
 agitadíssimo
 agitadíssimos
+ajudamo-lo
 alabarda
 alabardas
 alarvemente
@@ -109,6 +110,8 @@ buldózer
 buldózeres
 burnout
 burnouts
+burrito
+burritos
 CAC
 caçapo
 caçapos
@@ -128,6 +131,8 @@ cagueiros
 caguinchas
 caleça
 caleças
+camandro
+camandros
 cameraman
 canelone
 canelones
@@ -202,6 +207,8 @@ daqueloutro
 database
 databases
 default
+desencarnado
+desencarnados
 deuteranópico
 deuteranópicos
 device
@@ -274,6 +281,7 @@ festarola
 festarolas
 fezada
 fezadas
+fi-lo
 flanqueamentos
 flarte
 flartes
@@ -298,6 +306,8 @@ génicos
 gentinha
 gentinhas
 geolocalização
+gerenciar
+gerencie
 Gleiser
 GM
 gnaisse
@@ -551,12 +561,16 @@ poejos
 poliamor
 polibã
 polibãs
+poncha
+ponchas
 porreiraço
 porreiraços
 portefólio
 portefólios
 póster
 pósteres
+poucochinho
+poucochinhos
 putanheiro
 putanheiros
 pralinê
@@ -566,6 +580,8 @@ proctoscopia
 prostíbulo
 prostíbulos
 protanopia
+psicoemocional
+psicoemocionais
 pulôver
 pulôveres
 Pushkin
@@ -1650,6 +1666,7 @@ gag
 gags
 gal
 gals
+gaming
 gang
 gangs
 gangster

@@ -50,7 +50,6 @@ import java.util.stream.Collectors;
  * @author Marcin Miłkowski
  */
 public class HunspellRule extends SpellingCheckRule {
-
   public static final String RULE_ID = "HUNSPELL_RULE";
 
   protected static final String FILE_EXTENSION = ".dic";
@@ -62,6 +61,10 @@ public class HunspellRule extends SpellingCheckRule {
   private static final String NON_ALPHABETIC = "[^\\p{L}]";
 
   private static final boolean monitorRules = System.getProperty("monitorActiveRules") != null;
+
+  //300 most common Portuguese words. They are used to avoid wrong split suggestions
+  private final List<String> commonPortuguesehWords = Arrays.asList(new String[]{"de", "e", "a", "o", "da", "do", "em", "que", "uma", "um", "com", "no", "se", "na", "para", "por", "os", "foi", "como", "dos", "as", "ao", "mais", "sua", "das", "não", "ou", "km", "seu", "pela", "ser", "pelo", "são", "também", "anos", "cidade", "entre", "era", "tem", "mas", "habitantes", "nos", "seus", "área", "até", "ele", "onde", "foram", "população", "região", "sobre", "nas", "nome", "parte", "quando", "ano", "aos", "grande", "mesmo", "pode", "primeiro", "segundo", "sendo", "suas", "ainda", "dois", "estado", "está", "família", "já", "muito", "outros", "americano", "depois", "durante", "maior", "primeira", "forma", "apenas", "banda", "densidade", "dia", "então", "município", "norte", "tempo", "após", "duas", "num", "pelos", "qual", "século", "ter", "todos", "três", "vez", "água", "acordo", "cobertos", "comuna", "contra", "ela", "grupo", "principal", "quais", "sem", "tendo", "às", "álbum", "alguns", "assim", "asteróide", "bem", "brasileiro", "cerca", "desde", "este", "localizada", "mundo", "outras", "período", "seguinte", "sido", "vida", "através", "cada", "conhecido", "final", "história", "partir", "país", "pessoas", "sistema", "terra", "teve", "tinha", "época", "administrativa", "censo", "departamento", "dias", "esta", "filme", "francesa", "música", "província", "série", "vezes", "além", "antes", "eles", "eram", "espécie", "governo", "podem", "vários", "censos", "distrito", "estão", "exemplo", "hoje", "início", "jogo", "lhe", "lugar", "muitos", "média", "novo", "numa", "número", "pois", "possui", "sob", "só", "todo", "tornou", "trabalho", "algumas", "devido", "estava", "fez", "filho", "fim", "grandes", "há", "isso", "lado", "local", "morte", "orbital", "outro", "passou", "países", "quatro", "representa", "seja", "sempre", "sul", "várias", "capital", "chamado", "começou", " enquanto", "fazer", "lançado", "meio", "nova", "nível", "pelas", "poder", "presidente", "redor", "rio", "tarde", "todas", "carreira", "casa", "década", "estimada", "guerra", "havia", "livro", "localidades", "maioria", "muitas", "obra", "origem", "pai", "pouco", "principais", "produção", "programa", "qualquer", "raio", "seguintes", "sucesso", "título", "aproximadamente", "caso", "centro", "conhecida", "construção", "desta", "diagrama", "faz", "ilha", "importante", "mar", "melhor", "menos", "mesma", "metros", "mil", "nacional", "populacional", "quase", "rei", "sede", "segunda", "tipo", "toda", "uso", "velocidade", "vizinhança", "volta", "base", "brasileira", "clube", "desenvolvimento", "deste", "diferentes", "diversos", "empresa", "entanto", "futebol", "geral", "junto", "longo", "obras", "outra", "pertencente", "política", "português", "principalmente", "processo", "quem", "seria", "têm", "versão", "TV", "acima", "atual", "bairro", "chamada", "cinco", "conta", "corpo", "dentro", "deve"});
+
 
   public static Queue<String> getActiveChecks() {
     return activeChecks;
@@ -147,13 +150,14 @@ public class HunspellRule extends SpellingCheckRule {
           continue;
         }
         if (isMisspelled(word)) {
-          String cleanWord = word;
-          if (word.endsWith(".")) {
-            cleanWord = word.substring(0, word.length()-1);
-          }
+          String cleanWord = word.endsWith(".") ? word.substring(0, word.length() - 1) : word;
           if (i > 0 && prevStartPos != -1) {
             String prevWord = tokens[i-1];
-            if (prevWord.length() > 0) {
+            boolean ignoreSplitting = false;
+            if (this.language.getShortCode().equals("pt") && commonPortuguesehWords.contains(prevWord.toLowerCase())) {
+              ignoreSplitting = true;
+            }
+            if (!ignoreSplitting && prevWord.length() > 0) {
               // "thanky ou" -> "thank you"
               String sugg1a = prevWord.substring(0, prevWord.length()-1);
               String sugg1b = cutOffDot(prevWord.substring(prevWord.length()-1) + word);
@@ -181,59 +185,13 @@ public class HunspellRule extends SpellingCheckRule {
             messages.getString("desc_spelling_short"));
           ruleMatch.setType(RuleMatch.Type.UnknownWord);
           if (userConfig == null || userConfig.getMaxSpellingSuggestions() == 0 || ruleMatches.size() <= userConfig.getMaxSpellingSuggestions()) {
-            List<SuggestedReplacement> suggestions = SuggestedReplacement.convert(getSuggestions(cleanWord));
-            if (word.endsWith(".")) {
-              int pos = 1;
-              for (String suggestion : getSuggestions(word)) {
-                if (!suggestions.contains(suggestion)) {
-                  suggestions.add(Math.min(pos, suggestions.size()), new SuggestedReplacement(suggestion.substring(0, suggestion.length()-1)));
-                  pos += 2;  // we mix the lists, as we don't know which one is the better one
-                }
+            ruleMatch.setLazySuggestedReplacements(() -> {
+              try {
+                return calcSuggestions(word, cleanWord);
+              } catch (IOException e) {
+                throw new RuntimeException(e);
               }
-            }
-            List<SuggestedReplacement> additionalTopSuggestions = getAdditionalTopSuggestions(suggestions, cleanWord);
-            if (additionalTopSuggestions.isEmpty() && word.endsWith(".")) {
-              additionalTopSuggestions = getAdditionalTopSuggestions(suggestions, word).
-                stream()
-                .map(sugg -> {
-                  if (sugg.getReplacement().endsWith(".")) {
-                    return sugg;
-                  } else {
-                    SuggestedReplacement newSugg = new SuggestedReplacement(sugg);
-                    newSugg.setReplacement(sugg.getReplacement() + ".");
-                    return newSugg;
-                  }
-                }).collect(Collectors.toList());
-            }
-            Collections.reverse(additionalTopSuggestions);
-            for (SuggestedReplacement additionalTopSuggestion : additionalTopSuggestions) {
-              if (!cleanWord.equals(additionalTopSuggestion.getReplacement())) {
-                suggestions.add(0, additionalTopSuggestion);
-              }
-            }
-            List<SuggestedReplacement> additionalSuggestions = getAdditionalSuggestions(suggestions, cleanWord);
-            for (SuggestedReplacement additionalSuggestion : additionalSuggestions) {
-              if (!cleanWord.equals(additionalSuggestion.getReplacement())) {
-                suggestions.addAll(additionalSuggestions);
-              }
-            }
-            suggestions = filterDupes(filterSuggestions(suggestions));
-            // Find potentially missing compounds with privacy-friendly logging: we only log a single unknown word with no
-            // meta data and only if it's made up of two valid words, similar to the "UNKNOWN" logging in
-            // GermanSpellerRule:
-            /*if (language.getShortCode().equals("de")) {
-              String covered = sentence.getText().substring(len, len + cleanWord.length());
-              if (suggestions.stream().anyMatch(
-                    k -> k.getReplacement().contains(" ") &&
-                    StringTools.uppercaseFirstChar(k.getReplacement().replaceAll(" ", "").toLowerCase()).equals(covered) &&
-                    k.getReplacement().length() > 6 && k.getReplacement().length() < 25 &&
-                    k.getReplacement().matches("[a-zA-ZÖÄÜöäüß -]+")
-                  )) {
-                logger.info("COMPOUND: " + covered);
-              }
-            }*/
-            // TODO user suggestions
-            addSuggestionsToRuleMatch(cleanWord, Collections.emptyList(), suggestions, null, ruleMatch);
+            });
           } else {
             // limited to save CPU
             ruleMatch.setSuggestedReplacement(messages.getString("too_many_errors"));
@@ -249,6 +207,62 @@ public class HunspellRule extends SpellingCheckRule {
       }
     }
     return toRuleMatchArray(ruleMatches);
+  }
+
+  private List<SuggestedReplacement> calcSuggestions(String word, String cleanWord) throws IOException {
+    List<SuggestedReplacement> suggestions = SuggestedReplacement.convert(getSuggestions(cleanWord));
+    if (word.endsWith(".")) {
+      int pos = 1;
+      for (String suggestion : getSuggestions(word)) {
+        if (suggestions.stream().noneMatch(sr -> suggestion.equals(sr.getReplacement()))) {
+          suggestions.add(Math.min(pos, suggestions.size()), new SuggestedReplacement(suggestion.substring(0, suggestion.length()-1)));
+          pos += 2;  // we mix the lists, as we don't know which one is the better one
+        }
+      }
+    }
+    List<SuggestedReplacement> additionalTopSuggestions = getAdditionalTopSuggestions(suggestions, cleanWord);
+    if (additionalTopSuggestions.isEmpty() && word.endsWith(".")) {
+      additionalTopSuggestions = getAdditionalTopSuggestions(suggestions, word).
+        stream()
+        .map(sugg -> {
+          if (sugg.getReplacement().endsWith(".")) {
+            return sugg;
+          } else {
+            SuggestedReplacement newSugg = new SuggestedReplacement(sugg);
+            newSugg.setReplacement(sugg.getReplacement() + ".");
+            return newSugg;
+          }
+        }).collect(Collectors.toList());
+    }
+    Collections.reverse(additionalTopSuggestions);
+    for (SuggestedReplacement additionalTopSuggestion : additionalTopSuggestions) {
+      if (!cleanWord.equals(additionalTopSuggestion.getReplacement())) {
+        suggestions.add(0, additionalTopSuggestion);
+      }
+    }
+    List<SuggestedReplacement> additionalSuggestions = getAdditionalSuggestions(suggestions, cleanWord);
+    for (SuggestedReplacement additionalSuggestion : additionalSuggestions) {
+      if (!cleanWord.equals(additionalSuggestion.getReplacement())) {
+        suggestions.addAll(additionalSuggestions);
+      }
+    }
+    suggestions = filterDupes(filterSuggestions(suggestions));
+    // Find potentially missing compounds with privacy-friendly logging: we only log a single unknown word with no
+    // meta data and only if it's made up of two valid words, similar to the "UNKNOWN" logging in
+    // GermanSpellerRule:
+    /*if (language.getShortCode().equals("de")) {
+      String covered = sentence.getText().substring(len, len + cleanWord.length());
+      if (suggestions.stream().anyMatch(
+            k -> k.getReplacement().contains(" ") &&
+            StringTools.uppercaseFirstChar(k.getReplacement().replaceAll(" ", "").toLowerCase()).equals(covered) &&
+            k.getReplacement().length() > 6 && k.getReplacement().length() < 25 &&
+            k.getReplacement().matches("[a-zA-ZÖÄÜöäüß -]+")
+          )) {
+        logger.info("COMPOUND: " + covered);
+      }
+    }*/
+    // TODO user suggestions
+    return suggestions;
   }
 
   private static String cutOffDot(String s) {

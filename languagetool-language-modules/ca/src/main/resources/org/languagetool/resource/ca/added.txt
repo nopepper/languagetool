@@ -41,6 +41,7 @@ CNP	CNP	NPMSO00
 CUAP	CUAP	NCMN000
 Calvo	Calvo	NPCNSP0
 Campbell	Campbell	NPCNSP0
+Camus	Camus	NPCNSP0
 Carl	Carl	NPMSSP0
 Carnegie	Carnegie	NPCNSP0
 Carod-Rovira	Carod-Rovira	NPCNSP0
@@ -51,6 +52,7 @@ Claude	Claude	NPMSSP0
 Clickedu	Clickedu	NPMSO00
 CoNCA	CoNCA	NPMSO00
 Collins	Collins	NPCNSP0
+Comín	Comín	NPCNSP0
 Contrahierbas	Contrahierbas	NPCNG00
 Cotxinxina	Cotxinxina	NPFSG00
 Cunningham	Cunningham	NPCNSP0
@@ -63,8 +65,10 @@ Delacroix	Delacroix	NPCNSP0
 Dell	Dell	NPCNO00
 Dizzy	Dizzy	NPCNSP0
 Donatello	Donatello	NPCNSP0
+Dreyfus	Dreyfus	NPCNSP0
 Duke	Duke	NPCNSP0
 Dumas	Dumas	NPCNSP0
+Dylan	Dylan	NPCNSP0
 Díez	Díez	NPCNSP0
 EAP	EAP	NCMN000
 ESA	ESA	NPFSO00
@@ -110,6 +114,7 @@ Hawking	Hawking	NPCNSP0
 Hawks	Hawks	NPCNSP0
 Heinrich	Heinrich	NPMSSP0
 Hergé	Hergé	NPMSSP0
+Hermann	Hermann	NPCNSP0
 Hermione	Hermione	NPFSSP0
 Hertzsprung	Hertzsprung	NPCNSP0
 Hilary	Hilary	NPFSSP0
@@ -136,6 +141,7 @@ Leonardo	Leonardo	NPMSSP0
 Lovelace	Lovelace	NPCNSP0
 Lully	Lully	NPMSSP0
 Mainat	Mainat	NPCNSP0
+Mapfre	Mapfre	NPCNO00
 Marilyn	Marilyn	NPFSSP0
 MasterChef	MasterChef	NPCNO00
 Mbps	Mbps	NCMN000
@@ -159,6 +165,9 @@ Nikola	Nikola	NPMSSP0
 Nikolai	Nikolai	NPMSSP0
 Noah	Noah	NPCSSP0
 Nyong'o	Nyong'o	NPCNSP0
+Ochoa	Ochoa	NPCNSP0
+Opel	Opel	NPCNO00
+Otegi	Otegi	NPCNSP0
 Owens	Owens	NPCNSP0
 PAH	PAH	NPFSO00
 PCE	PCE	NPFNO00
@@ -185,6 +194,7 @@ Ringo	Ringo	NPCNSP0
 Romagnosi	Romagnosi	NPCNSP0
 Rothschild	Rothschild	NPCNSP0
 Rubio	Rubio	NPCNSP0
+Rufián	Rufián	NPCNSP0
 SAP	SAP	NCCN000
 SDPI	SDPI	NCMN000
 SMTP	SMTP	NCMN000
@@ -210,6 +220,7 @@ Taiping	Taiping	NPCNSP0
 Tarquini	Tarquini	NPMSSP0
 Tedax	Tedax	NCMN000
 Tel-Aviv	Tel-Aviv	NPCSG00
+Tertsch	Tertsch	NPCNSP0
 Thor	Thor	NPMSSP0
 Tiffany	Tiffany	NPCNO00
 Torra	Torra	NPCNSP0
@@ -240,6 +251,10 @@ bengalins	bengalí	AQ0MP0
 bengalins	bengalí	NCMP000
 bengalí	bengalí	AQ0MS0
 bengalí	bengalí	NCMS000
+berlanguiana	berlanguià	AQ0FS0
+berlanguianes	berlanguià	AQ0FP0
+berlanguians	berlanguià	AQ0MP0
+berlanguià	berlanguià	AQ0MS0
 capacitisme	capacitisme	NCMS000
 capacitismes	capacitisme	NCMP000
 caïnisme	caïnisme	NCMS000
@@ -260,6 +275,10 @@ construccionista	construccionista	AQ0CS0
 construccionistes	construccionista	AQ0CP0
 contrainforme	contrainforme	NCMS000
 contrainformes	contrainforme	NCMP000
+coronavíric	coronavíric	AQ0MS0
+coronavírica	coronavíric	AQ0FS0
+coronavírics	coronavíric	AQ0MP0
+coronavíriques	coronavíric	AQ0FP0
 cosmopolitista	cosmopolitista	AQ0CS0
 cosmopolitistes	cosmopolitista	AQ0CP0
 deportador	deportador	NCMS000
@@ -276,6 +295,10 @@ desbordadíssimes	desbordadíssim	AQAFP0
 desbordadíssims	desbordadíssim	AQAMP0
 desbordat	desbordat	AQ0MS0
 desbordats	desbordat	AQ0MP0
+desdenyador	desdenyador	AQ0MS0
+desdenyadora	desdenyador	AQ0FS0
+desdenyadores	desdenyador	AQ0FP0
+desdenyadors	desdenyador	AQ0MP0
 desespanyolitzacions	desespanyolització	NCFP000
 desespanyolització	desespanyolització	NCFS000
 desigualitari	desigualitari	AQ0MS0
@@ -368,6 +391,11 @@ desjudicialitzéssiu	desjudicialitzar	VMSI2P02
 desjudicialitzí	desjudicialitzar	VMIS1S00
 dessexualitzacions	dessexualització	NCFP000
 dessexualització	dessexualització	NCFS000
+devuitena	devuitè	AO0FS0
+devuitenes	devuitè	AO0FP0
+devuitens	devuitè	AO0MP0
+devuitè	devuitè	AO0MS0
+devuité	devuitè	AO0MS0
 diferents	diferents	DI0CP0
 diverses	diversos	DI0FP0
 diversos	diversos	DI0MP0
@@ -385,6 +413,14 @@ ecosolidari	ecosolidari	AQ0MS0
 ecosolidaris	ecosolidari	AQ0MP0
 ecosolidària	ecosolidari	AQ0FS0
 ecosolidàries	ecosolidari	AQ0FP0
+entretinguda	entretingut	AQ0FS0
+entretingudes	entretingut	AQ0FP0
+entretingudíssim	entretingudíssim	AQAMS0
+entretingudíssima	entretingudíssim	AQAFS0
+entretingudíssimes	entretingudíssim	AQAFP0
+entretingudíssims	entretingudíssim	AQAMP0
+entretingut	entretingut	AQ0MS0
+entretinguts	entretingut	AQ0MP0
 esfilagarsament	esfilagarsament	NCMS000
 esfilagarsaments	esfilagarsament	NCMP000
 estretet	estretet	AQ0MS0
@@ -413,6 +449,9 @@ extracanviari	extracanviari	AQ0MS0
 extracanviaris	extracanviari	AQ0MP0
 extracanviària	extracanviari	AQ0FS0
 extracanviàries	extracanviari	AQ0FP0
+extrainstitucional	extrainstitucional	AQ0CS0
+extrainstitucionals	extrainstitucional	AQ0CP0
+eònia	eònia	NCMS000
 fabricant	fabricant	AQ0CS0
 fabricants	fabricant	AQ0CP0
 faccionalisme	faccionalisme	NCMS000
@@ -621,6 +660,8 @@ procatalanista	procatalanista	AQ0CS0
 procatalanistes	procatalanista	AQ0CP0
 procatalans	procatalà	AQ0MP0
 procatalà	procatalà	AQ0MS0
+processisme	processisme	NCMS000
+processismes	processisme	NCMP000
 proespanyol	proespanyol	AQ0MS0
 proespanyola	proespanyol	AQ0FS0
 proespanyoles	proespanyol	AQ0FP0
@@ -982,6 +1023,8 @@ súper-8	súper-8	AQ0CN0
 tecno	tecno	NCMS000
 terra-aire	terra-aire	AQ0CN0
 terra-terra	terra-terra	AQ0CN0
+tiamfenicol	tiamfenicol	NCMS000
+tiamfenicols	tiamfenicol	NCMP000
 trans	trans	AQ0CN0
 transfeminista	transfeminista	AQ0CS0
 transfeministes	transfeminista	AQ0CP0
@@ -991,6 +1034,8 @@ troleig	troleig	NCMS000
 troleigs	troleig	NCMP000
 trolejos	troleig	NCMP000
 túrmix	túrmix	NCMS000
+ultraespanyolista	ultraespanyolista	AQ0CS0
+ultraespanyolistes	ultraespanyolista	AQ0CP0
 vicecancellera	vicecanceller	NCFS000
 vicecancelleres	vicecanceller	NCFP000
 zoològic	zoològic	NCMS000

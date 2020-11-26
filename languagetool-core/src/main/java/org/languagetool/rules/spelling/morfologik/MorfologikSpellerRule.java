@@ -428,8 +428,10 @@ public abstract class MorfologikSpellerRule extends SpellingCheckRule {
     if (userConfig == null || userConfig.getMaxSpellingSuggestions() == 0 
         || ruleMatchesSoFar.size() <= userConfig.getMaxSpellingSuggestions()) {
       if (translationSuggestionCount > 0) {
+        List<SuggestedReplacement> prev = ruleMatch.getSuggestedReplacementObjects();
         ruleMatch = new RuleMatch(ruleMatch.getRule(), ruleMatch.getSentence(), ruleMatch.getFromPos(), ruleMatch.getToPos(),
           messages.getString("spelling") + " Translations to English are also offered.");
+        ruleMatch.setSuggestedReplacementObjects(prev);
       }
 
       if (!preventFurtherSuggestions) {
@@ -449,13 +451,10 @@ public abstract class MorfologikSpellerRule extends SpellingCheckRule {
     return () -> {
       List<SuggestedReplacement> joined;
       try {
-        synchronized (this) { // spellers are thread-unsafe
-          List<SuggestedReplacement> fromSpeller = calcSpellerSuggestions(word, fullResults);
-          joined = joinBeforeAfterSuggestions(fromSpeller, beforeSuggestionStr, afterSuggestionStr);
-        }
+        List<SuggestedReplacement> fromSpeller = calcSpellerSuggestions(word, fullResults);
+        joined = joinBeforeAfterSuggestions(fromSpeller, beforeSuggestionStr, afterSuggestionStr);
       } catch (IOException e) {
-        joined = Collections.singletonList(new SuggestedReplacement("Internal error: " + e.getMessage()));
-        logger.error("Error while calculating speller suggestions", e);
+        throw new RuntimeException(e);
       }
       return Lists.newArrayList(Iterables.concat(prev, joined));
     };
