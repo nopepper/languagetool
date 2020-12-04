@@ -27602,7 +27602,6 @@ Sechsersesselbahnen
 Situationsbewusstsein/S
 Steakpfanne/N
 Teppichklopfen/S
-# Tomas #name
 umsatzsteuerbar/A
 Verbesserungskarte/N
 Vernunftmensch
@@ -27843,3 +27842,270 @@ Zitatvorschlag/S
 Zurückhaltungsvermögen/S
 Leseransprache/N
 Leserinnenansprache/N
+Achtsamkeitsregel/N
+Ann-Katrin/S #name
+Aphasiker/NS
+Aphasikerin
+Aphasikerinnen
+bürotypisch/A
+Befristungsvereinbarung
+Befristungsvereinbarungen
+Bornmann/S #name
+Dejustierung
+DITIB #abk #name
+Drückerchen/S
+entheogen/A
+Feldenkrais #name
+geschlabbert #ugs
+Getrenntsammlungsquote/N
+Getrenntsammlungsquotient
+Getrenntsammlungsquotienten
+Gravurartikel/NS
+Gutbürger/NS
+Gutbürgerin
+Gutbürgerinnen
+Haltersystem/S
+Haltersysteme/N
+Hengststation
+Hengststationen
+Injektionsschmerz
+Injektionsschmerzes
+KKS #abk
+Mitmachaktion
+Mitmachaktionen
+Napfunterlage/N
+Nivelliermasse/N
+Reinhardshain/S #name
+Schalungshöhe/N
+Schwimmbadabdeckung
+Schwimmbadabdeckungen
+Spreenhagen/S #name
+Torx-Schraubendreher/NS
+Traditionsgasthäuser/N
+Traditionsgasthaus
+Traditionsgasthauses
+vermietungsfähig/A
+Verteilzentrale/N
+waldwachstumskundlich/A
+Webinargebühr
+Webinargebühren
+Wirksamkeitsanalyse/N
+Karl-Liebknecht-Str.
+Karl-Liebknecht-Straße
+Ziff. #abk
+Intermediate/S
+Intermediatereifen
+Intermediatereifens
+abwärmen
+abzuwärmen
+abwärmst
+abwärmend
+abgewärmt/A
+Priming/S #eng
+cardiovaskulär/A
+unintuitiv/A
+Boutique-Hotel/S
+Eigentümerkarte/N
+Intensivrecherche/N
+Schwellbrunn/S #name
+Roy/S #name
+Crosstrainer/NS
+Cross-Trainer/NS
+Crosstraining/S
+Cross-Training/S
+Negativum
+Negativa
+Positivum
+Positiva
+Altenahr #name
+Besorgungsarbeiten
+bewegungsfreundlich/A
+Boutiquehotel/S
+Brühzeit
+Brühzeiten
+Bremsenspezialist
+Bremsenspezialisten
+Bremsenspezialistin
+Bremsenspezialistinnen
+Coronazeiten
+Davina/S #name
+Dennhausen/S #name
+Echtheitsvermutung
+Eiprodukte/N
+Formatanpassung
+Formatanpassungen
+Jahrgangsmischung
+Jahrgangsmischungen
+Kontramelodie/N
+Kulanzrichtlinien
+Registrierungseinträge/N
+Schenkungsteuer/N
+Schenkungsteuererklärung
+Schenkungsteuererklärungen
+Schenkungsteuerzahlung
+Schenkungsteuerzahlungen
+Sonnencremeflasche/N
+Spraykühlung
+Symbiotika
+Symbiotikum/S
+Zykluspläne/N
+Zyklusplan/S
+Zyklusplanung
+Premiumvariante/N
+Überströmklappe/N
+Arithmomantie
+Aushubdeponie/N
+Ausstecher/NS
+Charzykowy #name
+Drosselweg/S #name
+DWDS #abk
+Echtgeldeinsätze/N
+entharze/N
+entharzt/A
+Erlaubnisvoraussetzungen
+Extrusionstechnik
+Fahrzeugkran/S
+Fahrzeugkrane/NS
+Faltungsnetzwerk/S
+Faltungsnetzwerke/NS
+Feinkostmärkte/N
+Feinkostmarkt/S
+Feinkostmarktes
+Fermacell
+Fermacellplatte/N
+Foodblogger/NS
+Foodbloggerin
+Foodbloggerinnen
+Fröhlichmachen/S
+FTS #abk
+Glockensachverständige/N
+Glockensachverständiger
+Halterpflicht
+Halterpflichten
+Kleinfeller/S #name
+logischer/A
+Lohnprogrammes
+Lumumba/S
+Marie-Colinet-Sekundarschule #name
+Milbenbefall/S
+Nachbearbeitungsaufwand/S
+projekteigen/A
+rentenmäßig/A
+Saflorblütenblätter/N
+Snowboardhose/N
+Stupsnäschen/S
+Tauwasserleitung
+Tauwasserleitungen
+Tilgungssatzänderung
+Tilgungssatzänderungen
+Tilgungssatzwechsel/NS
+Umformtechnologie
+umherstehend/A
+Umstempelbescheinigung
+Umstempelbescheinigungen
+ungegendert/A
+unreal/A
+Vukovar/S #name
+werkzeugspezifisch/A
+Wiedersehenskultur
+Wohlfühlstimmung
+Zyklenschwankungen
+Abrutschsicherung
+Abrutschsicherungen
+Aljoscha/S #name
+Ankreuzmöglichkeiten
+Arkadiusz #name
+Bambusständer/NS
+Bandscheibenprolaps
+Besorgtsein/S
+Biodiversitätsförderung
+Coltanmine/N
+Dispersionskräfte/N
+Doppelschneckenextruder
+Downloadverzeichnis
+Downloadverzeichnisse/NS
+Durchmessergröße/N
+ERK #abk
+Fasshöhe/N
+gesellschaftsformend/A
+Insomnia
+Interviewprozess
+Interviewprozesse/NS
+Kaseinmizellen
+KKL #abk
+Kneter/NS
+Kompostierbarkeit
+Lamarck/S #name
+Lamarckismus
+maskenlos/A
+mintgrün/A
+Modifizierungskonzept/S
+Modifizierungskonzepte/NS
+NettoKOM #name
+Nießbraucher/NS
+Nießbraucherin
+Nießbraucherinnen
+Passatzirkulation
+Polyethylenfurandicarboxylat
+Polyhydroxyalkanoate/N
+Polymilchsäure
+Primärsichtung
+Primärsichtungen
+Puppenspielerstadt
+Quantisierungsstufe/N
+Signaturspeicherung
+Stärkederivat
+Stärkederivate/N
+Straßenbauerin
+Straßenbauerinnen
+Tonkabohne/N
+verhaltenswissenschaftlich/A
+Versöhnungsfrist
+Versöhnungsfristen
+Wohlfühl-Komfort/S
+Work-out/S #eng
+Alexander-Newski-Kathedrale #name
+Employer Branding #eng
+Employer Reputation #eng
+Engelmann/S #name
+Pergament/ES
+Pergamenten
+Bandscheibenprolaps
+GL #abk
+DSG #abk
+Fasspumpe/N
+Flexibilitätsgrad/S
+Flexibilitätsgrade/N
+LX #abk
+Smudo/S #name
+Ende-zu-Ende-Verschlüsselung
+öffnungsfähig/A
+Abstellungsmanagement/S
+Bendix #name
+betrugsfrei/A
+coronakonform/A
+Diaphyse/N
+Drehmomentübertragung
+Fahrerlaubnisinhaber/NS
+Fahrerlaubnisinhaberin
+Fahrerlaubnisinhaberinnen
+Katalogreise/N
+Kontokorrentbuchhalter/NS
+Kontokorrentbuchhalterin
+Kontokorrentbuchhalterinnen
+Kontokorrentbuchhaltung
+Kontokorrentkonten
+Kontokorrentkonto/S
+Leinenverbindung
+Leinenverbindungen
+Luftentkeimungsgerät/S
+Luftentkeimungsgeräte/N
+Multifunktionsgehäuse/NS
+Nenzingen/S #name
+Nikolausgeschenk/S
+Nikolausgeschenke/N
+Rattermarke/N
+Registrierungszwecke/N
+Verdoppelungszyklen
+Verdoppelungszyklus
+vergütungspflichtig/A

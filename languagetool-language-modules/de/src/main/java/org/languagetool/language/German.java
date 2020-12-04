@@ -307,6 +307,7 @@ public class German extends Language implements AutoCloseable {
       case "DIESEN_JAHRES": return 1;
       case "EBEN_FALLS": return 1;
       case "UST_ID": return 1;
+      case "FUER_INBESONDERE": return 1; // prefer over KOMMA_VOR_ERLAEUTERUNG
       case "COVID_19": return 1; // prefer over PRAEP_GEN and DE_AGREEMENT
       case "IM_ALTER": return 1; // prefer over ART_ADJ_SOL
       case "DAS_ALTER": return 1; // prefer over ART_ADJ_SOL
@@ -343,6 +344,18 @@ public class German extends Language implements AutoCloseable {
       return -1;
     }
     return super.getPriorityForId(id);
+  }
+
+  @Override
+  public List<Rule> getRelevantRemoteRules(ResourceBundle messageBundle, List<RemoteRuleConfig> configs, GlobalConfig globalConfig, UserConfig userConfig, Language motherTongue, List<Language> altLanguages, boolean inputLogging) throws IOException {
+    List<Rule> rules = new ArrayList<>(super.getRelevantRemoteRules(
+      messageBundle, configs, globalConfig, userConfig, motherTongue, altLanguages, inputLogging));
+
+    // no description needed - matches based on automatically created rules with descriptions provided by remote server
+    rules.addAll(GRPCRule.createAll(configs, inputLogging, "AI_DE_",
+      "INTERNAL - dynamically loaded rule supported by remote server"));
+
+    return rules;
   }
 
 }

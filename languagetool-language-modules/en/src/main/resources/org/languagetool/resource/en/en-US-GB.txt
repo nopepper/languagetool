@@ -51,6 +51,9 @@ aerosolize;aerosolise
 aerosolized;aerosolised
 aerosolizes;aerosolises
 aerosolizing;aerosolising
+esthetic;aesthetic
+esthetical;aesthetical
+esthetically;aesthetically
 aestheticize;aestheticise
 aestheticized;aestheticised
 aestheticizes;aestheticises
@@ -722,6 +725,7 @@ colorizing;colourizing
 colors;colours
 colorway;colourway
 colorways;colourways
+colorless;colourless
 commentor;commenter
 commentors;commenters
 commercialization;commercialisation
@@ -3946,6 +3950,7 @@ skeptic;sceptic
 skeptical;sceptical
 skeptically;sceptically
 skeptics;sceptics
+skepticism;scepticism
 skillful;skilful
 skillfully;skilfully
 slenderize;slenderise
@@ -4707,3 +4712,6 @@ unticking;deselecting
 hemostasis;haemostasis
 hyperemia;hyperaemia
 hyperemic;hyperaemic
+odorless;odourless
+peach-colored;peach-coloured
+rust-colored;rust-coloured

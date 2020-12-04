@@ -44,7 +44,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 <!ENTITY ne_pril_short_inoe "готов|готова|готово|готовы|должен|должна|должны|должно|намерен|намерена|намерено|намерены|обязан|обязана|обязано|обязаны|рад|рада|рады|радо|склонен|склонна|склонно|склонны|расположен|расположена|расположено|расположены">
 <!ENTITY ne_pril_short_double "богата|богат|богато|богаты|бедна|беден|бедны|бедно|красива|красив|красиво|красивы|известен|известна|известно|известны|велика|велик|велико|велики|нужен|нужна|нужно|нужны|прав|права|право|правы|согласен|согласна|согласно|согласны|способен|способна|способно|способны">
 <!ENTITY verb "должен|должна|должно|должны|обязана|обязано|обязаны|обязан|необходимо"> <!-- TODO:check in dict -->
-<!ENTITY rost "количество|количественный|качество|качественный|показатель|показательный|экономика|экономический|преступность|преступный|смертность|безработица|безработный|численность|рождаемость|выработка|прибыль|стоимость|долг|госдолг|доход|расход|протяжённость|продолжительность|ассигнование|урожайность|популярность|напряжённость|ВВП|коралл|темп|продукт|возможность|замедление|результат|десятилетие|сравнение|объём|автомобилизация|вид|сбыт|цена|противоречие|мера|урожай|инвестиция|производство|сила|потребность|точка|процесс|тело|концентрация|время|стимулятор|регулятор|благосостояние|причина|предпосылка|сезон|политика|период|тенденция|ожидание|национализм|зарплата|микроорганизм|бактерия|потенциал|система|поощрение|производительность|самосознание|сознательность">
+<!ENTITY rost "количество|количественный|качество|качественный|показатель|показательный|экономика|экономический|преступность|преступный|смертность|безработица|безработный|численность|рождаемость|выработка|прибыль|стоимость|долг|госдолг|доход|расход|протяжённость|продолжительность|ассигнование|урожайность|популярность|напряжённость|ВВП|коралл|темп|продукт|возможность|замедление|результат|десятилетие|сравнение|объём|автомобилизация|вид|сбыт|цена|противоречие|мера|урожай|инвестиция|производство|сила|потребность|точка|процесс|тело|концентрация|время|стимулятор|регулятор|благосостояние|причина|предпосылка|сезон|политика|период|тенденция|ожидание|национализм|зарплата|микроорганизм|бактерия|потенциал|система|поощрение|производительность|самосознание|сознательность|импорт|экспорт|добыча">
 <!ENTITY defis_libo "какая|какие|какое|какой|какому|кому|кто|такому|такая|такое|такой|вообще|всего|где|зачем|когда|куда|откуда|отчего|почему|сколько|тогда|так|туда|чего|что">
 ]>
 <!-- «» -->
@@ -1711,7 +1711,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             <example correction="сочетаются">Эти три букета хорошо <marker>сочетаются вместе</marker>.</example>
             <example>Эти три букета хорошо сочетаются.</example>
         </rule>
-         <rule id="Logical_segodnyashnij_den" name="Логические ошибки: «сегодняшний день»">
+         <rule id="Logical_segodnyashnij_den" name="Логические ошибки: «сегодняшний день»" tags="picky">
             <pattern>
                 <token>сегодняшний</token>
                 <token>день</token>
@@ -5726,7 +5726,26 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example correction="6-му">План должен быть выполнен к <marker>6 му</marker> сентября.</example>
             </rule>
         </rulegroup>
-        
+    
+        <rule id="LC_AFTER_PERIOD_RU" name="После точки идёт слово, начинающееся со строчной буквы" >
+            <!-- https://github.com/languagetool-org/languagetool/issues/3655 -->
+            <antipattern>
+                <token regexp="yes" case_sensitive="yes">.*[a-zа-яё]$</token>
+                <token>.</token>
+                <token regexp="yes">de|com|net|org|ru|by|ua|kz|su|рф|рус|онлайн|сайт|москва</token>
+            </antipattern>
+            <pattern>
+                <token spacebefore="yes" regexp="yes" case_sensitive="yes">.*[a-zа-яё]$</token>
+                <token spacebefore="no">.</token>
+                <marker>
+                    <token spacebefore="no" regexp="yes" case_sensitive="yes">[a-zа-яёA-ZА-ЯЁ].+<exception postag="UNKNOWN"/><exception regexp="yes">bat|de|dat|doc|pro|php|med|xls|docx|xlsx|odt|ods|sxc|sxw|txt</exception></token>
+                </marker>
+            </pattern>
+            <message>Поставьте пробел после точки, но если пропущено начало предложения, то пишите следующее слово с большой буквы:<suggestion> <match no="3" case_conversion="startupper"/></suggestion> или <suggestion> <match no="3"/></suggestion></message>
+            <short>Пропущен пробел</short>
+            <example correction=" Только| только">LanguageTool предоставляет проверку грамматики, стиля и орфографии.<marker>только</marker> вставьте текст сюда.</example>
+        </rule>
+          
         
     </category>
     <category id="GRAMMAR" name="Грамматика">
@@ -9281,7 +9300,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
              <rule>        
             <pattern>
                 <!--     VB:.*         -->
-                <token skip="-1" regexp="yes">нужно|надо|необходимо<exception  scope="next" regexp="yes">[,:;]</exception><exception postag="PNN:.*" postag_regexp="yes" scope="next" /></token>
+                <token skip="-1" regexp="yes">нужно|надо|необходимо<exception  scope="next" regexp="yes">[,:;]|и|или</exception><exception postag="PNN:.*" postag_regexp="yes" scope="next" /></token>
                 <marker>
                   <token postag="VB:.*" postag_regexp="yes" skip="-1"><exception postag_regexp="yes"  postag="VB:INF:.*"></exception><exception postag_regexp="yes" negate_pos="yes" postag="VB:.*"></exception><exception>трём</exception><exception postag_regexp="yes" scope="next" postag="VB:.*"></exception></token>
                 </marker>
@@ -9292,7 +9311,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             <short>Глагол должен быть в неопределённой форме</short>
             <example>Нужно, чтобы мы готовились к худшему.</example>
             <example>Не надо суетиться!</example>
-            <example>Вчера все надо мной смеялись.</example>
+            <example>Спрашивайте, что вам надо и оставьте меня в покое.</example> <!-- Incorrect example, correct: Спрашивайте, что вам надо, и оставьте меня в покое. -->
             <example correction="суетиться">Не надо <marker>суетится</marker>!</example>
             <example correction="перепрыгнуть">Толику необходимо <marker>перепрыгнул</marker> через барьер.</example>
             <example correction="строиться">Нужно <marker>строится</marker> на этом месте.</example>
@@ -9574,6 +9593,16 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             <message>Глагол «\1» предполагает после себя существительное в родительном падеже: <suggestion><match no="1"></match> <match no="2" postag_regexp="yes" postag="NN:(.*):(.*):(.*):V" postag_replace="NN:$1:$2:$3:R"  ></match></suggestion></message>
             <short>Требуется родительный падеж</short>
             <example correction="избежал встречи">Он <marker>избежал встречу</marker>.</example>
+        </rule>
+        
+        <rule id="Verb_and_PNN_Nom" name="Глагольное управление (местоимение)" default="temp_off">
+            <pattern>
+                <token postag="VB:Real:TRANS:IMPFV:.*:.*"  postag_regexp="yes"></token>
+                <token postag="PNN:.*:Nom:P3" postag_regexp="yes" ></token>
+            </pattern>
+            <message>Неверное управление</message>
+            <example correction=""><marker>Люблю он</marker></example>
+            <example>Люблю его</example>
         </rule>
         <rule id="Verb_and_wo_P" name="Глагольное управление (падеж)">
         <!--TODO   необходимо использовать грамматические характеристики глагола (переходный/непереходный) -->            
@@ -9937,7 +9966,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             <pattern>
                 <!--              PREP в -> NN:.*:.*:V или NN:.*:P NN:.*:2R    исключение для "в учителя,... -->
                 <token>в<exception postag="&lt;ADV&gt;"/></token>
-                <token postag="ADJ:.*:(V|P)" postag_regexp="yes" min="1" max="2"><exception postag="PT:.*" postag_regexp="yes"></exception></token> 
+                <token postag="ADJ:.*:(V|P)" postag_regexp="yes" min="1" max="2">
+                    <exception postag="PT:.*" postag_regexp="yes"></exception>
+                    <exception inflected="yes">который</exception>
+                </token> 
                 <marker>
                 <token postag="NN:.*:.*:.*" postag_regexp="yes">
                     <exception regexp="yes">тысяча|миллион</exception>
@@ -9953,6 +9985,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             <example>Он смотрел в новое окно.</example>
             <example>В предусмотренных конституцией случаях.</example>
             <example>Он всегда смотрит в будущее.</example>
+            <example>В котором писатель предсказал такие блага современной цивилизации как мобильные телефоны, принтеры и прочие технические устройства.</example>
             <example>Это наблюдается в одной такой группе</example>
             <example correction="группе">Это наблюдается в одной такой <marker>группой</marker></example>
           </rule>
@@ -11000,7 +11033,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             <example>А с XII в. — шнеккеры.</example>
             <example>А с XII в.</example>
         </rule>
-        <rule id="PNN_ON_END" name="Местоимение в конце предложения">
+        <rule id="PNN_ON_END" name="Местоимение в конце предложения" tags="picky">
             <!--      Заканчивать предложение местоимением – дурной стиль, не для этого оно.  -->
             <pattern case_sensitive="yes">
                 <token regexp="yes">он|она|оно<exception postag='VB:.*' postag_regexp='yes' scope='previous'></exception><exception scope='previous'>как</exception></token>
@@ -11013,7 +11046,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             <example>Ты ужасный человек, - сказала она.</example>
             <example>Сделать меня таким, как он.</example>
         </rule>
-        <rulegroup default="on" id="missing_noun_at_end" name="Опущено существительное">
+        <rulegroup default="on" id="missing_noun_at_end" name="Опущено существительное" tags="picky">
             <rule>
                 <antipattern>
                         <token postag="VB:.*" postag_regexp="yes"></token>
@@ -11208,7 +11241,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example correction="ни в коем случае">Но <marker>не в коем случае</marker> нельзя забывать об этом.</example>
             </rule>
         </rulegroup>
-        <rule id="Logical_bolee_menee" name="Устойчивое выражение: «более или менее»">
+        <rule id="Logical_bolee_menee" name="Устойчивое выражение: «более или менее»" tags="picky">
             <pattern>
                 <token>более-менее</token>
             </pattern>
@@ -11343,9 +11376,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             </rule>
         </rulegroup>
         <rulegroup default="on" id="Use_prep_O" name="Предлог «о»">
-            <rule>
+            <rule> <!-- removed "подозревает о" -->
                 <pattern>
-                    <token inflected="yes" regexp="yes">понимать|изучать|выяснять|описывать|объяснить|излагать|подчеркнуть|утверждать|обсудить|подозревать</token>
+                    <token inflected="yes" regexp="yes">понимать|изучать|выяснять|описывать|объяснить|излагать|подчеркнуть|утверждать|обсудить</token>
                     <token regexp="yes">о|об</token>
                 </pattern>
                 <message>Глагол «\1» с предлогом «о» не употребляется.</message>

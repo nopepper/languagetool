@@ -21,32 +21,75 @@ package org.languagetool.rules.patterns;
 import com.google.common.collect.Sets;
 import org.junit.Test;
 
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import static org.languagetool.rules.patterns.StringMatcher.getPossibleRegexpValues;
 
 public class StringMatcherTest {
 
+  @Test(expected = PatternSyntaxException.class)
+  public void syntaxIsValidated() {
+    StringMatcher.create("tú|?", true, true);
+  }
+
   @Test
   public void testGetPossibleValues() {
-    assertNull(getPossibleRegexpValues("x.*"));
-    assertNull(getPossibleRegexpValues("x+"));
-    assertNull(getPossibleRegexpValues("^x$"));
-    assertNull(getPossibleRegexpValues("a.c"));
-    assertNull(getPossibleRegexpValues("a{2}"));
-    assertNull(getPossibleRegexpValues("[a-z]"));
-    assertNull(getPossibleRegexpValues("[^a]"));
-    assertNull(getPossibleRegexpValues("a[a-z]"));
-    assertNull(getPossibleRegexpValues("(?=a)"));
+    assertPossibleValues("x.*");
+    assertPossibleValues("x+");
+    assertPossibleValues("^x$");
+    assertPossibleValues("a.c");
+    assertPossibleValues("a{2}");
+    assertPossibleValues("[a-z]");
+    assertPossibleValues("[^a]");
+    assertPossibleValues("a[a-z]");
+    assertPossibleValues("(?=a)");
 
     assertPossibleValues("aa|bb", "aa", "bb");
     assertPossibleValues("aa", "aa");
     assertPossibleValues("aa?", "aa", "a");
     assertPossibleValues("[abc]", "a", "b", "c");
+    assertPossibleValues("[abc]", "a", "b", "c");
+    assertPossibleValues("a(bc)?", "a", "abc");
+    assertPossibleValues("a(b|c)", "ab", "ac");
+    assertPossibleValues("(a|b)(c|d)", "ac", "ad", "bc", "bd");
+    assertPossibleValues("\\.|\\-", ".", "-");
+    assertPossibleValues("[\\.\\-]", ".", "-");
+    assertPossibleValues("are|is|w(?:as|ere)", "are", "is", "was", "were");
+    assertPossibleValues("[,;:-]", ",", ";", ":", "-");
+    assertPossibleValues("(?:[-‑])", "-", "‑");
+    assertPossibleValues("[0-9]", IntStream.range(0, 10).mapToObj(String::valueOf).toArray(String[]::new));
+    assertPossibleValues("[0-9X]", Stream.concat(IntStream.range(0, 10).mapToObj(String::valueOf), Stream.of("X")).toArray(String[]::new));
+    assertPossibleValues("tú|\\?", "tú", "?");
   }
 
   private static void assertPossibleValues(String regexp, String... expected) {
-    assertEquals(Sets.newHashSet(expected), getPossibleRegexpValues(regexp));
+    assertEquals(expected.length == 0 ? null : Sets.newHashSet(expected), getPossibleRegexpValues(regexp));
+
+    for (String s : expected) {
+      trySomeMutations(regexp, s);
+    }
+    trySomeMutations(regexp, regexp);
+  }
+
+  private static void trySomeMutations(String regexp, String s) {
+    assertStringMatcherConsistentWithPattern(regexp, s);
+    for (int i = 0; i < s.length(); i++) {
+      assertStringMatcherConsistentWithPattern(regexp, s.substring(0, i) + s.substring(i + 1));
+      assertStringMatcherConsistentWithPattern(regexp, s.substring(0, i) + "x" + s.substring(i + 1));
+    }
+    assertStringMatcherConsistentWithPattern(regexp, "a" + s);
+    assertStringMatcherConsistentWithPattern(regexp, s + "a");
+  }
+
+  private static void assertStringMatcherConsistentWithPattern(String regexp, String s) {
+    assertEquals(StringMatcher.create(regexp, true, true).matches(s),
+      s.matches(regexp));
+    assertEquals(StringMatcher.create(regexp, true, false).matches(s),
+      Pattern.compile(regexp, Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE).matcher(s).matches());
   }
 
 }

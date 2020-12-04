@@ -37,7 +37,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
 <!ENTITY meses_ano "enero|febrero|marzo|abril|mayo|junio|julio|agosto|sep?tiembre|octubre|noviembre|diciembre">
 <!ENTITY meses_ano_abrv "ene|feb|mar|abrl|may|jun|jul|ago|sep|set|oct|nov|dic">
 <!ENTITY estaciones_ano "primavera|verano|otoño|invierno">
-<!ENTITY unidades "GB|TB|MB|MBps|Mbps|AM|PM|am|pm|m?[lL]|mm|cm|dm|m|km|h|min|s|seg|g|kg|Hz|[kM]Hz|°[FC]|pts|ptes|[£€$]|(mm|cm|dm|m|km)[23²³]">
+<!ENTITY unidades "GB|TB|MB|MBps|Mbps|AM|PM|M|am|pm|m?[lL]|mm|cm|dm|m|km|h|min|s|seg|g|kg|Hz|[kM]Hz|°[FC]|pts|ptes|[£€$]|(mm|cm|dm|m|km)[23²³]">
 <!ENTITY unidades_SI "(da|h|k|M|G|T|P|E|Z|Y|d|c|m|µ|n|p|f|a|z|y)?(m|g|s|A|K|cd|mol|Hz|N|Pa|J|W|Wh|C|V|Ω|S|F|T|Wb|H|rad|sr|lm|lx|Bq|Gy|Sv|kat|l|L)[²³23]?">
 <!--TODO: check case of abbreviations-->
 <!ENTITY abreviaturas "[Ee]xt|EXT|Dir|Dr|Dra|Abg|[Aa]cept|[Aa]dm|[Aa]dmón|[Aa]fma|[Aa]fmo|Alfz|Almte|[Aa]p|[Aa]pdo|[Aa]prox|Arq|[Aa]rt|Arz|[Aa]tta|Ayto|[Aa]tte|[Aa]tto|[Aa]v|[Aa]vd|[Aa]vda|Barna|Bco|Bibl|Bma|Bmo|Bo|Brig|Bta|Bto|[Cc]aj|[Cc]ap|Cdad|[Cc]ent|[Cc]f|[Cc]fr|[Cc]go|[Cc]je|[Cc]l|Cmdt|Cmte|Cnel|[Cc]ol|Comod|Comp|Comte|Contralmte|[Cc]oord|[Cc]p|[Cc]rec|[Cc]ta|Cte|[Cc]ts|[Cc]tv|[Cc]tvo|[Cc]ént|Cía|[Cc]ód|[Cc]ónf|[Cc]ónfr|[Dd]cha|[Dd]cho|[Dd]epto|[Dd]iag|[Dd]icc|[Dd]oc|[Dd]pto|[Dd]to|[Dd]updo|[Ee]d|[Ee]dit|[Ee]do|[Ee]f|[Ee]j|Emmo|[Ee]ntlo|[Ee]tc|[Ee]xcl|Excma|Excmo|[Ff]asc|[Ff]ca|Fdo|[Ff]ig|[Ff]ol|Fr|[Ff]ra|[Ff]éc|Gdor|Gdora|Gob|Gral|Hna|Hno|[Ii]b|[Ii]bíd|Il|Ilma|Ilmo|Iltre|[Ii]mp|[Ii]mpr|[Ii]mpto|incl|Ing|Inst|[Ii]zda|[Ii]zdo|[Ii]zq|[Ii]zqda|[Ii]zqdo|Jhs|Lcda|Lcdo|Lda|Ldo|Lic|Ltd|Ltda|Ltdo|Magfca|Magfco|Mons|[Mm]r|[Mm]s|[Mm]áx|[Mm]ín|[Nn]ro|[Nn]úm|Ob|Pat|Pbro|pdo|Pdta|Pdte|[Pp]g|[Pp]l|[Pp]lza|Pnt|[Pp]pal|[Pp]ral|Presb|Prof|[Pp]rov|[Pp]ról|[Pp]za|[Pp]ág|[Pp]árr|Rda|Rdo|[Rr]eg|Rep|Rev|Rte|Rvd|Rvda|Rvdma|Rvdmo|Rvdo|Sdad|Sgto|[Ss]ig|Soc|Sr|Sra|Srs|Sres|Sras|Srta|Sta|Sto|[Tt]el|[Tt]eléf|[Tt]fno|[Tt]rad|Tte|[Tt]ít|Ud|Uds|Univ|Valmte|Vd|Vda|Vdo|Vds|[Vv]id|[Vv]ol|[Vv]s|[Vv]ta|[Vv]to|Xto|[Íí]d">
@@ -1522,7 +1522,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             </antipattern>
             <antipattern>
                 <token regexp="yes">practica|practicas</token>
-                <token regexp="yes">tú|?</token>
+                <token regexp="yes">tú|\?</token>
             </antipattern>
             <antipattern>
                 <token regexp="yes">practico|practica|practicas</token>
@@ -1816,6 +1816,59 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
         </rulegroup>
         <rulegroup id="QUE" name="que/qué">
             <url>https://www.rae.es/consultas/tilde-en-que-cuales-quienes-como-cuan-cuantoaosas-cuando-donde-y-adonde</url>
+            <antipattern>
+                <token>a</token>
+                <token>que</token>
+                <token regexp="yes">sí|no</token>
+                <token>?</token>
+            </antipattern>
+            <rule>
+                <antipattern>
+                    <token>a</token>
+                    <token>que</token>
+                    <token>no</token>
+                </antipattern>
+                <antipattern>
+                    <token>que</token>
+                    <token>si</token>
+                </antipattern>
+                <antipattern>
+                    <token>que</token>
+                    <token regexp="yes">cómo|cuántos?|cuándo|quién|quiénes|cuál|cuáles</token>
+                </antipattern>
+                <antipattern>
+                    <token>a</token>
+                    <token skip="2">que</token>
+                    <token inflected="yes" regexp="yes">ser|molar|conocer|hacer|divertir</token>
+                </antipattern>
+                <antipattern>
+                    <token>a</token>
+                    <token skip="2">que</token>
+                    <token inflected="yes">estar</token>
+                    <token><exception postag="V.G.*" postag_regexp="yes"/></token>
+                </antipattern>
+                <pattern>
+                    <token>¿</token>
+                    <token min="0">a</token>
+                    <marker>
+                        <token>que</token>
+                    </marker>
+                </pattern>
+                <message>Si es interrogativo (=qué cosa), se escribe con tilde. Correcto sin tilde si la respuesta es "sí" o "no".</message>
+                <!--<url>https://blog.lengua-e.com/2011/que-con-tilde-y-que-sin-tilde/</url>-->
+                <suggestion>qué</suggestion>
+                <example correction="Qué">¿<marker>Que</marker> quieres que te diga?</example>
+                <example correction="Qué">¿<marker>Que</marker> te has dejado en casa?</example>
+                <example correction="qué">¿A <marker>que</marker> está jugando aquel hombre alto?</example>
+                <example type="triggers_error">¿Que te has dejado las llaves en casa?</example>
+                <!--This can't be detected, but infrequent-->
+                <example type="triggers_error">¿Que los alemanes no tienen sentido del humor?</example>
+                <example>¿A que hoy hace viento?</example>
+                <example>¡Que te diviertas!</example>
+                <example>¿A que no?</example>
+                <example>Tom es muy popular, ¿a que sí? </example>
+                <example>¿A que te he hecho reír?</example>
+            </rule>
             <rule>
                 <antipattern>
                     <token>a</token>
@@ -1832,26 +1885,25 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 </antipattern>
                 <pattern>
                     <token>¿</token>
-                    <token min="0" max="2" postag="SPS00|CC" postag_regexp="yes"/>
+                    <token min="1" max="2" postag="SPS00|CC" postag_regexp="yes"><exception>a</exception></token>
                     <marker>
                         <token>que</token>
                     </marker>
                 </pattern>
-                <message>Si es interrogativo (=qué cosa), se escribe con tilde. Correcto sin tilde si la respuesta es "sí" o "no".</message>
+                <message>Si es interrogativo (=qué cosa), se escribe con tilde.</message>
                 <!--<url>https://blog.lengua-e.com/2011/que-con-tilde-y-que-sin-tilde/</url>-->
                 <suggestion>qué</suggestion>
-                <example correction="Qué">¿<marker>Que</marker> quieres que te diga?</example>
                 <example correction="qué">¿Para <marker>que</marker> sirve?</example>
                 <example correction="qué">¿Y de <marker>que</marker> servirá?</example>
                 <example correction="qué">¿Por <marker>que</marker> has venido?</example>
-                <example correction="Qué">¿<marker>Que</marker> te has dejado en casa?</example>
-                <example type="triggers_error">¿Que te has dejado las llaves en casa?</example>
-                <!--This can't be detected, but infrequent-->
-                <example type="triggers_error">¿Que los alemanes no tienen sentido del humor?</example>
-                <!--This can't be detected, but infrequent-->
                 <example>¡Que te diviertas!</example>
                 <example>¿A que no?</example>
                 <example>¿Que cuántos tengo?</example>
+                <example>¿A que hoy hace viento?</example>
+                <example>¡Que te diviertas!</example>
+                <example>¿A que no?</example>
+                <example>Tom es muy popular, ¿a que sí? </example>
+                <example>¿A que te he hecho reír?</example>
             </rule>
             <rule>
                 <pattern>
@@ -4655,6 +4707,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                     <token>-</token>
                     <token regexp="yes" case_sensitive="yes">\p{Lu}.+</token>
                 </antipattern>
+                <antipattern>
+                    <token>el</token>
+                    <token>campo</token>
+                </antipattern>
                 <pattern>
                     <marker>
                         <token>el<exception postag="_GN_MS|LOC_.*" postag_regexp="yes"/></token>
@@ -4760,6 +4816,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example>Le odio con cada fibra de mi ser.</example>
                 <example>Con mi 1,80 m.</example>
                 <example>lo que hago en mi día a día</example>
+                <example>El campo a través es una carrera de fondo.</example>
             </rule>
         </rulegroup>
         <rulegroup id="MI_SIN_TILDE" name="mí > mi">
@@ -6903,7 +6960,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <pattern>
                     <token regexp="yes">super|súper</token>
                     <token min="0">-</token>
-                    <token postag="A.*" postag_regexp="yes"/>
+                    <token postag="A.*" postag_regexp="yes"><exception inflected="yes" regexp="yes">super .*</exception></token>
                 </pattern>
                 <message suppress_misspelled="yes">Se escribe junto.</message>
                 <suggestion><match no="3" regexp_match="(?iu)(.+)" regexp_replace="super$1" case_conversion="alllower"/></suggestion>
@@ -6963,28 +7020,52 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <suggestion>PowerPoint</suggestion>
                 <example correction="PowerPoint">Tengo que acabar el <marker>power point</marker>.</example>
             </rule>
+            <rule>
+                <pattern>
+                    <token>language</token>
+                    <token min="0">-</token>
+                    <token>tool</token>
+                </pattern>
+                <message>¿Quería decir <suggestion>LanguageTool</suggestion> (servicio de revisión de textos)?</message>
+                <url>https://languagetool.org/es</url>
+                <example correction="LanguageTool">Me instalé el <marker>Language tool</marker> para Microsoft Word.</example>
+            </rule>
         </rulegroup>
         <rulegroup id="SUPER" name="super/súper/super-">
+            <url>https://www.fundeu.es/recomendacion/super-superestrella-superheroe-coalicion-prefijo-815/</url>
+            <antipattern>
+                <token inflected="yes" regexp="yes">super .*</token>
+            </antipattern>
+            <antipattern>
+                <token>super</token>
+                <token regexp="yes">\d+</token>
+            </antipattern>
             <rule>
                 <pattern>
                     <token regexp="yes">super|súper</token>
                     <token min="0">-</token>
-                    <token regexp="yes">..+</token>
+                    <token regexp="yes">...+</token>
                 </pattern>
                 <message suppress_misspelled="yes">El prefijo 'super-' se escribe junto.</message>
                 <suggestion><match no="3" regexp_match="(.+)" regexp_replace="super$1" case_conversion="alllower"/></suggestion>
                 <example correction="superbuenas">Son <marker>súper buenas</marker></example>
                 <example correction="superintendente">Él es el <marker>super-intendente</marker></example>
+                <example>Lo pasamos súper en la fiesta.</example>
             </rule>
             <rule>
+                <antipattern>
+                    <token>súper</token>
+                    <token>cercano</token>
+                </antipattern>
                 <pattern>
                     <token regexp="yes">super|súper</token>
                     <token min="0">-</token>
-                    <token postag="A.*|V.P.*" postag_regexp="yes"><exception regexp="yes">cercano|super|súper</exception></token>
+                    <token postag="A.*|V.P.*" postag_regexp="yes"><exception regexp="yes">super|súper</exception></token>
                 </pattern>
                 <message>Como prefijo de un adjetivo, 'super-' se escribe junto, aunque la palabra resultante no esté en el diccionario.</message>
                 <suggestion><match no="3" regexp_match="(.+)" regexp_replace="super$1" case_conversion="alllower"/></suggestion>
                 <example correction="superimportantes">Son <marker>super importantes</marker></example>
+                <example>Es una super gran oportunidad.</example>
             </rule>
             <rule>
                 <pattern>
@@ -7004,6 +7085,42 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <message>Como adjetivo, adverbio o sinónimo de 'supermercado', se escribe <suggestion>súper</suggestion>.</message>
                 <example correction="súper">Me voy al <marker>super</marker>.</example>
                 <example>En la Super Bowl.</example>
+                <example>Está super de moda.</example>
+                <example>Me siento super a gusto.</example>
+                <example>Formaron una super gran coalición.</example>
+            </rule>
+            <rule>
+                <pattern>
+                    <marker>
+                        <token>súper</token>
+                    </marker>
+                    <token regexp="yes">a|de</token>
+                    <token regexp="yes">gusto|moda</token>
+                </pattern>
+                <message>Como prefijo de un conjunto de palabras con un significado unitario, se escribe sin tilde.</message>
+                <suggestion>super</suggestion>
+                <example correction="super">Estaba <marker>súper</marker> a gusto.</example>
+            </rule>
+            <rule>
+                <pattern>
+                    <marker>
+                        <token>súper</token>
+                    </marker>
+                    <token>gran</token>
+                </pattern>
+                <message>Como prefijo de un conjunto de palabras con un significado unitario, se escribe sin tilde.</message>
+                <suggestion>super</suggestion>
+                <example correction="super">Fundaron una <marker>súper</marker> gran coalición.</example>
+            </rule>
+            <rule>
+                <pattern>
+                    <token regexp="yes">súper|super</token>
+                    <token>-</token>
+                    <token>gran</token>
+                </pattern>
+                <message>Como prefijo de un conjunto de palabras con un significado unitario, se escribe sin guión y sin tilde.</message>
+                <suggestion>super gran</suggestion>
+                <example correction="super gran">Fundaron una <marker>súper-gran</marker> coalición.</example>
             </rule>
         </rulegroup>
         <rulegroup id="AUTO_NO_SEPARADO" name="prefijo auto- no separado">
@@ -8422,6 +8539,33 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example correction="por qué|porque">No puedo comprender <marker>porqué</marker> no vino.</example>
                 <example>Quiero saber el porqué.</example>
                 <example>Aún no se sabe la razón del porqué no va.</example>
+            </rule>
+            <rule>
+                <antipattern>
+                    <token regexp="yes" inflected="yes">ansioso|deseoso|optar|preocupación|preocupar|rezar</token>
+                    <token>por</token>
+                    <token skip="5">que</token>
+                    <token postag="V.S.*" postag_regexp="yes"/>
+                </antipattern>
+                <antipattern>
+                    <token regexp="yes" inflected="yes">motivo|razón</token>
+                    <token>por</token>
+                    <token>que</token>
+                </antipattern>
+                <pattern>
+                    <marker>
+                        <token>por</token>
+                        <token>que</token>
+                    </marker>
+                </pattern>
+                <message>Si es una conjunción causal ('por causa de que'), se escribe junto.</message>
+                <suggestion>porque</suggestion>
+                <example correction="porque">No le gustan <marker>por que</marker> sabe que son malos.</example>
+                <example>Optaron por que no hubiera elecciones.</example>
+                <example>Estaban ansiosos por que vinieran.</example>
+                <example>El motivo por que vinimos no es este.</example>
+                <example>Nos expresó su preocupación por que los niños pudieran irse.</example>
+                <example correction="porque" type="triggers_error">Los premios <marker>por que</marker> competían eran atractivos.</example>
             </rule>
         </rulegroup>
         <rulegroup id="PREP_VERB" name="Combinación imposible: preposición + verbo conjugado">
@@ -10789,7 +10933,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             </antipattern>
             <antipattern>
                 <token>justo</token>
-                <token regexp="yes">a|al|afuera|adentro|fuera|dentro|aquí|allí|ahí|allá</token>
+                <token regexp="yes">a|al|afuera|adentro|fuera|dentro|aquí|allí|ahí|allá|en|como</token>
             </antipattern>
             <antipattern>
                 <token regexp="yes">producto|objeto|fruto</token>
@@ -11257,6 +11401,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             <example>Instrucciones incoadas bajo el nro. 4.</example>
             <example>Ves resultados mejores.</example>
             <example>Va por el camino en línea recta.</example>
+            <example>Lo demás cobra sentido.</example>
+            <example>A continuación adjunto el fichero.</example>
             <!-- 
                 La eternidad dura harto.
                 Ella fue al concierto acompañada de una amiga.
@@ -12704,6 +12850,40 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
         </rule>
     </category>
     <category id="CONFUSIONS" name="Confusiones">
+        <rule id="DEBIDO_QUE" name="debido (a) que">
+            <pattern>
+                <token>debido</token>
+                <token>que</token>
+            </pattern>
+            <message>¿Quería decir <suggestion>debido a que</suggestion>?</message>
+            <example correction="debido a que">No lo trajeron <marker>debido que</marker> no estaba acabado.</example>
+        </rule>
+        <rulegroup id="PODAR_PODER" name="podar/poder">
+            <rule>
+                <pattern>
+                    <marker>
+                        <token>podes</token>
+                    </marker>
+                    <token postag="V.N.*" postag_regexp="yes"/>
+                </pattern>
+                <message>Posible confusión.</message>
+                <suggestion>podés</suggestion>
+                <suggestion>podéis</suggestion>
+                <suggestion>puedes</suggestion>
+                <example correction="podés|podéis|puedes">Y <marker>podes</marker> pensar lo que quieras.</example>
+            </rule>
+            <rule>
+                <pattern>
+                    <marker>
+                        <token inflected="yes">podar<exception inflected="yes">poder</exception></token>
+                    </marker>
+                    <token postag="V.N.*" postag_regexp="yes"/>
+                </pattern>
+                <message>Posible confusión.</message>
+                <suggestion><match no="1" postag="(V.*)" postag_regexp="yes" postag_replace="$1">poder</match></suggestion>
+                <example correction="puedo">Y <marker>podo</marker> pensar lo que quiera.</example>
+            </rule>
+        </rulegroup>
         <rule id="ORA_HORA" name="ora/hora">
             <antipattern>
                 <token skip="-1">ora</token>
@@ -14918,38 +15098,46 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
             <rule>
                 <pattern>
                     <token postag="SENT_START"/>
-                    <token min="0" max="3" postag="_PUNCT.*" postag_regexp="yes"/>
+                    <token min="0" max="3" postag="_PUNCT.*|UNKNOWN" postag_regexp="yes"/>
+                    <token min="0">muy</token>
                     <token regexp="yes">buenos|buenas|felices|buen|buena</token>
+                    <token regexp="yes">días|tardes|noches|fiestas|día|tarde|noche|mañana</token>
                     <marker>
-                        <token regexp="yes">días|tardes|noches|fiestas|día|tarde|noche|mañana</token>
                         <token postag="[ANV].*|_possible_NP" postag_regexp="yes"><exception postag="_PUNCT.*|SPS00|C.*" postag_regexp="yes"/><exception inflected="yes">tener</exception></token>
                     </marker>
                 </pattern>
-                <message>Probablemente falta una coma después de "<match no="3" case_conversion="alllower"/> \4" (ej. "<match no="3" case_conversion="startupper"/> \4, Ana.").</message>
-                <suggestion>\4, \5</suggestion>
-                <example correction="días, amigo">¡Buenos <marker>días amigo</marker> .</example>
+                <message>Probablemente falta una coma después de "<match no="3" case_conversion="alllower"/> \4" (ej. "<match no="4" case_conversion="startupper"/> \5, Ana.").</message>
+                <suggestion>, \6</suggestion>
+                <example correction=", amigo">¡Buenos días<marker> amigo</marker> .</example>
+                <example correction=", estimados">Muy buen día<marker> estimados</marker>.</example>
                 <example>¡Buenas tardes a todos!</example>
                 <example>Buenos días tenga usted.</example>
                 <example>Buenas noches y adiós.</example>
             </rule>
             <rule>
+                <antipattern>
+                    <token>la</token>
+                    <token>mayoría</token>
+                </antipattern>
                 <pattern>
                     <unify negate="yes">
                         <feature id="numero"/>
                         <feature id="genero"/>
+                        <token postag="N.*" postag_regexp="yes"/>
                         <marker>
-                            <token postag="N.*" postag_regexp="yes"/>
-                            <token postag="A.*" postag_regexp="yes" inflected="yes" regexp="yes">guapo|guapetón|guapísimo|amigo|chico|niño<exception postag="_possible_NP"/></token>
+                            <token postag="A.*" postag_regexp="yes" inflected="yes" regexp="yes">guapo|guapetón|guapísimo|amigo|chico|niño|señor<exception postag="_possible_NP"/></token>
                         </marker>
                     </unify>
                     <token postag="_PUNCT.*|CC" postag_regexp="yes"/>
                 </pattern>
                 <message>Probablemente falta una coma.</message>
-                <suggestion>\1, \2</suggestion>
-                <example correction="fiestas, guapo">Felices <marker>fiestas guapo</marker>.</example>
-                <example correction="besos, guapa">¡Muchos <marker>besos guapa</marker>!</example>
+                <suggestion>, \2</suggestion>
+                <example correction=", guapo">Felices fiestas<marker> guapo</marker>.</example>
+                <example correction=", guapa">¡Muchos besos<marker> guapa</marker>!</example>
+                <example correction=", señora">¡A sus órdenes<marker> señora</marker>!</example>
                 <example>de la Asociación Amigos de la Catedral</example>
                 <example>Fue recibido por Augusto Chicas, director de Desarrollo Sostenible.</example>
+                <example>Aparecieron cien personas, la mayoría niños.</example>
             </rule>
             <rule>
                 <pattern>
@@ -14959,26 +15147,28 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                         <feature id="genero"/>
                         <marker>
                             <token postag="N.*" postag_regexp="yes" regexp="yes">fiestas|fiesta|día|días|dia|dias|tardes?|noches?</token>
-                            <token postag="A.*" postag_regexp="yes"/>
                         </marker>
+                        <token postag="A.*" postag_regexp="yes"/>
                     </unify>
                 </pattern>
                 <message>Probablemente falta una coma.</message>
-                <suggestion>\2, \3</suggestion>
-                <example correction="días, chicas">¡Buenos <marker>días chicas</marker>!</example>
+                <suggestion>\2,</suggestion>
+                <example correction="días,">¡Buenos <marker>días</marker> chicas!</example>
             </rule>
             <rule>
                 <pattern>
                     <unify negate="yes">
                         <feature id="numero"/>
                         <feature id="genero"/>
-                        <token postag="N.*" postag_regexp="yes" regexp="yes">adiós|gracias|saludos</token>
+                        <marker>
+                            <token postag="N.*" postag_regexp="yes" regexp="yes">adiós|gracias|saludos</token>
+                        </marker>
                         <token postag="A.*" postag_regexp="yes"/>
                     </unify>
                 </pattern>
                 <message>Probablemente falta una coma.</message>
-                <suggestion>\1, \2</suggestion>
-                <example correction="Adiós, chicos"><marker>Adiós chicos</marker>.</example>
+                <suggestion>\1,</suggestion>
+                <example correction="Adiós,"><marker>Adiós</marker> chicos.</example>
             </rule>
             <rule>
                 <pattern>
@@ -14986,15 +15176,15 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                     <unify negate="yes">
                         <feature id="numero"/>
                         <feature id="genero"/>
+                        <token postag="N.*" postag_regexp="yes"/>
                         <marker>
-                            <token postag="N.*" postag_regexp="yes"/>
                             <token postag="A.*" postag_regexp="yes" inflected="yes">precioso</token>
                         </marker>
                     </unify>
                 </pattern>
                 <message>Probablemente falta una coma.</message>
-                <suggestion>\2, \3</suggestion>
-                <example correction="besos, preciosa">¡Muchos <marker>besos preciosa</marker>!</example>
+                <suggestion>, \3</suggestion>
+                <example correction=", preciosa">¡Muchos besos<marker> preciosa</marker>!</example>
                 <example>Una hoja de cálculo preciosa.</example>
             </rule>
         </rulegroup>
@@ -15349,10 +15539,18 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                     <token spacebefore="no" regexp="yes" case_sensitive="yes">[a-z][a-z0-9]+|[A-Z][A-Z0-9]+</token>
                 </marker>
             </antipattern>
+            <antipattern case_sensitive="yes">
+                <marker>
+                    <token regexp="yes">[A-Z]</token>
+                    <token spacebefore="no">.</token>
+                </marker>
+                <token regexp="yes">[A-Z]</token>
+                <token spacebefore="no">.</token>
+            </antipattern>
             <rule>
                 <pattern>
                     <token regexp="yes" spacebefore="no">[.!?…]<exception postag="SENT_END"/></token>
-                    <token spacebefore="no" regexp="yes">([\p{L}·'-]{2,}|[¿¡])</token>
+                    <token spacebefore="no" regexp="yes">([\p{L}·'-]+|[¿¡])</token>
                 </pattern>
                 <message>Falta un espacio tras el punto.</message>
                 <suggestion><match no="1"/> <match no="2" case_conversion="startupper"/></suggestion>
@@ -15362,6 +15560,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
                 <example correction="? Siempre">Es así<marker>?Siempre</marker>.</example>
                 <example correction="… Siempre">Es así<marker>…Siempre</marker>!</example>
                 <example correction=". Čerenkov">con P.A<marker>.Čerenkov</marker></example>
+                <example correction=". Y">Una frase<marker>.Y</marker> otra.</example>
                 <example>Es así. Sempre.</example>
                 <example>Es así.</example>
                 <example>Es así...</example>

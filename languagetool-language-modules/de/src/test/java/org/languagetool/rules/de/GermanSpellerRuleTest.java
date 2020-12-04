@@ -461,6 +461,8 @@ public class GermanSpellerRuleTest {
     assertFirstSuggestion("augensichtlich", "augenscheinlich", rule, lt);
     assertFirstSuggestion("Krankenbrüdern", "Krankenpflegern", rule, lt);
     assertFirstSuggestion("Lan-Kabel", "LAN-Kabel", rule, lt);
+    assertFirstSuggestion("perfekteste", "perfekte", rule, lt);
+    assertFirstSuggestion("gleichtig", "gleichzeitig", rule, lt);
   }
 
   @Test
@@ -800,6 +802,13 @@ public class GermanSpellerRuleTest {
     assertTrue(rule.isMisspelled("Spielzugcomputern"));
     assertFalse(rule.isMisspelled("Spielzug"));
     assertFalse(rule.isMisspelled("Spielzugs"));
+
+    assertTrue(rule.isMisspelled("Studentenschafte"));
+    assertTrue(rule.isMisspelled("Steuereigenschafte"));
+    assertFalse(rule.isMisspelled("Studentenschaften"));
+    assertFalse(rule.isMisspelled("Steuereigenschaften"));
+    assertFalse(rule.isMisspelled("Eigenschaften"));
+    assertFalse(rule.isMisspelled("wirtschafte"));
   }
   
   @Test

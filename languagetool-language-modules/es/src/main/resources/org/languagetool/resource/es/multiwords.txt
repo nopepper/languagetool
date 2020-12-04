@@ -1,3 +1,10 @@
+a continuación	LOC_ADV
+Super League	NPFSO00
+Grupo Zeta	NPMSO00
+super a gusto	AQ0CN0
+super de moda	AQ0CN0
+super gran	AQ0CS0
+Black Friday	NCMN000
 Aung San Suu Kyi	NPFSSP0
 Ramón y Cajal	NPCNSP0
 a contrariis	LOC_ADV
@@ -351,6 +358,7 @@ sin duda	LOC_ADV
 a su vez	LOC_ADV
 al mismo tiempo	LOC_ADV
 un poco	LOC_ADV
+un poquito	LOC_ADV
 un tanto	LOC_ADV
 paso a paso	LOC_ADV
 peso mosca	NCMS000
@@ -606,6 +614,10 @@ a cambio	LOC_ADV
 a cambio de	LOC_PREP
 a campo raso	LOC_ADV
 a campo traviesa	LOC_ADV
+a campo travieso	LOC_ADV
+a campo través	LOC_ADV
+campo a través	LOC_ADV
+campo a traviesa	LOC_ADV
 a capela	LOC_ADJ
 a cappella	LOC_ADJ
 a cara de perro	LOC_ADV

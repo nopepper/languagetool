@@ -46,20 +46,20 @@ public class DocumentCache implements Serializable {
   private int defaultParaCheck;
   private boolean isReset = false;
 
-  DocumentCache(DocumentCursorTools docCursor, FlatParagraphTools flatPara, int defaultParaCheck) {
+  DocumentCache(DocumentCursorTools docCursor, FlatParagraphTools flatPara, int defaultParaCheck, Locale docLocale) {
     debugMode = OfficeTools.DEBUG_MODE_DC;
     this.defaultParaCheck = defaultParaCheck;
-    reset(docCursor, flatPara);
+    reset(docCursor, flatPara, docLocale);
   }
   
-  public void reset(DocumentCursorTools docCursor, FlatParagraphTools flatPara) {
+  public void reset(DocumentCursorTools docCursor, FlatParagraphTools flatPara, Locale docLocale) {
     try {
       isReset = true;
       List<String> textParas = docCursor.getAllTextParagraphs();
       ParagraphContainer paragraphContainer = null;
       if (textParas != null) {
         chapterBegins = docCursor.getParagraphHeadings();
-        paragraphContainer = flatPara.getAllFlatParagraphs();
+        paragraphContainer = flatPara.getAllFlatParagraphs(docLocale);
         if (paragraphContainer == null) {
           MessageHandler.printToLogFile("paragraphContainer == null - ParagraphCache not initialised");
           paragraphs = null;
@@ -110,7 +110,7 @@ public class DocumentCache implements Serializable {
           }
           MessageHandler.printToLogFile("\n\ntoTextMapping:");
           for (int i = 0; i < toTextMapping.size(); i++) {
-            MessageHandler.printToLogFile("Flat: " + i + " Doc: " + toTextMapping.get(i));
+            MessageHandler.printToLogFile("Flat: " + i + " Doc: " + toTextMapping.get(i) + " locale: " + locales.get(i).Language + "-" + locales.get(i).Country);
   //        if (toTextMapping.get(i) == -1) {
   //          MessageHandler.printToLogFile("'" + paragraphs.get(i) + "'");
   //        }
@@ -302,7 +302,7 @@ public class DocumentCache implements Serializable {
         break;
       }
     }
-    if (headingAfter < numCurPara || headingAfter > toParaMapping.size()) {
+    if (headingAfter <= numCurPara || headingAfter > toParaMapping.size()) {
       headingAfter = toParaMapping.size();
     }
     if (parasToCheck < 0) {
@@ -382,11 +382,17 @@ public class DocumentCache implements Serializable {
     if (locales.size() > 0) {
       SerialLocale lastLocale = locales.get(0);
       for (int i = 1; i < locales.size(); i++) {
-        if (!locales.get(i).equalsLocale(lastLocale)) {
-          if (!prepChBegins.contains(i)) {
-            prepChBegins.add(i);
+        if (locales != null && !locales.get(i).equalsLocale(lastLocale)) {
+          int nText = getNumberOfTextParagraph(i);
+          if (nText >= 0) {
+            if (!prepChBegins.contains(nText)) {
+              prepChBegins.add(nText);
+            }
+            lastLocale = locales.get(i);
+            if (debugMode) {
+              MessageHandler.printToLogFile("Paragraph("  + i + "): Locale changed to: " + lastLocale.Language + (lastLocale.Country == null ? "" : ("-" + lastLocale.Country)));
+            }
           }
-          lastLocale = locales.get(i);
         }
       }
     }

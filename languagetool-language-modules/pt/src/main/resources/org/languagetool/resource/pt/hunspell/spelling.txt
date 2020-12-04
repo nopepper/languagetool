@@ -188,6 +188,8 @@ cosupervisora
 cosupervisoras
 courato
 couratos
+couvinha
+couvinhas
 criamo-lo
 criamo-los
 criámo-lo
@@ -376,6 +378,8 @@ italizado
 italizados
 interdimensional
 interdimensionais
+janado
+janados
 jerricã
 jerricãs
 jérsei
@@ -434,6 +438,8 @@ maralha
 maralhas
 marata
 maratas
+marfado
+marfados
 maricada
 maricadas
 market
@@ -531,6 +537,7 @@ patifão
 patifões
 patognomónico
 patognomónicos
+patrioticamente
 peida
 peidas
 percentil
@@ -580,6 +587,8 @@ proctoscopia
 prostíbulo
 prostíbulos
 protanopia
+provecta
+provectas
 psicoemocional
 psicoemocionais
 pulôver
@@ -596,6 +605,12 @@ raides
 rapel
 ravióis
 realistamente
+recomputado
+recomputados
+recomputar
+recomputaram
+recomputei
+recomputou
 reiki
 reikis
 reimosa
@@ -613,6 +628,8 @@ ritornelo
 ritornelos
 RNA
 Rolanda
+rolhadura
+rolhaduras
 Ronald
 royalty
 royalties
@@ -699,6 +716,7 @@ ultraterrestres
 Unabomber
 vampe
 vampes
+variavelmente
 varrimento
 varrimentos
 ventilatório
@@ -9687,6 +9705,7 @@ Ayrton
 Bahia
 Balaton
 Barré
+Barrett
 Bashar
 Bayes
 Bell
@@ -9715,12 +9734,14 @@ Corinthians
 Craig
 Crises
 Crowley
+Culloden
 Curitiba
 Daesh
 Daguerre
 Danielle
 Delpierre
 Dempster
+Deneubourg
 Dijkstra
 Dockery
 Doka
@@ -9772,12 +9793,14 @@ Jörg
 Jovino
 JUMBO
 June
+Kalbiyya
 Kasparov
 Kelly
 Kevin
 Kim
 Kropotkin
 Lanchester
+Langton
 Levassor
 Lorenz
 Luiz

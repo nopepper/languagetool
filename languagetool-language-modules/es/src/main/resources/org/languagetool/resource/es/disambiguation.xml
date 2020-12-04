@@ -405,6 +405,13 @@ Copyright (C) 2011 Juan Martorell
             <example type="untouched">Sobre todo hombre.</example>
             <example type="untouched">Sobre todo lo demás.</example>
         </rule>
+        <rule id="lo_demás" name="lo demás">
+            <pattern>
+                <token postag="DA0NS0">lo</token>
+                <token postag="PI0CN000">demás</token>
+            </pattern>
+            <disambig action="filterall"/>
+        </rule>
         <rule id="el_paso_a_paso" name="el paso a paso (noun)">
             <pattern>
                 <token regexp="yes">el|del|al</token>
@@ -816,6 +823,66 @@ Copyright (C) 2011 Juan Martorell
                 </marker>
             </pattern>
             <disambig action="add">
+                <wd pos="AO0FP0"/>
+            </disambig>
+        </rule>
+        <rule>
+            <pattern>
+                <marker>
+                    <token regexp="yes">([13]|[2-9][13])\.er</token>
+                </marker>
+            </pattern>
+            <disambig action="replace">
+                <wd pos="AO0MS0"/>
+            </disambig>
+        </rule>
+        <rule>
+            <pattern>
+                <marker>
+                    <token regexp="yes">\d+\.[ºo]</token>
+                </marker>
+            </pattern>
+            <disambig action="replace">
+                <wd pos="AO0MS0"/>
+            </disambig>
+        </rule>
+        <rule>
+            <pattern>
+                <marker>
+                    <token regexp="yes">\d+\.[ºo]</token>
+                </marker>
+            </pattern>
+            <disambig action="replace">
+                <wd pos="AO0MS0"/>
+            </disambig>
+        </rule>
+        <rule>
+            <pattern>
+                <marker>
+                    <token regexp="yes">\d+\.[ªa]</token>
+                </marker>
+            </pattern>
+            <disambig action="replace">
+                <wd pos="AO0FS0"/>
+            </disambig>
+        </rule>
+        <rule>
+            <pattern>
+                <marker>
+                    <token regexp="yes">\d+\.os</token>
+                </marker>
+            </pattern>
+            <disambig action="replace">
+                <wd pos="AO0MP0"/>
+            </disambig>
+        </rule>
+        <rule>
+            <pattern>
+                <marker>
+                    <token regexp="yes">\d+\.as</token>
+                </marker>
+            </pattern>
+            <disambig action="replace">
                 <wd pos="AO0FP0"/>
             </disambig>
         </rule>
@@ -1318,7 +1385,7 @@ Copyright (C) 2011 Juan Martorell
                     <token postag="NC.*" postag_regexp="yes" regexp="yes">entrevista|resumen|documento|testimonio</token>
                 </marker>
             </pattern>
-            <disambig action="filterall"></disambig>
+            <disambig action="filterall"/>
         </rule>
         <rule>
             <pattern>

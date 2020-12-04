@@ -560,6 +560,14 @@ title="Easy editing stylesheet" ?>
 		  <token regexp='yes'>[.,!?]|e|ou</token>
       </antipattern>	  	  
 <!-- MARCOAGPINTO 2020-10-22 + 2020-11-08 (21-OCT-2020+) *END* -->
+<!-- MARCOAGPINTO 2020-12-04 (21-OCT-2020+) *START* -->
+      <antipattern>
+		<token postag='SENT_START'/>
+		<token postag='DP.+' postag_regexp='yes'/>
+		<token min="1" max="3" postag='AQ.+|NC.+|NP.+' postag_regexp='yes'/>
+		<token postag='SENT_END' regexp='yes'>[,]</token>
+      </antipattern>
+<!-- MARCOAGPINTO 2020-12-04 (21-OCT-2020+) *END* -->
       <pattern>
           <token>
             <exception regexp="yes">[ao]s?|es[st][ae]s?|uma?s?|uns|por|de|em|&contracoes_MS;|&contracoes_MP;|&contracoes_FS;|&contracoes_FP;</exception></token>
@@ -585,6 +593,10 @@ title="Easy editing stylesheet" ?>
 	  <example type='correct'>Esta mania <marker>tão nossa</marker> de desdenhar de tudo e de todos.</example>
 	  <example type='correct'>Há dias, <marker>minha</marker> paixão assolapada, mirei-te numa capa de livrinho.</example>
 	  <example type='correct'>Não obstante, gostares de andar descalça, <marker>minha</marker> gazela doce e selvagem.</example>
+      <example>Meus amigos,</example>
+      <example>Meu querido amigo,</example>
+      <example>Meus queridos amigos,</example>
+      <example>Meu querido amigo Luís,</example>
     </rule>
     <rule>
       <antipattern>

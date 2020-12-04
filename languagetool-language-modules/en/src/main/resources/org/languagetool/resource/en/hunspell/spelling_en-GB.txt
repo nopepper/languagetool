@@ -6210,3 +6210,10 @@ hyperaemic
 hyperaemia
 mollusc
 molluscs
+aesthetic
+aesthetical
+aesthetically
+colourless
+odourless
+peach-coloured
+rust-coloured

@@ -1451,8 +1451,6 @@ Rita Ora	NNP
 Sophie Scholl	NNP
 Wear OS	NNP
 Android Wear	NNP
-about turn	NN
-about turns	NNS
 Violet Evergarden	NNP
 Viz-Jaq'taar	NNP
 Sempra Energy	NNP
@@ -1472,3 +1470,39 @@ biceps femoris	NN
 biceps femores	NNS
 Vicentine Alps	NNPS
 singletary pea	NN
+Moshi Monsters	NNPS
+Meridiani Planum	NNP
+Hans Vestberg	NNP
+Bumiller Building	NNP
+Herman Melville	NNP
+Frank Zappa	NNP
+Whitney Houston	NNP
+Celine Dion	NNP
+Johannes Gutenberg	NNP
+van der Velden	NNP
+van Velden	NNP
+Adobe XD	NNP
+Ferris Bueller	NNP
+Huazhong University	NNP
+Homo heidelbergensis	NNP
+Homo Heidelbergensis	NNP
+pro bono	JJ
+pro bono	RB
+Maui County	NNP
+Hawaii County	NNP
+Honolulu County	NNP
+Kauai County	NNP
+Kalawao County	NNP
+Pine Bluff	NNP
+Good Friday Agreement	NNP
+José Martí	NNP
+Dalai Lama	NNP
+Janet Yellen	NNP
+Jerome Powell	NNP
+Christine Lagarde	NNP
+Keira Knightley	NNP
+Project Veritas	NNP
+Carl Schenck	NNP
+Cameron Diaz	NNP
+Jeon Jungkook	NNP
+BTS Universe	NNP

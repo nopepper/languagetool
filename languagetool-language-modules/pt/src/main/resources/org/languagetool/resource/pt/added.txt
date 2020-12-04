@@ -100,6 +100,8 @@ consabido	consabido	AQ0MS0
 consabidos	consabido	AQ0MP0
 courato	courato	NCMS000
 couratos	courato	NCMP000
+couvinha	couve	NCFS000
+couvinhas	couve	NCFP000
 cuca	cuca	NCFS000
 cucas	cuca	NCFP000
 curinga	curinga	NCFS000
@@ -1760,6 +1762,10 @@ isomórficas	isomórfico	AQ0FP0
 isomórfico	isomórfico	AQ0MS0
 isomórficos	isomórfico	AQ0MP0
 jacuzzi	jacuzzi	NCMS000
+janado	janado	AQ0MS0
+janado	janado	NCMS000
+janados	janado	AQ0MP0
+janados	janado	NCMP000
 jerricã	jerricã	NCMS000
 jerricãs	jerricã	NCMP000
 jérsei	jérsei	NCMS000
@@ -1917,6 +1923,8 @@ mapeou	mapear	VMIS3S0
 marata	marata	NCFS000
 marata	marata	NCMS000
 maratas	marata	NCMP000
+marfado	marfado	AQ0MS0
+marfados	marfado	AQ0MP0
 maricada	maricada	NCFS000
 maricadas	maricada	NCFP000
 market	market	NCMS000
@@ -2220,6 +2228,7 @@ patifão	patifão	NCMS000
 patifões	patifão	NCMP000
 patognomónico	patognomónico	AQ0MS0
 patognomónicos	patognomónico	AQ0MP0
+patrioticamente	patriótico	RG
 pega	pegar	VMP00SF
 pegas	pegar	VMP00PF
 pego	pegar	VMP00SM
@@ -2380,6 +2389,8 @@ prostíbulo	prostíbulo	NCMS000
 prostíbulos	prostíbulo	NCMP000
 protanopia	protanopia	NCFS000
 prototipagem	prototipagem	NCFS000
+provecta	provecto	AQ0FS0
+provectas	provecto	AQ0FP0
 proveem	prover	VMIP3P0
 psicoemocional	psicoemocional	AQ0CS0
 psicoemocionais	psicoemocional	AQ0CP0
@@ -2477,6 +2488,15 @@ recolhida	recolher	VMP00SF
 recolhidas	recolher	VMP00PF
 recolhido	recolher	VMP00SM
 recolhidos	recolher	VMP00PM
+recomputado	recomputar	VMP00SM
+recomputados	recomputar	VMP00PM
+recomputar	recomputar	VMN0000
+recomputar	recomputar	VMSF1S0
+recomputar	recomputar	VMSF3S0
+recomputaram	recomputar	VMIM3P0
+recomputaram	recomputar	VMIS3P0
+recomputei	recomputar	VMIS1S0
+recomputou	recomputar	VMIS3S0
 reconfiguração	reconfiguração	NCFS000
 recontratação	recontratação	NCFS000
 #recorre	recorrer	VMN01S0
@@ -2524,6 +2544,8 @@ rejeitador	rejeitador	AQ0MS0
 rejeitador	rejeitador	NCMS000
 rejeitadora	rejeitador	AQ0FS0
 rejeitadora	rejeitador	NCFS000
+relaxa	relaxar	VMIP3S0
+relaxa	relaxar	VMM02S0
 relaxe	relaxar	VMM03S0
 relaxe	relaxar	VMSP1S0
 relaxe	relaxar	VMSP3S0
@@ -2575,6 +2597,8 @@ ritornelos	ritornelos	NCMP000
 ritualizada	ritualizar	VMP00SF
 ritualizadas	ritualizar	VMP00PF
 RNA	RNA	NCMN000
+rolhadura	rolhadura	NCFS000
+rolhaduras	rolhadura	NCFP000
 roteadores	roteador	AQ0MP0
 roteadores	roteador	NCMP000
 roteador	roteador	AQ0MS0
@@ -2895,6 +2919,7 @@ vampe	vampe	NCFS000
 vampes	vampe	NCFP000
 vanguardismo	vanguardismo	NCMS000
 vanguardismos	vanguardismo	NCMP000
+variavelmente	variável	RG
 varrimento	varrimento	NCMS000
 varrimentos	varrimento	NCMP000
 vedante	vedante	AQ0CS0
@@ -3691,6 +3716,7 @@ Windows	Windows	NPMS000
 x64	x64	NCMN000
 x86	x86	NCMN000
 Xiaomi	Xiaomi	NPMS000
+XML	XML	NCMN000
 Xubuntu	Xubuntu	NPMS000
 yottabit	yottabit	NCMS000
 yottabits	yottabit	NCMP000
@@ -3923,6 +3949,7 @@ Bairro	Bairro	NPMSG00
 Balaton	Balaton	NPMSG00
 Barbados	Barbados	NPFPG00
 Barré	Barré	NPMS000
+Barrett	Barrett	NPMS000
 Bashar	Bashar	NPMS000
 Bayes	Bayes	NPMS000
 BCE	BCE	NPMSO00
@@ -3966,6 +3993,7 @@ Craig	Craig	NPMS000
 Craigslist	Craigslist	NPMS000
 Crises	Crises	NPMS000
 Crowley	Crowley	NPMS000
+Culloden	Culloden	NPFSG00
 Curitiba	Curitiba	NPMSG00
 Dácia	Dácia	NPFS000
 Daesh	Daesh	NPMS000
@@ -3974,6 +4002,7 @@ Danielle	Danielle	NPFS000
 DARPA	DARPA	NPFS000
 Delpierre	Delpierre	NPMS000
 Dempster	Dempster	NPMS000
+Deneubourg	Deneubourg	NPMS000
 DGS	DGS	NPFS000
 DHL	DHL	NPMS000
 Dijkstra	Dijkstra	NPMS000
@@ -4052,6 +4081,7 @@ Jovino	Jovino	NPMS000
 Jugoslávia	Jugoslávia	NPFS000
 JUMBO	JUMBO	NPMS000
 June	June	NPFS000
+Kalbiyya	Kalbiyya	NPFS000
 Kasparov	Kasparov	NPMS000
 Kelly	Kelly	NPFS000
 Kevin	Kevin	NPMS000
@@ -4063,6 +4093,7 @@ Laden	Laden	NPMS000
 Lajes	Lajes	NPCNG00
 Lemos	Lemos	NPCS000
 Lanchester	Lanchester	NPMS000
+Langton	Langton	NPMS000
 Levassor	Levassor	NPMS000
 Lorentz	Lorentz	NPMS000
 Lorenz	Lorenz	NPMS000

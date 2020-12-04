@@ -156,6 +156,7 @@ public class GermanSpellerRule extends CompoundAwareHunspellRule {
     put("unauslässlich", w -> Arrays.asList("unerlässlich", "unablässig", "unauslöschlich"));
     put("Registration", "Registrierung");
     put("Registrationen", "Registrierungen");
+    putRepl("[Gg]arnix", "nix", "nichts");
     putRepl("[Ww]i", "i", "ie");
     putRepl("[uU]nauslässlich(e[mnrs]?)?", "aus", "er");
     putRepl("[vV]erewiglicht(e[mnrs]?)?", "lich", "");
@@ -946,6 +947,8 @@ public class GermanSpellerRule extends CompoundAwareHunspellRule {
     putRepl("Krankenbruders?", "bruder", "pfleger");
     putRepl("Krankenbrüdern?", "brüder", "pfleger");
     putRepl("Lan-(Kabel[ns]?|Verbindung)", "Lan", "LAN");
+    putRepl("[pP]erfektest(e[mnrs]?)?", "est", "");
+    putRepl("[gG]leichtig(e[mnrs]?)?", "tig", "zeitig");
     put("[wW]elan", w -> Arrays.asList("WLAN", "W-LAN"));
     put("Pinn", w -> Arrays.asList("Pin", "PIN"));
     put("Geldmachung", w -> Arrays.asList("Geltendmachung", "Geldmacherei"));
@@ -1289,6 +1292,9 @@ public class GermanSpellerRule extends CompoundAwareHunspellRule {
       return true;
     }
     if (word.startsWith("Standart") && !word.equals("Standarte") && !word.equals("Standarten") && !word.startsWith("Standartenträger") && !word.startsWith("Standartenführer")) {
+      return true;
+    }
+    if (word.endsWith("schafte") && word.matches("[A-ZÖÄÜ][a-zöäß-]+schafte")) {
       return true;
     }
     return super.isMisspelled(word);

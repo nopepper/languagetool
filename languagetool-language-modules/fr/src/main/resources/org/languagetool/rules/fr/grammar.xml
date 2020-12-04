@@ -15550,29 +15550,77 @@ though, and has since been slightly modified)-->
        <example>Sont-elles canadiennes ?</example>
       </rule>
     </rulegroup>
-    <rulegroup id="NONVERB_PRON" name="verb non valide + pronom">
+    <rulegroup id="VERB_PRONOUN" name="verbe impératif/interrogatif + pronom">
+      <antipattern>
+        <!-- English -->
+        <token regexp="yes">roll|sign</token>
+        <token>-on</token>
+      </antipattern>
+      <antipattern>
+        <token regexp="yes">.</token>
+        <token regexp="yes">-.*</token>
+      </antipattern>
+      <antipattern>
+        <token spacebefore="no">-</token>
+        <token spacebefore="no" regexp="yes">.{1,3}</token>
+        <token spacebefore="no" regexp="yes">-.*</token>
+      </antipattern>
+      <antipattern>
+        <token regexp="yes">voilà|voici</token>
+        <token>-t-il</token>
+      </antipattern>
+        <antipattern>
+          <!-- note de musique -->
+          <token regexp="yes">do|ré|mi|fa|sol|si</token>
+          <token>-la</token>
+        </antipattern>
         <antipattern>
             <token regexp="yes">«|"</token>
             <token/>
             <token regexp="yes">»|"</token>
         </antipattern>
+      <antipattern>
+        <token postag="V.* (ind|con|sub).* 2 p" postag_regexp="yes"/>
+        <token>-vous</token>
+      </antipattern>
+      <antipattern>
+        <token postag="V.* (ind|con|sub).* 1 p" postag_regexp="yes"/>
+        <token>-nous</token>
+      </antipattern>
        <rule>
+         <antipattern>
+           <!-- toponyms -->
+           <token postag="Z.*" postag_regexp="yes"/>
+           <token regexp="yes">-le|-la|-les</token> 
+         </antipattern>
+         <antipattern>
+           <!--toponyms, more greedy fix-->
+           <token regexp="yes">-le|-la|-les</token> 
+           <token regexp="yes">\p{Lu}.*</token>
+         </antipattern>
          <antipattern>
            <token postag="V .*" postag_regexp="yes"/>
            <token postag="R .*" postag_regexp="yes" spacebefore="no" regexp="yes">-.+</token>
            <token postag="R .*" postag_regexp="yes" spacebefore="no" regexp="yes">-.+</token>
          </antipattern>
+         <antipattern>
+           <and>
+             <token postag="V ppa m s" regexp="yes">.*é</token>
+             <token inflected="yes" regexp="yes">.*er</token>
+           </and>
+           <token>-je</token>
+         </antipattern>
          <pattern>
            <marker>
-             <token><exception postag="V.* (ind|sub|imp|con).*|R.*" postag_regexp="yes"/></token> <!-- TODO: a different rule for imperative, and remove subjuntive -->
+             <token><exception postag="V.* (ind|sub|imp|con).*|R.*|P" postag_regexp="yes"/></token> 
              <token postag="R .*" postag_regexp="yes" spacebefore="no" regexp="yes">-.+</token>
            </marker>
          </pattern>
          <filter class="org.languagetool.rules.fr.InterrogativeVerbFilter" args="PronounFrom:2 VerbFrom:1"/>
-         <message>« \1 » n’est pas un verbe valide.</message>
+         <message>Il semble y avoir une faute de frappe dans la forme verbale « \1 ».</message>
          <example correction="partis-tu|parus-tu|pars-tu|paras-tu|pares-tu">Quand <marker>parts-tu</marker> ?</example>
          <example correction="partis-tu|parus-tu|pars-tu|paras-tu|pares-tu">Quand <marker>pärts-tu</marker> ?</example>
-         <example correction="trompai-je|trompè-je|trompais-je|trempè-je">Me <marker>trompé-je</marker> ?</example>
+         <example correction="trompè-je|trempè-je|trompai-je">Me <marker>trompei-je</marker> ?</example>
          <example correction="Dépêche-toi|Repêche-toi|Dépèce-toi|Dépoche-toi|Dépêchez-toi"><marker>Depeche-toi</marker> !</example>
          <example correction="Donne-moi|Donnez-moi"><marker>Doner-moi</marker> une prove.</example>
          <example correction="Allez-y|Alèse-y"><marker>Alles-y</marker>.</example>
@@ -15586,20 +15634,20 @@ though, and has since been slightly modified)-->
          <example>Tant de fiel entre-t-il dans les âmes ?</example>
          <example>C'est mon petit chez-moi.</example>
          <example>Ils racontent leur parcours : moi-toi, moi-toi, chacun se donne la parole.</example>
+         <example>MARSEILLE-LA VALENTINE</example>
+         <example>Aix les Milles-la Pioline</example>
+         <example>Saint-Vincent-et-les Grenadines</example>
+         <example>Que pensè-je ?</example>
+         <example>Que pensé-je ?</example>
+         <example>Me trompé-je ?</example>
+         <example>EU-LE TREPORT-MERS LES BAINS</example>
+         <example>Ne voilà-t-il pas qu’ils oublient d’aller voter.</example>
       </rule>
-      <rule id="IMPERATIVE_PRONOUN" name="Verb impératif + pronom" default="temp_off">
-        <antipattern>
-          <token postag="V.* (ind|con|sub).* 2 p" postag_regexp="yes"/>
-          <token>-vous</token>
-        </antipattern>
-        <antipattern>
-          <token postag="V.* (ind|con|sub).* 1 p" postag_regexp="yes"/>
-          <token>-nous</token>
-        </antipattern>
+      <rule>
         <pattern>
           <marker>
-            <token postag="V.*" postag_regexp="yes"><exception postag="V.* (imp).*" postag_regexp="yes"/></token>
-            <token postag="R .*" postag_regexp="yes" spacebefore="no" regexp="yes">-([mt]oi|l(a|es?)|lui|[nv]ous|leur|en|y)</token>
+            <token postag="V.*" postag_regexp="yes"><exception postag="V.* imp.*" postag_regexp="yes"/></token>
+            <token postag="R .*" postag_regexp="yes" spacebefore="no" regexp="yes">-([mt]oi|l(a|es?)|lui|[nv]ous|leur)</token>
           </marker>
         </pattern>
         <filter class="org.languagetool.rules.fr.InterrogativeVerbFilter" args="PronounFrom:2 VerbFrom:1"/>
@@ -15610,6 +15658,72 @@ though, and has since been slightly modified)-->
         <example>Pourquoi ne mangeriez-vous pas aussi ?</example>
         <example>Fassiez-vous ne serait-ce qu'un seul pas en arrière, et je vous tirerai dessus.</example>
         <example>Ils racontent leur parcours : moi-toi, moi-toi, chacun se donne la parole.</example>
+      </rule>
+      <rule>
+        <pattern>
+          <marker>
+            <token postag="V.*" postag_regexp="yes"><exception postag="V.* imp.*|V.* ind pres 2 s" postag_regexp="yes"/></token>
+            <token postag="R .*" postag_regexp="yes" spacebefore="no" regexp="yes">-(en|y)</token>
+          </marker>
+        </pattern>
+        <filter class="org.languagetool.rules.fr.InterrogativeVerbFilter" args="PronounFrom:2 VerbFrom:1"/>
+        <message>Il semble y avoir une faute de frappe dans la forme de l'impératif.</message>
+        <example correction="Allez-y"><marker>Aller-y</marker>"</example>
+        <example>Manges-y.</example>
+        <example>Participes-y.</example>
+        <example>Apportes-en deux.</example>
+        <example>Vas-y lentement.</example>
+      </rule>
+      <rule>
+        <pattern>
+          <marker>
+            <token postag="V.* imp pres 2 s" postag_regexp="yes"><exception regexp="yes">.*s</exception></token>
+            <token postag="R .*" postag_regexp="yes" spacebefore="no" regexp="yes">-(en|y)</token>
+          </marker>
+        </pattern>
+        <message>Si le verbe se terminant par -es est suivi de « -en » ou de « -y » à l’impératif, on conservera son « s »</message>
+        <suggestion><match no="1" postag="V.* imp.*" postag_regexp="yes" postag_replace="V.* ind pres 2 s"/>\2</suggestion>
+        <url>https://bescherelle.ca/imperatif/</url>
+        <example correction="Participes-y"><marker>Participe-y</marker>.</example>
+        <example correction="Vas-y"><marker>Va-y</marker> lentement</example>
+        <example correction="Apportes-en"><marker>Apporte-en</marker> deux.</example>
+        <example>Manges-y.</example>
+        <example>Participes-y.</example>
+        <example>Apportes-en deux.</example>
+        <example>Vas-y lentement.</example>
+      </rule>
+      <rule>
+        <pattern>
+          <marker>
+            <token postag="V ind pres 1 s" regexp="yes">.*e</token>
+          </marker>
+          <token>-je</token>
+        </pattern>        
+        <message>Il semble y avoir une faute de frappe dans la forme verbale « \1 ».</message>
+        <suggestion><match no="1" regexp_match="(?iu)e$" regexp_replace="è"/></suggestion>
+        <suggestion><match no="1" regexp_match="(?iu)e$" regexp_replace="é"/></suggestion>
+        <example correction="pensè|pensé">Que <marker>pense</marker>-je</example>
+      </rule>
+      <rule>
+        <antipattern>
+          <token postag="V ind pres 1 s" regexp="yes">.*è</token>
+          <token>-je</token>
+        </antipattern>
+        <antipattern>
+          <token><exception postag="SENT_START"/></token>
+          <token regexp="yes">\p{Lu}.*</token>
+        </antipattern>
+        <pattern>
+          <marker>
+            <token postag="V ind pres 1 s" regexp="yes">.*è</token>
+          </marker>
+        </pattern>        
+        <message>Il semble y avoir une faute de frappe dans la forme verbale « \1 ».</message>
+        <suggestion><match no="1" regexp_match="(?iu)è$" regexp_replace="e"/></suggestion>
+        <suggestion><match no="1" regexp_match="(?iu)è$" regexp_replace="é"/></suggestion>
+        <example correction="pense|pensé">Que <marker>pensè</marker> son ami ?</example>
+        <example>Que pensè-je ?</example>
+        <example>Me trompè-je ?</example>
       </rule>
     </rulegroup>
     <rulegroup id="ACCORD_NOM_VERBE" name="Accord" default="off">
@@ -16754,6 +16868,10 @@ though, and has since been slightly modified)-->
         <token>-</token>
         <token regexp="yes">il|elle|on|ils|elles</token>
       </antipattern>
+      <antipattern>
+        <token regexp="yes">voilà|voici</token>
+        <token>-t-il</token>
+      </antipattern>
       <rule>
         <pattern>
           <token regexp="yes">.*[dt]</token>
@@ -16770,7 +16888,7 @@ though, and has since been slightly modified)-->
           <token regexp="yes">.*[^ae]<exception regexp="yes">(?:convainc|voilà)</exception></token>
           <token regexp="yes">-t-(?:il|elle|on)</token>
         </pattern>
-        <message>Le -t- euphonique n’est possible qu’avec les verbes se terminant en a ou e et avec le verbe convaincre.</message>
+        <message>Le -t- euphonique n’est possible qu’avec les verbes se terminant en a ou e et avec le verbe 'convaincre'.</message>
         <suggestion>\1 <match no="2" regexp_match="-t-" regexp_replace=""/></suggestion>
         <url>https://www.projet-voltaire.fr/regles-orthographe/mentend-il-ou-mentend-t-il/</url>
         <example correction="arriveras il">Quand <marker>arriveras-t-il</marker> ?</example>
@@ -35157,6 +35275,38 @@ though, and has since been slightly modified)-->
         <example>Y'a pas mal de gens.</example>
       </rule>
     </rulegroup>
+    <rulegroup id="Y_AVAIT" name="Expression familière y'avait">
+      <rule>
+        <pattern>
+          <marker>
+            <token postag="UNKNOWN" regexp="yes">y'(avait|aurait|eut|aura|ait|eût|ayant)</token>
+          </marker>
+          <token regexp="yes">-il|-t-il</token>
+        </pattern>
+        <message>Vouliez-vous dire <suggestion><match no="1" regexp_match="'" regexp_replace=" "/></suggestion> ?</message>
+        <example correction="Y avait"><marker>Y'avait</marker>-il des étoiles dans le ciel?</example>
+      </rule>
+      <rule>
+        <pattern>
+          <token>il</token>
+          <marker>
+            <token postag="UNKNOWN" regexp="yes">y'(avait|aurait|eut|aura|ait|eût|ayant)</token>
+          </marker>
+        </pattern>
+        <message>Vouliez-vous dire <suggestion><match no="2" regexp_match="'" regexp_replace=" "/></suggestion> ?</message>
+        <example correction="y aura">Il <marker>y'aura</marker> beaucoup d'eau en été.</example>
+      </rule>
+      <rule>
+        <pattern>
+          <marker>
+            <token postag="UNKNOWN" regexp="yes">y'(avait|aurait|eut|aura|ait|eût|ayant)</token>
+          </marker>
+        </pattern>
+        <message>La formulation « \1 » est très familière. Vouliez-vous dire <suggestion>il <match no="1" regexp_match="'" regexp_replace=" " case_conversion="alllower"/></suggestion> ?</message>
+        <example correction="Il y aura"><marker>Y'aura</marker> beaucoup d'eau en été.</example>
+        <example correction="Il y avait"><marker>Y'avait</marker> une contrainte de temps.</example>
+      </rule>
+    </rulegroup>
     <rule id="CHIFFRE_SIECLE" name="Chiffre suivi du mot siècle">
       <antipattern>
         <token regexp="yes">en|durant|pendant</token>
@@ -35254,11 +35404,22 @@ though, and has since been slightly modified)-->
     <rule id="POWER_POINT" name="PowerPoint">
       <pattern>
         <token>Power</token>
-        <token>Point</token>
+        <token min="0">-</token>
+        <token regexp="yes">Points?</token>
       </pattern>
-      <message>Voulez-vous écrire <suggestion><match no="1" case_conversion="startupper" /><match no="2" case_conversion="startupper" /></suggestion> (= logiciel de présentation) ?</message>
+      <message>Voulez-vous écrire <suggestion>PowerPoint</suggestion> (= logiciel de présentation) ?</message>
       <url>https://fr.wikipedia.org/wiki/Microsoft_PowerPoint</url>
       <example correction="PowerPoint"><marker>Power Point</marker> est un logiciel de présentation édité par Microsoft.</example>
+    </rule>
+    <rule id="LANGUAGE_TOOL" name="LanguageTool">
+      <pattern>
+        <token>language</token>
+        <token min="0">-</token>
+        <token>tool</token>
+      </pattern>
+      <message>Voulez-vous écrire <suggestion>LanguageTool</suggestion> (= logiciel de vérification des textes) ?</message>
+      <url>https://languagetool.org/fr</url>
+      <example correction="LanguageTool">J'ai installé le <marker>Language-tool</marker> pour LibreOffice.</example>
     </rule>
     <rule id="EMMANUEL_MACRON" name="Emmanuel Macron">
       <antipattern case_sensitive="yes">
@@ -35545,6 +35706,19 @@ though, and has since been slightly modified)-->
     </rule>
   </category>
   <category id="CAT_MAJUSCULES" name="Majuscules">
+    <rule id="CHINE_AVEC_MAJUSCULE" name="Chine avec majuscule" default="temp_off"><!-- French contributor, 2020-12-03 -->
+      <antipattern>
+        <token regexp="yes">le|du|un</token>
+        <token>chine</token>
+      </antipattern>
+      <pattern case_sensitive='yes'>
+          <token>chine</token>
+      </pattern>
+      <message>Si vous vous référez au pays, celui-ci s'écrit avec majuscule.</message>
+      <suggestion><match no="1" case_conversion="startupper"/></suggestion>
+      <example correction='Chine'>La <marker>chine</marker> est un pays.</example>
+      <example>Le chine est un papier de luxe grisâtre.</example>
+    </rule>
     <rule id="SKYPE" name="skype/Skype">
       <antipattern>
         <token regexp="yes">je|il|elle</token>

@@ -30,6 +30,7 @@ import com.sun.star.beans.PropertyValue;
 import com.sun.star.beans.XPropertySet;
 import com.sun.star.beans.XPropertySetInfo;
 import com.sun.star.container.XStringKeyMap;
+import com.sun.star.lang.IllegalArgumentException;
 import com.sun.star.lang.Locale;
 import com.sun.star.lang.XComponent;
 import com.sun.star.linguistic2.SingleProofreadingError;
@@ -214,7 +215,7 @@ public class FlatParagraphTools {
    * Returns null if it fails
    */
   @Nullable
-  public ParagraphContainer getAllFlatParagraphs() {
+  public ParagraphContainer getAllFlatParagraphs(Locale docLocale) {
     try {
       XFlatParagraph xFlatPara = getLastFlatParagraph();
       if (xFlatPara == null) {
@@ -227,16 +228,15 @@ public class FlatParagraphTools {
       List<Locale> locales = new ArrayList<>();
       List<int[]> footnotePositions = new ArrayList<>();
       XFlatParagraph tmpFlatPara = xFlatPara;
+      Locale locale = null;
       while (tmpFlatPara != null) {
         String text = tmpFlatPara.getText();
         int len = text.length();
         allParas.add(0, text);
         footnotePositions.add(0, getPropertyValues("FootnotePositions", tmpFlatPara));
-        Locale local = tmpFlatPara.getLanguageOfText(0, len);
-        if (local == null || local.Language.isEmpty()) {
-          local = tmpFlatPara.getPrimaryLanguageOfText(0, len);
-        }
-        locales.add(0, local);
+        // add just one local for the whole paragraph
+        locale = getPrimaryParagraphLanguage(tmpFlatPara, len, docLocale, locale);
+        locales.add(0, locale);
         tmpFlatPara = xFlatParaIter.getParaBefore(tmpFlatPara);
       }
       tmpFlatPara = xFlatParaIter.getParaAfter(xFlatPara);
@@ -245,11 +245,8 @@ public class FlatParagraphTools {
         int len = text.length();
         allParas.add(text);
         footnotePositions.add(getPropertyValues("FootnotePositions", tmpFlatPara));
-        Locale local = tmpFlatPara.getLanguageOfText(0, len);
-        if (local == null || local.Language.isEmpty()) {
-          local = tmpFlatPara.getPrimaryLanguageOfText(0, len);
-        }
-        locales.add(local);
+        locale = getPrimaryParagraphLanguage(tmpFlatPara, len, docLocale, locale);
+        locales.add(locale);
         if (debugMode) {
           printPropertyValueInfo(tmpFlatPara);
         }
@@ -260,6 +257,91 @@ public class FlatParagraphTools {
       MessageHandler.printException(t);     // all Exceptions thrown by UnoRuntime.queryInterface are caught
       return null;           // Return null as method failed
     }
+  }
+  
+  /**
+   * Get the language of paragraph 
+   * @throws IllegalArgumentException 
+   */
+  private static Locale getParagraphLanguage(XFlatParagraph flatPara, int first, int len) throws IllegalArgumentException {
+    Locale locale = flatPara.getLanguageOfText(first, len);
+    if (locale == null || locale.Language.isEmpty()) {
+//      MessageHandler.printToLogFile("!!!locale is null or empty: try to get primary language");
+      locale = flatPara.getPrimaryLanguageOfText(first, len);
+    }
+    return locale;
+  }
+  /**
+   * Try to get the main language of paragraph 
+   * @throws IllegalArgumentException 
+   */
+  private static Locale getPrimaryParagraphLanguage(XFlatParagraph flatPara, int len, Locale docLocale, Locale lastLocale) throws IllegalArgumentException {
+    if (docLocale != null) {
+      return docLocale;
+    }
+/*
+    MessageHandler.printToLogFile("len = " + len + "; lastLocale: " + (lastLocale == null ? "null" : lastLocale.Language));
+    String textPortions = "";
+    int[] portions = flatPara.getLanguagePortions();
+    for (int i : portions) {
+      textPortions += (i + ", ");
+    }
+    MessageHandler.printToLogFile("text portions(" + portions.length + "): " + textPortions);
+    MessageHandler.printToLogFile("'" + flatPara.getText() +"'");
+*/
+    if (len == 0 && lastLocale != null) {
+      return lastLocale;
+    }
+    if (len < 6) {
+      Locale locale = getParagraphLanguage(flatPara, 0, len);
+//      MessageHandler.printToLogFile("len = " + len + "; locale: " + locale.Language);
+      return locale;
+    }
+    Locale locale1 = getParagraphLanguage(flatPara, 0, len/3);
+    Locale locale2 = getParagraphLanguage(flatPara, len/3, len/3);
+    if (OfficeTools.isEqualLocale(locale1, locale2)) {
+//      MessageHandler.printToLogFile("len = " + len + "; locale: " + locale1.Language);
+      return locale1;
+    }
+    Locale locale3 = getParagraphLanguage(flatPara, 2*len/3, len/3);
+    if (OfficeTools.isEqualLocale(locale2, locale3)) {
+//      MessageHandler.printToLogFile("len = " + len + "; locale: " + locale2.Language);
+      return locale2;
+    }
+//    MessageHandler.printToLogFile("len = " + len + "; locale: " + locale1.Language);
+    return locale1;
+/*
+    if (len < 2) {
+      return getParagraphLanguage(flatPara, 0, len);
+    }
+    Locale locale1 = getParagraphLanguage(flatPara, 0, len/2);
+    Locale locale2 = getParagraphLanguage(flatPara, len/2, len/2);
+    if (OfficeTools.isEqualLocale(locale1, locale2)) {
+      return locale1;
+    }
+    Map<String, Locale> locales = new HashMap<String, Locale>();
+    Map<String, Integer> languages = new HashMap<String, Integer>();
+    for (int i = 0; i < len; i++) {
+      Locale locale = getParagraphLanguage(flatPara, i, 1);
+      if (languages.containsKey(locale.Language)) {
+        int num = languages.get(locale.Language);
+        languages.put(locale.Language, num + 1);
+      } else {
+        languages.put(locale.Language, 1);
+        locales.put(locale.Language, locale);
+      }
+    }
+    int maxNum = 0;
+    String lastLang = null;
+    for (String lang : languages.keySet()) {
+      int num = languages.get(lang);
+      if (num > maxNum) {
+        maxNum = num;
+        lastLang = lang;
+      }
+    }
+    return locales.get(lastLang);
+*/
   }
 
   /**
@@ -533,6 +615,9 @@ public class FlatParagraphTools {
         int nTextPara = docCache.getNumberOfTextParagraph(num);
         if (changedParas.containsKey(num)) {
           addMarksToOneParagraph(tmpFlatPara, changedParas.get(num), nTextPara < 0 ? null : cursor, override);
+          if (debugMode) {
+            MessageHandler.printToLogFile("mark Paragraph: " + num + ", Text: " + tmpFlatPara.getText());
+          }
           nMarked++;
         }
         if (override && cursor != null && nTextPara >= 0) {
