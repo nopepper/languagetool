@@ -77,7 +77,7 @@ public abstract class ConfusionProbabilityRule extends Rule {
   private final int grams;
   private final Language language;
   private final List<String> exceptions;
-  private final List<List<PatternToken>> antiPatterns;
+  private final List<DisambiguationPatternRule> antiPatterns;
 
   public ConfusionProbabilityRule(ResourceBundle messages, LanguageModel languageModel, Language language) {
     this(messages, languageModel, language, 3);
@@ -110,7 +110,7 @@ public abstract class ConfusionProbabilityRule extends Rule {
     }
     this.grams = grams;
     this.exceptions = exceptions;
-    this.antiPatterns = Objects.requireNonNull(antiPatterns);
+    this.antiPatterns = makeAntiPatterns(antiPatterns, language);
   }
 
   @NotNull
@@ -181,7 +181,8 @@ public abstract class ConfusionProbabilityRule extends Rule {
                 String term2 = confusionPair.getTerms().get(1).getString();
                 String id = getId() + "_" + cleanId(term1) +  "_" + cleanId(term2);
                 String desc = getDescription(term1, term2);
-                RuleMatch match = new RuleMatch(new SpecificIdRule(id, desc, messages, lm, language), sentence, googleToken.startPos, googleToken.endPos, message);
+                String shortDesc = Tools.i18n(messages, "statistics_suggest_short_desc");
+                RuleMatch match = new RuleMatch(new SpecificIdRule(id, desc, messages, lm, language), sentence, googleToken.startPos, googleToken.endPos, message, shortDesc);
                 match.setSuggestedReplacements(suggestions);
                 matches.add(match);
               }
@@ -339,7 +340,7 @@ public abstract class ConfusionProbabilityRule extends Rule {
 
   @Override
   public List<DisambiguationPatternRule> getAntiPatterns() {
-    return makeAntiPatterns(antiPatterns, language);
+    return antiPatterns;
   }
 
   private static class PathAndLanguage {

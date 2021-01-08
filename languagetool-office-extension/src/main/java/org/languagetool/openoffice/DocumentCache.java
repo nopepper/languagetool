@@ -27,7 +27,7 @@ import org.languagetool.openoffice.FlatParagraphTools.ParagraphContainer;
 import com.sun.star.lang.Locale;
 
 /**
- * Class to store the Text of a LO document 
+ * Class to store the Text of a LO document (document cache)
  * @since 5.0
  * @author Fred Kruse
  */
@@ -35,12 +35,12 @@ public class DocumentCache implements Serializable {
   
   private static final long serialVersionUID = 2L;
 
-  private static boolean debugMode;         //  should be false except for testing
+  private static boolean debugMode;                         //  should be false except for testing
 
-  private List<String> paragraphs = null;            //  stores the flat paragraphs of document
-  private List<Integer> chapterBegins = null;             //  stores the paragraphs formated as headings; is used to subdivide the document in chapters
-  private List<SerialLocale> locales = null;         //  stores the language of the paragraphs;
-  private List<int[]> footnotes = null;              //  stores the footnotes of the paragraphs;
+  private List<String> paragraphs = null;                   //  stores the flat paragraphs of document
+  private List<Integer> chapterBegins = null;               //  stores the paragraphs formated as headings; is used to subdivide the document in chapters
+  private List<SerialLocale> locales = null;                //  stores the language of the paragraphs;
+  private List<int[]> footnotes = null;                     //  stores the footnotes of the paragraphs;
   private List<Integer> toTextMapping = new ArrayList<>();  //  Mapping from FlatParagraph to DocumentCursor
   private List<Integer> toParaMapping = new ArrayList<>();  //  Mapping from DocumentCursor to FlatParagraph
   private int defaultParaCheck;
@@ -52,6 +52,20 @@ public class DocumentCache implements Serializable {
     reset(docCursor, flatPara, docLocale);
   }
   
+  DocumentCache(DocumentCache in) {
+    paragraphs = new ArrayList<String>(in.paragraphs);
+    chapterBegins = new ArrayList<Integer>(in.chapterBegins);
+    locales = new ArrayList<SerialLocale>(in.locales);
+    footnotes = new ArrayList<int[]>(in.footnotes);
+    toTextMapping = new ArrayList<Integer>(in.toTextMapping);
+    toParaMapping = new ArrayList<Integer>(in.toParaMapping);
+    defaultParaCheck = in.defaultParaCheck;
+  }
+  
+  /**
+   * reset the document cache
+   * load the actual state of the document into the cache
+   */
   public void reset(DocumentCursorTools docCursor, FlatParagraphTools flatPara, Locale docLocale) {
     try {
       isReset = true;
@@ -111,9 +125,6 @@ public class DocumentCache implements Serializable {
           MessageHandler.printToLogFile("\n\ntoTextMapping:");
           for (int i = 0; i < toTextMapping.size(); i++) {
             MessageHandler.printToLogFile("Flat: " + i + " Doc: " + toTextMapping.get(i) + " locale: " + locales.get(i).Language + "-" + locales.get(i).Country);
-  //        if (toTextMapping.get(i) == -1) {
-  //          MessageHandler.printToLogFile("'" + paragraphs.get(i) + "'");
-  //        }
           }
           MessageHandler.printToLogFile("\n\nheadings:");
           for (int i = 0; i < chapterBegins.size(); i++) {
@@ -159,6 +170,9 @@ public class DocumentCache implements Serializable {
     paragraphs.set(n, sPara);
   }
     
+  /**
+   * set Flat Paragraph and Locale at Index
+   */
   public void setFlatParagraph(int n, String sPara, Locale locale) {
     paragraphs.set(n, sPara);
     locales.set(n, new SerialLocale(locale));
@@ -252,7 +266,7 @@ public class DocumentCache implements Serializable {
   /**
    * Gives back the start paragraph for text level check
    */
-  public int getStartOfParaCheck(int numCurPara, int parasToCheck, boolean textIsChanged) {
+  public int getStartOfParaCheck(int numCurPara, int parasToCheck, boolean textIsChanged, boolean useQueue) {
     if (numCurPara < 0 || toParaMapping.size() <= numCurPara) {
       return -1;
     }
@@ -269,7 +283,7 @@ public class DocumentCache implements Serializable {
       } 
       headingBefore = heading;
     }
-    if (headingBefore == numCurPara || parasToCheck < 0) {
+    if (headingBefore == numCurPara || parasToCheck < 0 || (useQueue && !textIsChanged)) {
       return headingBefore;
     }
     int startPos = numCurPara - parasToCheck;
@@ -285,7 +299,7 @@ public class DocumentCache implements Serializable {
   /**
    * Gives back the end paragraph for text level check
    */
-  public int getEndOfParaCheck(int numCurPara, int parasToCheck, boolean textIsChanged) {
+  public int getEndOfParaCheck(int numCurPara, int parasToCheck, boolean textIsChanged, boolean useQueue) {
     if (numCurPara < 0 || toParaMapping.size() <= numCurPara) {
       return -1;
     }
@@ -305,7 +319,7 @@ public class DocumentCache implements Serializable {
     if (headingAfter <= numCurPara || headingAfter > toParaMapping.size()) {
       headingAfter = toParaMapping.size();
     }
-    if (parasToCheck < 0) {
+    if (parasToCheck < 0 || (useQueue && !textIsChanged)) {
       return headingAfter;
     }
     int endPos = numCurPara + 1 + parasToCheck;
@@ -323,15 +337,17 @@ public class DocumentCache implements Serializable {
   /**
    * Gives Back the full Text as String
    */
-  public String getDocAsString(int numCurPara, int parasToCheck, boolean textIsChanged) {
-    int startPos = getStartOfParaCheck(numCurPara, parasToCheck, textIsChanged);
-    int endPos = getEndOfParaCheck(numCurPara, parasToCheck, textIsChanged);
+  public String getDocAsString(int numCurPara, int parasToCheck, boolean textIsChanged, boolean useQueue) {
+    int startPos = getStartOfParaCheck(numCurPara, parasToCheck, textIsChanged, useQueue);
+    int endPos = getEndOfParaCheck(numCurPara, parasToCheck, textIsChanged, useQueue);
     if (startPos < 0 || endPos < 0) {
       return "";
     }
-    StringBuilder docText = new StringBuilder(fixLinebreak(getTextParagraph(startPos)));
+    StringBuilder docText = new StringBuilder(fixLinebreak(SingleDocument.removeFootnotes(getTextParagraph(startPos), 
+        getTextParagraphFootnotes(startPos))));
     for (int i = startPos + 1; i < endPos; i++) {
-      docText.append(OfficeTools.END_OF_PARAGRAPH).append(fixLinebreak(getTextParagraph(i)));
+      docText.append(OfficeTools.END_OF_PARAGRAPH).append(fixLinebreak(SingleDocument.removeFootnotes(getTextParagraph(i), 
+          getTextParagraphFootnotes(i))));
     }
     return docText.toString();
   }
@@ -353,11 +369,11 @@ public class DocumentCache implements Serializable {
   /**
    * Gives Back the StartPosition of Paragraph
    */
-  public int getStartOfParagraph(int nPara, int checkedPara, int parasToCheck, boolean textIsChanged) {
+  public int getStartOfParagraph(int nPara, int checkedPara, int parasToCheck, boolean textIsChanged, boolean useQueue) {
     if (nPara < 0 || toParaMapping.size() <= nPara) {
       return -1;
     }
-    int startPos = getStartOfParaCheck(checkedPara, parasToCheck, textIsChanged);
+    int startPos = getStartOfParaCheck(checkedPara, parasToCheck, textIsChanged, useQueue);
     if (startPos < 0) {
       return -1;
     }

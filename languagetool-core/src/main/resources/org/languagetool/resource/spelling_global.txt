@@ -634,7 +634,6 @@ iPad Mini
 Mac Mini
 Surface Pro
 Depeche Mode
-Zac Efron
 CSS
 SCSS
 HTML
@@ -1745,3 +1744,363 @@ Jungkook
 Jeon Jungkook
 J-Hope
 BTS Universe
+AppSource
+Bob's Burgers
+Bob’s Burgers
+Google Search Console
+Nicolás Maduro
+Benito Mussolini
+Mussolini
+DeepMind
+Nagios
+WarnerMedia
+AbCellera
+Cyberpunk
+Schlumberger
+Justin Timberlake
+GA4
+Alyssa Milano
+Mila Kunis
+Harrison Ford
+Seth Rogen
+Jonah Hill
+Stevie Wonder
+Jurassic Park
+Jurassic World
+Tina Turner
+Willy Brandt
+Tony Blair
+Margaret Thatcher
+Dick Cheney
+Igor Levit
+Supercell
+Hu Jintao
+Steven Spielberg
+James Cameron
+Salvador Dalí
+Andy Warhol
+WebRTC
+Scientology
+Cesare Beccaria
+Lamborghini Aventador
+Lamborghini Huracán
+Lamborghini Urus
+HarperCollins
+Amy Winehouse
+Kurt Cobain
+Wen Jiabao
+Pablo Picasso
+Facebook Creator Studio
+Don Draper
+Audemars Piguet
+Charles Dickens
+Robin Hood
+Schneider Electric
+Swarovski
+Alexander Fleming
+Louis Lumière
+Steve Wozniak
+James Watt
+Samuel Morse
+William Faulkner
+George Orwell
+Leo Tolstoy
+Gustave Flaubert
+Virginia Woolf
+Scott Fitzgerald
+Marcel Proust
+Geoffrey Chaucer
+Emily Dickinson
+Franz Kafka
+#Vladimir Nabokov
+Miguel de Cervantes
+John Milton
+Edgar Allan Poe
+Allan Poe
+Victor Hugo
+Dante Alighie
+Hermann Hesse
+Roald Dahl
+Walt Whitman
+Isaac Asimov
+Kurt Vonnegut
+Robert Louis Stevenson
+Aldous Huxley
+Emily Brontë
+Johann Wolfgang von Goethe
+Jonathan Swift
+Mary Shelley
+Henry Thoreau
+#Nikolai Gogol
+Joseph Conrad
+Thomas Mann
+John Steinbeck
+Gabriel García Márquez
+Hans Christian Andersen
+Jorge Luis Borges
+Flannery O'Connor
+George Eliot
+#Anton Chekhov
+#Fyodor Dostoevsky
+William Shakespeare
+Shakespeare
+Bob Dylan
+James Brown
+Eric Clapton
+Jimi Hendrix
+David Bowie
+Marvin Gaye
+Bruce Springsteen
+Chuck Berry
+Aretha Franklin
+Wolfgang Amadeus Mozart
+Bob Marley
+Buddy Holly
+Neil Young
+Keith Richards
+The Notorious B.I.G.
+Notorious B.I.G.
+Muddy Waters
+Hank Williams
+Miles Davis
+Joni Mitchell
+Sam Cooke
+Lou Reed
+Elvis Costello
+Otis Redding
+Tom Petty
+Elton John
+Gram Parsons
+Curtis Mayfield
+Louis Armstrong
+John Coltrane
+Brian Eno
+Tupac Shakur
+George Harrison
+Jimmy Page
+Tina Turner
+Jerry Lee Lewis
+Merle Haggard
+Billy Joel
+Al Green
+Ozzy Osbourne
+James Taylor
+Woody Guthrie
+Lotus Notes
+Bellingcat
+Munich Re
+Swiss Re
+Daniel Day-Lewis
+James Stewart
+Paul Newman
+Dustin Hoffman
+Clinton Eastwood
+Clint Eastwood
+Anthony Hopkins
+Laurence Olivier
+Samuel Leroy Jackson
+Samuel L. Jackson
+Robin Williams
+Robert Downey Jr
+Robert Downey Jr.
+Johnny Depp
+Humphrey Bogart
+Martin Scorsese
+Liam Neeson
+John Wayne
+Michael Caine
+Gary Oldman
+Hugh Jackman
+Cary Grant
+Sidney Poitier
+Will Smith
+Christian Bale
+Tommy Lee Jones
+Sean Penn
+Gregory Peck
+Henry Fonda
+Clark Gable
+Philip Seymour Hoffman
+Joaquin Phoenix
+Spencer Tracy
+Bill Murray
+Orson Welles
+James Cagney
+Gene Hackman
+Jack Lemmon
+Audrey Hepburn
+Elizabeth Taylor
+Sigourney Weaver
+Marilyn Monroe
+Nicole Kidman
+Scarlett Johansson
+Reese Witherspoon
+Julianne Moore
+Halle Berry
+Bette Davis
+Kate Winslet
+Faye Dunaway
+Viola Davis
+Grace Kelly
+Farrah Fawcett
+Charlize Theron
+Greta Garbo
+Sophia Loren
+Joan Crawford
+Julie Andrews
+Rita Hayworth
+Judy Garland
+Emily Blunt
+Sally Field
+Kathy Bates
+Emma Stone
+Ava Gardner
+Margot Robbie
+Michelle Pfeiffer
+Anne Hathaway
+Cate Blanchett
+Brigitte Bardot
+Judi Dench
+Mia Farrow
+Louise Brooks
+Ingrid Bergman
+Helen Mirren
+Vivien Leigh
+Catherine Zeta-Jones
+Lucille Ball
+Betty Grable
+Debbie Reynolds
+Shirley Temple
+Donkey Kong Country
+Subaru Legacy
+🛠️
+🎙️
+Bruce Schneier
+Jill Biden
+Doug Emhoff
+Bancolombia
+Nissan Rogue
+Natalie Portman
+Zlatan Ibrahimović
+Ibrahimović
+Arthur Schopenhauer
+René Descartes
+Friedrich Nietzsche
+Karl Marx
+Ludwig Wittgenstein
+John Locke
+Thomas Aquinas
+Jean-Jacques Rousseau
+Georg Wilhelm Friedrich Hegel
+David Hume
+Søren Kierkegaard
+John Stuart Mill
+Thomas Hobbes
+Simone de Beauvoir
+Baruch Spinoza
+Jean-Paul Sartre
+Bertrand Russell
+Gottlob Frege
+Gottfried Wilhelm Leibniz
+Michel Foucault
+John Rawls
+Saul Kripke
+Martin Heidegger
+Niccolò Machiavelli
+Edmund Husserl
+Hannah Arendt
+Francis Bacon
+Jacques Derrida
+Willard Van Orman Quine
+Karl Popper
+George Berkeley
+John Dewey
+Jeremy Bentham
+Alfred North Whitehead
+William James
+Jürgen Habermas
+Theodor W. Adorno
+Rudolf Carnap
+Noam Chomsky
+Otto von Bismarck
+Boris Becker
+Marlene Dietrich
+Bertolt Brecht
+Werner Heisenberg
+Carl Benz
+Claudia Schiffer
+Felix Mendelssohn
+Albert Schweitzer
+Friedrich Schiller
+Konrad Zuse
+Diane Kruger
+Albrecht Dürer
+Wim Wenders
+Johannes Brahms
+Oskar Schindler
+Gerhard Schröder
+Helmut Kohl
+Helmut Schmidt
+Martin Heidegger
+Johannes Kepler
+Robert Schumann
+Wilhelm Röntgen
+Carl Friedrich Gauss
+Rudolf Diesel
+Konrad Adenauer
+Robert Koch
+Gottlieb Daimler
+Erich Maria Remarque
+Ernst Lubitsch
+Rainer Werner Fassbinder
+Erwin Rommel
+Dirk Nowitzki
+Christoph Waltz
+Michael Schumacher
+Martin Luther
+Johann Sebastian Bach
+Ludwig van Beethoven
+Steffi Graf
+Boston Dynamics
+Mel Gibson
+Eddie Murphy
+Salma Hayek
+Penélope Cruz
+Antonio Banderas
+Jessica Alba
+Javier Bardem
+Eva Mendes
+Pep Guardiola
+José Mourinho
+Zinedine Zidane
+Karim Benzema
+Cristiano Ronaldo
+Pelé
+Robert Lewandowski
+Gerard Piqué
+Dembélé
+Gareth Bale
+Manuel Neuer
+MateBook
+MateBooks
+Kweichow Moutai
+AirAsia
+Bandcamp
+Bitfinex
+New York City Ballet
+Selena Gomez
+Stellantis
+Pamela Anderson
+Harley Davidson
+Idris Elba
+Matthew McConaughey
+McConaughey
+Kate Hudson
+Jared Leto
+Cara Delevingne
+Vue.js
+JScript
+Josef Mengele
+Playmobil
+Kate Upton
+Chadwick Boseman

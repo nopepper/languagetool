@@ -31,10 +31,10 @@ import org.languagetool.rules.patterns.PatternToken;
 import org.languagetool.tagging.disambiguation.rules.DisambiguationPatternRule;
 
 import java.util.*;
+import java.util.function.Supplier;
 
 import static java.util.Arrays.*;
-import static org.languagetool.rules.patterns.PatternRuleBuilderHelper.token;
-import static org.languagetool.rules.patterns.PatternRuleBuilderHelper.tokenRegex;
+import static org.languagetool.rules.patterns.PatternRuleBuilderHelper.*;
 
 /**
  * Simple agreement checker for German noun phrases. Checks agreement in:
@@ -48,6 +48,10 @@ import static org.languagetool.rules.patterns.PatternRuleBuilderHelper.tokenRege
 public class AgreementRule2 extends Rule {
 
   private static final List<List<PatternToken>> ANTI_PATTERNS = asList(
+    asList(csToken("Reichlich"), posRegex("SUB:.*")),  // "Reichlich Inspiration bietet..."
+    asList(csRegex("Regelmäßig|Hauptsächlich"), posRegex("SUB:.*PLU.*")),  // "Regelmäßig Kiwis und Ananas zu essen..."
+    asList(token("lecker"), token("Essen")),  // "Lecker Essen an Weihnachten."
+    asList(token("erneut"), posRegex("SUB:.*")),  // "Erneut Ausgangssperre beschlossen"
     asList(token("Gesetzlich"), token("Krankenversicherte")),
     asList(token("weitgehend"), token("Einigkeit")),      // feste Phrase
     asList(token("Ernst")),      // Vorname
@@ -92,13 +96,13 @@ public class AgreementRule2 extends Rule {
     asList(token("Smart"), tokenRegex("(Service|Home|Meter|City|Hall|Shopper|Shopping).*")),
     asList(token("GmbH"))
   );
-  private final Language language;
+  private final Supplier<List<DisambiguationPatternRule>> antiPatterns;
 
   public AgreementRule2(ResourceBundle messages, Language language) {
-    this.language = language;
     super.setCategory(Categories.GRAMMAR.getCategory(messages));
     addExamplePair(Example.wrong("<marker>Kleiner Haus</marker> am Waldrand"),
                    Example.fixed("<marker>Kleines Haus</marker> am Waldrand"));
+    antiPatterns = cacheAntiPatterns(language, ANTI_PATTERNS);
   }
 
   @Override
@@ -118,7 +122,7 @@ public class AgreementRule2 extends Rule {
 
   @Override
   public List<DisambiguationPatternRule> getAntiPatterns() {
-    return makeAntiPatterns(ANTI_PATTERNS, language);
+    return antiPatterns.get();
   }
 
   @Override

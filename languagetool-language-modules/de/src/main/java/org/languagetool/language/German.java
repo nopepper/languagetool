@@ -318,13 +318,15 @@ public class German extends Language implements AutoCloseable {
       case "DURCH_WACHSEN": return 1; // prefer over SUBSTANTIVIERUNG_NACH_DURCHs
       case "RUNDUM_SORGLOS_PAKET": return 1; // higher prio than DE_CASE
       case "MIT_FREUNDLICHEN_GRUESSE": return 1; // higher prio than MEIN_KLEIN_HAUS
+      case "EINE_ORIGINAL_RECHNUNG": return 1; // higher prio than DE_CASE, DE_AGREEMENT and MEIN_KLEIN_HAUS
       // default is 0
       case "DE_AGREEMENT": return -1;  // prefer RECHT_MACHEN, MONTAGS, KONJUNKTION_DASS_DAS, DESWEITEREN, DIES_BEZUEGLICH and other
       case "MEIN_KLEIN_HAUS": return -1; // prefer more specific rules that offer a suggestion (e.g. DIES_BEZÜGLICH)
       case "COMMA_IN_FRONT_RELATIVE_CLAUSE": return -1; // prefer other rules (KONJUNKTION_DASS_DAS)
       case "MODALVERB_FLEKT_VERB": return -1;
       case "AKZENT_STATT_APOSTROPH": return -1;  // lower prio than PLURAL_APOSTROPH
-      case "GERMAN_WORD_REPEAT_RULE": return -1; // prefer other more specific rules
+      case "DOPPELTER_NOMINATIV": return -2;  // give precedence to wie-wir-wird confusion rules
+      case "GERMAN_WORD_REPEAT_RULE": return -3; // prefer other more specific rules
       case "GERMAN_SPELLER_RULE": return -3;  // assume most other rules are more specific and helpful than the spelling rule
       case "AUSTRIAN_GERMAN_SPELLER_RULE": return -3;  // assume most other rules are more specific and helpful than the spelling rule
       case "SWISS_GERMAN_SPELLER_RULE": return -3;  // assume most other rules are more specific and helpful than the spelling rule

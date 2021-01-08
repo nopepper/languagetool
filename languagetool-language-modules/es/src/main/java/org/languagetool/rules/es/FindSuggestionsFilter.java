@@ -1,5 +1,5 @@
 /* LanguageTool, a natural language style checker 
- * Copyright (C) 2020 Jaume Ortolà (http://www.danielnaber.de)
+ * Copyright (C) 2020 Jaume Ortolà
  * 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -52,8 +52,8 @@ public class FindSuggestionsFilter extends RuleFilter {
       AnalyzedTokenReadings[] patternTokens) throws IOException {
 
     List<String> replacements = new ArrayList<>();
-    String wordFrom = getRequired("WordFrom", arguments);
-    String desiredPostag = getRequired("DesiredPostag", arguments);
+    String wordFrom = getRequired("wordFrom", arguments);
+    String desiredPostag = getRequired("desiredPostag", arguments);
     
     if (wordFrom != null && desiredPostag != null) {
       int posWord = Integer.parseInt(wordFrom);

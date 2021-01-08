@@ -435,7 +435,9 @@ public class EnglishConfusionProbabilityRule extends ConfusionProbabilityRule {
       "the invite", // vs to invite
       "is there way to", // vs was
       "a way doing", // vs was
-      "way different" // vs was
+      "way different", // vs was
+      "I for one think", // vs thing
+      "device insurance" // vs devise
     );
 
   private static final List<List<PatternToken>> ANTI_PATTERNS = Arrays.asList(

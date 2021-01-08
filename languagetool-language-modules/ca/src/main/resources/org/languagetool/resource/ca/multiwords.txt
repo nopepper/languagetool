@@ -1,4 +1,58 @@
 #Catalan multiwords file used for chunking
+Josquin Desprez	NPMSSP0
+Josquin Des Prés	NPMSSP0
+Walt Disney Studios	NPCNOO0
+The Walt Disney Company	NPFSOO0
+Latin Kings	NPMPO00
+Hare Krixna	NPCNOO0
+Walter Benjamin	NPMSSP0
+Royal Academy of Music	NPFSO00
+Prosper Mérimée	NPMSSP0
+pro anima	LOC_ADV
+opera omnia	NCFSO00
+Opera Omnia	NCFSO00
+Doctor Music Festival	NPMSO00
+Black Music Festival	NPMSO00
+Universal Music	NPMSO00
+Universal Music Group	NPMSO00
+Feria de Abril	NCFS000
+edat mitjana	NCFS000
+pasta brisa	NCFS000
+silenci tens	NCMS000
+Margaret Thatcher	NPFSSP0
+jutge àrbitre	NCMS000
+jutge àrbitra	NCFS000
+jutgessa àrbitra	NCFS000
+goma laca	NCFS000
+a sota veu	LOC_ADV
+Breaking Bad	NPCNO00
+Rod Stewart	NPMSSP0
+Mohamed Houli Chemlal	NPMSSP0
+Driss Oukabir	NPMSSP0
+Saïd ben Iazza	NPMSSP0
+Mohamed Aalla	NPMSSP0
+Saïd Aalla	NPMSSP0
+Youssef Aalla	NPMSSP0
+Al-Houssaine Abouyaaqoub	NPMSSP0
+Younes Abouyaaqoub	NPMSSP0
+Mohamed Hichamy	NPMSSP0
+Omar Hichamy	NPMSSP0
+Moussa Oukabir	NPMSSP
+Abdelbaki es-Satty	NPMSSP0
+Arnaldo Otegi	NPMSSP0
+Miguel Hernández	NPMSSP0
+Cid Campeador	NPMSSP0
+Agència Independent de Responsabilitat Fiscal	NPFSO00
+Ernest Lluch	NPMSSP0
+País Basc	NPMSG00
+Ana Belén	NPFSSP0
+amanida Cèsar	NCFS000
+amanides Cèsar	NCFP000
+ensalda Cèsar	NCFS000
+ensalades Cèsar	NCFP000
+sector serveis	NCMS000
+Chrome Store	NPFSO00
+Italo Svevo	NPMSSP0
 Super League	NPFSO00
 Grupo Zeta	NPMSO00
 Black Friday	NCMN000
@@ -308,7 +362,7 @@ Golden Gate	NPMSG00
 Lucky Luke	NPMSSP0
 Brad Pitt	NPMSSP0
 Beverly Hills	NPCSG00
-Library of Congress Online Catalog	NPFSO00 
+Library of Congress Online Catalog	NPFSO00
 Library of Congress	NPFSO00
 Sport Club	NPMSO00
 acqua alta	NCFS000
@@ -550,6 +604,7 @@ Internet Explorer	NPMSO00
 Internet Archive	NPMSO00
 Jefferson City	NPCNG00
 Jane Eyre	NPFSSP0
+Ana María	NPFSSP0
 José María	NPMSSP0
 Juan María	NPMSSP0
 Antonio María	NPMSSP0
@@ -559,6 +614,7 @@ José Miguel	NPMSSP0
 Miguel Ángel	NPMSSP0
 Miguel Bosé	NPMSSP0
 Miguel Delibes	NPMSSP0
+Antonio Machado	NPMSSP0
 Juan Miguel	NPMSSP0
 Vicente Miguel	NPMSSP0
 Antonio Miguel	NPMSSP0
@@ -747,7 +803,7 @@ Tîrgu Mures	NPCNG00
 Tony Blair	NPMSSP0
 Ulan Bator	NPCNG00
 Umm al-Qaywayn	NPCNG00
-University College	NPMSO00
+University College	NCMS000
 US Open	NPMSO00
 Val d'Aran	NPFSG00
 València CF	NPMSO00
@@ -1557,6 +1613,7 @@ most flor	NCMS000
 motu proprio	LOC_ADV
 mutatis mutandis	LOC_ADV
 music hall	NCMS000
+Music Hall	NCMS000
 musclo zebra	NCMS000
 musclos zebra	NCMP000
 més ben dit	LOC_ADV

@@ -37,9 +37,8 @@ import org.languagetool.tools.Tools;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import java.util.function.Supplier;
 import java.util.regex.Pattern;
-
-import javax.annotation.RegEx;
 
 import static org.languagetool.rules.patterns.PatternRuleBuilderHelper.*;
 
@@ -1031,6 +1030,7 @@ public class CaseRule extends Rule {
     "Belange",
     "Geistlicher",
     "Google",
+    "Hu", // name
     "Jenseits",
     "Abends",
     "Abgeordneter",
@@ -1355,12 +1355,14 @@ public class CaseRule extends Rule {
   }
 
   private final GermanTagger tagger;
-  private final German german;
+  private final GermanSpellerRule speller;
+  private final Supplier<List<DisambiguationPatternRule>> antiPatterns;
 
   public CaseRule(ResourceBundle messages, German german) {
-    this.german = german;
     super.setCategory(Categories.CASING.getCategory(messages));
-    this.tagger = (GermanTagger) german.getTagger();
+    tagger = (GermanTagger) german.getTagger();
+    speller = new GermanSpellerRule(JLanguageTool.getMessageBundle(), german);
+    antiPatterns = cacheAntiPatterns(german, ANTI_PATTERNS);
     addExamplePair(Example.wrong("<marker>Das laufen</marker> fällt mir schwer."),
                    Example.fixed("<marker>Das Laufen</marker> fällt mir schwer."));
   }
@@ -1518,7 +1520,7 @@ public class CaseRule extends Rule {
 
   @Override
   public List<DisambiguationPatternRule> getAntiPatterns() {
-    return makeAntiPatterns(ANTI_PATTERNS, german);
+    return antiPatterns.get();
   }
 
   // e.g. "Ein Kaninchen, das zaubern kann" - avoid false alarm here
@@ -1531,7 +1533,7 @@ public class CaseRule extends Rule {
   }
 
   private boolean isSalutation(String token) {
-    return StringUtils.equalsAny(token, "Herr", "Herrn", "Frau", "Fräulein");
+    return StringUtils.equalsAny(token, "Herr", "Hr", "Herrn", "Frau", "Fr", "Fräulein");
   }
 
   private boolean isCompany(String token) {
@@ -1577,6 +1579,7 @@ public class CaseRule extends Rule {
 
   private void potentiallyAddUppercaseMatch(List<RuleMatch> ruleMatches, AnalyzedTokenReadings[] tokens, int i, AnalyzedTokenReadings analyzedToken, String token, AnalyzedTokenReadings lowercaseReadings, AnalyzedSentence sentence) {
     boolean isUpperFirst = Character.isUpperCase(token.charAt(0));
+    String lcWord = StringTools.lowercaseFirstChar(tokens[i].getToken());
     if (isUpperFirst &&
         token.length() > 1 &&     // length limit = ignore abbreviations
         !tokens[i].isIgnoredBySpeller() &&
@@ -1598,19 +1601,19 @@ public class CaseRule extends Rule {
         !isExceptionPhrase(i, tokens) &&
         !(i == 2 && "“".equals(tokens[i-1].getToken())) &&   // closing quote at sentence start (https://github.com/languagetool-org/languagetool/issues/2558)
         !isCaseTypo(tokens[i].getToken()) &&
-        !isNounWithVerbReading(i, tokens)) {
-      String fixedWord = StringTools.lowercaseFirstChar(tokens[i].getToken());
+        !isNounWithVerbReading(i, tokens) &&
+        !speller.isMisspelled(lcWord)) {
       if (":".equals(tokens[i - 1].getToken())) {
         AnalyzedTokenReadings[] subarray = new AnalyzedTokenReadings[i];
         System.arraycopy(tokens, 0, subarray, 0, i);
         if (isVerbFollowing(i, tokens, lowercaseReadings) || getTokensWithPosTagStartingWithCount(subarray, "VER") == 0) {
           // no error
         } else {
-          addRuleMatch(ruleMatches, sentence, COLON_MESSAGE, tokens[i], fixedWord);
+          addRuleMatch(ruleMatches, sentence, COLON_MESSAGE, tokens[i], lcWord);
         }
         return;
       }
-      addRuleMatch(ruleMatches, sentence, UPPERCASE_MESSAGE, tokens[i], fixedWord);
+      addRuleMatch(ruleMatches, sentence, UPPERCASE_MESSAGE, tokens[i], lcWord);
     }
   }
 

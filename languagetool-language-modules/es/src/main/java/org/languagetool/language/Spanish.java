@@ -190,6 +190,7 @@ public class Spanish extends Language implements AutoCloseable{
       case "MISSPELLING": return 40;  
       case "CONFUSIONS": return 40;
       case "NO_SEPARADO": return 40;
+      case "PARTICIPIO_MS": return 40;
       case "DIACRITICS": return 30;
       case "POR_CIERTO": return 30;
       case "LO_LOS": return 30;
@@ -207,6 +208,7 @@ public class Spanish extends Language implements AutoCloseable{
       case "TYPOGRAPHY": return 10;
       case "HALLA_HAYA": return 10;
       case "VALLA_VAYA": return 10;
+      case "TE_TILDE2": return 10; // less than PRONOMBRE_SIN_VERBO
       case "ES_SIMPLE_REPLACE": return 10;
       case "SINGLE_CHARACTER": return 5;
       case "SEPARADO": return 1;
@@ -223,6 +225,7 @@ public class Spanish extends Language implements AutoCloseable{
       case "COMMA_SINO": return -40;
       case "VOSEO": return -40;
       case "MORFOLOGIK_RULE_ES": return -100;
+      case "PHRASE_REPETITION": return -150;
       case "UPPERCASE_SENTENCE_START": return -200;
     }
     //STYLE is -50

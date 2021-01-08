@@ -1318,6 +1318,13 @@ methodise;methodize
 metricise;metricize
 metrisability;metrizability
 metrisable;metrizable
+metropolisation;metropolitanisation
+metropolisation;metropolitanization
+metropolisation;metropolization
+metropolitanisation;metropolitanization
+metropolization;metropolitanisation
+metropolization;metropolitanization
+metropolitanise;metropolitanize
 micellisation;micellization
 microgram;microgramme
 microminiaturisation;microminiaturization
@@ -1506,6 +1513,7 @@ organise;organize
 organiser;organizer
 Orientalisation;Orientalization
 orientalise;orientalize
+ouroboros;uroboros
 orthogonalise;orthogonalize
 orthonormalise;orthonormalize
 ostracisable;ostracizable

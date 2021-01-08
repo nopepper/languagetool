@@ -70,5 +70,5 @@ hivzelftests;hiv-zelftests
 # meervouden in vergelijkbare aantallen
 #
 
-u;je
-u;jij
+kinema;cinema
+keramisch;ceramisch

@@ -1506,3 +1506,104 @@ Carl Schenck	NNP
 Cameron Diaz	NNP
 Jeon Jungkook	NNP
 BTS Universe	NNP
+Chilton County	NNP
+Lake Titicaca	NNP
+South Dakotan	NNP
+South Dakotans	NNPS
+South Dakotan	JJ
+North Dakotan	NNP
+North Dakotans	NNPS
+North Dakotan	JJ
+South Devon	NNP
+Iset River	NNP
+Nizhny Novgorod	NNP
+Ruben Salazar	NNP
+Erdős number	NNP
+Paul Erdős	NNP
+Cai Xia	NNP
+Wojciech Kilar	NNP
+Jason Kilar	NNP
+Fort Drum	NNP
+Bukit Batok	NNP
+Bt Batok	NNP
+Pasir Ris	NNP
+Choa Chu Kang	NNP
+Jurong East	NNP
+Jurong West	NNP
+Ang Mo Kio	NNP
+Johor Bahru	NNP
+Tanah Merah	NNP
+Bukit Panjang	NNP
+Rishon LeTsiyon	NNP
+Bet Shemesh	NNP
+Petah Tikva	NNP
+Be'er Sheva	NNP
+Ramat HaSharon	NNP
+Kiryat Ata	NNP
+Haifa District	NNP
+Tirat Carmel	NNP
+San Marinese	NNP
+San Marinese	NNPS
+San Lorenzo	NNP
+Julilly House Kohler	NNP
+Cesare Beccaria	NNP
+Mila Kunis	NNP
+Mark Wahlberg	NNP
+Santiago de Chile	NNP
+Atlántico Department	NNP
+Seth Rogen	NNP
+Jonah Hill	NNP
+Margaret Thatcher	NNP
+et cetera	RB
+Cesare Beccaria	NNP
+Lamborghini Urus	NNP
+Bothnian Sea	NNP
+KC Claffy	NNP
+Glen Burnie	NNP
+North Bethesda	NNP
+Severna Park	NNP
+Owings Mills	NNP
+Milford Mill	NNP
+Amy Winehouse	NNP
+Kurt Cobain	NNP
+duces tecum	NN
+duces tecums	NNS
+Xi Jinping	NNP
+Wen Jiabao	NNP
+Jiang Zemin	NNP
+Facebook Creator Studio	NNP
+Don Draper	NNP
+Audemars Piguet	NNP
+Schneider Electric	NNP
+magnifying glass	NN
+magnifying glasses	NNS
+Times Square	NNP
+Fyodor Dostoevsky	NNP
+Anton Chekhov	NNP
+Vladimir Nabokov	NNP
+Nikolai Gogol	NNP
+Boston Dynamics	NNP
+José Mourinho	NNP
+Pep Guardiola	NNP
+Zinedine Zidane	NNP
+Kweichow Moutai	NNP
+Abdel Fattah	NNP
+MidAmerican Energy	NNP
+Rahim Yar Khan	NNP
+Dera Ghazi Khan	NNP
+Wah Cantonment	NNP
+Mirpur Khas	NNP
+Dera Ismail Khan	NNP
+Mandi Bahauddin	NNP
+Tando Allahyar	NNP
+Tando Adam	NNP
+Kot Abdul Malik	NNP
+Branco River	NNP
+Rio Negro	NNP
+Batangas knife	NN
+Batangas knives	NNS
+Wayland the Smith	NNP
+Amazon AtoZ	NNP
+third worlder	NN
+third worlders	NNS
+Azad Kashmir	NNP

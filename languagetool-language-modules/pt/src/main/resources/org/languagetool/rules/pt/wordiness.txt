@@ -1,7 +1,11 @@
-# Verbosidade excessiva
-# Separar melhore entre grupos, (redundâncias, verbosidade e clichês). Considerar nova classe.
-# © 2017-2018 Tiago F. Santos
-# Licensed under LGPL
+# Verbosidade excessiva.
+#
+# Separar melhor entre grupos (redundâncias, verbosidade e clichês). Considerar nova classe.
+#
+# © 2017–2021 Tiago F. Santos.
+# © 2018–2021 Marco A.G.Pinto.
+#
+# Licensed under LGPL.
 #
 abrigo seguro=refúgio
 abrigos seguros=refúgios
@@ -10,7 +14,8 @@ absolutamente essenciais=essenciais
 absolutamente essencial=essencial
 acima citado=citado
 acima de tudo=primeiro
-acima mencionado=APAGAR
+acima mencionado=APAGAR|em epígrafe
+acima referido=APAGAR|em epígrafe
 a cor amarela=amarelo
 a cor azul=azul
 a cor branca=branco
@@ -30,11 +35,19 @@ sucede muitas vezes=é recorrente|sendo recorrente
 sucede múltiplas vezes=é recorrente|sendo recorrente
 sucede várias vezes=é recorrente|sendo recorrente
 # é recorrente *END*
-activos valioso=ativos
-activo valioso=ativo
+activos valioso=activos
+ativos valioso=ativos
+activo valioso=activo
+ativo valioso=ativo
 # actualmente=agora
+# RECEBIMENTO *START*
 acusamos o recebimento da carta=recebemos a carta
 acusamos o recebimento=recebemos
+acusamos a receção da carta=recebemos a carta
+acusamos a receção=recebemos
+acusamos a recepção da carta=recebemos a carta
+acusamos a recepção=recebemos
+# RECEBIMENTO *END*
 a extensão em que=APAGAR
 agradecemos antecipadamente=agradecemos
 a inversão de papéis entre os dois=a inversão de papéis
@@ -65,6 +78,8 @@ aproximadamente=APAGAR SE POSSÍVEL|cerca de
 a raça humana=humanos|humanidade|pessoas
 a razão pela qual=APAGAR|porque
 articular claramente=articular
+as motivações do crime=o móbil do crime
+as razões do crime=o móbil do crime
 até ao momento em que=até que
 até o presente momento=até o momento
 ativos valioso=ativos
@@ -106,32 +121,58 @@ dar a volta às=contornar as
 depois de tudo ser dito e feito=APAGAR
 de agora em diante=doravante
 de ambas as partes=mútuo
+de segurança=securitária|securitárias|securitário|securitários
 de tempos a tempos=ocasionalmente
 de um momento para o outro=repentinamente|subitamente|num ápice
 de uma forma ou de outra=garantidamente
 de vez em quando=ocasionalmente|por vezes
+# MEDIR *START*
+determinar a medida da=medir a
+determinar a medida das=medir as
+determinar a medida do=medir o
+determinar a medida dos=medir os
+determinar as medidas da=medir as
+determinar as medidas das=medir as
+determinar as medidas do=medir os
+determinar as medidas dos=medir os
+# MEDIR *END*
 deve ser notado que=note-se que
 deve ser observado que=note-se que
 devida diligência=diligência
 devidas diligências=diligências
+devido a=devido a|por|pela|pelo|pelas|pelos
 devido ao efeito de=porque
 devido ao facto de=por
 devido ao facto de que=porque
 devido ao fato de=por
 devido ao fato de que=porque
 devido aos efeitos de=porque
-# EXÓGEN(AO)(S) *START*
-difíceis de controlar e prever=exógenas|exógenos 
-difícil de controlar e prever=exógena|exógeno
-difíceis de prever e controlar=exógenas|exógenos 
-difícil de prever e controlar=exógena|exógeno
-# EXÓGEN(AO)(S) *END*
 diligência devida=diligência
 diligências devidas=diligências
+# FASEAD(AO)(S) *START*
+dividida em etapas=faseada
+divididas em etapas=faseadas
+dividida em fases=faseada
+divididas em fases=faseadas
+dividida em frações=faseada
+divididas em frações=faseadas
+dividido em etapas=faseado
+divididos em etapas=faseados
+dividido em fases=faseado
+divididos em fases=faseados
+dividido em frações=faseado
+divididos em frações=faseados
+# FASEAD(AO)(S) *END*
+# DORMITAR *START*
+dormir um pouco=dormitar
+dormir levemente=dormitar
+dormir ligeiramente=dormitar
+# DORMITAR *END*
 durante o curso de=durante|enquanto
 é algo que é=é
 é apenas uma questão de tempo antes=eventualmente
 é capaz de=pode
+é contra a lei=é ilegal|é ilícito
 economicamente desfavorecido=pobre
 é eficaz na sua capacidade=é eficaz
 é interessante notar que=APAGAR
@@ -148,6 +189,8 @@ em termos de=em|como|a|o|as|os
 em virtude de=por
 encaminhamos em anexo=encaminhamos|anexamos
 é necessário que=deve
+era de esperar=era expetável
+é de esperar=é expetável
 erro inadvertido=erro
 erro não intencional=erro
 erros inadvertidos=erros
@@ -156,6 +199,8 @@ escrutínio rigoroso=controlo
 está bem ciente de que=entende
 estávamos de acordo=concordamos
 estavam presentes=assistiram
+é mais dependente=depende mais
+é menos dependente=depende menos
 é o contrário de=é o oposto de
 e tal como=tal como
 eu próprio=eu
@@ -178,12 +223,27 @@ falta de pressa=lentidão|demora
 forma clara e concisa=concisamente
 grande avanço=avanço
 grandes avanços=avanços
+grande quantidade=abundante|abundantemente|abundância|excesso
+grandes quantidades=abundantes|abundantemente|abundância|excesso
+impossível de alcançar=inalcançável
+impossíveis de alcançar=inalcançáveis
+impossível de atingir=inatingível
+impossíveis de atingir=inatingíveis
+impossível de vencer=invencível
+impossíveis de vencer=invencíveis
 independentemente do fato de que=embora
 independentemente do facto de que=embora
+# (INTER)NACIONAL *START*
+nacional e internacional=(inter)nacional
+internacional e nacional=(inter)nacional
+nacionais e internacionais=(inter)nacionais
+internacionais e nacionais=(inter)nacionais
+# (INTER)NACIONAL *END*
 legado duradouro=legado
 lembrança passada=memória
 lembranças passadas=memórias
 levamos a seu conhecimento=informamos
+levantar voo=descolar|decolar
 mais ou menos=APAGAR|ESPECIFICAR
 mais preferível=preferível
 # mas ainda=mas|ainda
@@ -191,9 +251,17 @@ momento propício=ocasião|oportunidade
 muito claramente=APAGAR
 muito original=único
 muitos tipos diferentes de=muitos tipos de
+# PROSTITUTA(S) *START*
+mulher do sexo=prostituta|acompanhante|acompanhante de luxo
+mulheres do sexo=prostitutas|acompanhantes|acompanhantes de luxo
+profissional do sexo=prostituta|acompanhante|acompanhante de luxo
+profissionais do sexo=prostitutas|acompanhantes|acompanhantes de luxo
+# PROSTITUTA(S) *END*
 na altura em que=quando
 na conclusão de=após
 na maioria dos casos=geralmente
+não é verdade=é falso|é mentira
+não é verdadeiro=é falso|é mentira
 não é estável=é instável
 não está estável=está instável
 não deixa de ser=é
@@ -207,6 +275,7 @@ necessidade básica=necessidade
 # no caso de=se
 # no curso de=durante|enquanto
 no futuro próximo=em breve
+no sentido alargado=no sentido lato
 nós como uma sociedade=nós|a sociedade
 nos dias de hoje=atualmente
 nostalgia do passado=nostalgia
@@ -240,11 +309,11 @@ o mesmo período do ano passado=o período homólogo
 # período homólogo *END*
 o que é que=o que
 por a maneira em que=porque|a maneira
-por causa da=devido à
-por causa das=devido às
-por causa do=devido ao
-por causa dos=devido aos
-por causa de=devido a
+por causa da=devido à|pela
+por causa das=devido às|pelas
+por causa do=devido ao|pelo
+por causa dos=devido aos|pelos
+por causa de=devido a|por|pela|pelo
 por causa que=porque
 por definição=APAGAR
 por e grande=APAGAR
@@ -255,6 +324,7 @@ possíveis cursos de ação=escolhas
 possíveis cursos de acção=escolhas
 possível curso de ação=escolha
 possível curso de acção=escolha
+pouco mais ou menos=aproximadamente
 pra além disso=além disso
 pra efeitos de=para
 pra o que é=para o
@@ -262,8 +332,22 @@ programa de computador=software|aplicação|app
 programas de computador=softwares|aplicações|apps
 prontamente aparente=aparente
 público em geral=público
+qual é que é=qual é
+quais é que são=quais são
 qualquer e todos=todos
+# QUALQUER/QUAISQUER QUE SEJA(M) *START*
+qualquer que seja a=independentemente da
+qualquer que seja o=independentemente do
+quaisquer que sejam as=independentemente das
+quaisquer que sejam os=independentemente dos
+# QUALQUER/QUAISQUER QUE SEJA(M) *END*
 quase nunca=raramente
+# EXÓGEN(AO)(S) *START*
+que tem origem no exterior=exógena|exógeno
+que têm origem no exterior=exógenas|exógenos
+que tem uma causa externa=exógena|exógeno
+que têm uma causa externa=exógenas|exógenos
+# EXÓGEN(AO)(S) *END*
 raramente é o caso em que acontece=raramente acontece
 referência supracitada=mencionada
 representa simbolicamente=representa|simboliza
@@ -284,12 +368,19 @@ sobre o assunto de=sobre
 somos de opinião que=acreditamos, consideramos
 tão cedo quanto possível=logo que possível
 tão cedo quanto for possível=logo que possível
+tem como objetivo=visa|pretende|procura
+têm como objetivo=visam|pretendem|procuram
+tem como objectivo=visa|pretende|procura
+têm como objectivo=visam|pretendem|procuram
 temos a informar que=informamos
-tipo de=APAGAR
+# TIPO *START*
+do tipo de=da|das|do|dos
+dos tipos de=das|dos
+tipo de=APAGAR|categoria de
 tipo particular de=APAGAR
-# tipos de=APAGAR
 tipos de=APAGAR|categorias de
 tipos particulares de=APAGAR
+# TIPO *END*
 toda esta=esta
 todas estas=estas
 todo este=este
@@ -326,9 +417,11 @@ vidas reais=realidades
 vimos solicitar=solicitamos
 visto não ser=por não ser
 visto ser=por ser
-#
-# PROFISSÕES
-#
+vítimas que morreram=vítimas mortais
+vítima que morreu=vítima mortal
+################
+# PROFISSÕES ###
+################
 aluno de mestrado=mestrando
 alunos de mestrado=mestrandos
 aluno de doutoramento=doutorando
@@ -357,9 +450,9 @@ médico dos olhos=oftalmologista
 médicos dos olhos=oftalmologistas
 médico ginecologista=ginecologista
 médicos ginecologistas=ginecologistas
-#
-# SUBSTANTIVOS COLETIVOS https://pt.wikipedia.org/wiki/Substantivo_coletivo
-#
+###############################################################################
+# SUBSTANTIVOS COLETIVOS https://pt.wikipedia.org/wiki/Substantivo_coletivo ###
+###############################################################################
 grupo de abelhas=enxame
 grupos de abelhas=enxames
 grupo de baleias=baleal
@@ -392,9 +485,9 @@ grupo de peixes=cardume
 grupos de peixes=cardumes
 grupo de porcos=vara
 grupos de porcos=varas
-#
-# Foreign Expressions (AtD foreigndb.txt)
-#
+#############################################
+# Foreign Expressions (AtD foreigndb.txt) ###
+#############################################
 a fortiori=com razão ainda mais forte
 a posteriori=dos efeitos às causas
 a priori=de causas a efeitos|do que vem antes
@@ -640,5 +733,3 @@ volenti non fit iniuria=não se faz injúria àquele que consente
 vigilavit iustitiae oculus=o olho da justiça vigiou
 vis absoluta=poder absoluto
 vis relativa=poder relativo
-vítimas que morreram=vítimas mortais
-vítima que morreu=vítima mortal

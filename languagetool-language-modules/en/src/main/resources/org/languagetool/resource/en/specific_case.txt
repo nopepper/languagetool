@@ -509,7 +509,7 @@ Sandy Hook Elementary School
 Sandy Hook
 Captain Hook
 Tim Cook
-Family Guy
+# Family Guy
 American Horror Story
 Grey's Anatomy
 Grey’s Anatomy
@@ -2571,7 +2571,6 @@ Beto O’Rourke
 Tucker Carlson
 Grande Prairie
 Depeche Mode
-Zac Efron
 Hay-Pauncefote Treaty
 Valdes Peninsula
 Valdes Island
@@ -4796,7 +4795,6 @@ Azad Jammu
 Black Eyed Peas
 DMC DeLorean
 Doc Brown
-Don Quixote
 Ningaloo Coast
 Abu Bakr
 Halo Infinite
@@ -4827,7 +4825,6 @@ Schitt's Creek
 Schitt’s Creek
 La Cosa Nostra
 Cosa Nostra
-Jill Biden
 Beau Biden
 Ed Miliband
 Sadiq Khan
@@ -4938,3 +4935,116 @@ Ed Koch
 Cameron Diaz
 Reese Witherspoon
 Gwyneth Paltrow
+Kellogg–Briand Pact
+Chilton County
+Lake Titicaca
+North Dakotan
+North Dakotans
+South Dakotan
+South Dakotans
+South Devon
+Google Search Console
+Nicolás Maduro
+Iset River
+Nizhny Novgorod
+Ruben Salazar
+Cai Xia
+Wojciech Kilar
+Jason Kilar
+Fort Drum
+Bukit Batok
+Bt Batok
+Pasir Ris
+Choa Chu Kang
+Jurong East
+Jurong West
+Ang Mo Kio
+Johor Bahru
+Tanah Merah
+Bukit Panjang
+Rishon LeTsiyon
+Bet Shemesh
+Petah Tikva
+Be'er Sheva
+Ramat HaSharon
+Kiryat Ata
+Haifa District
+Tirat Carmel
+San Marinese
+San Lorenzo
+Julilly House Kohler
+Cesare Beccaria
+Justin Timberlake
+Mila Kunis
+Santiago de Chile
+Atlántico Department
+Shania Twain
+Harrison Ford
+Seth Rogen
+Jonah Hill
+Margaret Thatcher
+Hu Jintao
+Salvador Dalí
+Andy Warhol
+Indiana Jones
+Igor Levit
+Cesare Beccaria
+Lamborghini Urus
+Bothnian Sea
+KC Claffy
+Glen Burnie
+Aspen Hill
+North Bethesda
+Severna Park
+Owings Mills
+Milford Mill
+Amy Winehouse
+Louis Armstrong
+Wen Jiabao
+Jiang Zemin
+Facebook Creator Studio
+Don Draper
+Audemars Piguet
+Robin Hood
+Schneider Electric
+Miles Davis
+Muddy Waters
+Lotus Notes
+Charlize Theron
+Emily Blunt
+Emma Stone
+Margot Robbie
+Michelle Pfeiffer
+Judi Dench
+Mia Farrow
+Donkey Kong Country
+Subaru Legacy
+Bruce Schneier
+Doug Emhoff
+Banfield Pet Hospital
+Nissan Rogue
+John Stuart Mill
+Carl Benz
+Eddie Murphy
+Mel Gibson
+Eva Mendes
+Kevin James
+Chris Rock
+Pep Guardiola
+Zinedine Zidane
+Gareth Bale
+Manuel Neuer
+Kweichow Moutai
+MidAmerican Energy
+Rahim Yar Khan
+Dera Ghazi Khan
+Wah Cantonment
+Mirpur Khas
+Dera Ismail Khan
+Mandi Bahauddin
+Tando Allahyar
+Tando Adam
+Kot Abdul Malik
+Rio Negro
+Branco River
+Azad Kashmir

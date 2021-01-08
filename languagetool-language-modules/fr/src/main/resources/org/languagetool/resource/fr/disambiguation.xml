@@ -212,9 +212,34 @@ RB => Règles Brutes
   <rulegroup name="est" id="EST">
     <rule>
       <pattern>
-        <token regexp="yes">[dl]<exception scope="previous" regexp="yes">[ns]e|il|elle|on</exception><exception scope="previous" postag="[NZ].*" postag_regexp="yes"/></token>
-        <token regexp="yes">&apostrophe;</token>
+        <token postag="P"/>
+        <token min="0">l'</token>
         <marker><token>est</token></marker>
+      </pattern>
+      <disambig postag="N m s"/>
+    </rule>
+    <rule>
+      <pattern>
+        <token>l'</token>
+        <marker><token>est</token></marker>
+        <token min="0" postag="R pers obj.*" postag_regexp="yes"/>
+        <token postag="V .* 3 s" postag_regexp="yes"/>
+      </pattern>
+      <disambig postag="N m s"/>
+    </rule>
+    <rule>
+      <pattern>
+        <token>ouest</token>
+        <token regexp="yes">-|/|et|ou</token>
+        <marker><token>est</token></marker>
+      </pattern>
+      <disambig postag="N m s"/>
+    </rule>
+    <rule>
+      <pattern>
+        <marker><token>est</token></marker>
+        <token regexp="yes">-|/|et|ou</token>
+        <token>ouest</token>
       </pattern>
       <disambig postag="N m s"/>
     </rule>
@@ -223,6 +248,13 @@ RB => Règles Brutes
         <token regexp="yes">[ns]e|il|elle|on</token>
         <token>l'</token>
         <marker><token>est</token></marker>
+      </pattern>
+      <disambig postag="V etre ind pres 3 s"/>
+    </rule>
+    <rule>
+      <!-- it is a verb, unless it is tagged previously as a noun -->
+      <pattern>
+        <marker><token postag="V etre ind pres 3 s">est</token></marker>
       </pattern>
       <disambig postag="V etre ind pres 3 s"/>
     </rule>
@@ -285,7 +317,7 @@ RB => Règles Brutes
     </rule>
     <rule>
       <pattern>
-        <token regexp="yes">aucunes?|certaines?|différentes?|diverses?|nombreuses|nulle|telles?|toute?s?|une<exception scope="previous" regexp="yes">&apostrophe;</exception></token>
+        <token regexp="yes">aucunes?|certaines?|différentes?|diverses?|nombreuses|nulle|telles?|une<exception scope="previous" regexp="yes">&apostrophe;</exception></token>
         <marker>
           <token postag="N [fe] .*" postag_regexp="yes"><exception regexp="yes">est|multiples|si</exception></token>
         </marker>
@@ -296,7 +328,10 @@ RB => Règles Brutes
       <pattern>
         <token regexp="yes">aucuns?|certains?|différents?|divers|nombreux|touts?|un<exception scope="previous" regexp="yes">&apostrophe;</exception></token>
         <marker>
-          <token postag="N [me] .*" postag_regexp="yes"><exception regexp="yes">est|multiples|si|ayant</exception></token>
+          <token postag="N [me] .*" postag_regexp="yes">
+            <exception regexp="yes">est|multiples|si|ayant</exception>
+            <exception case_sensitive="yes">Paris</exception>
+          </token>
         </marker>
       </pattern>
       <disambig action="filter" postag="N [me].*"/>
@@ -966,7 +1001,15 @@ RB => Règles Brutes
     </pattern>
     <disambig action="filter" postag="P"></disambig>
   </rule>
-  
+  <rule id="PERSONNE" name="personne">
+    <pattern>
+      <token postag="P"/>
+      <marker>
+        <token>personne</token>
+      </marker>
+    </pattern>
+    <disambig action="remove" postag="R m s"/>
+  </rule>
   <rule name="Pronoun + verb" id="PRON_VERB">
     <pattern>
       <token postag="R .*" postag_regexp="yes"/>
@@ -1562,10 +1605,36 @@ RB => Règles Brutes
       <disambig action="filter" postag="A"/>
     </rule>
   </rulegroup>
-   
+  
+  <rulegroup id="TOUTES_LES" name="toutes les">
+    <rule>
+      <pattern>
+        <marker>
+          <token inflected="yes">tout</token>
+        </marker>
+        <token inflected="yes">le</token>
+      </pattern>
+      <disambig action="remove" postag="A"></disambig>      
+    </rule>
+    <rule>
+      <pattern>
+        <unify>
+          <feature id="gender"/>
+          <feature id="number"/>
+        <token postag="D.*" postag_regexp="yes" inflected="yes">tout</token>
+        <token postag="D.*" postag_regexp="yes" inflected="yes">le</token>
+        </unify>
+      </pattern>
+      <disambig action="filterall"></disambig>      
+    </rule>
 
+  </rulegroup>
   <rule name="RB : adverbes" id="RB-ADVERBES">
     <!-- TODO: very poor rule -->
+    <antipattern><!-- important to recognize "tout" as a D for common agreement errors, as in "toute homme"-->
+      <token inflected="yes">tout</token>
+      <token postag="N.*" postag_regexp="yes"/>
+    </antipattern>
     <pattern>
       <marker>
         <token postag="A">
@@ -1640,13 +1709,24 @@ RB => Règles Brutes
       <marker>
         <and>
           <token postag_regexp="yes" postag="V.*"/>
-          <token postag_regexp="yes" postag="[ZN].*"/>
+          <token postag_regexp="yes" postag="[ZNJ].*"/>
         </and>
       </marker>
     </pattern>
-    <disambig action="filter"><match no="2" postag="[ZN].*" postag_regexp="yes"/></disambig>
+    <disambig action="filter"><match no="2" postag="[ZNJ].*" postag_regexp="yes"/></disambig>
   </rule>
 
+  <rulegroup id="UNUSUAL_ADJECTIVE" name="usually noun not adjective">
+    <rule>
+      <pattern>
+        <token postag="(P.)?D .*" postag_regexp="yes"/>
+        <marker>
+          <token postag="N .*" postag_regexp="yes" inflected="yes">café</token>
+        </marker>
+      </pattern>
+      <disambig action="remove" postag="J.*"/>
+    </rule>
+  </rulegroup>
   <rule name="Cela" id="CELA">
     <pattern>
       <marker>
@@ -1897,6 +1977,16 @@ RB => Règles Brutes
       <marker><token>Java</token></marker>
     </pattern>
     <disambig postag="Z m s"/>
+  </rule>
+  <rule id="MAIS" name="mais">
+    <antipattern>
+      <token postag="D (e|m) p" postag_regexp="yes"/>
+      <token>mais</token>
+    </antipattern>
+    <pattern>
+      <token>mais</token>
+    </pattern>
+    <disambig action="remove" postag="N m p"/>
   </rule>
   <rule id="VIRGINIE" name="Virginie">
     <pattern case_sensitive="yes">

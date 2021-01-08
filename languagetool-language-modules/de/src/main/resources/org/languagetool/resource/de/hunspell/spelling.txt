@@ -7620,6 +7620,7 @@ veganisierst
 veganisiert/A
 veganisiertest
 Velomobil/S
+Veloroute/N
 Ventilatorkennlinie/N
 Venture-Capital
 verachtetste
@@ -11968,6 +11969,7 @@ auszufärben
 umzufirmieren
 kürzerzutreten
 hinzuzustellen
+fertigkriegen
 fertigzukriegen
 einzutrommeln
 einzuschichten
@@ -16131,6 +16133,8 @@ Rechercheure/N
 Rechercheurin
 Rechercheurinnen
 Rechnungs-Nr.
+Angebots-Nr.
+Vertrags-Nr.
 Renato/S  #name
 RKI/S #name
 Rosazea
@@ -28109,3 +28113,835 @@ Registrierungszwecke/N
 Verdoppelungszyklen
 Verdoppelungszyklus
 vergütungspflichtig/A
+lärmoptimiert/A
+Shevchenko/S #name
+out of the box
+Out-of-the-box-Lösung
+Out-of-the-box-Lösungen
+Hauruckaktion
+Hauruckaktionen
+Hauruckmigration
+Hauruckmigrationen
+Premierengäste/N
+Iberogast/S #name
+Körperschaftssteuervorauszahlung
+Körperschaftssteuervorauszahlungen
+Zwei-Klassen-Gesellschaft
+Zweiklassengesellschaft
+Zwei-Klassen-Medizin
+Zwei-Klassen-Justiz
+Zwei-Klassen-Impfung
+Zwei-Klassen-Gesundheitssystem
+haarwuchsbelebend/A
+sprecherisch/A
+Hilti/S #name
+Abbotsford/S #name
+Deep-Tech
+ingenieurlastig/A
+herschwappt #ugs
+herschwappte/N #ugs
+hergeschwappt #ugs
+rausschleusen #ugs
+rausgeschleust/A #ugs
+herumfotografieren #ugs
+herumfotografierst #ugs
+herumfotografiert #ugs
+Naherholungsort/S
+Naherholungsorte/N
+Pastasorte/N
+Rindfleischsorte/N
+Total-Quality-Management/S
+Produktrange/S
+Business Model Canvas #eng
+Over-Ear-Kopfhörer/NS #eng
+Ein-Euro-Laden/S
+Ein-Euro-Läden
+Ein-Euro-Shop/S
+Überarbeitungskriterien
+Überarbeitungskriterium/S
+Überarbeitungsphase/N
+überblicksweise
+Abfüllungsprozess
+Abfüllungsprozesse/NS
+Ambiance
+Anfertigungsdauer/N
+Aretsried/S #name
+BAPersBw #abk
+Bertrand/S #name
+Bettungsmaterial/S
+Bettungsmaterialien
+Brunchtermin/S
+Brunchtermine/N
+Buchberger/S #name
+Catcalling/S #eng
+CFDs #abk
+CLI #abk #eng
+Diabetikersocke/N
+Dolgoprudny #name
+Dorothea-Erxleben-Straße #name
+Dorothy/S #name #eng
+Drainasphalt/S
+Einlöseformular/S
+Einlöseformulare/N
+entpersonalisiere/N
+entpersonalisierst
+entpersonalisiert/A
+entpersonalisiertest
+Flexitarier/NS
+Flexitarierin
+Flexitarierinnen
+flexitarisch/A
+Frittierpfanne/N
+gedächtnisstark/A
+Generationenwohnen/S
+geplottet/A
+Gestellfarbe/N
+Glukosetoleranzstörung
+Glukosetoleranzstörungen
+Gwen/S #name
+Hebammenwesen/S
+Heuwieser/S #name
+hinüberzuschießen
+Inaktivitätsgebühr
+Inaktivitätsgebühren
+Infiltrationstherapie
+Interkontinentalflugverkehr/S
+Interkontinentalflugzeug/S
+Interkontinentalflugzeuge/N
+Kabarettabend/S
+Kabarettabende/N
+Kakerlakenlöcher/N
+Kakerlakenloch/S
+Kampagnendesign/S
+Kategorietext
+Kategorietexte/NS
+Knutscher/NS
+kontextbewusst/A
+Krallenamputation
+Krallenamputationen
+Landverkehre/N
+Low-Carb-Diät
+Low-Carb-Diäten
+Mandantenbindung
+Mandantenzufriedenheit
+Marktsichtung
+Marktsichtungen
+Maturitätsarbeit
+Maturitätsarbeiten
+Mirandola #name
+mMn #abk
+Motivationsmusik
+Nives #name
+Obturation
+Ostseeschnäpel/NS
+Outdoormöbel/N
+Püttingswanten
+Partyteilnehmer/NS
+Partyteilnehmerin
+Partyteilnehmerinnen
+Parzelleninhaber/NS
+Parzelleninhaberin
+Parzelleninhaberinnen
+PKMS #abk
+Plätzchenduft/S
+Plätzchenduftes
+Plattenspielerdeckel/NS
+Politikerkind
+Politikerkinder/N
+Politikerkindes
+printf-Funktion
+Puttanesca
+Quartierleben/S
+Reinheitsvorschriften
+rohstoffabhängig/A
+Sachsenhagen/S #name
+sauerstoffdicht/A
+Schilfgewächs
+Schilfgewächse/NS
+Schwachstellenscanner/NS
+Sockelfüße/N
+Sockelfuß
+Sockelfußes
+Soxhlet-Henkel-Zahl
+Stimmverzerrer/NS
+stylischste
+stylischstem
+stylischsten
+stylischster
+stylischstes
+Teichwirt
+Teichwirte/NS
+Teichwirtin
+Teichwirtinnen
+Theia #name
+Topfenkuchen/S
+tragendste
+tragendstem
+tragendsten
+tragendster
+tragendstes
+umgewickelt
+Unheimlichkeit
+Unvollständigkeitsprotokoll/S
+Unvollständigkeitsprotokolle/N
+Verschwörungsmentalität
+vierhundertfünfzig
+vierhundertundfünfzig
+Vitali/S #name
+vorgewachst/A
+Wölfel/S #name
+Wachspellets
+Wiesinger/S #name
+EM-Quali #ugs
+rotäugig/A
+dreiäugig/A
+vieräugig/A
+mehräugig/A
+anzapfbar/A
+Distelbestände/N
+Distelbestand/S
+Erlösverprobung
+Erlösverprobungen
+Falzmuster/NS
+Käferbesatz
+Käferbesatzes
+KiJuHi #abk
+Kommissionierregal/S
+Kommissionierregale/N
+Leisnitz #name
+Mariendorfer #name
+Melissenblätter/N
+Muldenreihe/N
+Palettenbegleitschein/S
+Palettenbegleitscheine/N
+Palettenschein/S
+Palettenscheine/N
+Rüschpark/S #name
+Rehatechniker/NS
+Rehatechnikerin
+Rehatechnikerinnen
+Rinaldi/S #name
+Sarnersee/S #name
+Sendungsangebot
+Sendungsangebote/NS
+Sendungsverfolgungsseite
+Tonsillektomie/N
+Umkonfektionierung
+Umkonfektionierungen
+vergeilt/A
+Versagungsbescheid/S
+Versagungsbescheide/NS
+weiterschreiten
+Zamenhof/S #name
+Zytokinstürme/N
+Zytokinsturm/S
+Bernhard-Nocht-Institut/S
+Bernhard-Nocht-Institutes
+Newark/S #name
+rückversichern
+rückversicherst
+rückversichert
+rückversicher
+rückversichere
+rückversicherte
+rückversicherten
+muckelig/A
+Ausrichtungsposition
+Ausrichtungspositionen
+Bepanthen/S #name
+Brandner/S #name
+Céline/S #name
+Geoinformatiker/SN
+Geoinformatikerin
+Geoinformatikerinnen
+Lindenstr. #name
+Leonhardstr. #name
+Niedrigpreisartikel/N
+Osteochondrose
+Physiopraxis
+Physiopraxen
+random #eng #ugs
+Quarantäneformular/ES
+Quarantäneformularen
+Reklamationswunsch
+Reklamationswunsches
+Reklamationswünsche/N
+RVG/S #abk
+Scherungsbeweis
+Scherungsbeweise/SN
+Shopanalyse/N
+spülmaschinenfest/A
+Teilnahmewahrscheinlichkeit
+Teilnahmewahrscheinlichkeiten
+Tourenplan/S
+Tourenpläne/N
+Vincenzo/S
+Zucchinipuffer/SN
+SL #abk #name
+Überarbeitungsprozess
+Überarbeitungsprozesse/NS
+Achtsamkeitsbewegung
+Aggregatestrategie
+Ambassador
+Attributionsfehler/NS
+Aufbeton/S
+Auftretensweise/N
+Böllenfalltor/S #name
+Böllenfalltores #name
+Bangkirai
+Beendigungsformel/N
+Begriffsklauberei
+Begriffsklaubereien
+Bergkirchweih #name
+Bugholzstühle/N
+Bugholzstuhl/S
+Casinobesuch/S
+Casinobesuche/N
+Chlorreiniger/NS
+Controllingmitarbeiter/NS
+Controllingmitarbeiterin
+Controllingmitarbeiterinnen
+Coping-Strategie/N
+Crashbenachrichtigung
+Crashbenachrichtigungen
+Datenanonymisierung
+Diaminoxidase
+Digitalisierungsexperte/N
+Digitalisierungsexpertin
+Digitalisierungsexpertinnen
+Dioxinhöchstbelastung
+Dioxinhöchstbelastungen
+Downloadordner/NS
+Drohnentechnologie
+Durchstellversuch/S
+Durchstellversuche/N
+Eckermann/S #name
+entspelze/N
+entspelzt/A
+erhalle/N
+erhallt/A
+Erwärmungsprüfung
+Erwärmungsprüfungen
+Friedhofsgesetz
+Friedhofsgesetzes
+Gamertransfer
+Geschenkeauswahl
+Hagebuttenöl/S
+Hagebuttenöle/N
+hahaha #ugs
+Hausarztfamulatur
+Hausarztfamulaturen
+Hecker/S #name
+Infektionsschutzmaßnahmenverordnung
+Infusionsbesteck/S
+Infusionsbestecke/N
+Itzhak/S #name
+Kakaoindustrie
+Knabberartikel/NS
+kriterial/A
+Lübtheen/S #name
+Lohnfortzahlungsbetrug/S
+Lohnfortzahlungsbetruges
+Lubmin #name
+Mandatsträgerabgabe/N
+Member/NS #eng
+Millerntor/S
+Millerntores
+Nachlasszeugnis
+Nachlasszeugnisse/NS
+NDIR #abk
+Neocaridinia
+Observationsposition
+Observationspositionen
+Okoubaka
+Oropharynxkarzinom/S
+Oropharynxkarzinome/N
+Paargespräch/N
+Paargespräche/NS
+Paddy/S #name
+Pierrot/S
+polytom/A
+Rüstprozess
+Rüstprozesse/NS
+Rateneinzug/S
+Reifeprüfungszeugnis
+Reifeprüfungszeugnisse/NS
+Schalkragen/S
+Scherbenrohdichte/N
+Scherungsvorgänge/N
+Scherungsvorgang/S
+Scherungsvorganges
+Tagmond/S
+Tavor
+Terminplananpassung
+Terminplananpassungen
+Tissue #eng
+Titer/S
+Trockenschwindung
+Vantage #eng
+Verzerrungsfeld
+Verzerrungsfelder/N
+Verzerrungsfeldes
+wassergetränkt/A
+Zerschneidungsvorgänge/N
+Zerschneidungsvorgang/S
+Zirbenspäne/N
+Zuneigungsbekundung
+Zuneigungsbekundungen
+Möbelmarke/N
+Apparatewerk/S
+Apparatewerke/N
+Approbationsanspruch/S
+Approbationsanspruches
+Frühstücksspeck/S
+Leserpreis
+Leserpreise/NS
+Abtauverhalten/S
+Amphibrachys
+Anmachversuch/S
+Anmachversuche/N
+Ardipithecus
+Argan
+Aschehäufchen/S
+Augenjucken/S
+Bellenberg/S #name
+Dachrinnenheizung
+Dachrinnenheizungen
+Dordogne #name
+Drohnenabwehr
+Eloxalverfahren/S
+Erlösungsplan/S
+Fondsdepotbank
+Fondsdepotbanken
+Gallus
+Gretje/S #name
+Homos
+Inklusionsbetrieb/S
+Inklusionsbetriebe/N
+Inklusionsunternehmen/S
+intertriginös/A
+Jamestown/S #name
+Jugenden
+Karlsbrunner #name
+Kaugeräusche/N
+Kitaschließung
+Kitaschließungen
+Kratzbeschädigung
+Kratzbeschädigungen
+Krisennachsorge
+Latrinensystem/S
+Latrinensysteme/N
+Laubegast #name
+Loschwitz #name
+Nachbefragung
+Nachbefragungen
+nanotechnologisch/A
+Naschmarkt/S
+Naschmarktes
+Pflegbarkeit
+Prätext
+Prätexte/NS
+Prioritätstag/S
+Prioritätstage/NS
+Prohlis #name
+Regieabteilung
+Schichtplanerstellung
+Schleede #name
+Sendungsaufkommen/S
+Stackgröße/N
+stimmungsbezogen/A
+Styroporwände/N
+Styroporwand
+superelastisch/A
+Telekomleistung
+Telekomleistungen
+verfassungsunmittelbar/A
+Verkäufercourtage/N
+Abgeltungsklausel/N
+Ammann/S #name
+amphipathisch/A
+Anaerobengefäß
+Anaerobengefäße/NS
+Auffüllgerät/S
+Auffüllgeräte/NS
+Begutachtungszwecke/N
+Berkowitz #name
+bioadvers/A
+bioinert/A
+biotolerant/A
+Dankbarkeitskonzert/S
+Demenzstrategie
+Diakonissenarbeit
+Drohnengesetz
+Drohnengesetzes
+Dunkelelbin
+Durchstechflasche/N
+ermittlungsrelevant/A
+Fachanleiter/NS
+Fachanleiterin
+Fachanleiterinnen
+Gelbbrust
+Gutmann/S #name
+Hülya/S #name
+Hydroxylapatit
+Implantatoberfläche/N
+Klingenbergstraße #name
+Lactoferrin/S
+Mamaalltag/S
+Mathematikstudierende/N
+Mathematikstudierender
+Mietenstopp/S
+mikrostrukturiert/A
+Mitradelzentrale
+Molekülgitter/NS
+Nachlassabteilung
+Nachlassabteilungen
+neurotypisch/A
+Nightingale/S #name
+OÖKB #abk
+polymerartig/A
+Primärzementit
+Prozesskostenfinanzierer/NS
+Pultaufsätze/N
+Pultaufsatz
+Pultaufsatzes
+Remineralisation
+Roborock/S #name
+Silikatnetzwerk/S
+Silikatnetzwerke/NS
+SNU #abk
+Spoofing/S #eng
+Stumpfkissen/S
+stundungsfähig/A
+Tertiärzementit
+theoriebezogen/A
+Tortenränder/N
+Tortenrand/S
+Tortenrandes
+transmissionselektronenmikroskopisch/A
+verbrauchsteuerpflichtig/A
+wassergeführt/A
+Gratisaktion
+Gratisaktionen
+Oberottmarshausen/S #name
+Siegmund/S #name
+Erstattungspreis/E
+Erstattungspreises
+Escortgirl/S #eng
+Escortherr
+Escortherren
+Escortservice/S #eng
+Totholzhecke/N
+betriebsfreundlich/A
+Dekarbonisierung
+dekarbonisiere
+dekarbonisierte
+dekarbonisierten
+dekarbonisiert
+dekarbonisieren
+gefahrmindernd/A
+gegenliegend/A
+Gefährlichkeitspotenzial/ES
+Glamping/S
+FMCG #abk #eng
+Domersleben/S #name
+impfberechtigt/A
+Katzelsdorf/S #name
+Hochwiesenberg/S #name
+Hochwiesenberges #name
+Nockenwellenverstellung
+PE-Schaum/S
+PE-Schaumes
+PE-Schäume
+PE-Schäumen
+plumpse #ugs
+plumpst #ugs
+plumpste #ugs
+plumpsten #ugs
+plumpsen #ugs
+Legacy/S #eng
+Job-Nr.
+Abdomensonografie/N
+Akutmedizin
+Apostilleübereinkommen/S
+Ariendorf/S #name
+Büchereiplatz
+Büchereiplatzes
+Bernoullistraße #name
+Biomasseverwertung
+Cremigkeit
+Dönerläden
+Dönerladen/S
+erfolgsmindernd/A
+Fair-Use-Policy
+familiennäher/A
+familiennah/A
+Festtagsschmaus
+Festtagsschmauses
+freizeitpädagogisch/A
+Gassirunde/N
+gemalmt
+gleichgeschlechtig/A
+Kornspitz
+Lazarettorganisation
+Lebenspartnerschaftsregister/S
+malme/N
+malmst
+malmt
+malmte/N
+malmtest
+McMurray/S #name
+Mikrohämaturie/N
+Nanokomposit
+Nanokomposite/N
+Omama/S
+Putenschinken/S
+Putenschinkenprodukt
+Putenschinkenprodukte/NS
+Rebriefing/S
+Reduzierungsmethode/N
+Retourenbestätigung
+Retourenbestätigungen
+Screwball-Komödie/N
+Sendungsnachweis
+Sendungsnachweise/NS
+Unruhestiftung
+Unruhestiftungen
+Verabschiedungsmodus
+Verknotung
+Verknotungen
+Verwahrungszelle/N
+Weihnachtsmuffel/NS
+Zügelhalterung
+Zügelhalterungen
+Zuschussreferenz
+Zuschussreferenzen
+Presales #eng
+Postsales #eng
+Überdrüssigkeit
+Annabeth/S #name
+Annina/S #name
+Auskunftsbefugte/N
+Auskunftsbefugter
+Bergeunternehmen/S
+Desiree/S #name
+eiapopeia #ugs
+FitX #name
+gepieselt #ugs
+geschäftsspezifisch/A
+#heiopopeio #ugs
+Jean-Baptiste/S #name
+Kautionsbeträge/N
+Kautionsbetrag/S
+Kindergartenabgänger/NS
+Kindergartenabgängerin
+Kindergartenabgängerinnen
+knackevoll/A #ugs
+Kollektionsentwicklung
+legendiert/A
+Leinenlänge/N
+Mönchsrobe/N
+Maklerkontakt
+Maklerkontakte/S
+Mandantenakquise
+Nachlieferservice/S
+nervenstrapazierend/A
+Norisbank #name
+Overnighter/NS
+Pasqual/S #name
+Pasquale/S #name
+Pelletierung
+Pelletkessel/NS
+Pfadi/S
+Pfadibewegung
+Pokerkasse/N
+Pottsäue/N #ugs
+Pottsau #ugs
+Psalmenschreiber/S
+Reservierungsschild
+Reservierungsschilder/N
+Reservierungsschildes
+Salatsaucenrezept/S
+Salatsaucenrezepte/NS
+Salatsoßenrezept/S
+Salatsoßenrezepte/NS
+Soziologiestudium/S
+Spielekoffer/NS
+Spukgeschichte/N
+SSV #abk
+Staffordshire/S #name
+Stielgranate/N
+stilgebend/A
+Taillenhöhe/N
+Tangentenabschnitt/S
+Tangentenabschnitte/N
+Tangentenlänge/N
+Tiefensuggestion
+tränenaufgelöst/A
+Unvergesslichkeit
+Versagerregierung
+Vorlesungsvideo/S
+Wertschätzungsbedürfnis
+Wertschätzungsbedürfnisse/NS
+Wetteraukreis
+Wetteraukreises
+Wildbrethändler/NS
+Wildbrethändlerin
+Wildbrethändlerinnen
+Zertifizierungsinstitut/S
+Zertifizierungsinstitute/N
+Vladimir Nabokov/S
+Rattelsdorf/S #name
+Spielekoffer/S
+Spielestation
+Spielestationen
+DKV/S #name
+Auskunftsbefugte/N
+Bandscheibenprotrusion
+Aufrechnungsrechte/N
+Allopurinol/S #name
+Entkeimungslampe/N
+geringgradig/A
+hochbruchfest/A
+Kappeln/S #name
+Knuddels #name
+Styroporfigur
+Styroporfiguren
+Aerosolbelastung
+Aerosolbelastungen
+Auenbäume/N
+begegnungsreich/A
+begegnungsreicher/A
+Coachingprozess
+Coachingprozesse/NS
+Dauersitzen/S
+Erlenzapfen/S
+Extremitätspaare/N
+Fiskars #name
+Friedhofsmanagement/S
+Friedhofsmanager/NS
+Friedhofsmanagerin
+Friedhofsmanagerinnen
+Granulationsgewebe/S
+Keith/S #name
+KSt #abk
+Möbelerhöher/NS
+Maiswaffel/N
+mikroverkapselt/A
+Milbeneier/N
+Modellierton/S
+Polly/S
+SGD/S
+Stallneubau/S
+Stallneubauten
+Superintendenz
+Transformationsakt
+Transformationsakte/NS
+Verfügbarkeitsverluste/N
+vermutbar/A
+Walnussblattes
+Walnussblatt
+Walnussblätter/N
+Zuchwil/S #name
+PCR-Test/S
+Tech-Stack/S #eng #ugs
+Kamen/S #name
+Affizierung
+Allgütige/N
+Allgütiger
+Aufzahlungsposition
+Aufzahlungspositionen
+Autismusinstitut/S
+Befüllschächte/N
+Befüllschacht
+Befüllschachtes
+Bitterorange/N
+Blockchainsystem/S
+Blockchainsysteme/N
+Blogschreiber/NS
+Blogschreiberin
+Blogschreiberinnen
+Catwoman #name
+Clermont-Ferrand/S #name #franz
+Conergy #name
+Dirichletform
+einzukuscheln
+Elaboriertheit
+Elise-Bartels-Straße #name
+Entfetter/NS
+Entfeuchtungsgerät/S
+Entfeuchtungsgeräte/NS
+Fassadenmontage/N
+Fluggerätelektroniker/NS
+Fluggerätelektronikerin
+Fluggerätelektronikerinnen
+Frustrationserfahrung
+Frustrationserfahrungen
+funktionsgeprüft/A
+Gebauer/S #name
+gemailt/A
+geruchsverursachend/A
+handgepolstert/A
+handgeschnitten/A
+hochfränkisch/A
+ICDL #abk
+Irmhild/S #name
+Janus
+Kantelung
+Kantelungen
+Kellereien
+koalesziert/A
+Labergruppe/N
+Lachscurry/S
+Laieninvestitur
+Leinwandgemälde/NS
+leistungsbedürftig/A
+leistungshungrig/A
+MasterCard #name
+Moderna #name
+moselaufwärts
+Moulure
+Nützlichkeitsgebot/S
+Nützlichkeitsgebotes
+Nachhaltigkeits-Experte/N
+Nachhaltigkeits-Expertin
+Nachhaltigkeits-Expertinnen
+Nolimetangere
+Novalgin
+paganisch/A
+Pandemielage
+Petermann/S #name
+Pflegefachauszubildende/N
+Pflegefachauszubildender
+Pigtail/S
+Plattformentwickler/NS
+prüfungsnah/A
+Pyranometer/NS
+Quarzwerk/S
+Quarzwerke/NS
+Ratenfinanzierung
+Ratenfinanzierungen
+Rezipientenzelle/N
+Rheologie
+Roderick/S #name
+Rotebühlstraße #name
+Schlammersdorf/S #name
+Schluckaufs
+Schreinerausbildung
+Schreinerausbildungen
+Seiffert/S #name
+sonnenausgerichtet/A
+spermienhemmend/A
+Stallbesitzer/NS
+Stallbesitzerin
+Stallbesitzerinnen
+Taillenform
+Taillenformen
+Talentzuwanderung
+Terracotta
+Umwendbeweglichkeit
+Vielperspektivität
+Voestalpine #name
+Vogelbräu #name
+Zwerchfellmuskulatur
+Biontech/S

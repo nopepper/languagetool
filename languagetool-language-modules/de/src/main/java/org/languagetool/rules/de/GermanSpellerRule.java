@@ -34,11 +34,8 @@ import org.languagetool.rules.spelling.hunspell.CompoundAwareHunspellRule;
 import org.languagetool.rules.spelling.morfologik.MorfologikMultiSpeller;
 import org.languagetool.synthesis.Synthesizer;
 import org.languagetool.tagging.Tagger;
-import org.languagetool.tagging.de.VerbPrefixes;
 import org.languagetool.tokenizers.de.GermanCompoundTokenizer;
 import org.languagetool.tools.StringTools;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.*;
@@ -51,8 +48,6 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 public class GermanSpellerRule extends CompoundAwareHunspellRule {
 
   public static final String RULE_ID = "GERMAN_SPELLER_RULE";
-
-  private static final Logger logger = LoggerFactory.getLogger(GermanSpellerRule.class);
 
   private static final int MAX_EDIT_DISTANCE = 2;
 
@@ -156,6 +151,7 @@ public class GermanSpellerRule extends CompoundAwareHunspellRule {
     put("unauslässlich", w -> Arrays.asList("unerlässlich", "unablässig", "unauslöschlich"));
     put("Registration", "Registrierung");
     put("Registrationen", "Registrierungen");
+    putRepl("[Ww]ar ne", "ne", "eine");
     putRepl("[Gg]arnix", "nix", "nichts");
     putRepl("[Ww]i", "i", "ie");
     putRepl("[uU]nauslässlich(e[mnrs]?)?", "aus", "er");
@@ -949,6 +945,12 @@ public class GermanSpellerRule extends CompoundAwareHunspellRule {
     putRepl("Lan-(Kabel[ns]?|Verbindung)", "Lan", "LAN");
     putRepl("[pP]erfektest(e[mnrs]?)?", "est", "");
     putRepl("[gG]leichtig(e[mnrs]?)?", "tig", "zeitig");
+    putRepl("[uU]n(her)?vorgesehen(e[mnrs]?)?", "(her)?vor", "vorher");
+    putRepl("([cC]orona|[gG]rippe)viruss?es", "viruss?es", "virus");
+    put("laufte", "lief");
+    put("lauften", "liefen");
+    put("malzeit", "Mahlzeit");
+    put("[wW]ahts?app", "WhatsApp");
     put("[wW]elan", w -> Arrays.asList("WLAN", "W-LAN"));
     put("Pinn", w -> Arrays.asList("Pin", "PIN"));
     put("Geldmachung", w -> Arrays.asList("Geltendmachung", "Geldmacherei"));
@@ -1064,7 +1066,6 @@ public class GermanSpellerRule extends CompoundAwareHunspellRule {
     super.ignoreWordsWithLength = 1;
     String pattern = "(" + nonWordPattern.pattern() + "|(?<=[\\d°])-|-(?=\\d+))";
     nonWordPattern = Pattern.compile(pattern);
-    needsInit = false;
   }
 
   @Override
@@ -1158,7 +1159,10 @@ public class GermanSpellerRule extends CompoundAwareHunspellRule {
       }
     }*/
     List<String> suggestions = super.getSuggestions(word);
-    suggestions = suggestions.stream().filter(k -> !PREVENT_SUGGESTION.matcher(k).matches() && !k.endsWith("roulett")).collect(Collectors.toList());
+    suggestions = suggestions.stream().filter(k -> !PREVENT_SUGGESTION.matcher(k).matches()
+            && !k.endsWith("roulett")
+            && !k.endsWith("-s")   // https://github.com/languagetool-org/languagetool/issues/4042
+    ).collect(Collectors.toList());
     if (word.endsWith(".")) {
       // To avoid losing the "." of "word" if it is at the end of a sentence.
       suggestions.replaceAll(s -> s.endsWith(".") ? s : s + ".");
@@ -1177,7 +1181,10 @@ public class GermanSpellerRule extends CompoundAwareHunspellRule {
       String langCode = language.getShortCode();
       String morfoFile = "/" + langCode + "/hunspell/" + langCode + "_" + language.getCountries()[0] + JLanguageTool.DICTIONARY_FILENAME_EXTENSION;
       if (JLanguageTool.getDataBroker().resourceExists(morfoFile)) {  // spell data will not exist in LibreOffice/OpenOffice context
-        List<String> paths = getSpellingFilePaths(langCode);
+        List<String> paths = new ArrayList<>(getSpellingFilePaths(langCode));
+        if (languageVariantPlainTextDict != null) {
+          paths.add(languageVariantPlainTextDict);
+        }
         List<InputStream> streams = getStreams(paths);
         try (BufferedReader br = new BufferedReader(
           new InputStreamReader(new SequenceInputStream(Collections.enumeration(streams)), UTF_8))) {
@@ -1288,7 +1295,7 @@ public class GermanSpellerRule extends CompoundAwareHunspellRule {
 
   @Override
   public boolean isMisspelled(String word) {
-    if (word.startsWith("Spielzug") && !word.matches("Spielzugs?|Spielzugangs?|Spielzuganges|Spielzugbuchs?|Spielzugbüchern?|Spielzuges|Spielzugverluste?|Spielzugverlusten|Spielzugverlustes")) {
+    if (word.startsWith("Spielzug") && !word.matches("Spielzugs?|Spielzugangs?|Spielzuganges|Spielzugbuchs?|Spielzugbüchern?|Spielzuges|Spielzugverluste?|Spielzugverluste[ns]")) {
       return true;
     }
     if (word.startsWith("Standart") && !word.equals("Standarte") && !word.equals("Standarten") && !word.startsWith("Standartenträger") && !word.startsWith("Standartenführer")) {
@@ -1448,7 +1455,7 @@ public class GermanSpellerRule extends CompoundAwareHunspellRule {
       if (hunspell.spell(suggestion)) {
         return Collections.singletonList(suggestion);
       }
-    } else if (word.matches("koregier.+")) {
+    } else if (word.startsWith("koregier")) {
       suggestion = word.replace("reg", "rrig");
       if (hunspell.spell(suggestion)) {
         return Collections.singletonList(suggestion);
@@ -1458,13 +1465,13 @@ public class GermanSpellerRule extends CompoundAwareHunspellRule {
       if (hunspell.spell(suggestion)) {
         return Collections.singletonList(suggestion);
       }
-    } else if (word.matches(".*eiss.*")) {
-      suggestion = word.replaceAll("eiss", "eiß");
+    } else if (word.contains("eiss")) {
+      suggestion = word.replace("eiss", "eiß");
       if (hunspell.spell(suggestion)) {
         return Collections.singletonList(suggestion);
       }
-    } else if (word.matches(".*uess.*")) {
-      suggestion = word.replaceAll("uess", "üß");
+    } else if (word.contains("uess")) {
+      suggestion = word.replace("uess", "üß");
       if (hunspell.spell(suggestion)) {
         return Collections.singletonList(suggestion);
       }
@@ -1565,7 +1572,7 @@ public class GermanSpellerRule extends CompoundAwareHunspellRule {
       return Collections.singletonList("Danke");
     } else if (word.equals("Zynik")) {
       return Collections.singletonList("Zynismus");
-    } else if (word.matches("Email[a-zäöü]{5,}")) {
+    } else if (word.length() > 9 && word.startsWith("Email")) {
       String suffix = word.substring(5);
       if (!hunspell.spell(suffix)) {
         List<String> suffixSuggestions = hunspell.suggest(StringTools.uppercaseFirstChar(suffix));

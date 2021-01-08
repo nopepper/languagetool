@@ -311,6 +311,7 @@ public class English extends Language implements AutoCloseable {
       case "EN_COMPOUNDS":              return 2;
       case "ABBREVIATION_PUNCTUATION":  return 2;
       case "FEDEX":                     return 2;   // higher prio than many verb rules (e.g. MD_BASEFORM)
+      case "LIFE_COMPOUNDS":            return 1;
       case "COVID_19":                  return 1;
       case "OTHER_WISE_COMPOUND":       return 1;
       case "ON_EXCEL":                  return 1;
@@ -359,10 +360,16 @@ public class English extends Language implements AutoCloseable {
       case "A_SNICKERS":                return 1;   // higher prio than A_NNS
       case "ROUND_A_BOUT":              return 1;   // higher prio than A_NNS
       case "A_NNS_BEST_NN":             return 1;   // higher prio than A_NNS
-      case "SEEM_SEEN":                 return 1;   // higher prio than HAVE_PART_AGREEMENT, PRP_HAVE_VB, MD_BASEFORM and PRP_PAST_PART
+      case "NEITHER_NOR":               return 1;   // higher prio than COMMA_COMPOUND_SENTENCE
+      case "FOR_AWHILE":                return 1;   // higher prio than COMMA_COMPOUND_SENTENCE
+      case "A_BUT":                     return 1;   // higher prio than COMMA_COMPOUND_SENTENCE
+      case "MAY_BE":                    return 1;   // higher prio than IS_IT_MAY (premium rule)
       case "BORN_IN":                   return 1;   // higher prio than PRP_PAST_PART
       case "DO_TO":                     return 1;   // higher prio than HAVE_PART_AGREEMENT
+      case "CURIOS_CURIOUS":            return 1;   // higher prio than A_NNS and POSSESSIVE_APOSTROPHE
+      case "INCORRECT_POSSESSIVE_APOSTROPHE": return 1;   // higher prio than THIS_NNS
       case "THIS_YEARS_POSSESSIVE_APOSTROPHE": return 1;    // higher prio than THIS_NNS
+      case "SPURIOUS_APOSTROPHE": return 1;    // higher prio than THIS_NNS
       case "IN_THIS_REGARDS":           return 1;   // higher prio than THIS_NNS
       case "NO_WHERE":                  return 1;   // higher prio than NOW
       case "APOSTROPHE_VS_QUOTE":       return 1;   // higher prio than EN_QUOTES
@@ -383,6 +390,7 @@ public class English extends Language implements AutoCloseable {
       case "FINE_TUNE_COMPOUNDS":       return 1;   // prefer over less specific rules
       case "WHAT_IS_YOU":               return 1;   // prefer over HOW_DO_I_VB, NON3PRS_VERB
       case "SUPPOSE_TO":                return 1;   // prefer over HOW_DO_I_VB
+      case "SEEN_SEEM":                 return 1;   // prefer over PRP_PAST_PART
       case "PROFANITY":                 return 1;   // prefer over spell checker (less prio than EN_COMPOUNDS)
       case "THE_THEM":                  return 1;   // prefer over TO_TWO
       case "THERE_THEIR":               return 1;   // prefer over GO_TO_HOME
@@ -400,6 +408,7 @@ public class English extends Language implements AutoCloseable {
       case "WE_BE":                     return -1;
       case "A_LOT_OF_NN":               return -1;
       case "IT_VBZ":                    return -1;
+      case "ADVERB_WORD_ORDER":         return -1;  // less prio than PRP_PAST_PART
       case "IT_IS_2":                   return -1;  // needs higher prio than BEEN_PART_AGREEMENT
       case "A_RB_NN":                   return -1;  // prefer other more specific rules (e.g. QUIET_QUITE, A_QUITE_WHILE)
       case "DT_RB_IN":                  return -1;  // prefer other more specific rules
@@ -448,6 +457,8 @@ public class English extends Language implements AutoCloseable {
       case "MORFOLOGIK_RULE_EN_NZ":     return -10;  // more specific rules (e.g. L2 rules) have priority
       case "MORFOLOGIK_RULE_EN_AU":     return -10;  // more specific rules (e.g. L2 rules) have priority
       case "TWO_CONNECTED_MODAL_VERBS": return -15;
+      case "WANT_TO_NN":                return -25; // prefer more specific rules that give a suggestion
+      case "QUESTION_WITHOUT_VERB":     return -25; // prefer more specific rules that give a suggestion
       case "SENTENCE_FRAGMENT":         return -50; // prefer other more important sentence start corrections.
       case "SENTENCE_FRAGMENT_SINGLE_WORDS": return -51;  // prefer other more important sentence start corrections.
       case "EN_REDUNDANCY_REPLACE":     return -510;  // style rules should always have the lowest priority.

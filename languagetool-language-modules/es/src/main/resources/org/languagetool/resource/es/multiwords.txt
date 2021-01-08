@@ -1,3 +1,20 @@
+Adís Abeba	NPCSG00
+University College	NCMS000
+Ahora mismo	LOC_ADV
+perro salsicha	NCMS000
+perros salsicha	NCMP000
+motor diésel	NCMS000
+motores diésel	NCMP000
+en buena medida	LOC_ADV
+Walter Benjamin	NPMSSP0
+boy band	NCFS000
+boy bands	NCFP000
+vía ferrata	NCFS000
+vías ferratas	NCFP000
+Agencia Independiente de Responsabilidad Fiscal	NPFSO00
+Ernest Lluch	NPMSSP0
+Chrome Store	NPFSO00
+Italo Svevo	NPMSSP0
 a continuación	LOC_ADV
 Super League	NPFSO00
 Grupo Zeta	NPMSO00
@@ -321,6 +338,10 @@ Os Lusíadas	NPMPO00
 Te Deum	NCMS000
 Le Corbusier	NPCNSP0
 dale que te dale	LOC_ADV
+dale que dale	LOC_ADV
+dale que le das	LOC_ADV
+dale que le darás	LOC_ADV
+dale que te pego	LOC_ADV
 Le Monde	NPMSO00
 Le Soir	NPMSO00
 Le Mans	NPCSG00
@@ -446,7 +467,7 @@ gallo pinto	NCMS000
 alto el fuego	NCMN000
 alto al fuego	NCMN000
 Echo Park	NPMSG00
-corre que te pillo	NCS000
+corre que te pillo	NCMS000
 al pairo	LOC_ADV
 par de apriete	NCMS000
 de veras	LOC_ADV

@@ -82,9 +82,7 @@ public class Catalan extends Language {
             new MorfologikCatalanSpellerRule(messages, this, userConfig, altLanguages),
             new CatalanUnpairedQuestionMarksRule(messages, this),
             new CatalanUnpairedExclamationMarksRule(messages, this),
-            new AccentuationCheckRule(messages),
             new CatalanWrongWordInContextRule(messages),
-            new CatalanWrongWordInContextDiacriticsRule(messages),
             new SimpleReplaceVerbsRule(messages, this),
             new SimpleReplaceBalearicRule(messages),
             new SimpleReplaceRule(messages),
@@ -92,7 +90,8 @@ public class Catalan extends Language {
             new SimpleReplaceDNVRule(messages, this), // can be removed here after updating dictionaries
             new SimpleReplaceDiacriticsIEC(messages),
             new SimpleReplaceAnglicism(messages), 
-            new PronomFebleDuplicateRule(messages)
+            new PronomFebleDuplicateRule(messages),
+            new CheckCaseRule(messages, this)
             //REMEMBER TO ADD RULES TO ValencianCatalan!!
     );
   }
@@ -205,6 +204,7 @@ public class Catalan extends Language {
       case "NOMBRES_ROMANS": return -90;
       case "MORFOLOGIK_RULE_CA_ES": return -100;
       case "EXIGEIX_ACCENTUACIO_VALENCIANA": return -120;
+      case "PHRASE_REPETITION": return -150;
       case "SUBSTANTIUS_JUNTS": return -150;
       case "FALTA_ELEMENT_ENTRE_VERBS": return -200;
       case "UPPERCASE_SENTENCE_START": return -500;
