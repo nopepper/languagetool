@@ -171,21 +171,53 @@ public class NGramLangIdentifier {
       return result;
     }
     text = "▁" + text;
-
+    List<String> toks = new ArrayList<>();
     int cur = 0;
     while (cur < text.length()) {
-      int tok = 0;
+      String tok = "<unk>";
       int ci = 1;
       for (int i = cur + 1; i <= text.length(); i++) {
-        int maybeTok = vocab.getOrDefault(text.substring(cur, i), -1);
-        if (maybeTok > -1) {
-          tok = maybeTok;
+        if (vocab.containsKey(text.substring(cur, i))) {
+          tok = text.substring(cur, i);
           ci = i - cur;
+        }
+        else if (text.substring(cur, i).startsWith("▁<") && vocab.containsKey(text.substring(cur + 1, i))){
+          tok = text.substring(cur + 1, i);
+          ci = i - cur + 1;
+        }
+        else if (text.charAt(i-1) == '▁'){
+          break;
         }
       }
       cur += ci;
-      result.add(tok);
+      toks.add(tok);
     }
+
+    List<List<String>> toks2d = new ArrayList<>();
+    List<String> temp = new ArrayList<>();
+    for (String tok : toks) {
+      if (tok.charAt(0) == '▁' || (tok.charAt(0) == '<' && tok.charAt(tok.length()-1) == '>')){
+        if (temp.size() > 0){
+          toks2d.add(temp);
+          temp = new ArrayList<>();
+        }
+      }
+      temp.add(tok);
+    }
+    if (temp.size() > 0) {
+      toks2d.add(temp);
+    }
+    toks.clear();
+    for (List<String> arr : toks2d) {
+      int wordlen = arr.stream().mapToInt(String::length).sum() - 1; //Always > 0
+      if (wordlen > 1 && toks2d.size() > 2 && arr.size() == wordlen){
+        arr.clear();
+        arr.add("<unk>");
+      }
+      toks.addAll(arr);
+    }
+    result = toks.stream().mapToInt(vocab::get).boxed().collect(Collectors.toList());
+
     return result;
   }
 
