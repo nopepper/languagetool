@@ -154,8 +154,10 @@ public class NGramLangIdentifier {
     if (text.length() > maxLength) {
       text = text.substring(0, maxLength);
     }
-    text = Normalizer.normalize(text, Normalizer.Form.NFKC).toLowerCase();
-    text = text.replaceAll("\\d+", "<NUM>");
+    text = Normalizer.normalize(text, Normalizer.Form.NFKC);
+    text = text.replaceAll("[\\u2000-\\u206F\\u2E00-\\u2E7F'!\"#$%&()*+,\\-./:;<=>?@\\[\\]^_`{|}~]+", " ").trim();
+    text = text.toLowerCase();
+    text = text.replaceAll("\\d+(\\s*\\d+)*", "<NUM>");
     text = text.replaceAll("[\\uac00-\\ud7a3]", "<KO>"); // Korean
     text = text.replaceAll("[\\u3040-\\u30ff]", "<JA>"); // Japanese
     text = text.replaceAll("[\\u4e00-\\u9FFF]", "<ZH>"); // Chinese
