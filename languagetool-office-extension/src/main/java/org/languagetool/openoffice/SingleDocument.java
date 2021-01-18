@@ -91,9 +91,9 @@ class SingleDocument {
   private Integer numLastFlPara = -1;             //  Save position of FlatParagraph for the single documents
   private List<ResultCache> paragraphsCache;      //  Cache for matches of text rules
   private CacheIO cacheIO;
-  private int resetFrom = 0;                      //  Reset from paragraph
-  private int resetTo = 0;                        //  Reset to paragraph
-  private int numParasReset = 1;                  //  Number of paragraphs to reset
+  private int changeFrom = 0;                     //  Change result cache from paragraph
+  private int changeTo = 0;                       //  Change result cache to paragraph
+  private int numParasToChange = 1;               //  Number of paragraphs to change for n-paragraph cache
   private List<Integer> changedParas = null;      //  List of changed paragraphs after editing the document
   private Set<Integer> textIsChanged;             //  false: check number of paragraphs again (ignored by parallel thread)
   private Set<Integer> resetCheck;                //  true: the whole text has to be checked again (use cache)
@@ -264,7 +264,7 @@ class SingleDocument {
    */
   void setConfigValues(Configuration config) {
     this.config = config;
-    numParasToCheck = config.getNumParasToCheck();
+    numParasToCheck = mDocHandler.isTestMode() ? 0 : config.getNumParasToCheck();
     defaultParaCheck = PARA_CHECK_DEFAULT;
     if (numParasToCheck == 0) {
       useQueue = false;
@@ -279,6 +279,17 @@ class SingleDocument {
     if (config.noBackgroundCheck() || numParasToCheck == 0) {
       setFlatParagraphTools(xComponent);
     }
+  }
+
+  /**
+   * set the document cache - use only for tests
+   * @since 5.3
+   */
+  void setDocumentCacheForTests(List<String> paragraphs, List<String> textParagraphs, List<int[]> footnotes, Locale locale) {
+    docCache = new DocumentCache(paragraphs, textParagraphs, footnotes, locale);
+    numParasToCheck = -1;
+    mDocHandler.resetSortedTextRules();
+    minToCheckPara = mDocHandler.getNumMinToCheckParas();
   }
   
   /** Set LanguageTool menu
@@ -431,16 +442,16 @@ class SingleDocument {
     for (int i = 0; i < OfficeTools.NUMBER_TEXTLEVEL_CACHE; i++) {
       paragraphsCache.get(i).removeAll();
     }
-    numParasReset = numParasToCheck;
+    numParasToChange = numParasToCheck;
     if ((numParasToCheck < 0 || useQueue) && mDocHandler != null) {
       minToCheckPara = mDocHandler.getNumMinToCheckParas();
       if (minToCheckPara == null) {
         return;
       }
-      if (numParasReset < 0) {
+      if (numParasToChange < 0) {
         for (int minPara : minToCheckPara) {
-          if (minPara > numParasReset) {
-            numParasReset = minPara;
+          if (minPara > numParasToChange) {
+            numParasToChange = minPara;
           }
         }
       }
@@ -479,6 +490,10 @@ class SingleDocument {
    * gives Back the Position of flat paragraph / -1 if Paragraph can not be found
    */
   private int getParaPos(int nPara, String chPara, Locale locale, int startPos) {
+
+    if (mDocHandler.isTestMode() && nPara >= 0 && docCache != null) {
+      return nPara;
+    }
 
     if (numParasToCheck == 0 || xComponent == null) {
       return -1;  //  check only the processed paragraph
@@ -749,7 +764,7 @@ class SingleDocument {
         && docCache.getFlatParagraph(from).equals(oldDocCache.getFlatParagraph(from))) {
       from++;
     }
-    resetFrom = from - numParasReset;
+    changeFrom = from - numParasToChange;
     int to = 1;
     while (to <= docCache.size() && to <= oldDocCache.size()
         && docCache.getFlatParagraph(docCache.size() - to).equals(
@@ -757,7 +772,7 @@ class SingleDocument {
       to++;
     }
     to = docCache.size() - to;
-    resetTo = to + numParasReset;
+    changeTo = to + numParasToChange + 1;
     if (!ignoredMatches.isEmpty()) {
       IgnoredMatches tmpIgnoredMatches = new IgnoredMatches();
       for (int i = 0; i < from; i++) {
@@ -773,10 +788,12 @@ class SingleDocument {
       }
       ignoredMatches = tmpIgnoredMatches;
     }
-    for (ResultCache cache : paragraphsCache) {
-      cache.removeAndShift(resetFrom, resetTo, docCache.size() - oldDocCache.size());
+    if (debugMode > 0) {
+      MessageHandler.printToLogFile("!!!Changed paragraphs: from:" + from + ", to: " + to);
     }
-    resetTo++;
+    for (ResultCache cache : paragraphsCache) {
+      cache.removeAndShift(from, to, docCache.size() - oldDocCache.size());
+    }
     this.docCache = docCache;
     if (useQueue) {
       if (debugMode > 0) {
@@ -841,8 +858,8 @@ class SingleDocument {
         }
       }
       if (!textIsChanged.contains(nPara)) {
-        resetFrom = nPara - numParasReset;
-        resetTo = nPara + numParasReset + 1;
+        changeFrom = nPara - numParasToChange;
+        changeTo = nPara + numParasToChange + 1;
         ignoredMatches.removeIgnoredMatches(nPara);
         textIsChanged.add(nPara);
       }
@@ -987,11 +1004,11 @@ class SingleDocument {
    * add the numbers of changed paragraphs to list
    */
   private void addChangedParas() {
-    int firstPara = resetFrom;
+    int firstPara = changeFrom;
     if (firstPara < 0) {
       firstPara = 0;
     }
-    int lastPara = resetTo;
+    int lastPara = changeTo;
     if (lastPara > docCache.size()) {
       lastPara = docCache.size();
     }
@@ -1004,7 +1021,7 @@ class SingleDocument {
       }
     }
   }
-  
+
   /**
    * Add an new entry to text level queue
    * nFPara is number of flat paragraph
@@ -1013,8 +1030,8 @@ class SingleDocument {
     if (mDocHandler.isSortedRuleForIndex(nCache)) {
       int nTPara = docCache.getNumberOfTextParagraph(nFPara);
       if (nTPara >= 0) {
-        int nStart = docCache.getStartOfParaCheck(nTPara, nCheck, overrideRunning, true);
-        int nEnd = docCache.getEndOfParaCheck(nTPara, nCheck, overrideRunning, true);
+        int nStart = docCache.getStartOfParaCheck(nTPara, nCheck, overrideRunning, true, false);
+        int nEnd = docCache.getEndOfParaCheck(nTPara, nCheck, overrideRunning, true, false);
         mDocHandler.getTextLevelCheckQueue().addQueueEntry(nStart, nEnd, nCache, nCheck, docId, overrideRunning);
       }
     }
@@ -1026,8 +1043,8 @@ class SingleDocument {
    */
   private QueueEntry createQueueEntry(int nPara, int nCache) {
     int nCheck = minToCheckPara.get(nCache);
-    int nStart = docCache.getStartOfParaCheck(nPara, nCheck, false, true);
-    int nEnd = docCache.getEndOfParaCheck(nPara, nCheck, false, true);
+    int nStart = docCache.getStartOfParaCheck(nPara, nCheck, false, true, false);
+    int nEnd = docCache.getEndOfParaCheck(nPara, nCheck, false, true, false);
     return mDocHandler.getTextLevelCheckQueue().createQueueEntry(nStart, nEnd, nCache, nCheck, docID, false);
   }
 
@@ -1096,7 +1113,7 @@ class SingleDocument {
         lastSinglePara = paraText;
       }
       // return Cache result if available / for right mouse click or Dialog only use cache
-      int nPara = nFPara < 0 ? -1 : docCache.getNumberOfTextParagraph(nFPara);
+      int nPara = nFPara < 0 || docCache == null ? -1 : docCache.getNumberOfTextParagraph(nFPara);
       if (nFPara >= 0 && (pErrors != null || (useQueue && !isDialogRequest.contains(nFPara) && parasToCheck != 0))) {
         if (useQueue && pErrors == null && parasToCheck != 0 && nPara >= 0 && !textIsChanged.contains(nFPara)) {
           addQueueEntry(nFPara, cacheNum, parasToCheck, docID, false);
@@ -1194,8 +1211,8 @@ class SingleDocument {
         paragraphMatches = langTool.check(textToCheck, true, JLanguageTool.ParagraphHandling.ONLYPARA);
       }
       
-      int startPara = docCache.getStartOfParaCheck(nTPara, parasToCheck, textIsChanged, useQueue);
-      int endPara = docCache.getEndOfParaCheck(nTPara, parasToCheck, textIsChanged, useQueue);
+      int startPara = docCache.getStartOfParaCheck(nTPara, parasToCheck, textIsChanged, useQueue, false);
+      int endPara = docCache.getEndOfParaCheck(nTPara, parasToCheck, textIsChanged, useQueue, false);
       int startPos = docCache.getStartOfParagraph(startPara, nTPara, parasToCheck, textIsChanged, useQueue);
       int endPos;
       int footnotesBefore = 0;

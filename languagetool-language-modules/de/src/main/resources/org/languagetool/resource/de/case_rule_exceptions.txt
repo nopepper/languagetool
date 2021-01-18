@@ -5,6 +5,7 @@ Absolut Vodka
 Ärzt*innen
 Adele
 Afrikanischen? Union|Elefant(en)?
+Asiatische[rnm] Elefant(en)?
 Agile Coach(es)?|Consultants?
 Akademische[nr]? Austauschdienst
 Aktuellen? Stunde
@@ -49,7 +50,9 @@ Brave New World
 Bayerische[nrs]? Staats.+|Verdienst(medaillen?|ordens?)|Rundfunks?|Ministerpräsident(en)?|Motorenwerken?|Ver(waltungsgericht|fassung).*|Hof|Walds?|Land(tag|esamte?)s?|Landesärztekammer|Fußball-Verbands?|Fußballverbands?|Fussball-Verbands?|Rhön
 Bayrische[nrs]? Rundfunk(s)?|Fernsehen(s)?
 Bayerischen? Ehrenamtskarte
-Bayerische Motoren Werke
+Bayerischen? Landesstiftung
+Bayerischen? Sparkassenstiftung
+Bayerischen? Motoren Werken?
 Bayerischen? Alpen
 (Bekennend|Evangelisch|Katholisch)en? Kirche
 Berliner Modells?
@@ -74,6 +77,7 @@ Britischen? Inseln
 Bruce Allmächtig
 Bundeskanzlers? Kurz
 Bundesminister(s?|iums?|in) für Arbeit und Soziales
+Bundesverbands? Digitale Wirtschaft
 Bürgerliche[mns]? Gesetzbuche?s?
 Byzantinische[ns]? Reich(s|es)?
 Shabby Chic
@@ -96,6 +100,7 @@ Den Blauen Reiter
 Dick Cheney
 Die Sims
 Die Toten Hosen
+[Dd]ie Schöne und das Biest
 Digital IQ|Garage|Community|Consultants?|Equipments?|Onboarding|Transformations?
 Demokratischen? Republik|Partei|Volksrepublik
 ([Dd]e[rns]|[Ii]m) Englische[rn]? Gartens?
@@ -154,6 +159,8 @@ Fantastischen (Vier|4)
 Fast Foods?|Fashion|Tracks?
 Fast & Furious
 Fast and the Furious
+Federation Internationale
+Fédération Internationale
 Feine Sahne Fischfilets?
 Ferne[rn]? Ostens?
 Final Impact|Fantasy
@@ -217,6 +224,7 @@ Heiliges Römisches Reich
 Heinrich Hübsch
 Helvetica Neue
 Hessischen? Kultusministeriums?|Rundfunks?|Berglands?|Hochschule|Landtags?
+Hessischen? Brandversicherungsanstalt
 Hessische[ns] Ärzteblatte?s?
 Hin und Her
 Hoang An
@@ -238,7 +246,7 @@ Historische[sn]? Museums? (Frankfurt|Berlin|Speyer|Bremerhaven|Basel|Hannover|Lu
 [iI]m Innere?n (eine[rs]|de[rs])
 [iI]m Nirgendwo|Weiteren|Schweiße
 I, Robot
-Imperial (Colleges?|War)
+Imperial (Colleges?|War|Brands)
 Indian Wars?
 Indische[nr]? Ozeans?|Elefant(en)?|Gazellen?
 Innere[nr]? Stadtgrabens?|Medizin|Gürtel|Mongolei
@@ -333,7 +341,7 @@ Multiple[nr]? Sklerose
 Muttersprachler[ns]?
 Nordamerikanischen? Platte
 Nahe[nr]? Ostens?
-National (Institute|Library|Center|Account|Park|Academy|Bank|Forest)s?
+National (Institute|Library|Center|Account|Park|Academy|Bank|Forest|Monument)s?
 Nationale[nr]? Sicherheitsrat(e?s)?|Volksarmee|Volkskongress(es)?
 Nationales Zentrum für
 Nationalen? Polytechnischen? Forschungsuniversität
@@ -381,7 +389,7 @@ Preußisch-[A-Za-zÄÖÜäöüß]+
 Private (Part(y|ies)|Equity|Practice|Bankings?)
 Progressive Web Apps?
 Psychologie Heute
-Pure Life
+Pure (Life|Skin)
 Raiffeisen Bank International
 Rapid
 Real Bamakos?|Madrids?|Estates?|Time|Sociedads?
@@ -399,6 +407,7 @@ Römischen Reiches Deutscher Nation
 Römische[ns]? Reich
 Römische Reich Deutscher Nation
 Rote[nmrs]? Kreuz(es)?|Johannisbeeren?|Barons?|Burg|Riesen?|Milans?|Planet(en)?|Ruhr|Halbmonds?|Meer(es)?|Grütze|Rathaus(es)?|Beete|Karten?|Khmer|Liste|Armee|Platz|Rüben?|Kapelle
+Rote[nr]? Bete
 Runde[rn]? Tisch
 Russischen? Föderation|Revolution
 Ryan Lochtes?
@@ -434,10 +443,10 @@ Slim Fit
 Smart Cit(y|ies)|Cards?|Cabrios?|Homes?|Phones?|Watch(es)?|Meters?|Money|Tarif|TVs?
 SK Rapid
 Skodas? Superbs?
-Sozialer? Arbeit
+Soziale[nr]? (Arbeit|Jahre?s?)
 Sozialistischen? Sowjetrepublik(en)?|(Einheits)?[pP]artei
 Sozialdemokratischen? Arbeiterpartei
-Spanischen? Grippe|Erbfolgekriegs?|Bürgerkriegs?|Niederlanden?|Treppe|Fliege|Reitschule
+Spanischen? Grippe|Erbfolgekriegs?|Bürgerkriegs?|Niederlanden?|Treppe|Fliege|Reitschule|Inquisition
 Speis und Trank
 Sportback
 Spring Boot
@@ -487,6 +496,7 @@ Unter den Linden
 Untere Vogelsangstrasse
 Urban I+|Gardening|Sports?|Classics
 Vanity Fair
+van Dick
 Verlobten?
 Vereinigte[mns]? Staaten|Königreiche?s?|Bühnen|Arabischen?
 Vereinte[ns]? Nationen

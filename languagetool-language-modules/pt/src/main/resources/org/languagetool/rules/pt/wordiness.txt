@@ -140,7 +140,7 @@ deve ser notado que=note-se que
 deve ser observado que=note-se que
 devida diligência=diligência
 devidas diligências=diligências
-devido a=devido a|por|pela|pelo|pelas|pelos
+# devido a=devido a|por|pela|pelo|pelas|pelos
 devido ao efeito de=porque
 devido ao facto de=por
 devido ao facto de que=porque
@@ -247,6 +247,12 @@ levantar voo=descolar|decolar
 mais ou menos=APAGAR|ESPECIFICAR
 mais preferível=preferível
 # mas ainda=mas|ainda
+# MATURIDADE *START*
+condição de pleno desenvolvimento=maturidade
+estado de pleno desenvolvimento=maturidade
+forma de pleno desenvolvimento=maturidade
+situação de pleno desenvolvimento=maturidade
+# MATURIDADE *END*
 momento propício=ocasião|oportunidade
 muito claramente=APAGAR
 muito original=único
@@ -275,9 +281,12 @@ necessidade básica=necessidade
 # no caso de=se
 # no curso de=durante|enquanto
 no futuro próximo=em breve
+no momento atual=agora|hoje
+no momento presente=agora|hoje
 no sentido alargado=no sentido lato
 nós como uma sociedade=nós|a sociedade
-nos dias de hoje=atualmente
+nos dias atuais=atualmente|presentemente
+nos dias de hoje=atualmente|presentemente
 nostalgia do passado=nostalgia
 numa base diária=diariamente
 numa situação em que=em
@@ -308,6 +317,7 @@ o mesmo período do ano anterior=o período homólogo
 o mesmo período do ano passado=o período homólogo
 # período homólogo *END*
 o que é que=o que
+passar a noite=pernoitar
 por a maneira em que=porque|a maneira
 por causa da=devido à|pela
 por causa das=devido às|pelas
@@ -342,6 +352,11 @@ quaisquer que sejam as=independentemente das
 quaisquer que sejam os=independentemente dos
 # QUALQUER/QUAISQUER QUE SEJA(M) *END*
 quase nunca=raramente
+# SEM FIM À VISTA *START*
+que não se pode acabar=inacabável|infindável|interminável
+que não tem fim=inacabável|infindável|interminável
+sem fim à vista=inacabável|infindável|interminável
+# SEM FIM À VISTA *END*
 # EXÓGEN(AO)(S) *START*
 que tem origem no exterior=exógena|exógeno
 que têm origem no exterior=exógenas|exógenos
@@ -385,6 +400,7 @@ toda esta=esta
 todas estas=estas
 todo este=este
 todos estes=estes
+todos os dias=diariamente
 tomado o tempo=APAGAR
 # TRAZER [MAIS][MENOS] BENEFÍCIOS *START*
 traz benefícios=é beneficial

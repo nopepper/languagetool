@@ -134,6 +134,11 @@ public class German extends Language implements AutoCloseable {
                     Example.wrong("Das Haus ist alt. <marker>es</marker> wurde 1950 gebaut."),
                     Example.fixed("Das Haus ist alt. <marker>Es</marker> wurde 1950 gebaut.")),
             new MultipleWhitespaceRule(messages, this),
+            new WhiteSpaceBeforeParagraphEnd(messages, this),
+            new WhiteSpaceAtBeginOfParagraph(messages),
+            new EmptyLineRule(messages, this),
+            new LongParagraphRule(messages, this, userConfig),
+            new PunctuationMarkAtParagraphEnd(messages, this),
             // specific to German:
             new SimpleReplaceRule(messages),
             new OldSpellingRule(messages),
@@ -152,16 +157,11 @@ public class German extends Language implements AutoCloseable {
             new WordCoherencyRule(messages),
             new SimilarNameRule(messages),
             new WiederVsWiderRule(messages),
-            new WhiteSpaceBeforeParagraphEnd(messages, this),
-            new WhiteSpaceAtBeginOfParagraph(messages),
-            new EmptyLineRule(messages, this),
             new GermanStyleRepeatedWordRule(messages, this, userConfig),
             new CompoundCoherencyRule(messages),
             new LongSentenceRule(messages, userConfig, 35, true, true),
-            new LongParagraphRule(messages, this, userConfig),
             new GermanFillerWordsRule(messages, this, userConfig),
             new GermanParagraphRepeatBeginningRule(messages, this),
-            new PunctuationMarkAtParagraphEnd(messages, this),
             new DuUpperLowerCaseRule(messages),
             new UnitConversionRule(messages),
             new MissingCommaRelativeClauseRule(messages),
@@ -305,6 +305,7 @@ public class German extends Language implements AutoCloseable {
       case "DE_PROHIBITED_COMPOUNDS": return 1;  // a more detailed error message than from spell checker
       case "ANS_OHNE_APOSTROPH": return 1;
       case "DIESEN_JAHRES": return 1;
+      case "WERT_SEIN": return 1; // prefer over DE_AGREEMENT
       case "EBEN_FALLS": return 1;
       case "UST_ID": return 1;
       case "FUER_INBESONDERE": return 1; // prefer over KOMMA_VOR_ERLAEUTERUNG

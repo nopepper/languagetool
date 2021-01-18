@@ -253,10 +253,43 @@ public class AgreementRule extends Rule {
       token("andere"),
       posRegex("SUB:.*PLU.*")
     ),
-    Arrays.asList(  // "was sein Klient für ein Mensch sei"
-      new PatternTokenBuilder().token("was").setSkip(2).build(),
+    Arrays.asList(  // "was sein Klient für ein Mensch sei",
+      // "Mir wird nicht ganz klar, was das bei 1:58 für ein Akkord ist."
+      new PatternTokenBuilder().token("was").setSkip(5).build(),
       token("für"),
-      token("ein")
+      token("ein"),
+      new PatternTokenBuilder().posRegex("ADJ:.*(MAS|NEU).*").min(0).build(),
+      posRegex("SUB:.*:(MAS|NEU).*")
+    ),
+    Arrays.asList(  // "was sein Klient für ein Mensch sei",
+      // "Mir wird nicht ganz klar, was das bei 1:58 für ein Akkord ist."
+      new PatternTokenBuilder().token("was").setSkip(5).build(),
+      token("für"),
+      token("eine"),
+      new PatternTokenBuilder().posRegex("ADJ:.*FEM.*").min(0).build(),
+      posRegex("SUB:.*:FEM.*")
+    ),
+    Arrays.asList(
+      // "Was in aller Welt soll das denn für ein Satz sein?"
+      token("was"),
+      token("in"),
+      token("aller"),
+      new PatternTokenBuilder().token("Welt").setSkip(4).build(),
+      token("für"),
+      token("ein"),
+      new PatternTokenBuilder().posRegex("ADJ:.*(MAS|NEU).*").min(0).build(),
+      posRegex("SUB:.*:(MAS|NEU).*")
+    ),
+    Arrays.asList(
+      // "Was in aller Welt soll das denn für ein Satz sein?"
+      token("was"),
+      token("in"),
+      token("aller"),
+      new PatternTokenBuilder().token("Welt").setSkip(4).build(),
+      token("für"),
+      token("eine"),
+      new PatternTokenBuilder().posRegex("ADJ:.*FEM.*").min(0).build(),
+      posRegex("SUB:.*:FEM.*")
     ),
     Arrays.asList(  // "wird das schwere Konsequenzen haben"
       token("das"),
@@ -457,6 +490,11 @@ public class AgreementRule extends Rule {
     Arrays.asList( // Es ist einige Grad kälter (see example on https://www.duden.de/rechtschreibung/Grad)
       token("einige"),
       token("Grad")
+    ),
+    Arrays.asList( // Ein dickes Danke an alle die ...
+      token("ein"),
+      tokenRegex("dickes|großes|grosses|fettes|persönliches"),
+      token("Danke")
     ),
     Arrays.asList(
       pos(JLanguageTool.SENTENCE_START_TAGNAME),

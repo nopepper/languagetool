@@ -492,7 +492,7 @@ abstract class TextChecker {
             + computationTime + "ms, agent:" + agent + version
             + ", " + messageSent + ", q:" + (workQueue != null ? workQueue.size() : "?")
             + ", h:" + reqCounter.getHandleCount() + ", dH:" + reqCounter.getDistinctIps()
-            + ", m:" + mode.toString().toLowerCase() + skipLimits);
+            + ", m:" + ServerTools.getModeForLog(mode) + skipLimits);
 
     int matchCount = matches.size();
     Map<String, Integer> ruleMatchCount = new HashMap<>();
@@ -705,7 +705,7 @@ abstract class TextChecker {
     }
     long t2 = System.nanoTime();
     float runTime = (t2-t1)/1000.0f/1000.0f;
-    System.out.printf(Locale.ENGLISH, "detected " + detected + " using " + mode + " in %.2fms for %d chars\n", runTime, text.length());
+    //System.out.printf(Locale.ENGLISH, "detected " + detected + " using " + mode + " in %.2fms for %d chars\n", runTime, text.length());
     Language lang;
     if (detected == null) {
       lang = Languages.getLanguageForShortCode(fallbackLanguage != null ? fallbackLanguage : "en");
