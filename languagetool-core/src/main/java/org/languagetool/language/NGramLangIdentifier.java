@@ -24,6 +24,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.text.Normalizer;
 import java.util.*;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.zip.ZipFile;
 
@@ -148,25 +149,37 @@ public class NGramLangIdentifier {
     return result;
   }
 
+  private final Pattern PUNCT = Pattern.compile("[\\u2000-\\u206F\\u2E00-\\u2E7F'!\"#$%&()*+,\\-./:;<=>?@\\[\\]^_`{|}~]+", Pattern.UNICODE_CHARACTER_CLASS);
+  private final Pattern NUM = Pattern.compile("\\d+(\\s*\\d+)*", Pattern.UNICODE_CHARACTER_CLASS);
+  private final Pattern KO = Pattern.compile("[\\uac00-\\ud7a3]", Pattern.UNICODE_CHARACTER_CLASS);
+  private final Pattern JA = Pattern.compile("[\\u3040-\\u30ff]", Pattern.UNICODE_CHARACTER_CLASS);
+  private final Pattern ZH = Pattern.compile("[\\u4e00-\\u9FFF]", Pattern.UNICODE_CHARACTER_CLASS);
+  private final Pattern KM = Pattern.compile("[\\u1780-\\u17FF]", Pattern.UNICODE_CHARACTER_CLASS);
+  private final Pattern TL = Pattern.compile("[\\u1700-\\u171F]", Pattern.UNICODE_CHARACTER_CLASS);
+  private final Pattern HY = Pattern.compile("[\\u0530-\\u058F]", Pattern.UNICODE_CHARACTER_CLASS);
+  private final Pattern EL = Pattern.compile("[\\u0370-\\u03FF]", Pattern.UNICODE_CHARACTER_CLASS);
+  private final Pattern TA = Pattern.compile("[\\u0B80-\\u0BFF]", Pattern.UNICODE_CHARACTER_CLASS);
+  private final Pattern SPACE = Pattern.compile("\\s+", Pattern.UNICODE_CHARACTER_CLASS);
+
   public List<Integer> encode(String text) {
     List<Integer> result = new ArrayList<>();
     result.add(1); //Start of sentence token
     if (text.length() > maxLength) {
       text = text.substring(0, maxLength);
     }
-    text = Normalizer.normalize(text, Normalizer.Form.NFKC);
-    text = text.replaceAll("[\\u2000-\\u206F\\u2E00-\\u2E7F'!\"#$%&()*+,\\-./:;<=>?@\\[\\]^_`{|}~]+", " ").trim();
-    text = text.toLowerCase();
-    text = text.replaceAll("\\d+(\\s*\\d+)*", "<NUM>");
-    text = text.replaceAll("[\\uac00-\\ud7a3]", "<KO>"); // Korean
-    text = text.replaceAll("[\\u3040-\\u30ff]", "<JA>"); // Japanese
-    text = text.replaceAll("[\\u4e00-\\u9FFF]", "<ZH>"); // Chinese
-    text = text.replaceAll("[\\u1780-\\u17FF]", "<KM>"); // Khmer
-    text = text.replaceAll("[\\u1700-\\u171F]", "<TL>"); // Tagalog
-    text = text.replaceAll("[\\u0530-\\u058F]", "<HY>"); // Armenian
-    text = text.replaceAll("[\\u0370-\\u03FF]", "<EL>"); // Greek
-    text = text.replaceAll("[\\u0B80-\\u0BFF]", "<TA>"); // Tamil
-    text = text.replaceAll("\\s+", "▁");
+    text = Normalizer.normalize(text, Normalizer.Form.NFKC).toLowerCase();
+    text = PUNCT.matcher(text).replaceAll(" ");
+    text = text.trim();
+    text = NUM.matcher(text).replaceAll("<NUM>");
+    text = KO.matcher(text).replaceAll("<KO>");
+    text = JA.matcher(text).replaceAll("<JA>");
+    text = ZH.matcher(text).replaceAll("<ZH>");
+    text = KM.matcher(text).replaceAll("<KM>");
+    text = TL.matcher(text).replaceAll("<TL>");
+    text = HY.matcher(text).replaceAll("<HY>");
+    text = EL.matcher(text).replaceAll("<EL>");
+    text = TA.matcher(text).replaceAll("<TA>");
+    text = SPACE.matcher(text).replaceAll("▁");
     if (text.length() == 0) {
       return result;
     }
