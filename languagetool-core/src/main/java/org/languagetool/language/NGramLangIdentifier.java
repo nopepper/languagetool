@@ -35,7 +35,7 @@ public class NGramLangIdentifier {
   private final static double EPSILON = 1e-5;
 
   private final Map<String, Integer> vocab;
-  private final List<String[]> codes; // Elem format = {Name, 2-code (or "NULL"), 3-code}
+  protected final List<String[]> codes; // Elem format = {Name, 2-code (or "NULL"), 3-code}
 
   private final List<Map<String, Double>> knpBigramProbs;
 
