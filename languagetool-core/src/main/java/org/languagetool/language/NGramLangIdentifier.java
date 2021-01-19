@@ -78,14 +78,9 @@ public class NGramLangIdentifier {
     knpBigramProbs = expectedFiles().stream().map(this::readLines).parallel().map(NGramLangIdentifier::loadDict).collect(Collectors.toList());
   }
 
-  public Map<String, Double> detectLanguages(String text, List<String> additionalLanguageCodes) {
-    if (additionalLanguageCodes == null) {
-      additionalLanguageCodes = new ArrayList<>();
-    }
-
-    List<Integer> enc = encode(text);
+  public List<Double> predict(String text) {
     List<Double> finalProbs = new ArrayList<>();
-    List<int[]> keys = keys(enc);
+    List<int[]> keys = keys(encode(text));
 
     for (int i = 0; i < codes.size(); i++) {
       double val = 0;
@@ -98,6 +93,15 @@ public class NGramLangIdentifier {
       }
       finalProbs.add(val);
     }
+    return finalProbs;
+  }
+
+  public Map<String, Double> detectLanguages(String text, List<String> additionalLanguageCodes) {
+    if (additionalLanguageCodes == null) {
+      additionalLanguageCodes = new ArrayList<>();
+    }
+
+    List<Double> finalProbs = predict(text);
 
     Map<String, Double> result = new HashMap<>();
 
