@@ -204,7 +204,7 @@ public class NGramLangIdentifier {
         }
         else if (text.substring(cur, i).startsWith("▁<") && vocab.containsKey(text.substring(cur + 1, i))){
           tok = text.substring(cur + 1, i);
-          ci = i - cur + 1;
+          ci = tok.length() + 1;
         }
         else if (text.charAt(i-1) == '▁'){
           break;
@@ -237,8 +237,7 @@ public class NGramLangIdentifier {
       }
       toks.addAll(arr);
     }
-    result = toks.stream().mapToInt(vocab::get).boxed().collect(Collectors.toList());
-
+    result.addAll(toks.stream().mapToInt(vocab::get).boxed().collect(Collectors.toList()));
     return result;
   }
 
