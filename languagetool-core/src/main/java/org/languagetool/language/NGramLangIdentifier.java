@@ -44,6 +44,10 @@ public class NGramLangIdentifier {
   private final ZipFile zipFile;
 
   public NGramLangIdentifier(File sourceModelZip, int maxLength) throws IOException {
+    if (maxLength < 1) {
+      throw new IllegalArgumentException("maxLength must be at least 1");
+    }
+
     this.maxLength = maxLength;
     this.zipFile = new ZipFile(sourceModelZip);
 
