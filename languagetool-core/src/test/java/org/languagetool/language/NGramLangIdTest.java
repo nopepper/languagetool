@@ -30,9 +30,9 @@ public class NGramLangIdTest {
      pred = Arrays.stream(part3.split(" ")).map(Double::parseDouble).collect(Collectors.toList());
     }
   }
-
-  private final File TESTER_MODEL = new File("C:\\Users\\Robert\\Desktop\\ngram-language-identification\\testing_model\\model\\model.zip");
-  private final File TESTER_DATA = new File("C:\\Users\\Robert\\Desktop\\ngram-language-identification\\testing_model\\data\\data.zip");
+  //Make sure classpath is languagetool-core
+  private final File TESTER_MODEL = new File(".\\src\\test\\java\\org\\languagetool\\language\\ngram-lang-id-test-files\\model.zip");
+  private final File TESTER_DATA = new File(".\\src\\test\\java\\org\\languagetool\\language\\ngram-lang-id-test-files\\data.zip");
 
   private NGramLangIdentifier loadedModel;
   private List<ProcessedSentence> encPredTestItems;
@@ -176,7 +176,7 @@ public class NGramLangIdTest {
     assertTrue(getAccuracyPercentage(fraSentences, "fra", 10) > 75);
     assertTrue(getAccuracyPercentage(fraSentences, "fra", 50) > 95);
 
-    assertTrue(getAccuracyPercentage(spaSentences, "spa", 10) > 75);
-    assertTrue(getAccuracyPercentage(spaSentences, "spa", 50) > 95);
+    assertTrue(getAccuracyPercentage(spaSentences, "spa", 10) > 70);
+    assertTrue(getAccuracyPercentage(spaSentences, "spa", 50) > 93);
   }
 }

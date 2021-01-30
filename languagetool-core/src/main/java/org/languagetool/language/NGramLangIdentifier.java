@@ -33,7 +33,7 @@ import static org.languagetool.language.LanguageIdentifier.canLanguageBeDetected
 
 public class NGramLangIdentifier {
 
-  private final static double EPSILON = 1e-5;
+  private final static double EPSILON = 1e-6;
 
   private final Map<String, Integer> vocab;
   protected final List<String[]> codes; // Elem format = {Name, 2-code (or "NULL"), 3-code}
