@@ -4,7 +4,7 @@
 <!--
 French Grammar and Typo Rules for LanguageTool
 Copyright (C) 2006 Marcin Miłkowski, Agnes Souque, Hugo Voisard and Myriam Lechelt.
-              2011-2019 Dominique Pellé
+              2011-2021 Dominique Pellé and the LanguageTool contributors
 
 This library is free software; you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -4946,6 +4946,20 @@ though, and has since been slightly modified)-->
         <message>Écrivez <suggestion>Edgar Allan Poe</suggestion> s’il s’agit de l’écrivain américain.</message>
         <url>https://fr.wikipedia.org/wiki/Edgar_Allan_Poe</url>
         <example correction="Edgar Allan Poe"><marker>Edgar Alan Poe</marker></example>
+      </rule>
+      <rule>
+        <antipattern>
+          <token>Allan</token>
+          <token>Poe</token>
+        </antipattern>
+        <pattern>
+          <token regexp="yes">All?[ae]n</token>
+          <token regexp="yes">Poe?</token>
+        </pattern>
+        <message>Écrivez <suggestion>Allan Poe</suggestion> s’il s’agit de l’écrivain américain.</message>
+        <suggestion>Edgar Allan Poe</suggestion>
+        <url>https://fr.wikipedia.org/wiki/Edgar_Allan_Poe</url>
+        <example correction="Allan Poe|Edgar Allan Poe"><marker>Alan Poe</marker></example>
       </rule>
       <rule>
         <pattern>
@@ -10069,6 +10083,193 @@ though, and has since been slightly modified)-->
     </rulegroup>
   </category>
   <category id="CAT_GRAMMAIRE" name="Grammaire">
+      <rule id="ELLES_VERBE_TOUTES" name="elles verbe toutes" default="temp_off">
+          <pattern>
+              <token postag="R.* f p" postag_regexp="yes"/>
+              <token postag="V.*" postag_regexp="yes"/>
+              <marker>
+                  <token postag="A" postag_regexp="yes" regexp="yes">toute?</token>
+              </marker>
+              <token>des</token>
+              <token postag="N.*" postag_regexp="yes">
+                  <exception regexp="yes">temps|droits|ans|jours|années</exception>
+              </token>
+          </pattern>
+          <message>Vérifiez l’accord entre les pronoms « \1 » et « \3 ».</message>
+          <suggestion>toutes</suggestion>
+          <example correction="toutes">Elles ont <marker>toute</marker> des poupées.</example>
+      </rule>
+      <rulegroup id="TOUTES_OU_TOUS_V_PPA" name="toutes ou tous v ppa" default="temp_off">
+          <rule>
+              <pattern>
+                  <token postag="R.* pers.* suj.* 3 m p" postag_regexp="yes"/>
+                  <token postag="V.*" postag_regexp="yes"/>
+                  <marker>
+                      <token regexp="yes">toute|toutes</token>
+                  </marker>
+                  <token postag="V.* ppa.* m sp|P.*" postag_regexp="yes">
+                      <exception postag="V.* ppa.* m sp" postag_regexp="yes" regexp="yes">^[aeiou].*|&H_ASPIRE;</exception>
+                      <exception>par</exception></token>
+              </pattern>
+              <message>Vérifiez l’accord entre les pronoms « \1 » et « \3 ».</message>
+              <suggestion>tous</suggestion>
+              <example correction="tous">Ils seront <marker>toute</marker> pris.</example>
+              <example correction="tous">Ils vont <marker>toutes</marker> en ville.</example>
+          </rule>
+          <rule>
+              <pattern>
+                  <token postag="R.* pers.* suj.* 3 f p" postag_regexp="yes"/>
+                  <token postag="V.*" postag_regexp="yes"/>
+                  <marker>
+                      <token regexp="yes">toute|tous</token>
+                  </marker>
+                  <token postag="V.* ppa.*" postag_regexp="yes"><exception regexp="yes">^[aeiou].*|&H_ASPIRE;</exception></token>
+              </pattern>
+              <message>Vérifiez l’accord entre les pronoms « \1 » et « \3 ».</message>
+              <suggestion>toutes</suggestion>
+              <example correction="toutes">Elles seront <marker>toute</marker> prises.</example>
+              <example correction="toutes">Elles auront <marker>tous</marker> mangé de la tarte.</example>
+          </rule>
+      </rulegroup>
+      <rule id="QUELLE_OU_QU_ELLE" name="quelle ou qu'elle" default="temp_off">
+          <pattern>
+              <token postag="SENT_START"/>
+              <marker>
+                  <token regexp="yes">qu(&apostrophe;)?</token>
+                  <token regexp="yes">elle|elles</token>
+              </marker>
+              <token postag="V.*" postag_regexp="yes" skip="-1"><exception postag="V.* sub.*" postag_regexp="yes"/></token>
+              <token postag="M fin inte"/>
+          </pattern>
+          <message>Possible faute de frappe trouvée dans le pronom interrogatif. Souhaitez-vous écrire <suggestion>qu\3</suggestion> ?</message>
+          <example correction="Quelle"><marker>Qu'elle</marker> est ta question ?</example>
+          <example correction="Quelles"><marker>Qu'elles</marker> sont nos options ?</example>
+      </rule>
+      <rulegroup id="QUELLE_OU_QUELLES_GROUPE_NOMINAL" name="quelle ou quelles groupe nominal" default="temp_off">
+          <rule>
+              <pattern>
+                  <marker>
+                      <token regexp="yes">qu(&apostrophe;)</token>
+                      <token>elle<exception scope="next">seule</exception></token>
+                  </marker>
+                  <token postag="N.*|J.*" postag_regexp="yes"><exception>coécrit</exception></token>
+              </pattern>
+              <message>Une erreur semble être détectée dans cette phrase. Souhaitez-vous écrire <suggestion>quelle</suggestion> ?</message>
+              <example correction="quelle">Il m'a raconté <marker>qu'elle</marker> belle journée il avait passé.</example>
+          </rule>
+          <rule>
+              <antipattern>
+                  <token regexp="yes">qu(&apostrophe;)</token>
+                  <token>elles</token>
+                  <token>présente</token>
+              </antipattern>
+              <pattern>
+                  <marker>
+                      <token regexp="yes">qu(&apostrophe;)</token>
+                      <token>elles</token>
+                  </marker>
+                  <token postag="N.*|J.*" postag_regexp="yes"><exception regexp="yes">seules?|mêmes?</exception></token>
+              </pattern>
+              <message>Une erreur semble être détectée dans cette phrase. Souhaitez-vous écrire <suggestion>quelles</suggestion> ?</message>
+              <example correction="quelles">Il m'a raconté <marker>qu'elles</marker> grandes aventures il souhaitait vivre.</example>
+          </rule>
+      </rulegroup>
+      <rule id="PLURIEL_AL" name="pluriel al" default="temp_off">
+          <pattern>
+              <marker>
+                  <token regexp="yes" case_sensitive="yes">\p{L}.*als
+                      <exception regexp="yes">avals|bals|carnavals|chacals|corrals|finals|festivals|récitals|régals|cals|cérémonials|futals|emmentals|gavials|graals|narvals|étals|vals|bancals|fatals|glacials|natals|.*navals|tonals|caracals|rorquals|servals|marshals|causals|fractals|cantals|banals</exception></token>
+              </marker>
+          </pattern>
+          <message>Une erreur d’orthographe semble être détectée.</message>
+          <suggestion suppress_misspelled="yes"><match no="1" regexp_match="(?iu)als" regexp_replace="aux"/></suggestion>
+          <example correction="chevaux">Des <marker>chevals</marker> blancs.</example>
+      </rule>
+      <rule id="QUELLES_OU_QU_ELLES" name="quelles ou qu'elles" default="temp_off">
+          <pattern>
+              <token postag="SENT_START"/>
+              <marker>
+                  <token regexp="yes">qu(&apostrophe;)?</token>
+                  <token>elles</token>
+              </marker>
+              <token postag="V.*" postag_regexp="yes" skip="-1"><exception postag="V.* sub.*" postag_regexp="yes"/></token>
+              <token postag="M fin inte"/>
+          </pattern>
+          <message>Une erreur semble être détectée dans cette phrase interrogative. Souhaitez-vous écrire <suggestion>Quelles</suggestion> ?</message>
+          <example correction="Quelles"><marker>Qu'elles</marker> sont tes préoccupations ?</example>
+      </rule>
+      <rule id="TOUT_CE" name="tout ce" default="temp_off">
+          <pattern>
+              <marker>
+                  <token>tous</token>
+              </marker>
+              <token postag="R dem e sp"/>
+          </pattern>
+          <message>Dans ce cas précis, le terme "tout" est invariable.</message>
+          <suggestion>tout</suggestion>
+          <example correction="tout">Dis-moi si <marker>tous</marker> ce que tu dis est vrai.</example>
+      </rule>
+      <rule id="ILS_VERBE_TOUS" name="ils verbe tous" default="temp_off">
+          <pattern>
+              <token postag="R.* m p" postag_regexp="yes"/>
+              <token postag="V.*" postag_regexp="yes"/>
+              <marker>
+                  <token postag="A" postag_regexp="yes">tout</token>
+              </marker>
+              <token postag="D.* e p" postag_regexp="yes"><exception regexp="yes">leurs|deux|trois</exception></token>
+              <token postag="N.*" postag_regexp="yes"/>
+          </pattern>
+          <message>Vérifiez l’accord entre les pronoms « \1 » et « \3 ».</message>
+          <suggestion>tous</suggestion>
+          <example correction="tous">Ils ont <marker>tout</marker> des vestes.</example>
+      </rule>
+      <rulegroup id="EXPRESSIONS_FIGEES_TOUT" name="expressions figées tout">
+          <rule>
+              <pattern>
+                  <token>une</token>
+                  <token>bonne</token>
+                  <token>fois</token>
+                  <token>pour</token>
+                  <marker>
+                      <token>toute</token>
+                  </marker>
+              </pattern>
+              <message>Dans cette expression, \5 s'accorde implicitement avec "toutes les fois". </message>
+              <suggestion>toutes</suggestion>
+              <example correction="toutes">Il faudra que tu règles ce problème une bonne fois pour <marker>toute</marker>.</example>
+          </rule>
+          <rule>
+              <pattern>
+                  <marker>
+                      <token>de</token>
+                      <token>toutes</token>
+                      <token>les</token>
+                      <token>façons</token>
+                  </marker>
+              </pattern>
+              <message>Cette expression familière est considérée comme incorrecte dans le langage courant.</message>
+              <suggestion>de toute façon</suggestion>
+              <example correction="de toute façon">Il faudra que tu règles ce problème <marker>de toutes les façons</marker>.</example>
+          </rule>
+          <rule>
+              <antipattern>
+                  <token>à</token>
+                  <token>coup</token>
+                  <token>sûr</token>
+              </antipattern>
+              <pattern>
+                  <marker>
+                      <token>toute</token>
+                  </marker>
+                  <token>à</token>
+                  <token regexp="yes">fait|coup</token>
+              </pattern>
+              <message>Dans cette expression, "tout" est invariable.</message>
+              <suggestion>tout</suggestion>
+              <example correction="tout">Il rentrait et <marker>toute</marker> à coup l'orage éclata.</example>
+              <example correction="tout">C'est <marker>toute</marker> à fait mon domaine.</example>
+          </rule>
+      </rulegroup>
     <rule id="LA_OU_LES_PLUS" name="la ou les plus" default="temp_off">
       <pattern>
         <token postag="V.*" postag_regexp="yes"/>
@@ -10079,7 +10280,7 @@ though, and has since been slightly modified)-->
         <token min="0" max="2" postag="A.*" postag_regexp="yes"/>
         <token postag="SENT_END" regexp="yes">[\.\?!]</token>
       </pattern>
-      <message> Il semble qu’il y ait une faute d'article. Nous vous suggérons d'employer l'article <suggestion>le</suggestion>.</message>
+      <message>Il semble qu’il y ait une faute d'article. Nous vous suggérons d'employer l'article <suggestion>le</suggestion>.</message>
       <example correction="le">C'est Julie qui court <marker>la</marker> plus vite.</example>
       <example correction="le">Ce sont tes amis qui écrivent <marker>les</marker> moins vite.</example>
       <example correction="le">Ce sont tes parents qui parlent <marker>les</marker> moins.</example>
@@ -12909,6 +13110,11 @@ though, and has since been slightly modified)-->
         <token min="0">de</token>
         <token>série</token>
       </antipattern>
+      <antipattern>
+        <token inflected="yes">série</token>
+        <token>d'</token>
+        <token>animation</token>
+      </antipattern>
       <pattern>
         <token regexp="yes">dizaines?|douzaines?|centaines?|milliers?|millions?|nombre|multitude|infinité|série</token>
         <token inflected="yes">de</token>
@@ -13668,6 +13874,49 @@ though, and has since been slightly modified)-->
       <example>Au voisinage du zéro absolu de température.</example>
     </rule>
     -->
+    <rulegroup id="JE_VERBE" name="je + verbe">
+      <rule>
+        <pattern>
+          <token regexp="yes">je|j'</token>
+          <marker>
+            <token postag="UNKNOWN" regexp="yes">\p{L}\p{L}+</token>
+          </marker>
+        </pattern>
+        <filter class="org.languagetool.rules.fr.FindSuggestionsFilter" args="wordFrom:2 desiredPostag:V.*1.s removeSuggestionsRegexp:^.*[éè]$"/>
+        <message>Faute de frappe.</message>
+        <example correction="élève|relève|enlève|lève">J'<marker>eleve</marker>.</example>
+        <example>Mais c'est bien d'utiliser le mot "je" le moins souvent possible. </example>
+        <example>Lucas est un Mr. Je-Sais-Tout.</example>
+        <example>Je "bave".</example>
+      </rule>
+      <rule>
+        <pattern>
+          <token regexp="yes">je|j'</token>
+          <token postag="[AR].*" postag_regexp="yes"/>
+          <marker>
+            <token postag="UNKNOWN" regexp="yes">\p{L}\p{L}+</token>
+          </marker>
+        </pattern>
+        <filter class="org.languagetool.rules.fr.FindSuggestionsFilter" args="wordFrom:3 desiredPostag:V.*1.s removeSuggestionsRegexp:^.*[éè]$"/>
+        <message>Faute de frappe.</message>
+        <example correction="élève|relève|enlève|lève">Je n'<marker>eleve</marker>.</example>
+        <example>et je me "rattrape"</example>
+      </rule>
+      <rule>
+        <pattern>
+          <token regexp="yes">je|j'</token>
+          <token postag="[AR].*" postag_regexp="yes"/>
+          <token postag="[AR].*" postag_regexp="yes"/>
+          <marker>
+            <token postag="UNKNOWN" regexp="yes">\p{L}\p{L}+</token>
+          </marker>
+        </pattern>
+        <filter class="org.languagetool.rules.fr.FindSuggestionsFilter" args="wordFrom:4 desiredPostag:V.*1.s removeSuggestionsRegexp:^.*[éè]$"/>
+        <message>Faute de frappe.</message>
+        <example correction="élève|relève|enlève|lève">Je ne m'<marker>eleve</marker>.</example>
+        <example>Je ne me « bourre pas de compléments alimentaires ».</example>
+      </rule>
+    </rulegroup>
     <rulegroup id="N_V" name="pas de verbe après : au, de, du…">
       <antipattern>
         <token>aux</token>
@@ -29460,7 +29709,7 @@ though, and has since been slightly modified)-->
       <example correction="entraîneur|accompagnateur|coupé"><marker>coach</marker></example>
       <example><marker>entraîneur</marker></example>
     </rule>
-    <rule id="GREEN" name="green">
+    <rule id="GREEN" name="green" tags="picky">
       <antipattern>
         <token skip="1">Green</token>
         <token regexp="yes">Deal|Day|Lantern|Boots|Cards?|Awards?|Park|Tea|Book|Bay|Party|Arrow</token>
@@ -29507,8 +29756,8 @@ though, and has since been slightly modified)-->
       <example correction="groupe|formation|ensemble|orchestre"><marker>band</marker></example>
       <example><marker>group</marker></example>
     </rule>
-    <rule id="COACHING" name="coaching" default="off" tags="picky">
-      <!-- disabled because of low acceptance (3.5 %) / picky -->
+    <rule id="COACHING" name="coaching" tags="picky">
+      <!-- low acceptance (3.5 %) / picky -->
       <pattern>
         <token regexp="yes">coachings?</token>
       </pattern>
@@ -29564,7 +29813,7 @@ though, and has since been slightly modified)-->
       <example correction="c’est quand même incroyable !|quel dommage !|tant pis !"><marker>too bad</marker></example>
       <example><marker>tant pis !</marker></example>
     </rule>
-    <rule id="TOKEN" name="token">
+    <rule id="TOKEN" name="token" tags="picky">
       <pattern>
         <token regexp="yes">tokens?</token>
       </pattern>
@@ -30648,7 +30897,7 @@ though, and has since been slightly modified)-->
       <example correction="cornichon mariné|cornichon à l’aneth"><marker>pickle</marker></example>
       <example><marker>cornichon mariné</marker></example>
     </rule>
-    <rule id="CRASH" name="crash">
+    <rule id="CRASH" name="crash" tags="picky">
       <pattern>
         <token regexp="yes">crash|crashs|crashes</token>
       </pattern>
@@ -35467,17 +35716,162 @@ though, and has since been slightly modified)-->
     </rule>
   </category>
   <category id="CAT_TOURS_CRITIQUES" name="Tours critiqués divers (barbarismes, impropriétés, solécismes, etc.)">
-      <rule id= "ALTERNATIVE_OU_POSSIBILITE" name="alternative ou possibilité" default="temp_off">
+    <rulegroup id="ARGOT_BEAUF_ET_BOF" name="argot beauf et bof" default="temp_off">
+        <rule>
+            <pattern case_sensitive="yes">
+                <marker>
+                    <token>bof</token>
+                </marker>
+            </pattern>
+        <message>Ce terme est une expression considérée comme familière. Souhaitez-vous la remplacer par le terme <suggestion>moyen</suggestion> employé dans le langage formel ?</message>
+        <example correction="moyen">C'est <marker>bof</marker> !</example>
+        </rule>
+        <rule>
+            <pattern>
+                <token>mon</token>
+                <marker>
+                    <token regexp="yes">bof|beauf|bauf</token>
+                </marker>
+            </pattern>
+        <message>Ce terme est une contraction considérée comme familière. Souhaitez-vous le remplacer par le terme <suggestion>beau-frère</suggestion> employé dans le langage formel ?</message>
+        <example correction="beau-frère">Si tu veux tout savoir, c'est mon <marker>beauf</marker> !</example>
+        </rule>
+        <rule>
+            <pattern>
+                <marker>
+                    <token>un</token>
+                    <token>beauf</token>
+                </marker>
+            </pattern>
+        <message>Cette expression est considérée comme familière. Souhaitez-vous la remplacer par l'expression <suggestion>une personne obtuse</suggestion> employée dans le langage formel ?</message>
+        <example correction="une personne obtuse">Si tu veux tout savoir, c'est <marker>un beauf</marker> !</example>
+        </rule>
+    </rulegroup>
+    <rule id="IN_EXTREMISTE" name="In extremiste" default="temp_off">
+      <pattern>
+          <token>in</token>
+          <marker>
+              <token regexp="yes">extremiste|extrémiste</token>
+          </marker>
+      </pattern>
+      <message>Une erreur d'orthographe a été détectée dans cette expression. Souhaitez-vous écrire in <suggestion>extremis</suggestion> ?</message>
+      <example correction="extremis">Nous avons évité la catastrophe in <marker>extremiste</marker>.</example>
+    </rule>
+    <rule id="DE_MANIERE_A_CE_QUE" name="de manière à ce que" type="style">
+      <pattern>
+          <marker>
+              <token>de</token>
+              <token>manière</token>
+              <token>à</token>
+              <token>ce</token>
+              <token>que</token>
+          </marker>
+      </pattern>
+      <message>Cette expression familière est considérée comme incorrecte dans le langage courant.</message>
+      <suggestion>\1 \2 \5</suggestion>
+      <example correction="de manière que">Faites bien votre travail <marker>de manière à ce que</marker> vous soyez récompensé.</example>
+    </rule>
+    <rulegroup id="RISQUE_ET_CHANCE" name="risque et chance">
+      <rule>
           <pattern>
-              <token regexp="yes">autre|deux</token>
-              <marker><token regexp="yes">alternative(s)?</token></marker>
+              <marker>
+                  <token postag="V (ind|sub).*" postag_regexp="yes" inflected="yes">risquer</token>
+              </marker>
+              <token>de</token>
+              <token>gagner</token>
           </pattern>
-          <message>Cette expression est fausse. Le terme <suggestion>possibilité</suggestion> semble plus approprié car une alternative est un choix entre deux possibilités.</message>
-          <url>http://academie-francaise.fr/solutions-alternatives</url>
-          <example correction="possibilité">Y a-t-il une autre <marker>alternative</marker> ?</example>
-          <example correction="possibilité">Il faut choisir ente deux <marker>alternatives</marker>.</example>
+          <message>Faute de style possible car cette expression peut paraître péjorative.</message>
+          <suggestion><match no="1" postag="(V )(ind|sub)(.*)" postag_regexp="yes" postag_replace="(V avoir ind$3)|(V avoir sub$3)">avoir</match> des chances</suggestion>
+          <example correction="a des chances|ait des chances">Il <marker>risque</marker> de gagner.</example>
       </rule>
-      <rulegroup id="POUR_PAS_QUE" name="familier : pour (ne) pas que...">
+      <rule>
+          <pattern>
+              <marker>
+                  <token postag="V avoir ind.*" postag_regexp="yes" inflected="yes">avoir</token>
+                  <token>des</token>
+                  <token>chances</token>
+              </marker>
+              <token regexp="yes">de|d'</token>
+              <token regexp="yes">perdre|échouer</token>
+          </pattern>
+          <message>Faute de style possible car cette expression peut paraître méliorative.</message>
+          <suggestion><match no="1" postag="(V avoir) (ind) (.*)" postag_regexp="yes" postag_replace="V ind $3">risquer</match></suggestion>
+          <example correction="risque">Il <marker>a des chances</marker> de perdre.</example>
+          <example correction="risque">Il <marker>a des chances</marker> d'échouer à son examen.</example>
+      </rule>
+    </rulegroup>
+    <rulegroup id="JE_M_EXCUSE " name="Je m’excuse" type="style">
+      <rule>
+          <pattern>
+              <token postag="SENT_START|M nonfin" postag_regexp="yes"/>
+              <marker>
+                  <token>je</token>
+                  <token>m'</token>
+                  <token>excuse</token>
+              </marker>
+              <token postag="P.*|M fin" postag_regexp="yes"/>
+          </pattern>
+          <message>S'excuser soi-même peut être perçu comme un manque de politesse. Souhaitez-vous écrire <suggestion>excusez-moi</suggestion> employé dans le langage courant ou <suggestion>veuillez m'excuser</suggestion> employé dans le langage formel ou <suggestion>je vous prie de m'excuser</suggestion> employé dans le langage soutenu ?</message>
+          <url>https://fr.wiktionary.org/wiki/je_m%E2%80%99excuse</url>
+          <example correction="Excusez-moi|Veuillez m'excuser|Je vous prie de m'excuser"><marker>Je m'excuse</marker> de vous déranger.</example>
+          <example correction="excusez-moi|veuillez m'excuser|je vous prie de m'excuser">Je ne souhaitais pas cela, <marker>je m'excuse</marker>.</example>
+      </rule>
+      <rule>
+          <pattern>
+              <token regexp="yes" skip="-1">tu|te</token>
+              <marker>
+                  <token>je</token>
+                  <token regexp="yes">m(&apostrophe;)</token>
+                  <token>excuse</token>
+              </marker>
+          </pattern>
+          <message>S'excuser soi-même peut être perçu comme un manque de politesse. Souhaitez-vous écrire <suggestion>excuse-moi</suggestion> employé dans le langage formel ?</message>
+          <example correction="excuse-moi">Je ne voulais pas que tu me voies pleurer, <marker>je m'excuse</marker>.</example>
+          <example correction="excuse-moi">Je ne voulais pas te déranger, <marker>je m'excuse</marker>.</example>
+      </rule>
+    </rulegroup>
+    <rule id="CA_VA_MAL_SE_FINIR" name="ça va mal se finir" default="temp_off">
+      <pattern>
+        <token>ça</token>
+        <token>va</token>
+        <token regexp="yes" min="0" max="1">très|vraiment</token>
+        <token>mal</token>
+        <marker>
+          <token>se</token>
+          <token>finir</token>
+        </marker>
+      </pattern>
+      <message>Dans cette expression française familière, "se finir" est une erreur grammaticale.</message>
+      <suggestion><match no="6"/></suggestion>
+      <example correction="finir">Je pense que ça va très mal <marker>se finir</marker>.</example>
+      <example correction="finir">Je pense que ça va mal <marker>se finir</marker>.</example>
+    </rule>
+    <rule id="LE_COVID" name="la Covid et le Covid" type="style" tags="picky" default="temp_off">
+      <pattern>
+        <token postag="(P\+)?D m s" postag_regexp="yes"/>
+        <token regexp="yes">covid(-19)?</token>
+      </pattern>
+      <message>Voulez-vous utiliser la forme féminine recommandée, au détriment du masculin '\1' couramment utilisé ?</message>
+      <suggestion><match no="1" case_conversion="preserve" postag="(P?).?D m s" postag_regexp="yes" postag_replace="$1.?D f s"/> \2</suggestion>
+      <url>http://www.academie-francaise.fr/le-covid-19-ou-la-covid-19</url>
+      <example correction="la Covid-19">Il faut faire attention car <marker>le Covid-19</marker> est récent.</example>
+      <example correction="La Covid-19"><marker>Le Covid-19</marker> est une maladie grave.</example>
+      <example correction="de la Covid">Les répercussions économiques <marker>du Covid</marker> ne se sauront pas avant 2022.</example>
+      <example correction="à la COVID">Les dommages humains et économiques dus <marker>au COVID</marker> sont considérables.</example>
+    </rule>
+    <rule id="ALTERNATIVE_OU_POSSIBILITE" name="alternative ou possibilité" default="temp_off">
+      <pattern>
+        <token regexp="yes">autre|deux</token>
+        <marker>
+          <token regexp="yes">alternative(s)?</token>
+        </marker>
+      </pattern>
+      <message>Cette expression est fausse. Le terme <suggestion>possibilité</suggestion> semble plus approprié car une alternative est un choix entre deux possibilités.</message>
+      <url>http://academie-francaise.fr/solutions-alternatives</url>
+      <example correction="possibilité">Y a-t-il une autre <marker>alternative</marker> ?</example>
+      <example correction="possibilité">Il faut choisir ente deux <marker>alternatives</marker>.</example>
+    </rule>
+    <rulegroup id="POUR_PAS_QUE" name="familier : pour (ne) pas que...">
       <rule>
         <!-- 1 = 1. R.* que ne !V.* -->
         <pattern>
@@ -38740,7 +39134,6 @@ though, and has since been slightly modified)-->
       </rule>
     </rulegroup>
   </category>
-  <!-- vim: foldmethod=marker foldmarker=<category,</category:  -->
   <category name="majuscules" id="CASING">
     <rulegroup id="HOMO" name="homo/Homo">
       <rule>
@@ -38775,4 +39168,6 @@ though, and has since been slightly modified)-->
       </rule>
     </rulegroup>
   </category>
+  <!-- vim: foldmethod=marker foldmarker=<category,</category
+  -->
 </rules>
