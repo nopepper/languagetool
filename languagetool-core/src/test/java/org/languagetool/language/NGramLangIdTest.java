@@ -81,6 +81,7 @@ public class NGramLangIdTest {
 
   @Test
   public void testModelCompletenessCheck() {
+    //Make sure model checks for completeness
     try {
       new NGramLangIdentifier(null, 50);
       fail();
@@ -119,10 +120,12 @@ public class NGramLangIdTest {
 
   @Test
   public void testPrediction() {
+    //Make sure predictions match Python results
     for (ProcessedSentence p : encPredTestItems) {
       List<Double> modelPred = loadedModel.predict(p.sentence);
       assertEquals(modelPred.size(), p.pred.size());
       for(int i = 0; i < modelPred.size(); i++) {
+        // If this fails, make sure the epsilon values match
         assertTrue(Math.abs(modelPred.get(i) - p.pred.get(i)) < 0.1); //Rounding threshold
       }
     }
@@ -153,6 +156,8 @@ public class NGramLangIdTest {
 
   @Test
   public void testAccuracy() {
+    //Match current best model at least
+
     assertTrue(getAccuracyPercentage(engSentences, "eng", 10) > 75);
     assertTrue(getAccuracyPercentage(engSentences, "eng", 50) > 95);
 
