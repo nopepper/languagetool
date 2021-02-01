@@ -37,6 +37,7 @@ public class NGramLangIdentifier {
 
   private final Map<String, Integer> vocab;
   protected final List<String[]> codes; // Elem format = {Name, 2-code (or "NULL"), 3-code}
+  private final List<Integer> specialTokens;
 
   private final List<Map<String, Double>> knpBigramProbs;
 
@@ -74,6 +75,11 @@ public class NGramLangIdentifier {
       }
     }
 
+    specialTokens = new ArrayList<>();
+    specialTokens.add(vocab.get("<unk>"));
+    specialTokens.add(vocab.get("<s>"));
+    specialTokens.add(vocab.get("<NUM>"));
+
     //Load transition matrices - Line format = {i} {j} {val}
     knpBigramProbs = expectedFiles().stream().map(this::readLines).parallel().map(NGramLangIdentifier::loadDict).collect(Collectors.toList());
   }
@@ -86,7 +92,7 @@ public class NGramLangIdentifier {
       double val = 0;
       for (int[] key: keys) {
         double prob = knpBigramProbs.get(i).getOrDefault(key[0] + "_" + key[1], EPSILON);
-        if(key[0] == 0 || key[1] == 0) {
+        if(specialTokens.contains(key[0]) && specialTokens.contains(key[1])) {
           prob = EPSILON;
         }
         val += log(prob);
