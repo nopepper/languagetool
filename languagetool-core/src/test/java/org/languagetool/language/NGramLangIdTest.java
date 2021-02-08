@@ -163,6 +163,22 @@ public class NGramLangIdTest {
     return 100.0 * correct / inputs.size();
   }
 
+  private double getRobustnessScore(List<String> inputs, String expectedLang) {
+    List<Double> results = new ArrayList<>();
+    for (String sent: inputs) {
+      double mistakes = 0;
+      for (int i = 10; i <= loadedModel.maxLength; i++) {
+        if (!matchesExpected(sent, expectedLang, i)) {
+          mistakes += 1;
+        }
+      }
+      //double possibleMistakes = 0.5 * (loadedModel.maxLength * (loadedModel.maxLength + 1)) - 15;
+      //results.add(1 - mistakes / possibleMistakes);
+      results.add(1 - mistakes / (loadedModel.maxLength - 5));
+    }
+    return results.stream().reduce(Double::sum).get() / results.size();
+  }
+
   @Test
   public void testAccuracy() {
     //Match current best model at least
@@ -181,5 +197,26 @@ public class NGramLangIdTest {
 
     assertTrue(getAccuracyPercentage(spaSentences, "spa", 10) > 70);
     assertTrue(getAccuracyPercentage(spaSentences, "spa", 50) > 93);
+  }
+
+  @Test
+  public void testRobustness() {
+    double eng = getRobustnessScore(engSentences, "eng");
+    double deu = getRobustnessScore(deuSentences, "deu");
+    double nld = getRobustnessScore(nldSentences, "nld");
+    double fra = getRobustnessScore(fraSentences, "fra");
+    double spa = getRobustnessScore(spaSentences, "spa");
+
+    System.out.println("Robustness score for eng:" + eng);
+    System.out.println("Robustness score for deu:" + deu);
+    System.out.println("Robustness score for nld:" + nld);
+    System.out.println("Robustness score for fra:" + fra);
+    System.out.println("Robustness score for spa:" + spa);
+
+    assert eng > 0.95;
+    assert deu > 0.95;
+    assert nld > 0.95;
+    assert fra > 0.95;
+    assert spa > 0.9;
   }
 }
