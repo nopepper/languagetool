@@ -137,7 +137,7 @@ public class NGramLangIdTest {
     }
   }
 
-  private double getAccuracyPercentage(List<String> inputs, String expectedLang, int maxLen) {
+  private boolean matchesExpected(String sent, String expectedLang, int maxLen) {
     int expectedArgMax = -1;
     for (int i = 0; i < loadedModel.codes.size(); i++) {
       if (loadedModel.codes.get(i)[2].equals(expectedLang)) {
@@ -146,14 +146,17 @@ public class NGramLangIdTest {
       }
     }
     assertTrue(expectedArgMax >= 0);
+    if(sent.length() > maxLen){
+      sent = sent.substring(0, maxLen);
+    }
+    List<Double> pred = loadedModel.predict(sent);
+    return pred.stream().max(Comparator.naturalOrder()).get().equals(pred.get(expectedArgMax));
+  }
 
+  private double getAccuracyPercentage(List<String> inputs, String expectedLang, int maxLen) {
     int correct = 0;
     for (String sent : inputs) {
-      if(sent.length() > maxLen){
-        sent = sent.substring(0, maxLen);
-      }
-      List<Double> pred = loadedModel.predict(sent);
-      if(pred.stream().max(Comparator.naturalOrder()).get().equals(pred.get(expectedArgMax))){
+      if(matchesExpected(sent, expectedLang, maxLen)){
         correct += 1;
       }
     }
