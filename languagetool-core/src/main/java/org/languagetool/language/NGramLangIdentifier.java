@@ -35,13 +35,13 @@ public class NGramLangIdentifier {
   private final static double EPSILON = 1e-4;
 
   private final Map<String, Integer> vocab;
-  private final List<String[]> codes; // Elem format = {Name, 2-code (or "NULL"), 3-code}
+  final List<String[]> codes; // Elem format = {Name, 2-code (or "NULL"), 3-code}
 
   private final List<Map<String, Double>> knpBigramProbs;
   private final int thresholdsStart;
   private final List<double[]> thresholds;
 
-  private final int maxLength;
+  final int maxLength;
   private final ZipFile zipFile;
 
   public NGramLangIdentifier(File sourceModelZip, int maxLength) throws IOException {
@@ -73,21 +73,22 @@ public class NGramLangIdentifier {
 
     //Load thresholds
     thresholds = new ArrayList<>();
-    try (BufferedReader br = getReader("thresholds.txt")) {
-      String line;
-      thresholdsStart = Integer.parseInt(br.readLine());
-      while ((line = br.readLine()) != null) {
-        double[] vals = Arrays.stream(line.split(" ")).mapToDouble(Double::parseDouble).toArray();
-        thresholds.add(vals);
-      }
-      assert (thresholds.size() == maxLength - thresholdsStart) : "Thresholds file is incomplete";
-    }
+    thresholdsStart = 100;
+    //try (BufferedReader br = getReader("thresholds.txt")) {
+    //  String line;
+    //  thresholdsStart = Integer.parseInt(br.readLine());
+    //  while ((line = br.readLine()) != null) {
+    //    double[] vals = Arrays.stream(line.split(" ")).mapToDouble(Double::parseDouble).toArray();
+    //    thresholds.add(vals);
+    //  }
+    //  assert (thresholds.size() == maxLength - thresholdsStart) : "Thresholds file is incomplete";
+    //}
 
     //Load transition matrices - Line format = {i} {j} {val}
     knpBigramProbs = expectedFiles().stream().map(this::readLines).parallel().map(NGramLangIdentifier::loadDict).collect(Collectors.toList());
   }
 
-  public Map<String, Double> detectLanguages(String text, List<String> additionalLanguageCodes) {
+  public List<Double> predict(String text) {
     List<Integer> enc = encode(text);
     List<Double> finalProbs = new ArrayList<>();
     List<int[]> keys = keys(enc);
@@ -101,7 +102,6 @@ public class NGramLangIdentifier {
       finalProbs.add(val);
     }
 
-    Map<String, Double> result = new HashMap<>();
 
     if (text.length() >= this.thresholdsStart) {
       int argMax = 0;
@@ -110,15 +110,16 @@ public class NGramLangIdentifier {
           argMax = i;
         }
       }
-      int thresholdIndex = min(text.length(), maxLength) - this.thresholdsStart;
-      if (finalProbs.get(argMax) < thresholds.get(thresholdIndex)[argMax]) {
-        result.put(NoopLanguage.SHORT_CODE, 100.0);
-        return result;
-      }
     }
 
     finalProbs = finalProbs.stream().map(StrictMath::exp).collect(Collectors.toList());
-    finalProbs = normalize(finalProbs);
+    return normalize(finalProbs);
+  }
+  public Map<String, Double> detectLanguages(String text, List<String> additionalLanguageCodes) {
+    Map<String, Double> result = new HashMap<>();
+    List<Double> finalProbs = predict(text);
+
+
     for (int i = 0; i < codes.size(); i++) {
       String langCode = codes.get(i)[1].equals("NULL") ? codes.get(i)[2] : codes.get(i)[1]; //2-character code if possible
       if (canLanguageBeDetected(langCode, additionalLanguageCodes)) {
@@ -168,7 +169,7 @@ public class NGramLangIdentifier {
     return result;
   }
 
-  private List<Integer> encode(String text) {
+  List<Integer> encode(String text) {
     List<Integer> result = new ArrayList<>();
     result.add(1); //Start of sentence token
     if (text.length() > maxLength) {
