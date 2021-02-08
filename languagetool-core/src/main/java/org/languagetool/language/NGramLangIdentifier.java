@@ -41,7 +41,7 @@ public class NGramLangIdentifier {
 
   private final List<Map<String, Double>> knpBigramProbs;
 
-  private final int maxLength;
+  public final int maxLength;
   private final ZipFile zipFile;
 
   public NGramLangIdentifier(File sourceModelZip, int maxLength) throws IOException {
