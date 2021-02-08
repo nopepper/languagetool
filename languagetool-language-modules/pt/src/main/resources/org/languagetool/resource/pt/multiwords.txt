@@ -1,5 +1,7 @@
-# Portuguese - Grammar and Typo Rules for LanguageTool.
-# Copyright © 2016-2017 Tiago F. Santos (tiagofsantos81@sapo.pt)
+# Portuguese — Grammar and Typo Rules for LanguageTool.
+#
+# Copyright © 2016-2021 Tiago F. Santos (tiagofsantos81@sapo.pt)
+# Copyright © 2018-2021 Marco A.G.Pinto (www.marcoagpinto.com)
 #
 # Portuguese multiwords file used for chunking.
 #
@@ -44,10 +46,8 @@ acerca de	SP000
 Acerca de	SP000
 acima de	SP000
 Acima de	SP000
-a civis	SP000
 a coberto de	SP000
 A coberto de	SP000
-a coisas	SP000
 à custa de	SP000
 À custa de	SP000
 a custo	RG
@@ -71,7 +71,6 @@ A fim de	SP000
 afinal de contas	RG
 Afinal de contas	RG
 a fio	RG
-a forças	SP000
 à frente	RG
 À frente	RG
 agora que	RG
@@ -86,11 +85,7 @@ ainda por cima	RG
 Ainda por cima	RG
 ainda que	CS
 Ainda que	CS
-a infraestruturas	SP000
-a instalações	SP000
 à Lagareiro	RG
-a leis	SP000
-a necessidades	SP000
 além de	SP000
 Além de	SP000
 alguma vez	RG
@@ -109,11 +104,6 @@ a não ser que	CS
 A não ser que	CS
 à noite	RG
 À noite	RG
-a torna	RG
-A torna	RG
-as torna	RG
-As torna	RG
-a outros	SP000
 ano a ano	RG
 Ano a ano	RG
 ano após ano	RG
@@ -478,7 +468,6 @@ duas a duas	RG
 Duas a duas	RG
 eis que	RG
 Eis que	RG
-eles nutro	SP000
 em abono de	SP000
 Em abono de	SP000
 em algum momento	RG
@@ -706,10 +695,8 @@ nos termos de	SP000
 Nos termos de	SP000
 ontem de manhã	RG
 Ontem de manhã	RG
-o torna	RG
-O torna	RG
-os torna	RG
-Os torna	RG
+operação stop	NCFS000
+operações stop	NCFP000
 ou seja	RG
 Ou seja	RG
 outra vez	RG
@@ -845,12 +832,10 @@ sob pena de	SP000
 Sob pena de	SP000
 tal como	RG
 Tal como	RG
-tamanho único	SP000
 tanto mais quanto	RG
 Tanto mais quanto	RG
 tanto mais que	CS
 Tanto mais que	CS
-testa hipóteses	SP000
 todos os dias	RG
 Todos os dias	RG
 um a um	RG
@@ -877,7 +862,6 @@ um pouquinho	RG
 Um pouquinho	RG
 um tanto	RG
 Um tanto	RG
-várias a	SP000
 visto que	CS
 Visto que	CS
 ####################################################################
@@ -6711,8 +6695,10 @@ Zhores Alferov	NPMS000_
 #   https://pt.wikipedia.org/wiki/Lista_de_prov%C3%A9rbios_e_senten%C3%A7as_em_latim ###
 ########################################################################################
 corpus mysticum	L_LATIM_
+ecce homo	L_LATIM_
 et cetera	L_LATIM_
 ex aequo	L_LATIM_
+ex cathedra	L_LATIM_
 mea culpa	L_LATIM_
 pro bono	L_LATIM_
 reductio ad	L_LATIM_
@@ -7231,6 +7217,7 @@ annosa vulpes	L_LATIM_
 vulpes non	L_LATIM_
 non capitur	L_LATIM_
 capitur laqueo	L_LATIM_
+Anno Domini	L_LATIM_
 # Annosum vinum, socius vetus et vetus aurum
 Annosum vinum	L_LATIM_
 annosum vinum	L_LATIM_

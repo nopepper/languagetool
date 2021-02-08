@@ -2372,6 +2372,19 @@ Rui, por ti os teus livros trocas.
             <exception postag_regexp='yes' postag='AQ.+|NP.+'/></token>
       </antipattern> 
 <!-- MARCOAGPINTO 2021-01-25 (1-JAN-2021+) *END* -->
+<!-- MARCOAGPINTO 2021-02-04 (1-JAN-2021+) *START* -->
+<!--
+Tendo os seus protestos caído em saco-roto, preencheu os formulários do imposto.
+Ele é relacionado aos ciclos lunares a qual em suas fases expressa a harmonia do universo.
+Tendo os seus tripulantes conseguido ser resgatados.
+-->
+      <antipattern>
+	    <token postag='DP..P.+' postag_regexp='yes'/>
+	    <token postag='NC.P.+|AQ0.P.+' postag_regexp='yes'/>
+		<token postag='NC.S.+|AQ0.S.+|VMP00S[FM]' postag_regexp='yes'/>
+		<token postag='SPS.+|SP0.+|DA0.S.+|VMN0000' postag_regexp='yes'/>
+      </antipattern> 
+<!-- MARCOAGPINTO 2021-02-04 (1-JAN-2021+) *END* -->
       <pattern>
           <token negate='yes' regexp='yes'>&hifen;</token>
         <marker>
@@ -2423,6 +2436,10 @@ Rui, por ti os teus livros trocas.
 	  <example>Rui, por ti os meus livros troco.</example>
 	  <example>Rui, por ti os seus livros troca.</example>
 	  <example>Rui, por ti os teus livros trocas.</example>
+	  
+	  <example>Tendo os seus <marker>protestos caído</marker> em saco-roto, preencheu os formulários do imposto.</example>
+	  <example>Ele é relacionado aos ciclos lunares a qual em suas fases expressa a harmonia do universo.</example>
+	  <example>Tendo os seus tripulantes conseguido ser resgatados.</example>
     </rule>
     <rule>
       <antipattern>
@@ -3462,6 +3479,33 @@ Rui, por ti os teus livros trocas.
             <exception postag_regexp='yes' postag='AQ.+|NP.+'/></token>
       </antipattern> 
 <!-- MARCOAGPINTO 2021-01-25 (1-JAN-2021+) *END* -->
+<!-- MARCOAGPINTO 2021-02-03 (1-JAN-2021+) *START* -->
+<!--
+As gotículas das regiões frontal, occipital e parietal, depressa se transformaram em cristais de gelo.
+A bandeira nacional consiste de três listas horizontais de cores vermelha, azul e laranja.
+Explorações inglesa, francesa e holandesa.
+O movimento socialista mundial dividiu-se entre as alas social democrata e leninista.
+-->
+      <antipattern>
+	    <token postag='NC.P.+|AQ0.P.+' postag_regexp='yes'/>
+		<token min="1" max="2" postag='NC.S.+|AQ0.S.+|NP.+' postag_regexp='yes'/>
+		<token regexp='yes'>[,]|e</token>
+		<token min="1" max="2" postag='NC.S.+|AQ0.S.+|NP.+' postag_regexp='yes'/>
+      </antipattern> 
+<!-- MARCOAGPINTO 2021-02-03 (1-JAN-2021+) *END* -->
+<!-- MARCOAGPINTO 2021-02-04 (1-JAN-2021+) *START* -->
+<!--
+Tendo os seus protestos caído em saco-roto, preencheu os formulários do imposto.
+Ele é relacionado aos ciclos lunares a qual em suas fases expressa a harmonia do universo.
+Tendo os seus tripulantes conseguido ser resgatados.
+-->
+      <antipattern>
+	    <token postag='DP..P.+' postag_regexp='yes'/>
+	    <token postag='NC.P.+|AQ0.P.+' postag_regexp='yes'/>
+		<token postag='NC.S.+|AQ0.S.+|VMP00S[FM]' postag_regexp='yes'/>
+		<token postag='SPS.+|SP0.+|DA0.S.+|VMN0000' postag_regexp='yes'/>
+      </antipattern> 
+<!-- MARCOAGPINTO 2021-02-04 (1-JAN-2021+) *END* -->
       <pattern>
           <token negate='yes' regexp='yes'>&hifen;</token>
         <marker>
@@ -3505,6 +3549,15 @@ Rui, por ti os teus livros trocas.
 	  <example>Rui, por ti os meus livros troco.</example>
 	  <example>Rui, por ti os seus livros troca.</example>
 	  <example>Rui, por ti os teus livros trocas.</example>
+	  
+	  <example>As gotículas das <marker>regiões frontal</marker>, occipital e parietal, depressa se transformaram em cristais de gelo.</example>
+	  <example>A bandeira nacional consiste de três listas horizontais de cores vermelha, azul e laranja.</example>
+	  <example>Explorações inglesa, francesa e holandesa.</example>
+	  <example>O movimento socialista mundial dividiu-se entre as alas social democrata e leninista.</example>
+	  
+	  <example>Tendo os seus <marker>protestos caído</marker> em saco-roto, preencheu os formulários do imposto.</example>
+	  <example>Ele é relacionado aos ciclos lunares a qual em suas fases expressa a harmonia do universo.</example>
+	  <example>Tendo os seus tripulantes conseguido ser resgatados.</example>
     </rule>
     <rule>
       <antipattern>
@@ -4503,6 +4556,18 @@ MARCOAGPINTO 2020-02-18 -->
 			<token  postag_regexp="no" postag="NCMS000"/>			
       </antipattern>
 <!-- MARCOAGPINTO 2020-05-04 *END* -->
+<!-- MARCOAGPINTO 2021-01-31 (1-JAN-2021+) *START* -->
+<!--
+Voltou com as ameijoas iguais e o cliente desistiu do artigo.
+Seguiram-se a ele Jeremias Fontes e Raimundo.
+Deveríamos dar a ela flores.
+-->
+      <antipattern>
+	    <token postag='SPS.+' postag_regexp='yes'/>
+		<token postag='PP.+' postag_regexp='yes'/>
+		<token postag='VMIP2S0|NC.+|AQ0.+|NP.+' postag_regexp='yes'/>
+      </antipattern> 
+<!-- MARCOAGPINTO 2021-01-31 (1-JAN-2021+) *END* -->
       <pattern>
           <token regexp="yes">el[ea]|você</token>
           <token min="0" max="3" postag='R.+' postag_regexp='yes'>
@@ -4515,6 +4580,10 @@ MARCOAGPINTO 2020-02-18 -->
         <suggestion><match no='1' include_skipped='all'/> <match no='2' include_skipped='all'/> <match no='3' include_skipped='all' postag='(V.[CIS].)..(.)' postag_replace='$1\3S$2' postag_regexp='yes'/></suggestion>
       <example correction='Ele não passeia'><marker>Ele não passeiam</marker> na praia.</example>
       <example>Ele preocupar-se-ia, talvez, com esta manifestação de ignorância.</example>
+	  
+	  <example>Voltou com as <marker>ameijoas</marker> iguais e o cliente desistiu do artigo.</example>
+	  <example>Seguiram-se a ele Jeremias Fontes e Raimundo.</example>
+	  <example>Deveríamos dar a ela flores.</example>  
     </rule>
     <rule>
       <antipattern>
@@ -21419,6 +21488,7 @@ Como nos canta Afonso X de Castela, o Rei Sábio.
              <message>Esta palavra é um verbo. Se pretende referir-se a um nome ou adjetivo, deve utilizar a forma acentuada.</message>
              <suggestion>{suggestion}</suggestion>
              <example correction='parágrafo'>A excepção do <marker>paragrafo</marker>.</example>
+             <example correction="amêijoas">Voltou com as <marker>ameijoas</marker> iguais e o cliente desistiu do artigo.</example>
              <example>Ninguém nos deu uma oportunidade.</example>
              <example>O pressuposto no LE da figura.</example>
              <example>traslado ao aeroporto de Quito.</example>
@@ -21738,17 +21808,25 @@ Sinto frio mesmo com dois pares de meias.
 	  <example type='correct'>Sinto frio mesmo com <marker>dois</marker> pares de meias.</example>
     </rule>
 
+	<!-- VESTIR calçar -->
     <rule id='CONFUSÃO_VESTIR_CALÇAR' name="Confusão: vestir/calçar">
-    <!-- Created by Marco A.G.Pinto -->
+	<!--      Created by Marco A.G.Pinto, Portuguese rule 2021-02-04 (Enhanced) (1-JAN-2021+)      -->
+<!--
+Vou calçar os sapatos.
+Não se esqueça de calçar as meias.
+-->
       <pattern>
-          <token inflected="yes">vestir</token>
-          <token regexp="yes">os?|as?|um|uns|umas?</token>
-          <token regexp="yes">sapatos?|chinelos?|meias?|luvas?|botas?|peúgas?|ténis|sapatilhas?</token>
+	      <marker>
+			<token inflected="yes">vestir</token>
+		  </marker>
+		  <token postag='DA0...+|DI0...+|DD0...+' postag_regexp='yes'/>		  		  
+          <token regexp="yes">sapatos?|chinelos?|meias?|luvas?|botas?|peúgas?|ténis|sapatilhas?|galochas?</token>
       </pattern>
-      <message>Utilize o verbo calçar</message>
+      <message>Utilize o verbo 'calçar' nas extremidades dos membros do corpo.</message>
         <suggestion><match no='1' postag='V.+' postag_regexp='yes'>calçar</match></suggestion>
-      <example correction="Calces|Calça"><marker>Veste os sapatos</marker>.</example>
-      <example><marker>Calçar os sapatos</marker>.</example>
+      <example correction="calçar">Vou <marker>vestir</marker> os sapatos.</example>
+      <example>Vou calçar os sapatos.</example>
+	  <example>Não se esqueça de calçar as meias.</example>
     </rule>
 
     <rule id='E_MAS_TARDE' name="Confusão: mas tarde/mais tarde">
@@ -36116,19 +36194,76 @@ ISBN 978-3-8321-7760-7.
       <example correction="fazer as coisas direito">Preciso <marker>fazer as coisas direitas</marker>.</example>
     </rule>
 
-    <!--rule id='MANDATO_DE_BUSCA' name="Calinada: Mandado de busca">
-        XXX Superseed by MANDATO_MANDADO
-        XXX Remove after 4.8-->
-    <!-- Created by Marco A.G.Pinto
-      <pattern>
-          <token>mandato</token>
-          <token>de</token>
-          <token>busca</token>
-      </pattern>
-      <message>Substitua por <suggestion>mandado de busca</suggestion>.</message>
-      <url>http://emportuguescorrecto.blogs.sapo.pt/14304.html</url>
-      <example correction="mandado de busca">A polícia tem um <marker>mandato de busca</marker>.</example>
-    </rule>-->
+    <rulegroup id='IR_VERBO-A_DE-SEGUIR-SEGUIDA-INFINITIVO' name="Ir_verbo + [a/de seguir/seguida] + Verbo_inf">
+	<!--      Created by Marco A.G.Pinto, Portuguese rule 2021-02-2 + 2021-02-03 + 2021-02-04 (1-JAN-2021+)      -->
+	<rule>
+  		<pattern>
+  			<marker>
+  				<and>
+  					<token inflected='yes'>ir</token>
+  					<token postag='V.[IS].*' postag_regexp='yes'/>
+  				</and>
+  				<token regexp='yes'>a|de|em</token>
+  				<token regexp='yes'>seguir|seguida</token>
+  				<token postag='VMN0000' postag_regexp='no'><exception>seguir</exception></token>
+  			</marker>
+  		</pattern>
+      <filter class="org.languagetool.rules.pt.AdvancedSynthesizerFilter" args="lemmaFrom:4 lemmaSelect:V.N.* postagFrom:1 postagSelect:V.I.*"/>
+  		<message>Em certos contextos, esta perífrase pode ser simplificada.</message>
+  		<suggestion>{suggestion} \2 \3</suggestion>
+  		<example correction='Explico a seguir'><marker>Vou a seguir explicar</marker> o processo.</example>
+  		<example correction='Explicas a seguir'><marker>Vais a seguir explicar</marker> o processo.</example>
+  		<example correction='Explica a seguir'><marker>Vai a seguir explicar</marker> o processo.</example>
+  		<example correction='Explicamos a seguir'><marker>Vamos a seguir explicar</marker> o processo.</example>
+  		<example correction='Explicais a seguir'><marker>Ides a seguir explicar</marker> o processo.</example>
+  		<example correction='Explicam a seguir'><marker>Vão a seguir explicar</marker> o processo.</example>	
+    </rule>
+      <rule>
+        <pattern>
+          <marker>
+            <and>
+              <token inflected='yes'>ir</token>
+              <token postag='V.[IS].*' postag_regexp='yes'/>
+            </and>
+            <token postag='VMN0000' postag_regexp='no'><exception>seguir</exception></token>
+          </marker>
+          <token regexp='yes'>a|de|em</token>
+          <token regexp='yes'>seguir|seguida</token>
+        </pattern>
+        <filter class="org.languagetool.rules.pt.AdvancedSynthesizerFilter" args="lemmaFrom:2 lemmaSelect:V.N.* postagFrom:1 postagSelect:V.I.*"/>
+        <message>Em certos contextos, esta perífrase pode ser simplificada.</message>
+        <suggestion>{suggestion}</suggestion>
+        <example correction='Explico'><marker>Vou explicar</marker> a seguir o processo.</example>
+        <example correction='Explicas'><marker>Vais explicar</marker> a seguir o processo.</example>
+        <example correction='Explica'><marker>Vai explicar</marker> a seguir o processo.</example>
+        <example correction='Explicamos'><marker>Vamos explicar</marker> a seguir o processo.</example>
+        <example correction='Explicais'><marker>Ides explicar</marker> a seguir o processo.</example>
+        <example correction='Explicam'><marker>Vão explicar</marker> a seguir o processo.</example>	
+      </rule>
+	  <rule>
+  		<pattern>
+			<token regexp='yes'>a|de|em</token>
+  			<token regexp='yes'>seguir|seguida</token>
+  			<marker>
+  				<and>
+  					<token inflected='yes'>ir</token>
+  					<token postag='V.[IS].*' postag_regexp='yes'/>
+  				</and>
+  				<token postag='VMN0000' postag_regexp='no'></token>
+  			</marker>
+  		</pattern>
+      <filter class="org.languagetool.rules.pt.AdvancedSynthesizerFilter" args="lemmaFrom:4 lemmaSelect:V.N.* postagFrom:3 postagSelect:V.I.*"/>
+  		<message>Em certos contextos, esta perífrase pode ser simplificada.</message>
+  		<suggestion>{suggestion}</suggestion>
+  		<example correction='explico'>A seguir <marker>vou explicar</marker> o processo.</example>
+  		<example correction='explicas'>A seguir <marker>vais explicar</marker> o processo.</example>
+  		<example correction='explica'>A seguir <marker>vai explicar</marker> o processo.</example>
+  		<example correction='explicamos'>A seguir <marker>vamos explicar</marker> o processo.</example>
+  		<example correction='explicais'>A seguir <marker>ides explicar</marker> o processo.</example>
+  		<example correction='explicam'>A seguir <marker>vão explicar</marker> o processo.</example>	
+      </rule>	  
+	  
+	</rulegroup>
 
     <rule id='OVELHA_RANHOSA' name="Calinada: ranhosa - ronhosa">
     <!-- Created by Marco A.G.Pinto -->

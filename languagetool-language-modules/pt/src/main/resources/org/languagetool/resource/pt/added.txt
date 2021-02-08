@@ -74,6 +74,8 @@ adequem	adequar	VMM03P0
 adequem	adequar	VMSP3P0
 adivinhatório	adivinhatório	AQ0MS0
 adivinhatórios	adivinhatório	AQ0MP0
+adminículo	adminículo	NCMS000
+adminículos	adminículo	NCMP000
 admitidamente	admitido	RG
 aerogerador	aerogerador	NCMS000
 aerogeradores	aerogerador	NCMP000
@@ -200,6 +202,7 @@ antípodas	antípoda	NCCP000
 antique	antiquar	VMM03S0
 antique	antiquar	VMSP1S0
 antique	antiquar	VMSP3S0
+antirradiação	antirradiação	AQ0CN0
 antirroubo	antirroubo	AQ0CN0
 antissemita	antissemita	NCCS000
 antissemitas	antissemita	NCCP000
@@ -444,6 +447,7 @@ biqueiros	biqueiro	AQ0MP0
 biqueiros	biqueiro	NCMP000
 biquíni	biquíni	NCMS000
 biquínis	biquíni	NCMP000
+bitocles	bitocles	NCMP000
 bódi	bódi	NCMS000
 bódis	bódi	NCMP000
 bofe	bofe	NCMS000
@@ -519,6 +523,7 @@ cagueiro	cagueiro	NCMS000
 cagueiros	cagueiro	NCMP000
 caguinchas	caguinchas	AQ0CN0
 caguinchas	caguinchas	NCCS000
+calanzice	calanzice	NCFS000
 caldeireiro	caldeireiro	NCMS000
 caleça	caleça	NCFS000
 caleças	caleça	NCFP000
@@ -564,6 +569,8 @@ cash-flow	cash-flow	NCMS000
 cash-flows	cash-flow	NCMP000
 cataplana	cataplana	NCFS000
 cataplanas	cataplana	NCFP000
+caterva	caterva	NCFS000
+catervas	caterva	NCFP000
 caturrice	caturrice	NCFS000
 caturrices	caturrice	NCFP000
 caxamola	caxamola	NCFS000
@@ -693,6 +700,7 @@ colhão	colhão	NCMS000
 colhões	colhão	NCMP000
 coloide	coloide	NCMS000
 coloides	coloide	NCMP000
+colossalmente	colossal	RG
 comedoria	comedoria	NCFS000
 comedorias	comedoria	NCFP000
 comentaristas	comentaristas	NCCP000
@@ -1120,6 +1128,8 @@ elipsoides	elipsoide	AQ0CP0
 elipsoides	elipsoide	NCCP000
 elusivo	elusivo	AQ0MS0
 elusivos	elusivo	AQ0MP0
+embirrança	embirrança	NCFS000
+embirranças	embirrança	NCFP000
 embocadura	embocadura	NCFS000
 embola	embolar	VMIP3S0
 embola	embolar	VMM02S0
@@ -1392,6 +1402,8 @@ FC	FC	NPMS000
 feiarrão	feio	AQ0MS0
 femorais	femoral	AQ0CP0
 femoral	femoral	AQ0CS0
+ferino	ferino	AQ0MS0
+ferinos	ferino	AQ0MP0
 feromonas	feromona	NCFP000
 férrico	férrico	AQ0MS0
 ferruncho	ferruncho	NCMS000
@@ -1570,6 +1582,8 @@ gorgomilo	gorgomilo	NCMS000
 gorgomilos	gorgomilo	NCMP000
 gourmet	gourmet	AQ0CN0
 gourmets	gourmet	AQ0CP0
+governança	governança	NCFS000
+governanças	governança	NCFP000
 grã-cruz	grã-cruz	NCCS000
 grã-cruzes	grã-cruz	NCCP000
 graduando	graduando	NCMS000
@@ -1745,6 +1759,10 @@ infetologistas	infetologista	AQ0CP0
 infetologistas	infetologista	NCCP000
 infiltrante	infiltrante	AQ0CS0
 infiltrantes	infiltrante	AQ0CP0
+infinda	infindo	AQ0FS0
+infindas	infindo	AQ0FP0
+infindo	infindo	AQ0MS0
+infindos	infindo	AQ0MP0
 informacionais	informacional	AQ0CP0
 informacional	informacional	AQ0CS0
 inicializa	inicializar	VMIP3S0
@@ -2931,6 +2949,8 @@ sex-appeal	sex-appeal	NCMS000
 sex-shop	sex-shop	NCMS000
 sex-shops	sex-shop	NCMP000
 sexológico	sexológico	AQ0MS0
+shotgun	shotgun	NCFS000
+shotguns	shotgun	NCFP000
 sienito	sienito	NCMS000
 significância	significância	NCFS000
 silenciamento	silenciamento	NCMS000
@@ -2968,6 +2988,7 @@ sociopatas	sociopata	NCCP000
 socket	socket	NCMS000
 sockets	socket	NCMP000
 softebol	softebol	NCMS000
+solicitamente	solícito	RG
 solta	soltar	VMP00SF
 soltas	soltar	VMP00PF
 solto	soltar	VMP00SM
@@ -2979,6 +3000,7 @@ stalking	stalking	NCMS000
 stands	stand	NCMP000
 star	star	NCCS000
 stars	star	NCCP000
+stop	stop	I
 string	string	NCFS000
 strings	string	NCFP000
 style	style	NCMS000
@@ -3118,6 +3140,8 @@ terminador	terminador	AQ0MS0
 terminador	terminador	NCMS000
 terminadores	terminador	AQ0MP0
 terminadores	terminador	NCMP000
+terraformação	terraformação	NCFS000
+terraformações	terraformação	NCFP000
 terraplanista	terraplanista	AQ0CS0
 terraplanista	terraplanista	NCCS000
 terriê	terriê	NCMS000
@@ -3955,6 +3979,8 @@ megabit	megabit	NCMS000
 megabits	megabit	NCMP000
 megabyte	megabyte	NCMS000
 megabytes	megabyte	NCMP000
+megalópole	megalópole	NCFS000
+megalópoles	megalópole	NCFP000
 modems	modem	NCMP000
 MS-DOS	MS-DOS	NPMS000
 MiKTeX	MiKTeX	NPMS000
@@ -4271,6 +4297,7 @@ Arcos	Arcos	NPCNG00
 Arizona	Arizona	NPMSG00
 Armagedão	Armagedão	NPMS000
 Armanda	Armanda	NPFS000
+Arthur	Arthur	NPMS000
 Ashley	Ashley	NPMS000
 Ashtar	Ashtar	NPMS000
 Assad	Assad	NPMS000
@@ -4281,6 +4308,7 @@ Axtell	Axtell	NPMS000
 Aylmer	Aylmer	NPMS000
 Ayrton	Ayrton	NPMS000
 Aznavour	Aznavour	NPMS000
+Bahamas	Bahamas	NPFPG00
 Bahia	Bahia	NPFS000
 Bairro	Bairro	NPMSG00
 Bakounin	Bakounin	NPMS000
@@ -4315,6 +4343,7 @@ Campos	Campos	NPCNG00
 Canelhas	Canelhas	NPMS000
 Cáritas	Cáritas	NPFS000
 Cauchy	Cauchy	NPMS000
+Ceres	Ceres	NPMSG00
 Champalimaud	Champalimaud	NPCS000
 Chanel	Chanel	NPFS000
 Chelas	Chelas	NPFSG00
@@ -4330,6 +4359,7 @@ Colbert	Colbert	NPMS000
 Conan	Conan	NPMS000
 Constantina	Constantina	NPFS000
 Conway	Conway	NPMS000
+Corey	Corey	NPMS000
 Corinthians	Corinthians	NPMS000
 Cosmelli	Cosmelli	NPMS000
 Covilhã	Covilhã	NPFSG00
@@ -4511,6 +4541,7 @@ Pinto	Pinto	NPMS000
 Piotr	Piotr	NPMS000
 Pita	Pita	NPFS000
 Priberam	Priberam	NPMS000
+Princeton	Princeton	NPFS000
 Prosegur	Prosegur	NPFS000
 PSOE	PSOE	NPMS000
 Pushkin	Pushkin	NPMS000
@@ -4535,6 +4566,7 @@ Rouhani	Rouhani	NPMS000
 Ruanda	Ruanda	NPMSG00
 Rueff	Rueff	NPMS000
 Ruhollah	Ruhollah	NPMS000
+Salgueirinho	Salgueirinho	NPMS000
 Samara	Samara	NPFS000
 Santos	Santos	NPMS000
 Saquarema	Saquarema	NPMSG00
@@ -4548,6 +4580,7 @@ Sherlock	Sherlock	NPMS000
 SIED	SIED	NPMS000
 SIS	SIS	NPMS000
 Snow	Snow	NPMS000
+Sotero	Sotero	NPMS000
 # SRS - Sistema Regional de Saúde
 SRS	SRS	NPMS000
 Steckling	Steckling	NPMS000
@@ -4556,6 +4589,7 @@ Surrey	Surrey	NPMSG00
 Susana	Susana	NPFSS00
 Tabatinga	Tabatinga	NPMSG00
 Tácito	Tácito	NPMS000
+Talloires	Talloires	NPFSG00
 Tamagotchi	Tamagotchi	NPMS000
 Terceira	Terceira	NPFSG00
 Tércia	Tércia	NPFS000

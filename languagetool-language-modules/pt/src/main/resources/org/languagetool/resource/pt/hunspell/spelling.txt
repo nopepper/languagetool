@@ -51,6 +51,8 @@ adenovírus
 ADFP
 adipócito
 adipócitos
+adminículo
+adminículos
 admitidamente
 ADSE
 adstringente
@@ -277,6 +279,8 @@ antipsicótica
 antipsicóticas
 antipsicótico
 antipsicóticos
+antirradiação
+antirrisco
 antiveículo
 antivírico
 antivíricos
@@ -659,6 +663,7 @@ biqueiros
 birdwatching
 Birmingham
 BIs
+bitocles
 biureto
 biuretos
 Bizâncio
@@ -806,6 +811,7 @@ cagueiros
 caguinchas
 caipirinha
 caipirinhas
+calanzice
 caleça
 caleças
 Calgary
@@ -926,6 +932,8 @@ catecolaminérgica
 catecolaminérgicas
 catecolaminérgico
 catecolaminérgicos
+caterva
+catervas
 cateter
 cateteres
 Catroga
@@ -1126,6 +1134,7 @@ colonoscopia
 colonoscopias
 colorretais
 colorretal
+colossalmente
 colostomia
 colostomias
 colza
@@ -1624,6 +1633,8 @@ Elsa
 elusivo
 elusivos
 embaraçosos
+embirrança
+embirranças
 emburrecer
 EMEL
 emoliente
@@ -2084,6 +2095,8 @@ fenologia
 fenologias
 Fenprof
 FENSE
+ferino
+ferinos
 feromona
 feromonas
 ferreirinha
@@ -2146,6 +2159,7 @@ fitossanitárias
 fitossanitário
 fitossanitários
 Fiumicino
+flanqueamento
 flanqueamentos
 flarte
 flartes
@@ -2432,6 +2446,8 @@ gosma
 gosmas
 Gotemburgo
 governabilidade
+governança
+governanças
 GParted
 grã-cruz
 grã-cruzes
@@ -2515,6 +2531,7 @@ herpetólogas
 herpetologia
 herpetólogo
 herpetólogos
+heterogénica
 heterogénicas
 heterogénico
 heterogénicos
@@ -2685,6 +2702,8 @@ IMI
 IMM
 impactante
 impactantes
+impassáveis
+impassável
 imperdíveis
 imperdível
 imperecível
@@ -2773,6 +2792,10 @@ infantilização
 infantilizações
 infetologista
 infetologistas
+infinda
+infindas
+infindo
+infindos
 inflacionária
 inflacionárias
 inflacionário
@@ -3339,6 +3362,8 @@ mega-agrupamentos
 megacidade
 megacidades
 megafauna
+megalópole
+megalópoles
 Mégane
 megaoperação
 megaoperações
@@ -3610,6 +3635,7 @@ multicentenário
 multicentenários
 multicêntrico
 multiculturalidade
+multidimensionais
 multidisciplinaridade
 multiespectrais
 multiespectral
@@ -4224,6 +4250,7 @@ pirófita
 pirófitas
 pirraça
 pirraças
+pixelização
 pixelizada
 pixelizadas
 pixelizado
@@ -4600,6 +4627,7 @@ recontagem
 recontagens
 recorrentemente
 Red Star Belgrade
+redarguiu
 Reddit
 reducionista
 reducionistas
@@ -4862,6 +4890,7 @@ senciência
 senciente
 sencientes
 senioridade
+senos
 sépia
 sepse
 sepsia
@@ -4992,6 +5021,7 @@ sociopolítico
 sociopolíticos
 Sofala
 softebol
+solicitamente
 solilóquio
 solilóquios
 solitude
@@ -5216,6 +5246,8 @@ ternurenta
 ternurentas
 ternurento
 ternurentos
+terraformação
+terraformações
 terraplanista
 terrário
 terrários
@@ -5460,6 +5492,7 @@ usucapientes
 usucapto
 usucaptos
 UTAD
+UTC
 UTM
 UV
 vagamundo
@@ -5684,6 +5717,8 @@ ZTE
 #################################################################################################
 # Abreviaturas CTT https://pt.wikipedia.org/wiki/Lista_de_abreviaturas_recomendadas_pelos_CTT ###
 #################################################################################################
+dtº
+dtª
 dto
 esq
 rc
@@ -7779,6 +7814,8 @@ short
 shorts
 shot
 shots
+shotgun
+shotguns
 show
 show-off
 show-offs
@@ -9781,6 +9818,7 @@ Aquileia
 Aracaju
 Armagedão
 Armanda
+Arthur
 Ashley
 Ashtar
 Assad
@@ -9790,6 +9828,7 @@ Augustin
 Axtell
 Aylmer
 Ayrton
+Bahamas
 Bahia
 Bakounin
 Balaton
@@ -9815,6 +9854,7 @@ Calouste
 Campolide
 Canelhas
 Cauchy
+Ceres
 Chanel
 Chasqueira
 Chelas
@@ -9827,6 +9867,7 @@ Colbert
 Conan
 Constantina
 Conway
+Corey
 Corinthians
 Cosmelli
 Craig
@@ -10035,6 +10076,7 @@ Phillips
 Piotr
 Pita
 Priberam
+Princeton
 Prosegur
 Quelimane
 Rault
@@ -10048,6 +10090,7 @@ Ronald
 Rouhani
 Rueff
 Ruhollah
+Salgueirinho
 Samara
 Santos
 Saquarema
@@ -10065,11 +10108,13 @@ SIED
 Silvano
 SIS
 Snow
+Sotero
 Steckling
 Suméria
 Surrey
 Tabatinga
 Tácito
+Talloires
 Tamagotchi
 Terceira
 Tércia
