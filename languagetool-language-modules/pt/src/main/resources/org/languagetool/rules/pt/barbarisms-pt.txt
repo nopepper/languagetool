@@ -1,7 +1,7 @@
 # Multi word foreign expressions with Portuguese ones.
 #
-# © 2016–2021 Tiago F. Santos.
-# © 2018–2021 Marco A.G.Pinto.
+# © 2016–2021 Tiago F. Santos (tiagofsantos81@sapo.pt)
+# © 2018–2021 Marco A.G.Pinto (www.marcoagpinto.com)
 #
 # Licensed under LGPL.
 #
@@ -647,8 +647,8 @@ full-time=tempo inteiro
 full-times=tempo inteiro
 funding=capitalização|financiamento
 fundings=capitalizações|financiamentos
-gadget=aparelho|bugiganga|dispositivo
-gadgets=aparelhos|bugigangas|dispositivos
+gadget=aparelho|bugiganga|dispositivo|utensílio
+gadgets=aparelhos|bugigangas|dispositivos|utensílios
 gaffe=deslize|descuido
 gaffes=deslizes|descuidos
 gag=gracejo
@@ -743,6 +743,7 @@ hard-cores=pornográficos
 hardware=equipamento físico
 hardwares=equipamentos físicos
 headphones=auscultadores
+height=altura
 hi-fi=alta-fidelidade
 hi-fis=alta-fidelidades
 high definition=alta definição
@@ -983,6 +984,10 @@ mouche=muche
 mouches=muches
 mousse=musse
 mousses=musses
+mp3 player=leitor de MP3
+mp3 players=leitores de MP3
+mp4 player=leitor de MP4
+mp4 players=leitores de MP4
 mRNA=ARN mensageiro
 mRNAs=ARNs mensageiros
 muezzin=muezim
@@ -1092,8 +1097,8 @@ penalties=grandes penalidades
 per capita=por cabeça
 per se=por si mesmo
 per si=por si mesmo
-performance=desempenho
-performances=desempenhos
+performance=desempenho|atuação
+performances=desempenhos|atuações
 performer=artista de palco|intérprete
 performers=artistas de palco|intérpretes
 personal trainer=instrutor pessoal
@@ -1615,6 +1620,7 @@ whiskey=uísque
 whiskeys=uísques
 whisky=uísque
 whiskies=uísques
+width=largura
 windsurf=prancha à vela
 windsurfs=pranchas à vela
 winner=vencedor

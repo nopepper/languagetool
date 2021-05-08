@@ -49,6 +49,11 @@ public class ProhibitedCompoundRule extends Rule {
   private static final List<Pair> lowercasePairs = Arrays.asList(
           // NOTE: words here must be all-lowercase
           // NOTE: no need to add words from confusion_sets.txt, they will be used automatically (if starting with uppercase char)
+          new Pair("sphäre", "Kugel", "spähreh", null),
+          new Pair("schenke", "Gastwirtschaft (auch: Schänke)", "schenkel", "Ober- und Unterschenkel"),
+          new Pair("rune", "Schriftzeichen der Germanen", "runde", "Rundstrecke"),
+          new Pair("mai", "Monat nach April", "mail", "E-Mail"),
+          new Pair("pump", "'auf Pump': umgangssprachlich für 'auf Kredit'", "pumpe", "Gerät zur Beförderung von Flüssigkeiten"),
           new Pair("mitte", "zentral", "mittel", "Methode, um etwas zu erreichen"),
           new Pair("fein", "feinkörnig, genau, gut", "feind", "Gegner"),
           new Pair("traum", "Erleben während des Schlafes", "trauma", "Verletzung"),
@@ -101,6 +106,8 @@ public class ProhibitedCompoundRule extends Rule {
   private static LinguServices linguServices;
   private static final List<String> ignoreWords = Arrays.asList("Die", "De");
   private static final List<String> blacklistRegex = Arrays.asList(
+    "reisender",  // Ägyptenreisender etc.
+    "[a-zöäüß]+sender",  // wg. sende/sender, z.B. bremsender, abzulassender
     "gra(ph|f)ische?",  // kosmografisch etc.
     "gra(ph|f)ische[rsnm]",  // kosmografischen etc.
     "gra(ph|f)s?$",  // Elektrokardiograph
@@ -111,6 +118,23 @@ public class ProhibitedCompoundRule extends Rule {
     "Gra(ph|f)it"   // Grafit/Graphit
   );
   private static final Set<String> blacklist = new HashSet<>(Arrays.asList(
+          "Preiseseite",  // vs Presseseite
+          "Teamfahrers",  // vs Teamführers
+          "Supportzeiten",  // vs Supportseiten
+          "Schwabenweg",
+          "Datenspende",
+          "Datenspenden",
+          "Designermaske",
+          "Designermasken",
+          "Herdenschutz",
+          "Maskendisziplin",
+          "Maskenmode",
+          "Maskenmoden",
+          "Maskenmoral",
+          "Impfvorrang",
+          "Volksmaske",
+          "Volksmasken",
+          "Testmeilen",  // vs Testteilen
           "Hauptstrand",  // vs Hauptstand
           "Hauptstrands",
           "Hauptstrandes",

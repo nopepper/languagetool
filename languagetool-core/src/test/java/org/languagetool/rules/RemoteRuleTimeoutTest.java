@@ -50,7 +50,7 @@ public class RemoteRuleTimeoutTest {
 
   static class TestRemoteRule extends RemoteRule {
     private static final RemoteRuleConfig testConfig = new RemoteRuleConfig(
-      "TEST_REMOTE_RULE", "example.com", 1234, 0, TIMEOUT, 0.0f, Integer.MAX_VALUE, 0L, Collections.emptyMap());
+      "TEST_REMOTE_RULE", "example.com", 1234, 0, TIMEOUT, 0.0f, Integer.MAX_VALUE, 0L, 0L, 0L, Collections.emptyMap());
 
     TestRemoteRule() {
       super(new Demo(), JLanguageTool.getMessageBundle(), testConfig, false);
@@ -65,7 +65,7 @@ public class RemoteRuleTimeoutTest {
     }
 
     @Override
-    protected RemoteRequest prepareRequest(List<AnalyzedSentence> sentences, AnnotatedText annotatedText, Long textSessionId) {
+    protected RemoteRequest prepareRequest(List<AnalyzedSentence> sentences, Long textSessionId) {
       return new TestRemoteRule.TestRemoteRequest(sentences);
     }
 

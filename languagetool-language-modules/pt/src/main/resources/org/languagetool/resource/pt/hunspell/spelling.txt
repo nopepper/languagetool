@@ -137,6 +137,8 @@ aleivosia
 aleivosias
 alergénio
 alergénios
+alergénico
+alergénicos
 alergologista
 alergologistas
 alevim
@@ -174,6 +176,8 @@ amaciador
 amaciadores
 Amanco
 Amazon
+ambidestro
+ambidestros
 ambientador
 ambientadores
 ambivalência
@@ -195,6 +199,8 @@ amnésico
 amnésicos
 AMOLED
 ampicilina
+amplexo
+amplexos
 Amy
 Anacleto
 Anacom
@@ -212,7 +218,6 @@ angico
 angicos
 angioma
 angiomas
-angiotensina
 angiotensina
 Angoche
 ANI
@@ -326,6 +331,8 @@ aposemáticos
 aposematismo
 aposematismos
 apostásia
+apuradíssimo
+apuradíssimos
 aquacultura
 aquaculturas
 Aquaman
@@ -407,6 +414,8 @@ atávico
 atávicos
 aterosclerose
 ateroscleroses
+aticismo
+aticismos
 atingimento
 atingimentos
 ATL
@@ -562,6 +571,7 @@ bazucas
 BdP
 BDSM
 BDSS
+bear market
 beatamente
 beatlemania
 Begonha
@@ -680,6 +690,7 @@ blockchain
 blockchains
 blogger
 Bloomberg
+blue
 BMP
 BMX
 Boavida
@@ -709,6 +720,7 @@ bombril
 bonobo
 bonobos
 Bootstrap
+borliú
 Borussia Dortmund
 Borussia Mönchengladbach
 bossais
@@ -767,6 +779,7 @@ buldózer
 buldózeres
 bulimia
 bullying
+bull market
 Bundesbank
 Bundestag
 Burke
@@ -780,6 +793,8 @@ burritos
 Butmir
 C de Cochran
 Caála
+cabal
+cabais
 Cabedelo
 Cabify
 Cabinda
@@ -791,6 +806,8 @@ cabozes-camarão
 CAC
 caçapo
 caçapos
+chacha
+chachas
 cachaporrada
 cachaporradas
 Cacheu
@@ -838,6 +855,8 @@ candomblé
 canelone
 canelones
 Cangamba
+cangosta
+cangostas
 canídeo
 canídeos
 cantonês
@@ -1081,6 +1100,7 @@ Citroën
 citronela
 civicamente
 civilizadamente
+clamídia
 claraboias
 Clarice
 clementina
@@ -1211,6 +1231,7 @@ cornucópias
 Corolla
 corona
 coronavírus
+corporativamente
 córrego
 córregos
 corroboração
@@ -1231,6 +1252,7 @@ cosupervisor
 cosupervisora
 cosupervisoras
 cosupervisores
+cotim
 courato
 couratos
 Courtney
@@ -1251,6 +1273,8 @@ cranioencefálicas
 cranioencefálico
 cranioencefálicos
 Crawford
+crédula
+crédulas
 Creutzfeldt-Jakob
 criámo-lo
 criamo-lo
@@ -1315,6 +1339,8 @@ curgete
 curgetes
 Cusco
 cuscuz
+cúspide
+cúspides
 customizado
 customizados
 cuvete
@@ -1328,6 +1354,8 @@ dândi
 dândis
 daqueloutro
 DARPA
+darwinista
+darwinistas
 Dash
 database
 databases
@@ -1379,10 +1407,26 @@ desabalado
 desabalados
 desagrado
 desagrados
+desbragada
+desbragadas
+desbragado
+desbragados
 desbragadamente
+descalibrada
+descalibradas
+descalibrado
+descalibrados
+descalibrar
 descartável
 descomedida
 descomedido
+desconfinada
+desconfinadas
+desconfinado
+desconfinados
+desconfinamento
+desconfinamentos
+desconfinar
 desembuchar
 desembuche
 desencarnado
@@ -1458,6 +1502,8 @@ dignitária
 dignitárias
 dignitário
 dignitários
+dildo
+dildos
 Dimitri
 dipiridamol
 DirectX
@@ -1696,6 +1742,8 @@ energúmena
 energúmenas
 energúmeno
 energúmenos
+engulho
+engulhos
 ENI
 enófila
 enófilas
@@ -1833,6 +1881,7 @@ esofágica
 esofágicas
 esofágico
 esofágicos
+espacialmente
 esparadrapo
 esparadrapos
 espasmódico
@@ -1861,6 +1910,8 @@ esquálida
 esquálidas
 esquálido
 esquálidos
+esqualiforme
+esqualiformes
 essencialíssima
 essencialíssimas
 estadunidense
@@ -1900,6 +1951,10 @@ estoma
 estomas
 estorno
 estornos
+estrambótica
+estrambóticas
+estrambótico
+estrambóticos
 estratosférica
 estratosféricas
 estratosférico
@@ -1908,6 +1963,10 @@ estribeiro
 estribeiro-mor
 estribeiros
 estribeiros-mor
+estrídula
+estrídulas
+estrídulo
+estrídulos
 estrilho
 estrilhos
 estrogonofe
@@ -1960,6 +2019,7 @@ eutanasiada
 eutanasiadas
 eutanasiado
 eutanasiados
+eutanasiar
 eutopia
 eutopias
 eutópica
@@ -2008,6 +2068,8 @@ exogamia
 exogamias
 exoplaneta
 exoplanetas
+experienciar
+experienciem
 explosivamente
 exponenciada
 exponenciadas
@@ -2425,6 +2487,8 @@ GNL
 GNOME
 gnóstica
 gnósticas
+goal # Estrangeirismo
+goals # Estrangeirismo
 gobídeo
 gobídeos
 gobo
@@ -2683,6 +2747,8 @@ ideações
 IDEB
 ídiche
 ídiches
+idílio
+idílios
 ié-ié
 ié-iés
 IEEE
@@ -2692,7 +2758,6 @@ IFPA
 IFPR
 IGAI
 IGC
-imagiologia
 imagiologia
 imagiologias
 IMAX
@@ -2711,6 +2776,10 @@ imperecíveis
 impetigo
 implausíveis
 implausível
+implexa
+implexas
+implexo
+implexos
 impossivelmente
 impraticáveis
 impreparação
@@ -2830,6 +2899,8 @@ integrativas
 integrativo
 integrativos
 Intelligence
+interajuda
+interajudas
 interbancária
 interbancárias
 interbancário
@@ -2863,6 +2934,10 @@ intermutável
 internalização
 internauta
 internautas
+internética
+internéticas
+internético
+internéticos
 interparlamentar
 interparlamentares
 interrelação
@@ -2887,6 +2962,8 @@ intravaginais
 intravaginal
 intricada
 intricadas
+ioga
+iogas
 iOS
 IoT
 IOT
@@ -3069,6 +3146,10 @@ Lamborghini
 Lampedusa
 Lancia
 Landsat
+langorosa
+langorosas
+langoroso
+langorosos
 lânguida
 languidamente
 lânguidas
@@ -3091,6 +3172,8 @@ laxista
 laxistas
 LBP
 Leblon
+lecitina
+lecitinas
 LED # Estrangeirismo
 Leeds United
 Lehman
@@ -3264,6 +3347,10 @@ maleficência
 maleficências
 malgrado
 malnutrição
+malparecida
+malparecidas
+malparecido
+malparecidos
 maltusiana
 maltusianas
 maltusiano
@@ -3295,6 +3382,10 @@ maquilhador
 maquilhadora
 maquilhadoras
 maquilhadores
+marada
+maradas
+marado
+marados
 maralha
 maralhas
 marata
@@ -3308,6 +3399,8 @@ mariscador
 mariscadores
 market
 markets
+marrancho
+marranchos
 Marraquexe
 marrequinha
 marrequinhas
@@ -3431,8 +3524,13 @@ metacognição
 metadados
 metaforicamente
 metanálise
+metatética
+metatéticas
+metatético
+metatéticos
 meticilina
 meticilinas
+mg
 Michelin
 Michelle
 Mickey
@@ -3515,6 +3613,8 @@ millennial # Estrangeirismo
 millennials # Estrangeirismo
 Milosevic
 Milton
+mindinho
+mindinhos
 Minecraft
 Mini
 minimalismo
@@ -3603,6 +3703,8 @@ morcões
 Moreirense
 morenaça
 morenaças
+morfogénese
+morfogéneses
 moscatéis
 motivacional
 motoclube
@@ -3662,6 +3764,8 @@ musicoterapia
 Mussulo
 mustelídeo
 mustelídeos
+mutada
+mutado
 mutualização
 mutualizações
 MW
@@ -3828,6 +3932,7 @@ Nextel
 Neyman-Pearson
 NFC
 NFL
+nham
 nhurro
 Niassa
 Nibiru
@@ -3940,11 +4045,14 @@ opacificação
 Opel
 OpenGL
 openSUSE
+operabilidade
+operabilidades
 operática
 operáticas
 operático
 operáticos
 oportunisticamente
+opostamente
 Ops
 optometria
 optometrista
@@ -4268,12 +4376,16 @@ planisférico
 planisférico
 planisféricos
 planisféricos
+plantinha
+plantinhas
 plântula
 plântulas
 plaquetária
 plaquetário
 plaquetários
 Plasmosdium
+player
+players
 plenilúnio
 plesiossauro
 plesiossauros
@@ -4345,6 +4457,8 @@ politológico
 politológicos
 politólogo
 politólogos
+poliuretano
+poliuretanos
 poncha
 ponchas
 ponderadamente
@@ -4386,6 +4500,8 @@ precisões
 predação
 preditor
 preditores
+prélio
+prélios
 premio
 premium
 prenha
@@ -4502,6 +4618,8 @@ pulsante
 pulsantes
 pungência
 pungências
+punheta
+punhetas
 purpurina
 purpurinas
 Pushkin
@@ -4626,6 +4744,7 @@ reconfirmou
 recontagem
 recontagens
 recorrentemente
+red
 Red Star Belgrade
 redarguiu
 Reddit
@@ -4853,6 +4972,8 @@ SCUT
 SCUTs
 Seagate
 Seat
+securitária
+securitárias
 securitário
 securitários
 sedã
@@ -4864,6 +4985,8 @@ sedeados
 segurelha
 seixoeira
 seixoeiras
+seláquio
+seláquios
 selfie
 selfies
 semi-idêntica
@@ -4928,6 +5051,8 @@ Shakira
 Shapiro-Francia
 Shapiro-Wilk
 Shawn
+shelter
+shelters
 Shenzhen
 Sheremetyevo
 Shiva
@@ -5098,6 +5223,10 @@ subopções
 subpopulação
 subpopulações
 subsidiodependência
+suicidário
+suicidários
+suídeo
+suídeos
 Sumatra
 Sumbe
 suméria
@@ -5119,6 +5248,7 @@ superpotências
 Supertubos
 supervisionamento
 supervisionamentos
+supinamente
 supletivamente
 supracionais
 supracional
@@ -5234,6 +5364,8 @@ teoristas
 teorizador
 teorizadores
 teratogenicidade
+terceiro-mundista
+terceiro-mundistas
 termoclina
 termoclinas
 termófila
@@ -5276,6 +5408,8 @@ Tiananmen
 TIC
 Tinder
 tiomersal
+tip
+tips
 tiramina
 TMP
 tobogã
@@ -5357,6 +5491,7 @@ triatletas
 triatlo
 triatlos
 tricloroetileno
+tricomoníase
 tricóptero
 tricópteros
 trifásica
@@ -5378,6 +5513,7 @@ tripartidária
 tripartidárias
 tripartidário
 tripartidários
+triplamente
 tríptico
 trípticos
 trisais
@@ -5461,6 +5597,7 @@ ultrasonografias
 ultraterrestre
 ultraterrestres
 UM
+umbílico
 umbra
 umbundo
 UNetbootin
@@ -5475,6 +5612,7 @@ unissexo
 UNL
 UP
 UPIDH
+ups
 uretrite
 uretrites
 urodelo
@@ -5586,6 +5724,8 @@ Volkswagen
 vomeronasais
 vomeronasal
 von
+vontadinha
+vontadinhas
 vossência
 vossências
 voyeurista
@@ -5601,6 +5741,8 @@ wallabies-da-areia
 wallabies-dama
 wallaby-da-areia
 wallaby-dama
+wargame
+wargames
 watchOS
 Watford
 WAV
@@ -5717,6 +5859,8 @@ ZTE
 #################################################################################################
 # Abreviaturas CTT https://pt.wikipedia.org/wiki/Lista_de_abreviaturas_recomendadas_pelos_CTT ###
 #################################################################################################
+ª
+º
 dtº
 dtª
 dto
@@ -6286,6 +6430,10 @@ cover
 covers
 COVID-19
 Covid-19
+covid-19
+Covid
+COVID
+covid
 cowboy
 cowboys
 crack
@@ -9662,11 +9810,17 @@ Wado-Ryu
 # TAXONOMIC WORDS IN LATIN ###
 ##############################
 Achillobator
+Agaricales
+Agaricomycetes
+Agaricomycetidae
+Agaricomycotina
 Agrobacterium
 Alectrosaurus
 Alphatetraviridae
 Alvernaviridae
 Alxasaurus
+Amanita
+Amanitaceae
 Animalia
 Arachnida
 Astroviridae
@@ -9679,6 +9833,7 @@ Betacoronavirus
 Biliphyta
 Boletales
 Brachiopoda
+Brachycera
 Bromoviridae
 Bryozoa
 Caliciviridae
@@ -9709,46 +9864,85 @@ Deltacoronavirus
 Demodex
 Dinosauria
 Diptera
+Drosophilidae
+Echinodermata
+Echium
 Echiura
 Ectoprocta
+Edentata
 Elkinsia
+Enterobacterales
+Enterobacteriaceae
 Entoprocta
+Equisetopsida
 Equus
 Erketu
 Erliansaurus
 Erlikosaurus
+Escherichia
+Euarchontoglires
 Eutheria
+Fabaceae
+Fabales
+Faboideae
 Fissurella
 Flaviviridae
 Formica
 Gammacoronavirus
+Gammaproteobacteria
 Garudimimus
 Gastropoda
 Gastrotricha
+Gypsophila
+Haplorrhini
 Helicobacter
 Hemichordata
 Hepeviridae
+Hexapoda
 Hipposideridae
+Hominidae
+Homininae
+Hominini
+Hydrozoa
+Hygrophila
+Hymenoptera
+Hyracoidea
 Insectivora
 Jianchangosaurus
+Lepidoptera
 Leviviridae
 Luteoviridae
+Macroglossinae
+Magnolia
+Magnoliophyta
+Magnoliopsida
+Mammalia
+Mecoptera
 Megachiroptera
 Metatheria
+Mollusca
+Myomorpha
+Myriapoda
 Narnaviridae
 Neimongosaurus
+Nematoda
+Nematomorpha
 Nidovirales
 Nodaviridae
 Nudibranchia
+Ophiuroidea
 Ornithischia
 Ornithomimosauria
+Orthocoronavirinae
 Ovis
+Panorpida
 Permutotetraviridae
 Phedina
 Pholidota
 Phoronida
 Phylloxeridae
 Picornavirales
+Pisum
 Platyhelminthes
 Porifera
 Potyviridae
@@ -9757,9 +9951,11 @@ Proboscidea
 Prosobranchia
 Proteaceae
 Proteales
+Proteobacteria
 Protista
 Pteropodidae
 Pteropus
+Pterygota
 Quercus
 Reptilia
 Rhinolophidae
@@ -9767,6 +9963,8 @@ Rhinolophus
 Rhizocephala
 Riboviria
 Rodentia
+Rosanae
+Sarbecovirus
 Saurischia
 Scaphopoda
 Scyphozoa
@@ -9774,6 +9972,7 @@ Sipuncula
 Sipunculus
 Sirenia
 Tetrapoda
+Theria
 Theropoda
 Togaviridae
 Tombusviridae
@@ -9783,12 +9982,15 @@ Tymovirales
 Urochordata
 Vertebrata
 Virgaviridae
+Zatheria
 ####################################################################
 # PROPER NAMES, INCLUDING PLACES, UNIVERSITIES AND ORGANIZATIONS ###
 ####################################################################
 Aaron
 Abrunhosa
+Actuel
 Adamski
+Airport
 al-Assad
 Al-Qaeda
 al-Shimali
@@ -9796,6 +9998,7 @@ Alagoas
 Albukamal
 Alcabideche
 Alcoentre
+Alegro
 Aleister
 Alex
 Alexander
@@ -9862,14 +10065,17 @@ Chiu
 Chris
 Cicciolina
 Cíntia
+Citius
 Claudia
 Colbert
 Conan
 Constantina
+Control
 Conway
 Corey
 Corinthians
 Cosmelli
+Cosmia
 Craig
 Crises
 Crowley
@@ -9878,6 +10084,7 @@ Culturgest
 Curitiba
 Daesh
 Daguerre
+Dalí
 Danielle
 Delpierre
 Dempster
@@ -9888,6 +10095,7 @@ Dockery
 Doka
 Dora
 Drauzio
+Durex
 ECDC
 Echelon
 Edilson
@@ -9919,6 +10127,7 @@ Feldman
 FIA
 Firetrust
 Fisher
+Fisher Information
 Florianópolis
 Floyd
 FNAC
@@ -9954,6 +10163,7 @@ Guangdong
 Guardian
 Guillain-Barré
 Gurué
+Gustava
 Gutenberg
 Hafez
 Hamas
@@ -9969,9 +10179,11 @@ Hassan
 Hatshepsut
 Havai
 Hayek
+Heloísa
 Henry
 Hermengarda
 Hidra
+Holmes
 Honda
 Honolulu
 Hosmer-Lemeshow
@@ -9986,6 +10198,7 @@ IADE
 Iberdrola
 Ibiza
 Idanha
+Iémen
 Ifigénia
 Ikea
 Ilachinski
@@ -10036,23 +10249,29 @@ Langton
 Lapidus
 Lavergne
 Levassor
+Lidl
 Lorenz
 Luiz
 Lula
 Madeira
 Marcelina
+Marine Corps
 Markow
 Marmot
 Marta
 Marty
 Mayara
 Mazarino
+Melbourne
 Messi
 Middlesbrough
+Mohamed
+Mossad
 MUFON
 Multicare
 Murai
 Myers
+My Auchan
 Nara
 Nash
 Nathalia
@@ -10062,10 +10281,12 @@ Newton
 Niklaus
 Nilton
 Nimrud
+Minipreço
 Nubank
 Olivier
 OMC
 Opera House
+Ophélia
 Ortins
 Oto
 Palmares
@@ -10078,7 +10299,9 @@ Pita
 Priberam
 Princeton
 Prosegur
+Qilive
 Quelimane
+Rambo
 Rault
 Recife
 René
@@ -10133,11 +10356,13 @@ Unabomber
 Unilever
 Valéria
 Valls
+ValPortugal
 Vargas
 Vestefália
 Viagra
 Vítor
 Weaver
+Willard
 Woodstock
 Wook
 Worten
@@ -10186,15 +10411,22 @@ applet
 applets
 apps
 assembly
+auditada
+auditadas
+auditado
+auditados
 backbone
 backbones
 backdoor
 backdoors
+Birdy
 bitcoin
 bitcoins
 blu-ray
 blu-rays
 bluetooth
+boid
+boids
 bookmark
 bookmarks
 bot
@@ -10206,7 +10438,13 @@ CentOS
 chipe
 chipes
 CISC
+Citrix
 Commodore
+contactless
+cover disc
+cover discs
+cover disk
+cover disks
 cracker
 crackers
 cracking
@@ -10223,13 +10461,19 @@ crashou
 CRT
 CTCP
 DALnet
+Dark Web
 DCC
+Deep Web
 default
 desenvolvedores
 desktop
 desktops
+developer
+developers
 diff
 diffs
+downgrade
+downgrades
 e-bullying
 e-commerce
 e-democracy
@@ -10240,6 +10484,8 @@ e-newsletter
 e-newsletters
 e-reader
 e-readers
+EAN
+Earth
 Edge
 ENIAC
 ESR
@@ -10247,6 +10493,7 @@ exabit
 exabits
 exabyte
 exabytes
+Extreme Physical Information
 ezboard
 Facebook
 FAQ
@@ -10259,6 +10506,7 @@ firewall
 firewalls
 firmware
 firmwares
+Fisher Information
 fps
 FreeBSD
 FTP
@@ -10269,6 +10517,7 @@ GIMP
 GitHub
 GMail
 Gmail
+google
 Google
 GPU
 GPUs
@@ -10279,6 +10528,9 @@ hacking
 HD
 HDMI
 HDR
+height
+helpdesk
+helpdesks
 homebanking
 homepage
 homepages
@@ -10309,27 +10561,38 @@ Lubuntu
 Mac
 MacBook
 macOS
+magic number
 MailChimp
+Maps
 Mathematica
 Microsoft
 MiKTeX
+monoutilizador
 MS-DOS
+multiutilizador
 netbanco
 NetBanco
 newsgroup
 newsgroups
+nick
+nicks
 nickname
 nicknames
 OEM
 off
+old school
+old schools
 on
 OpenPGP
 Outlook
 overwrite
+p-value
+p-values
 patch
 patchs
 PDA
 PDAs
+pen drive
 petabit
 petabits
 petabyte
@@ -10339,9 +10602,13 @@ píxeis
 píxel
 Pootle
 PowerPC
+preview
 PTnet
 PureBasic
+px
 Python
+ransomware
+reboot
 roadmap
 roadmaps
 scam
@@ -10349,26 +10616,42 @@ scammer
 scammers
 scams
 screen
+screenshot
+screenshots
+scroll
 SeaMonkey
 SEO
+SimCity
 Spectrum
 SSL
+swarm
+swarms
 tablet
 tablets
 tag
 tags
+TBW
 template
 templates
 terabit
 terabits
 terabyte
 terabytes
+threshold
+thresholds
+thunderbolt
+TLD
 TortoiseSVN
 touch
 tracking
 Transifex
+trigger
+triggers
 Twitter
 Unicode
+UPC
+user friendly
+VDI
 VPN
 webinar
 webinares
@@ -10377,6 +10660,7 @@ webpages
 website
 websites
 WebTranslateIt
+width
 Windows
 WordPress
 Xubuntu
@@ -10472,3 +10756,108 @@ xlvii
 xlviii
 xlix
 l
+lockdown
+covid
+Smith
+MercadoLivre
+post
+posts
+story
+stories
+Christopher
+Robert
+Claudio
+fake news
+Luiza
+TCC
+Robert
+Joseph
+App Store
+Sarah
+Nelson
+Richard
+influencer
+influencers
+MercadoPago
+Martin
+Angela
+Louis
+Hogwarts
+Charlotte
+Evelyn
+Patrick
+Erika
+Erick
+UBS
+gamificação
+Jessica
+Alfred
+dashboard
+dashboards
+Deborah
+Bob
+Tony
+selfie
+selfies
+Jonathan
+BNCC
+LGPD
+OBS
+Jack
+Steve
+Stuart
+Johnny
+Bertha
+Vincent
+Beethoven
+Collins
+Yasmin
+Nicolas
+Felix
+CMSP
+emoji
+emojis
+onboarding
+branding
+Howard
+Theodor
+UX
+IT
+Nick
+Carter
+Connor
+FPS
+Leon
+KPI
+Wallace
+Emmanuel
+Ferdinand
+NPS
+CFTV
+déficit
+déficits
+SLA
+remarketing
+Thompson
+Abraham
+detox
+Dumbledore
+Frankenstein
+Mackenzie
+Christine
+Joe
+Elvis
+Beverly
+Cooper
+Bernard
+Cynthia
+Campbell
+Fred
+Ryan
+Brown
+CoV
+Zygmunt
+Black Panther
+Black Sabbath
+Black Mirror
+Jack Black

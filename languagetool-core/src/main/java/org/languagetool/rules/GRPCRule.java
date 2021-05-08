@@ -36,7 +36,6 @@ import org.jetbrains.annotations.Nullable;
 import org.languagetool.AnalyzedSentence;
 import org.languagetool.JLanguageTool;
 import org.languagetool.Language;
-import org.languagetool.markup.AnnotatedText;
 import org.languagetool.rules.ml.MLServerGrpc;
 import org.languagetool.rules.ml.MLServerProto;
 import org.slf4j.Logger;
@@ -56,7 +55,7 @@ import java.util.stream.Collectors;
  * Base class fur rules running on external servers;
  * see gRPC service definition in languagetool-core/src/main/proto/ml_server.proto
  *
- * @see #create(ResourceBundle, RemoteRuleConfig, boolean, String, String, Map)  for an easy to add rules; return rule in Language::getRelevantRemoteRules
+ * @see #create(Language, ResourceBundle, RemoteRuleConfig, boolean, String, String, Map)  for an easy to add rules; return rule in Language::getRelevantRemoteRules
  * add it like this:
   <pre>
    public List&lt;Rule&gt; getRelevantRemoteRules(ResourceBundle messageBundle, List&lt;RemoteRuleConfig&gt; configs, GlobalConfig globalConfig, UserConfig userConfig, Language motherTongue, List&lt;Language&gt; altLanguages) throws IOException {
@@ -82,13 +81,11 @@ public abstract class GRPCRule extends RemoteRule {
    * Internal rule to create rule matches with IDs based on Match Sub-IDs
    */
   protected class GRPCSubRule extends Rule {
-    private final String subId;
     private final String matchId;
     private final String description;
 
-    GRPCSubRule(String subId, @Nullable String description) {
-      this.subId = subId;
-      this.matchId = GRPCRule.this.getId() + "_" + cleanID(subId);
+    GRPCSubRule(String ruleId, String subId, @Nullable String description) {
+      this.matchId = cleanID(ruleId) + "_" + cleanID(subId);
       if (description == null || description.isEmpty()) {
         this.description = GRPCRule.this.getDescription();
         if (this.description == null || this.description.isEmpty()) {
@@ -201,7 +198,7 @@ public abstract class GRPCRule extends RemoteRule {
   }
 
   @Override
-  protected RemoteRule.RemoteRequest prepareRequest(List<AnalyzedSentence> sentences, AnnotatedText annotatedText, @Nullable Long textSessionId) {
+  protected RemoteRule.RemoteRequest prepareRequest(List<AnalyzedSentence> sentences, @Nullable Long textSessionId) {
     List<String> text = sentences.stream().map(AnalyzedSentence::getText).collect(Collectors.toList());
     List<Long> ids = Collections.emptyList();
     if (textSessionId != null) {
@@ -223,9 +220,13 @@ public abstract class GRPCRule extends RemoteRule {
 
       MLServerProto.MatchResponse response;
       try {
-        response = conn.stub
-          .withDeadlineAfter(timeoutMilliseconds, TimeUnit.MILLISECONDS)
-          .match(req.request);
+        if (timeoutMilliseconds > 0) {
+          response = conn.stub
+            .withDeadlineAfter(timeoutMilliseconds, TimeUnit.MILLISECONDS)
+            .match(req.request);
+        } else {
+          response = conn.stub.match(req.request);
+        }
       } catch (StatusRuntimeException e) {
         if (e.getStatus().getCode() == Status.DEADLINE_EXCEEDED.getCode()) {
           throw new TimeoutException(e.getMessage());
@@ -235,7 +236,7 @@ public abstract class GRPCRule extends RemoteRule {
       }
       List<RuleMatch> matches = Streams.zip(response.getSentenceMatchesList().stream(), req.sentences.stream(), (matchList, sentence) ->
         matchList.getMatchesList().stream().map(match -> {
-            GRPCSubRule subRule = new GRPCSubRule(match.getSubId(), match.getRuleDescription());
+            GRPCSubRule subRule = new GRPCSubRule(match.getId(), match.getSubId(), match.getRuleDescription());
             String message = match.getMatchDescription();
             String shortMessage = match.getMatchShortDescription();
             if (message == null || message.isEmpty()) {
